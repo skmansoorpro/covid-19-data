@@ -21,12 +21,7 @@ def increment(
     daily_change=None,
     count=None,
 ):
-    # Read current dataframe
     output_path = os.path.join(paths.SCRIPTS.OLD, "testing", "automated_sheets", f"{sheet_name}.csv")
-    df_current = pd.read_csv(output_path)
-
-    # Sanity checks
-    _check_fields(df_current, country, source_url, source_label, units, date, count, daily_change)
 
     # Create new df
     df = pd.DataFrame(
@@ -46,9 +41,16 @@ def increment(
     if daily_change is not None:
         df["Daily change in cumulative total"] = daily_change
 
-    # Merge
-    df_current = df_current[df_current.Date != date]
-    df = pd.concat([df_current, df])
+    # If file exists, merge
+    if os.path.isfile(output_path):
+        # Read current dataframe
+        df_current = pd.read_csv(output_path)
+        # Sanity checks
+        _check_fields(df_current, country, source_url, source_label, units, date, count, daily_change)
+        # Merge
+        df_current = df_current[df_current.Date != date]
+        df = pd.concat([df_current, df])
+
     df = df.sort_values("Date")
     df = df.drop_duplicates(subset=["Cumulative total"], keep="first")
     # Export
