@@ -10,6 +10,7 @@ ACDC_COUNTRIES = {
     #     "name": "Malawi",
     #     "units": "samples tested",
     # },
+    "Botswana": {"name": "Botswana"},  # New
     "Burundi": {  # New
         "name": "Burundi",
     },
