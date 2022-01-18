@@ -6,6 +6,7 @@ from cowidev.testing.utils.incremental import increment
 
 ACDC_COUNTRIES = {
     "Botswana": {"name": "Botswana"},
+    "Kenya": {"name": "Kenya"},
 }
 country_mapping = {country: metadata["name"] for country, metadata in ACDC_COUNTRIES.items()}
 
