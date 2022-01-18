@@ -5,22 +5,36 @@ from cowidev.testing.utils.incremental import increment
 
 
 ACDC_COUNTRIES = {
-    "Angola": {"name": "Angola", "notes": ""},
-    "Botswana": {
-        "name": "Botswana",
-    },
-    "Burundi": {
+    "Angola": {"name": "Angola", "notes": ""},  # New
+    # "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
+    #     "name": "Malawi",
+    #     "units": "samples tested",
+    # },
+    "Burundi": {  # New
         "name": "Burundi",
     },
-    "Burkina Faso": {
+    "Burkina Faso": {  # New
         "name": "Burkina Faso",
     },
-    "Central African Republic": {
+    "Central African Republic": {  # New
         "name": "Central African Republic",
     },
-    "Chad": {
+    "Chad": {  # New
         "name": "Chad",
     },
+    "Mauritania": {  # Deprecate R script
+        "name": "Mauritania",
+    },
+    "South Sudan": {  # Deprecate R script
+        "name": "South Sudan",
+    },
+    # "Democratic Republic of the Congo": {"name": "Democratic Republic of Congo"},  # Manual
+    "Kenya": {
+        "name": "Kenya",
+    },
+    # "Kenya": {  # Deprecate script + "samples tested -> "tests performed"
+    #     "name": "Kenya",
+    # }
 }
 country_mapping = {country: metadata["name"] for country, metadata in ACDC_COUNTRIES.items()}
 
@@ -30,6 +44,7 @@ class AfricaCDC(AfricaCDCVax):
         "https://services8.arcgis.com/vWozsma9VzGndzx7/ArcGIS/rest/services/"
         "DailyCOVIDDashboard_5July21_1/FeatureServer/0/"
     )
+    source_url_ref = "https://africacdc.org/covid-19/"
     source_label = "Africa Centres for Disease Control and Prevention"
     columns_use = [
         "Country",
@@ -42,12 +57,7 @@ class AfricaCDC(AfricaCDCVax):
         "Date": "date",
     }
     units = "tests performed"
-
-    def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.assign(
-            source_label=self.source_label,
-            source_url=self.source_url_ref,
-        )
+    notes = ""
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
@@ -55,21 +65,22 @@ class AfricaCDC(AfricaCDCVax):
             .pipe(self.pipe_rename)
             .pipe(self.pipe_filter_countries, country_mapping)
             .pipe(self.pipe_date)
-            .pipe(self.pipe_metadata)
         )
 
     def increment_countries(self, df: pd.DataFrame):
         for row in df.sort_values("location").iterrows():
             row = row[1]
             country = row["location"]
-            notes = ACDC_COUNTRIES[country].get("notes", "")
+            print(country, row["Cumulative total"])
+            notes = ACDC_COUNTRIES[country].get("notes", self.notes)
+            units = ACDC_COUNTRIES[country].get("units", self.units)
             increment(
                 count=row["Cumulative total"],
                 sheet_name=country,
                 country=country,
-                units=self.units,
+                units=units,
                 date=row["date"],
-                source_url=self.source_url,
+                source_url=self.source_url_ref,
                 source_label=self.source_label,
                 notes=notes,
             )
