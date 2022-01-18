@@ -6,10 +6,9 @@ from cowidev.testing.utils.incremental import increment
 
 ACDC_COUNTRIES = {
     "Angola": {"name": "Angola", "notes": ""},  # New
-    # "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
-    #     "name": "Malawi",
-    #     "units": "samples tested",
-    # },
+    "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
+        "name": "Malawi",
+    },
     "Botswana": {"name": "Botswana"},  # New
     "Burundi": {  # New
         "name": "Burundi",
@@ -72,7 +71,7 @@ class AfricaCDC(AfricaCDCVax):
         for row in df.sort_values("location").iterrows():
             row = row[1]
             country = row["location"]
-            print(country, row["Cumulative total"])
+            # print(country, row["Cumulative total"])
             notes = ACDC_COUNTRIES[country].get("notes", self.notes)
             units = ACDC_COUNTRIES[country].get("units", self.units)
             increment(
