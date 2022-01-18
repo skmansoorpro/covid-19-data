@@ -193,56 +193,6 @@ days_since_spec = {
         "value_threshold": 0.1,
         "positive_only": False,
     },
-    "days_since_30_new_cases": {
-        "value_col": "new_cases",
-        "value_threshold": 30,
-        "positive_only": False,
-    },
-    "days_since_50_new_cases": {
-        "value_col": "new_cases",
-        "value_threshold": 50,
-        "positive_only": False,
-    },
-    "days_since_10_new_deaths": {
-        "value_col": "new_deaths",
-        "value_threshold": 10,
-        "positive_only": False,
-    },
-    "days_since_5_new_deaths": {
-        "value_col": "new_deaths",
-        "value_threshold": 5,
-        "positive_only": False,
-    },
-    "days_since_3_new_deaths": {
-        "value_col": "new_deaths",
-        "value_threshold": 3,
-        "positive_only": False,
-    },
-    "days_since_30_new_cases_7_day_avg_right": {
-        "value_col": "new_cases_7_day_avg_right",
-        "value_threshold": 30,
-        "positive_only": False,
-    },
-    "days_since_5_new_deaths_7_day_avg_right": {
-        "value_col": "new_deaths_7_day_avg_right",
-        "value_threshold": 5,
-        "positive_only": False,
-    },
-    "days_since_1_new_cases_per_million_7_day_avg_right": {
-        "value_col": "new_cases_per_million_7_day_avg_right",
-        "value_threshold": 1,
-        "positive_only": False,
-    },
-    "days_since_0_1_new_deaths_per_million_7_day_avg_right": {
-        "value_col": "new_deaths_per_million_7_day_avg_right",
-        "value_threshold": 0.1,
-        "positive_only": False,
-    },
-    "days_since_0_01_new_deaths_per_million_7_day_avg_right": {
-        "value_col": "new_deaths_per_million_7_day_avg_right",
-        "value_threshold": 0.01,
-        "positive_only": False,
-    },
 }
 
 
@@ -296,21 +246,6 @@ def inject_cfr(df):
     cfr_series = (df["total_deaths"] / df["total_cases"]) * 100
     df["cfr"] = cfr_series.round(decimals=3)
     df["cfr_100_cases"] = df.apply(_apply_row_cfr_100, axis=1)
-
-    shifted_cases = df.sort_values("date").groupby("location")["new_cases_7_day_avg_right"].shift(9)
-    df["cfr_short_term"] = (
-        df["new_deaths_7_day_avg_right"]
-        .div(shifted_cases)
-        .replace(np.inf, np.nan)
-        .replace(-np.inf, np.nan)
-        .mul(100)
-        .round(4)
-    )
-    df.loc[
-        (df.cfr_short_term < 0) | (df.cfr_short_term > 10) | (df.date.astype(str) < "2020-09-01"),
-        "cfr_short_term",
-    ] = pd.NA
-
     return df
 
 
@@ -319,18 +254,6 @@ def inject_cfr(df):
 # ================
 
 rolling_avg_spec = {
-    "new_cases_3_day_avg_right": {
-        "col": "new_cases",
-        "window": 3,
-        "min_periods": 1,
-        "center": False,
-    },
-    "new_deaths_3_day_avg_right": {
-        "col": "new_deaths",
-        "window": 3,
-        "min_periods": 1,
-        "center": False,
-    },
     "new_cases_7_day_avg_right": {
         "col": "new_cases",
         "window": 7,
@@ -341,18 +264,6 @@ rolling_avg_spec = {
         "col": "new_deaths",
         "window": 7,
         "min_periods": 3,
-        "center": False,
-    },
-    "new_cases_per_million_3_day_avg_right": {
-        "col": "new_cases_per_million",
-        "window": 3,
-        "min_periods": 1,
-        "center": False,
-    },
-    "new_deaths_per_million_3_day_avg_right": {
-        "col": "new_deaths_per_million",
-        "window": 3,
-        "min_periods": 1,
         "center": False,
     },
     "new_cases_per_million_7_day_avg_right": {
@@ -382,7 +293,7 @@ def inject_rolling_avg(df):
                 center=spec["center"],
             )
             .mean()
-            .round(decimals=5)
+            .round(decimals=3)
             .reset_index(level=0, drop=True)
         )
     return df
@@ -491,6 +402,7 @@ def _inject_growth(df, prefix, periods):
         df[["location", cases_colname, deaths_colname]]
         .groupby("location")[[cases_colname, deaths_colname]]
         .pct_change(periods=periods, fill_method=None)
+        .round(1)
         .replace([np.inf, -np.inf], pd.NA)
         * 100
     )
@@ -555,41 +467,10 @@ GRAPHER_COL_NAMES = {
     "days_since_0_1_total_deaths_per_million": (
         "Days since the total confirmed deaths of COVID-19 per million people reached 0.1"
     ),
-    "days_since_30_new_cases": "Days since 30 daily new confirmed cases recorded",
-    "days_since_50_new_cases": "Days since 50 daily new confirmed cases recorded",
-    "days_since_10_new_deaths": "Days since 10 daily new confirmed deaths recorded",
-    "days_since_5_new_deaths": "Days since 5 daily new confirmed deaths recorded",
-    "days_since_3_new_deaths": "Days since 3 daily new confirmed deaths recorded",
-    "days_since_30_new_cases_7_day_avg_right": (
-        "Days since daily new confirmed cases of COVID-19 (rolling 7-day average, right-aligned) reached 30"
-    ),
-    "days_since_5_new_deaths_7_day_avg_right": (
-        "Days since daily new confirmed deaths due to COVID-19 (rolling 7-day average, right-aligned) reached 5"
-    ),
-    "days_since_1_new_cases_per_million_7_day_avg_right": (
-        "Days since daily new confirmed cases of COVID-19 per million people (rolling 7-day average, right-aligned)"
-        " reached 1"
-    ),
-    "days_since_0_1_new_deaths_per_million_7_day_avg_right": (
-        "Days since daily new confirmed deaths due to COVID-19 per million people (rolling 7-day average,"
-        " right-aligned) reached 0.1"
-    ),
-    "days_since_0_01_new_deaths_per_million_7_day_avg_right": (
-        "Days since daily new confirmed deaths due to COVID-19 per million people (rolling 7-day average,"
-        " right-aligned) reached 0.01"
-    ),
     # Rolling averages
-    "new_cases_3_day_avg_right": "Daily new confirmed cases of COVID-19 (rolling 3-day average, right-aligned)",
     "new_cases_7_day_avg_right": "Daily new confirmed cases due to COVID-19 (rolling 7-day average, right-aligned)",
-    "new_deaths_3_day_avg_right": "Daily new confirmed deaths due to COVID-19 (rolling 3-day average, right-aligned)",
     "new_deaths_7_day_avg_right": "Daily new confirmed deaths due to COVID-19 (rolling 7-day average, right-aligned)",
     # Rolling averages - per million
-    "new_cases_per_million_3_day_avg_right": (
-        "Daily new confirmed cases of COVID-19 per million people (rolling 3-day average, right-aligned)"
-    ),
-    "new_deaths_per_million_3_day_avg_right": (
-        "Daily new confirmed deaths due to COVID-19 per million people (rolling 3-day average, right-aligned)"
-    ),
     "new_cases_per_million_7_day_avg_right": (
         "Daily new confirmed cases of COVID-19 per million people (rolling 7-day average, right-aligned)"
     ),
@@ -599,7 +480,6 @@ GRAPHER_COL_NAMES = {
     # Case fatality ratio
     "cfr": "Case fatality rate of COVID-19 (%)",
     "cfr_100_cases": "Case fatality rate of COVID-19 (%) (Only observations with ≥100 cases)",
-    "cfr_short_term": "Case fatality rate of COVID-19 (%) (Short-term)",
     # Exemplars variables
     "days_since_100_total_cases_and_5m_pop": (
         "Days since the total confirmed cases of COVID-19 reached 100 (with population ≥ 5M)"
@@ -607,11 +487,6 @@ GRAPHER_COL_NAMES = {
     "5m_pop_and_21_days_since_100_cases_and_testing": (
         "Has population ≥ 5M AND had ≥100 cases ≥21 days ago AND has testing data"
     ),
-    # Doubling days time-series
-    "doubling_days_total_cases_3_day_period": "Doubling days of total confirmed cases (3 day period)",
-    "doubling_days_total_cases_7_day_period": "Doubling days of total confirmed cases (7 day period)",
-    "doubling_days_total_deaths_3_day_period": "Doubling days of total confirmed deaths (3 day period)",
-    "doubling_days_total_deaths_7_day_period": "Doubling days of total confirmed deaths (7 day period)",
     # Weekly aggregates
     "weekly_cases": "Weekly cases",
     "weekly_deaths": "Weekly deaths",
