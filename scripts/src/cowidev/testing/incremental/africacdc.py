@@ -5,22 +5,7 @@ from cowidev.testing.utils.incremental import increment
 
 
 ACDC_COUNTRIES = {
-    "Angola": {"name": "Angola", "notes": ""},
-    "Botswana": {
-        "name": "Botswana",
-    },
-    "Burundi": {
-        "name": "Burundi",
-    },
-    "Burkina Faso": {
-        "name": "Burkina Faso",
-    },
-    "Central African Republic": {
-        "name": "Central African Republic",
-    },
-    "Chad": {
-        "name": "Chad",
-    },
+    "Botswana": {"name": "Botswana"},
 }
 country_mapping = {country: metadata["name"] for country, metadata in ACDC_COUNTRIES.items()}
 
