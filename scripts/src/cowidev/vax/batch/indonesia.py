@@ -5,6 +5,7 @@ import pandas as pd
 from cowidev.vax.utils.utils import build_vaccine_timeline
 from cowidev.vax.utils.base import CountryVaxBase
 from cowidev.vax.utils.files import load_data
+from cowidev.vax.utils.utils import make_monotonic
 
 
 class Indonesia(CountryVaxBase):
@@ -61,7 +62,13 @@ class Indonesia(CountryVaxBase):
     def pipe_add_latest_who(self, df: pd.DataFrame) -> pd.DataFrame:
         who = pd.read_csv(
             "https://covid19.who.int/who-data/vaccination-data.csv",
-            usecols=["COUNTRY", "DATA_SOURCE", "DATE_UPDATED", "PERSONS_FULLY_VACCINATED"],
+            usecols=[
+                "COUNTRY",
+                "DATA_SOURCE",
+                "DATE_UPDATED",
+                "PERSONS_FULLY_VACCINATED",
+                "PERSONS_VACCINATED_1PLUS_DOSE",
+            ],
         )
 
         who = who[(who.COUNTRY == self.location) & (who.DATA_SOURCE == "REPORTING")]
@@ -70,7 +77,7 @@ class Indonesia(CountryVaxBase):
 
         last_who_report_date = who.DATE_UPDATED.values[0]
         df.loc[df.date == last_who_report_date, "total_vaccinations"] = pd.NA
-        df.loc[df.date == last_who_report_date, "people_vaccinated"] = pd.NA
+        df.loc[df.date == last_who_report_date, "people_vaccinated"] = who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]
         df.loc[df.date == last_who_report_date, "people_fully_vaccinated"] = who.PERSONS_FULLY_VACCINATED.values[0]
         df.loc[df.date == last_who_report_date, "source_url"] = "https://covid19.who.int/"
         return df
@@ -80,6 +87,7 @@ class Indonesia(CountryVaxBase):
             ds.pipe(self.pipe_metadata)
             .pipe(self.pipe_metrics)
             .pipe(self.pipe_add_latest_who)
+            .pipe(make_monotonic)
             .pipe(self.pipe_merge_legacy)
             .pipe(self.pipe_vaccine)[
                 [
