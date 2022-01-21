@@ -41,7 +41,7 @@ class Finland(CountryTestBase):
         return df
 
     def pipe_filter_columns(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df[["Date", "Daily change in cumulative total", "Positive rate"]]
+        return df[["Date", "Daily change in cumulative total", "Positive rate"]].head(-1)
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.pipe(self.pipe_metrics).pipe(self.pipe_filter_columns).pipe(self.pipe_metadata)
