@@ -12,20 +12,22 @@ class Finland(CountryTestBase):
     source_label = "Finnish Department of Health and Welfare"
 
     def read(self) -> pd.DataFrame:
-        df = pd.read_csv(source_url, delimiter=";")
-        df["Time"] = pd.to_datetime(df["Time"], format="%Y-%m-%d")
-        return df
+        return pd.read_csv(self.source_url, delimiter=";")
 
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
+        df["Time"] = pd.to_datetime(df["Time"], format="%Y-%m-%d")
         df = df.pivot(index="Time", columns="Measure", values="val").fillna(0).reset_index()
-        df = df.rename(
-            columns={
-                "Time": "Date",
-                "Number of cases": "positive",
-                "Number of tests": "Daily change in cumulative total",
-            }
+        df = (
+            df.rename(
+                columns={
+                    "Time": "Date",
+                    "Number of cases": "positive",
+                    "Number of tests": "Daily change in cumulative total",
+                }
+            )
+            .drop(columns=["Number of deaths"])
+            .sort_values("Date")
         )
-        df = df.drop("Number of deaths", axis=1)
 
         df["Daily change in cumulative total"] = pd.to_numeric(
             df["Daily change in cumulative total"], downcast="integer"
@@ -36,7 +38,6 @@ class Finland(CountryTestBase):
             df["positive"].rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()
         ).round(3)
 
-        df["Positive rate"] = df["Positive rate"].fillna(0)
         return df
 
     def pipe_filter_columns(self, df: pd.DataFrame) -> pd.DataFrame:
