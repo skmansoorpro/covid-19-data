@@ -13,12 +13,26 @@ logger = get_logger()
 
 
 class AfricaCDC:
-    def __init__(self) -> None:
-        self._base_url = (
-            "https://services8.arcgis.com/vWozsma9VzGndzx7/ArcGIS/rest/services/"
-            "Admin_Boundaries_Africa_corr_Go_Vaccine_DB_JOIN/FeatureServer/0"
-        )
-        self.source_url_ref = "https://africacdc.org/covid-19-vaccination/"
+    _base_url = (
+        "https://services8.arcgis.com/vWozsma9VzGndzx7/ArcGIS/rest/services/"
+        "Admin_Boundaries_Africa_corr_Go_Vaccine_DB_JOIN/FeatureServer/0"
+    )
+    source_url_ref = "https://africacdc.org/covid-19-vaccination/"
+    columns_use = [
+        "ADM0_SOVRN",
+        "ISO_3_CODE",
+        "TotAmtAdmi",
+        "VacAd1Dose",
+        "VacAd2Dose",
+        "FullyVacc",
+        "VaccApprov",
+    ]
+    columns_rename = {
+        "ADM0_SOVRN": "location",
+        "TotAmtAdmi": "total_vaccinations",
+        "FullyVacc": "people_fully_vaccinated",
+        "VacAd1Dose": "people_vaccinated",
+    }
 
     @property
     def source_url(self):
@@ -31,34 +45,19 @@ class AfricaCDC:
     def read(self) -> pd.DataFrame:
         data = request_json(self.source_url)
         res = [d["attributes"] for d in data["features"]]
-        df = pd.DataFrame(
-            res,
-            columns=[
-                "ADM0_SOVRN",
-                "ISO_3_CODE",
-                "TotAmtAdmi",
-                "VacAd1Dose",
-                "VacAd2Dose",
-                "FullyVacc",
-                "VaccApprov",
-            ],
-        )
+        df = pd.DataFrame(res)
         return df
 
-    def pipe_rename(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.rename(
-            columns={
-                "ADM0_SOVRN": "location",
-                "TotAmtAdmi": "total_vaccinations",
-                "FullyVacc": "people_fully_vaccinated",
-                "VacAd1Dose": "people_vaccinated",
-            }
-        )
+    def pipe_filter_columns(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df[self.columns_use]
 
-    def pipe_filter_countries(self, df: pd.DataFrame) -> pd.DataFrame:
+    def pipe_rename(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df.rename(columns=self.columns_rename)
+
+    def pipe_filter_countries(self, df: pd.DataFrame, countries: dict = ACDC_COUNTRIES) -> pd.DataFrame:
         """Get rows from selected countries."""
-        df = df[df.location.isin(ACDC_COUNTRIES.keys())]
-        df["location"] = df.location.replace(ACDC_COUNTRIES)
+        df = df[df.location.isin(countries.keys())]
+        df.assign(location=df.location.replace(countries))
         return df
 
     def pipe_one_dose_correction(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -128,7 +127,8 @@ class AfricaCDC:
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
-            df.pipe(self.pipe_rename)
+            df.pipe(self.pipe_filter_columns)
+            .pipe(self.pipe_rename)
             .pipe(self.pipe_filter_countries)
             .pipe(self.pipe_one_dose_correction)
             .pipe(self.pipe_vaccine_who)
