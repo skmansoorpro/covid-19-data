@@ -5,6 +5,7 @@ from cowidev.vax.utils.incremental import increment
 from cowidev.vax.utils.checks import VACCINES_ONE_DOSE
 from cowidev.vax.utils.orgs import WHO_VACCINES, WHO_COUNTRIES
 from cowidev.vax.cmd.utils import get_logger
+from cowidev.utils.utils import check_known_columns
 
 
 logger = get_logger()
@@ -27,6 +28,25 @@ class WHO:
         return pd.read_csv(self.source_url)
 
     def pipe_checks(self, df: pd.DataFrame) -> pd.DataFrame:
+        check_known_columns(
+            df,
+            [
+                "COUNTRY",
+                "WHO_REGION",
+                "ISO3",
+                "PERSONS_VACCINATED_1PLUS_DOSE_PER100",
+                "PERSONS_FULLY_VACCINATED",
+                "DATA_SOURCE",
+                "TOTAL_VACCINATIONS",
+                "NUMBER_VACCINES_TYPES_USED",
+                "TOTAL_VACCINATIONS_PER100",
+                "FIRST_VACCINE_DATE",
+                "PERSONS_FULLY_VACCINATED_PER100",
+                "PERSONS_VACCINATED_1PLUS_DOSE",
+                "VACCINES_USED",
+                "DATE_UPDATED",
+            ],
+        )
         if len(df) > 300:
             raise ValueError(f"Check source, it may contain updates from several dates! Shape found was {df.shape}")
         if df.groupby("COUNTRY").DATE_UPDATED.nunique().nunique() == 1:

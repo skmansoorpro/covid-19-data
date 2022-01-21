@@ -6,6 +6,7 @@ import tempfile
 from bs4 import BeautifulSoup
 import pandas as pd
 from pdfreader import SimplePDFViewer
+from PyPDF2 import PdfFileReader
 
 from cowidev.utils.clean import clean_count
 from cowidev.utils.clean.dates import clean_date, localdate
@@ -45,10 +46,13 @@ class Thailand:
         links = self._get_month_links(soup)
         records = []
         for link in links:
-            print(link["date"])
+            # print(link["date"], link["link"])
             if link["date"] <= last_update:
                 break
-            records.append(self._parse_metrics(link))
+            record = self._parse_metrics(link)
+            if record is None:
+                continue
+            records.append(record)
             # break
         return pd.DataFrame(records)
 
@@ -70,6 +74,8 @@ class Thailand:
 
     def _parse_metrics(self, link: str):
         raw_text = self._text_from_pdf(link["link"])
+        if raw_text is None:
+            return None
         text = self._substitute_special_chars(raw_text)
         record = self._parse_variables(text)
         record["date"] = link["date"]
@@ -84,7 +90,18 @@ class Thailand:
                 viewer = SimplePDFViewer(f)
                 viewer.render()
                 raw_text = "".join(viewer.canvas.strings)
+                ratio = self._get_ratio_pdf_file(f)
+                # print(ratio)
+                if ratio > 1:
+                    # print(ratio, "discard")
+                    return None
         return raw_text
+
+    def _get_ratio_pdf_file(self, handler):
+        """>1: horizontal, <1: vertical"""
+        input1 = PdfFileReader(handler)
+        dimension = input1.getPage(0).mediaBox
+        return dimension[2] / dimension[3]
 
     def _substitute_special_chars(self, raw_text: str):
         """Correct Thai Special Character Error."""
@@ -165,7 +182,7 @@ class Thailand:
             df = merge_with_current_data(df, output_file)
             df.to_csv(output_file, index=False)
         else:
-            print(1)
+            print("df empty, nothing exported!")
 
 
 def main():

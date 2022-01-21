@@ -1,8 +1,3 @@
-"""constructs a daily time series for Finland of the daily change in COVID-19 tests.
-API documentation: https://thl.fi/fi/tilastot-ja-data/aineistot-ja-palvelut/avoin-data/varmistetut-koronatapaukset-suomessa-covid-19-
-"""
-
-import requests
 import pandas as pd
 
 from cowidev.testing import CountryTestBase
@@ -11,21 +6,45 @@ from cowidev.testing import CountryTestBase
 class Finland(CountryTestBase):
     location = "Finland"
     units = "tests performed"
-    source_url = "https://services7.arcgis.com/nuPvVz1HGGfa0Eh7/arcgis/rest/services/korona_testimaara_paivittain/FeatureServer/0/query?f=json&where=date%3Etimestamp%20%272020-02-25%2022%3A59%3A59%27&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2Ctestimaara_kumulatiivinen%2Cdate&orderByFields=date%20asc&resultOffset=0&resultRecordCount=4000&resultType=standard&cacheHint=true"
-    source_url_ref = "https://experience.arcgis.com/experience/d40b2aaf08be4b9c8ec38de30b714f26"
+    base_url = "https://sampo.thl.fi/pivot/prod/en/epirapo/covid19case/fact_epirapo_covid19case.csv"
+    source_url = f"{base_url}?row=dateweek20200101-509093L&column=measure-444833.445356.492118.&&fo=1"
+    source_url_ref = "https://sampo.thl.fi/pivot/prod/en/epirapo/covid19case/fact_epirapo_covid19case"
     source_label = "Finnish Department of Health and Welfare"
 
-    def read(self):
-        data = requests.get(self.source_url).json()["features"]
-        dates = [d.get("attributes").get("date") for d in data]
-        dates = pd.to_datetime(dates, unit="ms").date
-        total_tests = [d.get("attributes").get("testimaara_kumulatiivinen") for d in data]
-        # build dataframe
-        df = pd.DataFrame({"Date": dates, "Cumulative total": total_tests})
+    def read(self) -> pd.DataFrame:
+        return pd.read_csv(self.source_url, delimiter=";")
+
+    def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
+        df["Time"] = pd.to_datetime(df["Time"], format="%Y-%m-%d")
+        df = df.pivot(index="Time", columns="Measure", values="val").fillna(0).reset_index()
+        df = (
+            df.rename(
+                columns={
+                    "Time": "Date",
+                    "Number of cases": "positive",
+                    "Number of tests": "Daily change in cumulative total",
+                }
+            )
+            .drop(columns=["Number of deaths"])
+            .sort_values("Date")
+        )
+
+        df["Daily change in cumulative total"] = pd.to_numeric(
+            df["Daily change in cumulative total"], downcast="integer"
+        )
+        df = df[df["Daily change in cumulative total"] != 0]
+
+        df["Positive rate"] = (
+            df["positive"].rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()
+        ).round(3)
+
         return df
 
-    def pipeline(self, df: pd.DataFrame):
-        return df.groupby("Cumulative total", as_index=False).min().pipe(self.pipe_metadata)
+    def pipe_filter_columns(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df[["Date", "Daily change in cumulative total", "Positive rate"]].head(-1)
+
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df.pipe(self.pipe_metrics).pipe(self.pipe_filter_columns).pipe(self.pipe_metadata)
 
     def export(self):
         df = self.read().pipe(self.pipeline)
