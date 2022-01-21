@@ -9,7 +9,7 @@ ACDC_COUNTRIES = {
     "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
         "name": "Malawi",
     },
-    "Botswana": {"name": "Botswana"},  # New
+    "Botswana": {"name": "Botswana"},  # Automate
     "Burundi": {  # New
         "name": "Burundi",
     },
@@ -22,9 +22,13 @@ ACDC_COUNTRIES = {
     "Chad": {  # New
         "name": "Chad",
     },
-    "Mauritania": {  # Deprecate R script
+    "Cote d'Ivoire": {"name": "Cote d'Ivoire"},  # Automate
+    "Ghana": {"name": "Ghana"},  # Automate
+    "Madagascar": {"name": "Madagascar"},  # Automate
+    "Mauritania": {
         "name": "Mauritania",
-    },
+    },  # Deprecate R script
+    "Mozambique": {"name": "Mozambique"},  # Automate
     "South Sudan": {  # Deprecate R script
         "name": "South Sudan",
     },
