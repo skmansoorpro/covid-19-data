@@ -15,6 +15,7 @@ class Lithuania:
         "Johnson & Johnson": "Johnson&Johnson",
         "Moderna": "Moderna",
         "Pfizer-BioNTech": "Pfizer/BioNTech",
+        "Novavax": "Novavax",
     }
 
     source_url_coverage: str = "https://services3.arcgis.com/MF53hRPmwfLccHCj/arcgis/rest/services/covid_vaccinations_chart_new/FeatureServer/0/query"
@@ -54,9 +55,10 @@ class Lithuania:
         return df
 
     def pipe_clean_doses(self, df: pd.DataFrame) -> pd.DataFrame:
-        known_vaccines = set(list(self.vaccine_mapping.keys()) + ["visos"])
-        if set(df.vaccine_name) != known_vaccines:
-            raise Exception(f"New vaccines found! Check {known_vaccines.difference(set(self.vaccine_mapping.keys()))}")
+        known_vaccines = set(self.vaccine_mapping) | {"visos"}
+        vax_wrong = set(df.vaccine_name).difference(known_vaccines)
+        if vax_wrong:
+            raise ValueError(f"Some unknown vaccines were found {vax_wrong}")
         self.vaccine_start_dates = (
             df[(df.vaccines_used_cum > 0) & (df.vaccine_name != "visos")]
             .replace(self.vaccine_mapping)
