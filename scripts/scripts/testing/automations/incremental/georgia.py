@@ -9,9 +9,6 @@ from cowidev.utils.clean import clean_count, clean_date
 from cowidev.testing.utils.incremental import increment
 
 
-
-
-
 class Georgia:
     location = "Georgia"
     units = "tests performed"
@@ -22,9 +19,9 @@ class Georgia:
     _url_query_pt2 = "&listOptions%5Bcount%5D=16&listOptions%5Brange%5D=all&listOptions%5Brows%5D=4&listOptions%5Bcolumns%5D=4&listOptions%5Brubric%5D=&listOptions%5Bcategory%5D="
     _num_max_pages = 3
     regex = {
-        "title": r"Georgia reports",
+        "title": r"(Georgia reports)|(coronavirus)",
         "date": r"(\d+ \w+ \d+)",
-        "count": r"(\d+) tests .*? in the past 24 hours",
+        "count": r"(\d+) tests .*? 24 hours",
     }
 
     def read(self) -> pd.Series:
@@ -50,11 +47,11 @@ class Georgia:
         url, date = self._get_link_and_date_from_element(elem)
         # Extract text from url
         text = self._get_text_from_url(url)
-        count = self._parse_metrics(text)
+        daily_change = self._parse_metrics(text)
         record = {
             "source_url": url,
             "date": date,
-            "count": count,
+            "daily_change": daily_change,
         }
         return record, False
 
@@ -67,7 +64,7 @@ class Georgia:
 
         if not url_idx:
             return None
-        
+
         return news_list[url_idx[0]]
 
     def _get_text_from_url(self, url: str) -> str:
@@ -110,7 +107,7 @@ class Georgia:
             date=data["date"],
             source_url=data["source_url"],
             source_label=self.source_label,
-            count=data["count"],
+            daily_change=data["daily_change"],
         )
 
 
@@ -120,14 +117,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-#https://agenda.ge/ajax/get-nodes?pageOptions%5Btag%5D=&pageOptions%5Byear%5D=2022&pageOptions%5Btype%5D=news&pageOptions%5Blang%5D=en&listOptions%5Byear%5D=2021&listOptions%5Bmonth%5D=4&listOptions%5Bday%5D=4&listOptions%5Bpage%5D=0&listOptions%5Bcount%5D=16&listOptions%5Brange%5D=all&listOptions%5Brows%5D=4&listOptions%5Bcolumns%5D=4&listOptions%5Brubric%5D=&listOptions%5Bcategory%5D=society
