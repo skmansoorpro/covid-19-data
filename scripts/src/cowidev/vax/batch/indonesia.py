@@ -66,6 +66,7 @@ class Indonesia(CountryVaxBase):
                 "COUNTRY",
                 "DATA_SOURCE",
                 "DATE_UPDATED",
+                "TOTAL_VACCINATIONS",
                 "PERSONS_FULLY_VACCINATED",
                 "PERSONS_VACCINATED_1PLUS_DOSE",
             ],
@@ -76,7 +77,7 @@ class Indonesia(CountryVaxBase):
             return df
 
         last_who_report_date = who.DATE_UPDATED.values[0]
-        df.loc[df.date == last_who_report_date, "total_vaccinations"] = pd.NA
+        df.loc[df.date == last_who_report_date, "total_vaccinations"] = who.TOTAL_VACCINATIONS.values[0]
         df.loc[df.date == last_who_report_date, "people_vaccinated"] = who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]
         df.loc[df.date == last_who_report_date, "people_fully_vaccinated"] = who.PERSONS_FULLY_VACCINATED.values[0]
         df.loc[df.date == last_who_report_date, "source_url"] = "https://covid19.who.int/"
