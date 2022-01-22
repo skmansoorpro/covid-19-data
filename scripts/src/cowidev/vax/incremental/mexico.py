@@ -34,7 +34,7 @@ class Mexico:
                 f.write(requests.get(url).content)
             with open(tf.name, mode="rb") as f:
                 reader = PyPDF2.PdfFileReader(f)
-                return [reader.getPage(i).extractText() for i in range(9)]
+                return [reader.getPage(i).extractText() for i in range(reader.getNumPages())]
 
     def _parse_data(self, url) -> pd.Series:
         pages = self._get_pages_relevant_pdf(url)
