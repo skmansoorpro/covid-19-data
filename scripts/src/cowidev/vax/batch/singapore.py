@@ -9,7 +9,7 @@ import pandas as pd
 from cowidev.utils import paths, clean_date_series
 from cowidev.utils import paths, clean_date_series
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.utils import build_vaccine_timeline, make_monotonic
+from cowidev.vax.utils.utils import build_vaccine_timeline
 
 
 class Singapore:
