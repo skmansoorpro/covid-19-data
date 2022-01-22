@@ -16,6 +16,15 @@ class Indonesia(CountryVaxBase):
 
     def read(self) -> pd.DataFrame:
         data = requests.get(self.source_url).json()
+        assert set(data["vaksinasi"]["harian"][-1].keys()) == {
+            "key_as_string",
+            "key",
+            "doc_count",
+            "jumlah_vaksinasi_2",
+            "jumlah_vaksinasi_1",
+            "jumlah_jumlah_vaksinasi_1_kum",
+            "jumlah_jumlah_vaksinasi_2_kum",
+        }, f'New columns found! Check {data["vaksinasi"]["harian"][-1].keys()}'
         records = [
             {
                 "date": record["key_as_string"],
