@@ -26,6 +26,7 @@ class ElSalvador(CountryTestBase):
                 .find("label")
                 .text.strip()
             )
+            assert daily > 0
             records.append(
                 {
                     "Date": clean_date(date, "%Y-%m-%d"),
