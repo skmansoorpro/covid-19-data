@@ -1,5 +1,5 @@
 import re
-import chromedriver_binary
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 import pandas as pd
@@ -17,9 +17,9 @@ class Moldova:
     _source_url = "https://msmps.gov.md/minister/comunicare/comunicate/page/"
     _num_max_pages = 3
     regex = {
-        "title": r"cazuri de COVID-19",
+        "title": r"(cazuri noi de COVID-19)|(cazuri de COVID-19)|(cazuri de COVID-19,)",
         "date": r"(\d+\/\d+\/\d+)",
-        "count": r"total de teste .*? (\d+)",
+        "count": r"teste efectuate .*? (\d+)",
     }
 
     def read(self) -> pd.Series:
@@ -56,7 +56,14 @@ class Moldova:
         """Get the relevant element in news feed."""
         news_list = driver.find_elements_by_class_name("list__news")
         url_idx = [
-            i for i, news in enumerate(news_list) if re.search(self.regex["title"], news.text)
+            i
+            for i, news in enumerate(news_list)
+            if re.search(
+                self.regex["title"],
+                news.find_element_by_class_name("h4")
+                .find_element_by_class_name("font__bigger")
+                .text,
+            )
         ]
 
         if not url_idx:
@@ -67,7 +74,13 @@ class Moldova:
     def _get_text_from_url(self, url: str, driver: WebDriver) -> str:
         """Extract text from the url."""
         driver.get(url)
-        text = driver.find_element_by_class_name("editor").text.replace("\n", " ")
+        text = (
+            driver.find_element_by_class_name("editor")
+            .text.replace("\n", " ")
+            .replace("–", " ")
+            .replace(".", "")
+            .replace(",", "")
+        )
         return text
 
     def _get_link_and_date_from_element(self, elem: WebElement) -> tuple:
@@ -78,12 +91,12 @@ class Moldova:
         date = self._parse_date_from_element(elem)
         return link, date
 
-    def _parse_date_from_element(self, elem: WebElement ) -> str:
+    def _parse_date_from_element(self, elem: WebElement) -> str:
         """Get date from relevant element."""
         date = elem.find_element_by_class_name("list__post-date").text
         return clean_date(date, "%d/%m/%Y")
 
-    def _parse_link_from_element(self, elem: WebElement ) -> str:
+    def _parse_link_from_element(self, elem: WebElement) -> str:
         """Get link from relevant element."""
         href = elem.find_element_by_tag_name("a").get_attribute("href")
         return href
