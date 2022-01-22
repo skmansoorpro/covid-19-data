@@ -23,18 +23,20 @@ class Kenya:
         links = self._get_list_pdf_urls()
         records = []
         for link in links:
+            print(link)
             pages = self._get_text_from_pdf(link)
             date = self._parse_date(pages[0])
-            print(date, link)
             if date <= self.last_update:
                 break
-            total_vaccinations, people_vaccinated, people_fully_vaccinated, booster_doses = self._parse_metrics(pages)
+            total_vaccinations, people_vaccinated, people_fully_vaccinated, total_boosters = self._parse_metrics(
+                pages[0]
+            )
             records.append(
                 {
                     "total_vaccinations": total_vaccinations,
                     "people_vaccinated": people_vaccinated,
                     "people_fully_vaccinated": people_fully_vaccinated,
-                    "total_boosters": booster_doses,
+                    "total_boosters": total_boosters,
                     "date": date,
                     "source_url": link,
                 }
@@ -65,52 +67,33 @@ class Kenya:
         return pages
 
     def _parse_date(self, pdf_text: str):
-        regex = r"vaccine doses dispensed as at (day )?[a-z]+ ([0-9]+.{0,2},? [a-z]+,? 202\d)"
-        date_str = re.search(regex, pdf_text).group(2)
+        regex = r"date: [a-z]+ ([0-9]+.{0,2},? [a-z]+,? 202\d)"
+        date_str = re.search(regex, pdf_text).group(1)
         date = str(pd.to_datetime(date_str).date())
         return date
 
-    def _parse_metrics(self, pages: list):
-        regex = (
-            r"total doses administered ([\d,.]+) "
-            r"doses administered above 18 ye?a?rs(?:\(primary schedule\))? ([\d,.]+) "
-            r"partially vaccinated above 18 ye?a?rs ([\d,.]+) "
-            r"fully vaccinated above 18 yrs ([\d,.]+)"
-            r".*"
-            r"doses administered 15-18yrs ([\d,.]+) "
-            r"booster doses ([\d,.]+)"
+    def _parse_metrics(self, pdf_text: str):
+        total_vaccinations = clean_count(re.search(r"total doses administered ([\d,]+)", pdf_text).group(1))
+
+        people_vaccinated_adults = clean_count(
+            re.search(r"partially vaccinated adult population ([\d,]+)", pdf_text).group(1)
         )
-        data = re.search(regex, pages[0])
-        total_vaccinations = clean_count(data.group(1))
-        total_vaccinations_adults = clean_count(data.group(2))
-        partially_vaccinated_adults = clean_count(data.group(3))
-        fully_vaccinated_adults = clean_count(data.group(4))
-        total_vaccinations_teenagers = clean_count(data.group(5))
-        booster_doses = clean_count(data.group(6))
-
-        if not total_vaccinations_adults + total_vaccinations_teenagers + booster_doses == total_vaccinations:
-            raise ValueError(
-                f"Assumptions do not hold. Assumptions made were: "
-                r"1) doses administered 15-18 yrs = first doses 15-18 yrs"
-            )
-
-        # Correct people vaccinated with JJ doses and add teenager data
-        people_vaccinated = partially_vaccinated_adults + self._extract_jj_doses(pages) + total_vaccinations_teenagers
-
-        return total_vaccinations, people_vaccinated, fully_vaccinated_adults, booster_doses
-
-    def _extract_jj_doses(self, pages):
-        rex_header = (
-            r"priority group johnson & johnson dose 2 uptake total fully vaccinated \(j&j \+ dose 2 uptake\) partially"
-            r" vaccinated \(dose 1 uptake\) % dose 2 uptake"
+        people_vaccinated_teens = clean_count(
+            re.search(r"partially vaccinated teenage population\( 15-17yrs\) ([\d,]+)", pdf_text).group(1)
         )
-        rex_jj = r"total ([\d,]+) (?:[\d,]+) (?:[\d,]+) (?:[\d,]+) (?:[\d.]+)% table 5 shows percentage of clients"
-        for page in pages:
-            if "table 5: fully vaccinated vs. partially vaccinated above 18 years by priority group" in page:
-                if not re.search(rex_header, page):
-                    raise Exception("Header columns of table 5 have changed!")
-                doses_jj = re.search(rex_jj, page).group(1)
-        return clean_count(doses_jj)
+        people_vaccinated = people_vaccinated_adults + people_vaccinated_teens
+
+        people_fully_vaccinated_adults = clean_count(
+            re.search(r"fully vaccinated adult population ([\d,]+)", pdf_text).group(1)
+        )
+        people_fully_vaccinated_teens = clean_count(
+            re.search(r"fully vaccinated teenage population\( 15-17yrs\) ([\d,]+)", pdf_text).group(1)
+        )
+        people_fully_vaccinated = people_fully_vaccinated_adults + people_fully_vaccinated_teens
+
+        total_boosters = clean_count(re.search(r"booster doses ([\d,]+)", pdf_text).group(1))
+
+        return total_vaccinations, people_vaccinated, people_fully_vaccinated, total_boosters
 
     def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.assign(location=self.location, vaccine="Oxford/AstraZeneca, Sputnik V")
