@@ -15,7 +15,7 @@ class Singapore:
     notes = ""
     _source_url = "https://www.moh.gov.sg/covid-19/statistics"
     regex = {
-        "date": r"Swabs Tested (as of (\d+ \w+ \d+)",
+        "date": r"Swabs Tested \(as of (\d+ \w+ \d+)",
         "pcr": "Total PCR Swabs Tested",
         "art": "Total Reportable ART Swabs Tested",
     }
@@ -54,9 +54,9 @@ class Singapore:
         """Get date from soup."""
         elem_list = soup.find_all("h3")
         date_list = [
-            re.search(r"Swabs Tested \(as of (\d+ \w+ \d+)", elem.text).group(1)
+            re.search(self.regex["date"], elem.text).group(1)
             for elem in elem_list
-            if re.search(r"Swabs Tested \(as of (\d+ \w+ \d+)", elem.text)
+            if re.search(self.regex["date"], elem.text)
         ]
         if date_list[0] != date_list[1]:
             raise ValueError("pcr and art dates don't match, please update the script")
