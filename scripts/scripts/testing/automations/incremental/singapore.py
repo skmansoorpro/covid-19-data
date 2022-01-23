@@ -14,7 +14,6 @@ class Singapore:
     source_label = "Ministry of Health"
     notes = ""
     _source_url = "https://www.moh.gov.sg/covid-19/statistics"
-    _num_max_pages = 3
     regex = {
         "date": r"Swabs Tested (as of (\d+ \w+ \d+)",
         "pcr": "Total PCR Swabs Tested",
