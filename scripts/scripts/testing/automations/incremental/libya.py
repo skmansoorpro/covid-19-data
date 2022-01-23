@@ -23,7 +23,7 @@ class Libya:
         """Read data from source."""
         soup = get_soup(self._source_url)
         data = self._parse_data(soup)
-            
+
         return pd.Series(data)
 
     def _parse_data(self, soup: BeautifulSoup) -> dict:
@@ -44,12 +44,16 @@ class Libya:
 
     def _get_relevant_element(self, soup: BeautifulSoup) -> element.Tag:
         """Get the relevant element in soup."""
-        elem = soup.find(text=self.regex["samples"]).find_parent(class_="wptb-text-container").find_next_sibling()
+        elem = (
+            soup.find(text=self.regex["samples"])
+            .find_parent(class_="wptb-text-container")
+            .find_next_sibling()
+        )
         return elem
 
     def _parse_date_from_soup(self, soup: BeautifulSoup) -> str:
         """Get date from soup."""
-        date_list=soup.find_all("strong")
+        date_list = soup.find_all("strong")
         date = [date for date in date_list if re.search(self.regex["date"], date.text)]
         date = date[0].text.replace(" ", "").replace("م", "")
         return clean_date(date, "%d/%m/%Y")
