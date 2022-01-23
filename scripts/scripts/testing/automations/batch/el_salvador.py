@@ -1,52 +1,63 @@
-import datetime
-
 import pandas as pd
-
 from cowidev.testing import CountryTestBase
-from cowidev.utils import get_soup, clean_count
-from cowidev.utils.clean.dates import clean_date, localdate
+from cowidev.utils.web.scraping import get_response
 
 
 class ElSalvador(CountryTestBase):
     location = "El Salvador"
     units = "tests performed"
     source_label = "Government of El Salvador"
+    source_url = "https://diario.innovacion.gob.sv"
+    source_url_ref = source_url
+    token = ""
+
+    def get_date(self, d):
+        print(d)
+        query_url = f"{source_ulr}/?_token={self.token}&fechaMostrar={d}"
+        response = get_response(query_url)
+        content = response.content
+        data = \
+            content.split("['Casos nuevos' , 'Pruebas', 'Recuperados', 'Fallecidos'],")[1].split('[],')[
+                0].strip().split("[")[1].split("]")[0].split(",")
+        data_dict = {"Date": d, "positive": data[0], "test": data[1]}
+        return data_dict
 
     def read(self):
-        df = self.load_datafile()
-        date = clean_date(df.Date.max(), "%Y-%m-%d", as_datetime=True)
-        end_date = localdate(None, force_today=True, as_datetime=True)
-        records = []
-        while date < end_date:
-            print(date)
-            source_url = f"https://diario.innovacion.gob.sv/?fechaMostrar={date.strftime('%d-%m-%Y')}"
-            soup = get_soup(source_url)
-            daily = clean_count(
-                soup.find("div", class_="col-4 col-sm-2 col-lg-2 align-self-center offset-lg-0")
-                .find("label")
-                .text.strip()
-            )
-            assert daily > 0
-            records.append(
-                {
-                    "Date": clean_date(date, "%Y-%m-%d"),
-                    "Daily change in cumulative total": daily,
-                    "Source URL": source_url,
-                }
-            )
-            # increment
-            date += datetime.timedelta(days=1)
+        response = get_response(source_url)
+        content = response.content
+        self.token = content.split('name="_token" value="')[1].split('">')[0]
+        dates = [s.strip() for s in
+                 content.split('var datesEnabled = [')[1].split('];')[0].replace("'", "").replace("\n", "").split(",")
+                 if len(s.strip()) > 0]
+        result = map(self.get_date, dates)
+        return pd.DataFrame.from_records(result)
 
-        # Build dataframe
-        df_new = pd.DataFrame.from_records(records)
-        df_new = df_new.pipe(self.pipe_metadata)
-        df = pd.concat([df, df_new])
-        df = df.drop_duplicates().dropna(subset=["Daily change in cumulative total"])
+    def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
+        df['Date'] = pd.to_datetime(df['Date'], format="%d-%m-%Y")
+
+        df["Daily change in cumulative total"] = df["test"]
+        df["Daily change in cumulative total"] = df["Daily change in cumulative total"].astype(int)
+
+        df = df[df["Daily change in cumulative total"] != 0]
+
+        df["Positive rate"] = (
+                df["positive"].rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()
+        ).round(3)
+
+        df["Positive rate"] = df["Positive rate"].fillna(0)
+        df = df[["Date", "Daily change in cumulative total", "Positive rate"]]
+        return df
+
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df.pipe(self.pipe_metrics).pipe(self.pipe_metadata)
+
+    def export(self):
+        df = self.read().pipe(self.pipeline)
         self.export_datafile(df)
 
 
 def main():
-    ElSalvador().read()
+    ElSalvador().export()
 
 
 if __name__ == "__main__":
