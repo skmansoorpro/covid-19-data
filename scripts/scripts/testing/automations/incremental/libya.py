@@ -1,57 +1,79 @@
 import re
+
+from bs4 import BeautifulSoup, element
 import pandas as pd
-import dateparser
 
-from cowidev.utils import get_soup
+from cowidev.utils.web import get_soup
+from cowidev.utils.clean import clean_count, clean_date
+from cowidev.testing.utils.incremental import increment
 
-SOURCE_URL = "https://ncdc.org.ly/Ar"
 
+class Libya:
+    location = "Libya"
+    units = "samples tested"
+    source_label = "Libya National Centre for Disease Control"
+    notes = ""
+    _source_url = "https://ncdc.org.ly/Ar"
+    regex = {
+        "samples": r"عدد العينات",
+        "date": r"(\d+ \/ \d+ \/ \d+.)",
+    }
 
-def libya_get_tests_snapshot():
-    url = SOURCE_URL
-    soup = get_soup(url)
-    # retrieves the daily testing figure.
-    s = "عدد العينات"
-    tests_today_str = None
-    td_to_search = soup.find_all("td")
-    while tests_today_str is None and len(td_to_search):
-        td = td_to_search.pop(0)
-        if td and s in td.text:
-            regex_res = re.search(r"([\d,]+)", td.text)
-            if regex_res:
-                tests_today_str = regex_res.groups()[0]
-    assert tests_today_str is not None, "Failed to find daily change testing figure."
-    tests_today = int(re.sub(r"[\s,]*", "", tests_today_str))
-    # retrieves the date that the data was updated.
-    span = soup.find("div", {"class": "wptb-table-container-matrix"}).find("td").find("strong")
-    assert span is not None, "Failed to find span containing the date."
-    regex_res = re.search(r"\d.*2021", span.text)[0]
-    date = str(dateparser.parse(regex_res, languages=["ar"]).date())
-    return date, tests_today
+    def read(self) -> pd.Series:
+        """Read data from source."""
+        soup = get_soup(self._source_url)
+        data = self._parse_data(soup)
+            
+        return pd.Series(data)
+
+    def _parse_data(self, soup: BeautifulSoup) -> dict:
+        """Get data from the source page."""
+        # Get relevant element
+        elem = self._get_relevant_element(soup)
+        # Extract date from soup
+        date = self._parse_date_from_soup(soup)
+        # Extract metrics from element
+        daily_change = self._parse_metrics(elem)
+
+        record = {
+            "source_url": self._source_url,
+            "date": date,
+            "daily_change": daily_change,
+        }
+        return record
+
+    def _get_relevant_element(self, soup: BeautifulSoup) -> element.Tag:
+        """Get the relevant element in soup."""
+        elem = soup.find(text=self.regex["samples"]).find_parent(class_="wptb-text-container").find_next_sibling()
+        return elem
+
+    def _parse_date_from_soup(self, soup: BeautifulSoup) -> str:
+        """Get date from soup."""
+        date_list=soup.find_all("strong")
+        date = [date for date in date_list if re.search(self.regex["date"], date.text)]
+        date = date[0].text.replace(" ", "").replace("م", "")
+        return clean_date(date, "%d/%m/%Y")
+
+    def _parse_metrics(self, elem: element.Tag) -> int:
+        """Get metrics from element."""
+        count = elem.text.replace(",", "")
+        return clean_count(count)
+
+    def export(self):
+        data = self.read()
+        increment(
+            sheet_name=self.location,
+            country=self.location,
+            units=self.units,
+            date=data["date"],
+            source_url=data["source_url"],
+            source_label=self.source_label,
+            daily_change=data["daily_change"],
+        )
 
 
 def main():
-    date, tests_today = libya_get_tests_snapshot()
-
-    existing = pd.read_csv("automated_sheets/Libya.csv")
-
-    if date > existing["Date"].max():
-
-        new = pd.DataFrame(
-            {
-                "Country": "Libya",
-                "Date": [date],
-                "Daily change in cumulative total": tests_today,
-                "Source URL": SOURCE_URL,
-                "Source label": "Libya National Centre for Disease Control",
-                "Units": "samples tested",
-                "Notes": pd.NA,
-            }
-        )
-
-        df = pd.concat([new, existing]).sort_values("Date", ascending=False)
-        df.loc[:, "Cumulative total"] = pd.NA
-        df.to_csv("automated_sheets/Libya.csv", index=False)
+    Libya().export()
 
 
 if __name__ == "__main__":
