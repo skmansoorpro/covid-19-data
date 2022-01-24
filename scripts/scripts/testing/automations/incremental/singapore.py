@@ -67,7 +67,8 @@ class Singapore:
         """Get metrics from Tags."""
         pcr_count = int(pcr_elem.find_parent("tr").find_next_sibling("tr").text.replace(",", ""))
         art_count = int(art_elem.find_parent("tr").find_next_sibling("tr").text.replace(",", ""))
-        return clean_count(pcr_count + art_count)
+        # art exlcuded
+        return clean_count(pcr_count)
 
     def export(self):
         data = self.read()
