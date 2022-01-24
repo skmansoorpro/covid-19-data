@@ -3,6 +3,26 @@ from datetime import datetime
 import pandas as pd
 from cowidev.testing import CountryTestBase
 from cowidev.utils.web import request_json
+from cowidev.utils.web.download import read_csv_from_url
+
+
+dtype = {
+    "FECHA_CORTE": "string",
+    "UUID": "float64",
+    "FECHA_MUESTRA": "float64",
+    "Edad": "float64",
+    "Sexo": "category",
+    "Institucion": "category",
+    "UBIGEO_PACIENTE": "float64",
+    "DEPARTAMENTO_PACIENTE": "category",
+    "PROVINCIA_PACIENTE": "category",
+    "DISTRITO_PACIENTE": "category",
+    "DEPARTAMENTO_MUESTRA": "category",
+    "PROVINCIA_MUESTRA": "category",
+    "DISTRITO_MUESTRA": "category",
+    "TIPO_MUESTRA": "category",
+    "RESULTADO": "category",
+}
 
 
 class Peru(CountryTestBase):
@@ -15,13 +35,14 @@ class Peru(CountryTestBase):
     )
 
     def read(self) -> pd.DataFrame:
-        json_dict = request_json(self.source_url)
+        json_dict = request_json(self.source_url, verify=False)
         resources = json_dict["result"]["resources"]
         last_modified = max(datetime.fromisoformat(node["last_modified"]) for node in resources)
         test_url = [obj["url"] for obj in resources if datetime.fromisoformat(obj["last_modified"]) == last_modified][
             0
         ]
-        return pd.read_csv(test_url, delimiter="|", low_memory=False)
+        df = read_csv_from_url(test_url, delimiter="|", verify=False, compression="zip", dtype=dtype)
+        return df
 
     @staticmethod
     def pipe_normalize(df: pd.DataFrame) -> pd.DataFrame:
