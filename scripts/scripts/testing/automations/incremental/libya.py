@@ -13,7 +13,7 @@ class Libya:
     units = "samples tested"
     source_label = "Libya National Centre for Disease Control"
     notes = ""
-    _source_url = "https://ncdc.org.ly/Ar"
+    source_url = "https://ncdc.org.ly/Ar"
     regex = {
         "samples": r"عدد العينات",
         "date": r"(\d+ \/ \d+ \/ \d+.)",
@@ -21,7 +21,7 @@ class Libya:
 
     def read(self) -> pd.Series:
         """Read data from source."""
-        soup = get_soup(self._source_url)
+        soup = get_soup(self.source_url)
         data = self._parse_data(soup)
 
         return pd.Series(data)
@@ -36,7 +36,7 @@ class Libya:
         daily_change = self._parse_metrics(elem)
 
         record = {
-            "source_url": self._source_url,
+            "source_url": self.source_url,
             "date": date,
             "daily_change": daily_change,
         }
@@ -44,11 +44,7 @@ class Libya:
 
     def _get_relevant_element(self, soup: BeautifulSoup) -> element.Tag:
         """Get the relevant element in soup."""
-        elem = (
-            soup.find(text=self.regex["samples"])
-            .find_parent(class_="wptb-text-container")
-            .find_next_sibling()
-        )
+        elem = soup.find(text=self.regex["samples"]).find_parent(class_="wptb-text-container").find_next_sibling()
         return elem
 
     def _parse_date_from_soup(self, soup: BeautifulSoup) -> str:
