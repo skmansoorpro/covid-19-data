@@ -34,17 +34,21 @@ class NewZealand:
         soup = get_soup(self.source_url)
 
         # Get latest figures from HTML table
-        latest = pd.read_html(str(soup.find("table")))[0]
+        tables = pd.read_html(str(soup))
+        latest = tables[0].set_index("Unnamed: 0")
+        latest_kids = tables[1].set_index("Unnamed: 0")
         latest_date = re.search(r"Data in this section is as at 11:59pm ([\d]+ [A-Za-z]+ 202\d)", soup.text).group(1)
         self.latest = pd.DataFrame(
             {
-                "total_vaccinations": latest.loc[latest["Unnamed: 0"] == "Total doses", "Cumulative total"].item(),
-                "people_vaccinated": latest.loc[latest["Unnamed: 0"] == "First dose", "Cumulative total"].item(),
-                "people_fully_vaccinated": latest.loc[
-                    latest["Unnamed: 0"] == "Second dose", "Cumulative total"
-                ].item(),
-                "total_boosters": latest.loc[latest["Unnamed: 0"] == "Boosters", "Cumulative total"].item(),
-                "third_dose": latest.loc[latest["Unnamed: 0"] == "Third primary", "Cumulative total"].item(),
+                "total_vaccinations": (
+                    latest.loc["Total doses", "Cumulative total"] + latest_kids.loc["First dose", "Cumulative total"]
+                ),
+                "people_vaccinated": (
+                    latest.loc["First dose", "Cumulative total"] + latest_kids.loc["First dose", "Cumulative total"]
+                ),
+                "people_fully_vaccinated": latest.loc["Second dose", "Cumulative total"],
+                "total_boosters": latest.loc["Boosters", "Cumulative total"],
+                "third_dose": latest.loc["Third primary", "Cumulative total"],
                 "date": [clean_date(latest_date, fmt="%d %B %Y", lang="en")],
             }
         )
