@@ -14,11 +14,15 @@ METADATA = {
 def main() -> pd.DataFrame:
     df = pd.read_csv(METADATA["source_url"], usecols=["Week ending:", "National"])
 
-    df = df.assign(indicator="Weekly new hospital admissions").rename(
-        columns={
-            "Week ending:": "date",
-            "National": "value",
-        }
+    df = (
+        df.assign(indicator="Weekly new hospital admissions")
+        .rename(
+            columns={
+                "Week ending:": "date",
+                "National": "value",
+            }
+        )
+        .drop_duplicates("date", keep=False)
     )
     df["date"] = clean_date_series(df.date, "%d/%m/%Y")
     df["entity"] = METADATA["entity"]
