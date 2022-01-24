@@ -21,6 +21,7 @@ class Moldova:
         "date": r"(\d+\/\d+\/\d+)",
         "count": r"teste efectuate .*? (\d+)",
     }
+    # Initial value for cumulative total: 364317
 
     def read(self) -> pd.Series:
         data = []
@@ -60,9 +61,7 @@ class Moldova:
             for i, news in enumerate(news_list)
             if re.search(
                 self.regex["title"],
-                news.find_element_by_class_name("h4")
-                .find_element_by_class_name("font__bigger")
-                .text,
+                news.find_element_by_class_name("h4").find_element_by_class_name("font__bigger").text,
             )
         ]
 
@@ -116,6 +115,7 @@ class Moldova:
             source_url=data["source_url"],
             source_label=self.source_label,
             daily_change=data["daily_change"],
+            count=pd.NA,
         )
 
 
