@@ -12,7 +12,7 @@ from cowidev.testing.utils.incremental import increment
 class Laos:
     location = "Laos"
     units = "tests performed"
-    source_label = "Government of Laos"
+    source_label = "Ministry of Health"
     notes = ""
     _source_url = "https://www.covid19.gov.la/index.php"
     regex = {
