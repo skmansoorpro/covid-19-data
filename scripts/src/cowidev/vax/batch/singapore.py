@@ -9,7 +9,7 @@ import pandas as pd
 from cowidev.utils import paths, clean_date_series
 from cowidev.utils import paths, clean_date_series
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.utils import build_vaccine_timeline
+from cowidev.vax.utils.utils import build_vaccine_timeline, make_monotonic
 
 
 class Singapore:
@@ -87,7 +87,7 @@ class Singapore:
         )
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.pipe(self.pipe_rename_columns).pipe(self.pipe_metrics).pipe(self.pipe_metadata)
+        return df.pipe(self.pipe_rename_columns).pipe(self.pipe_metrics).pipe(self.pipe_metadata).pipe(make_monotonic)
 
     def export(self):
         df = self.read()
