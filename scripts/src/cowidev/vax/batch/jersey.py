@@ -6,6 +6,7 @@ import pandas as pd
 
 from cowidev.vax.utils.files import export_metadata_age
 from cowidev.utils import paths
+from cowidev.utils.utils import make_monotonic
 
 
 class Jersey:
@@ -170,7 +171,7 @@ class Jersey:
         df[column_metrics] = (df[column_metrics] * 100).round(2)
         return df
 
-    def pipe_fix_dp(self, df: pd.DataFrame) -> pd.DataFrame:
+    def pipe_age_fix_dp(self, df: pd.DataFrame) -> pd.DataFrame:
         column_metrics = [
             "people_vaccinated_per_hundred",
             "people_fully_vaccinated_per_hundred",
@@ -185,6 +186,12 @@ class Jersey:
             raise ValueError(f"Check fixed datapoints ({dt_min}<date<{dt_max}), they might be already fine!")
         return df
 
+    def pipe_age_filter(self, df: pd.DataFrame) -> pd.DataFrame:
+        df.loc[(df.date == "2021-08-29"), "people_fully_vaccinated_per_hundred"] = pd.NA
+        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "18"), "people_vaccinated_per_hundred"] = pd.NA
+        return df
+        # df.pipe(make_monotonic, "date", ["people_vaccinated_per_hundred", "people_fully_vaccinated_per_hundred"])
+
     def pipeline_age(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
             df.pipe(self.pipe_age_select_columns)
@@ -193,7 +200,8 @@ class Jersey:
             .pipe(self.pipe_age_minmax_values)
             .pipe(self.pipe_enrich_columns)
             .pipe(self.pipe_metrics_scale_100)
-            .pipe(self.pipe_fix_dp)
+            .pipe(self.pipe_age_fix_dp)
+            .pipe(self.pipe_age_filter)
             .sort_values(["date", "age_group_min"])[
                 [
                     "location",
