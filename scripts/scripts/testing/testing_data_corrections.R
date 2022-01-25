@@ -22,7 +22,3 @@ collated[Country == "Iceland", `Short-term tests per case` := NA]
 # Qatar: the test definition does not match the case definition (confirmed cases does not exclude positive results from tests included in the testing figure)
 collated[Country == "Qatar", `Short-term positive rate` := NA]
 collated[Country == "Qatar", `Short-term tests per case` := NA]
-
-# Singapore: the test definition does not match the case definition (confirmed cases does not exclude positive results from tests included in the testing figure)
-collated[Country == "Singapore", `Short-term positive rate` := NA]
-collated[Country == "Singapore", `Short-term tests per case` := NA]
