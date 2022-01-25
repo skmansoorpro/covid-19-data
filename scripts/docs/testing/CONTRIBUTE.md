@@ -70,7 +70,7 @@ In addition, we may collect one or all of the following two metrics:
 - `Daily change in cumulative total`: Daily number of new people tested, tests performed or samples tested (depending
   on `Units`).
 
-Please read the [following section](#prioritisation-test-metrics)  to understand better which metric is preferred in each case.	 
+Please read the [following section](#prioritisation-of-metrics)  to understand better which metric is preferred in each case.	 
  
 Finally, if we deem it appropriate, we also estimate the positive rate (`Positive rate`). This is done whenever we
 consider that the data provided by Johns Hopkins University on confirmed cases might not be usable for this purpose (for example because the country doesn't report its cases every day of the week).
