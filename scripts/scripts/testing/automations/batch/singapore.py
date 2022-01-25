@@ -1,9 +1,10 @@
+from multiprocessing.sharedctypes import Value
 import pandas as pd
 from datetime import timedelta
 
 
 from cowidev.testing import CountryTestBase
-from cowidev.utils import clean_count
+from cowidev.utils import clean_date_series, clean_count
 from cowidev.utils.web import request_json
 
 
@@ -23,56 +24,53 @@ class Singapore(CountryTestBase):
         url = f"{self.base_url}1ee4d904-b17e-41de-a731-854578b036e6"
         json_dict = request_json(url)["result"]["records"]
         df = pd.DataFrame.from_records(json_dict).drop(columns=["_id"])
-        df["date"][(df[df["date"] == "2021-12-12"].index.values)] = "2021-12-21"
-        df["average_daily_number_of_art_swabs_tested_over_the_past_week"] = df[
-            "average_daily_number_of_art_swabs_tested_over_the_past_week"
-        ].apply(clean_count)
+        df.loc[(df[df["date"] == "2021-12-12"].index.values), "date"] = "2021-12-21"
         return df
 
     def _read_pcr(self):
         url = f"{self.base_url}07cd6bfd-c73e-4aed-bc7b-55b13dd9e7c2"
         json_dict = request_json(url)["result"]["records"]
         df = pd.DataFrame.from_records(json_dict).drop(columns=["_id"])
-        df["average_daily_number_of_pcr_swabs_tested"] = df["average_daily_number_of_pcr_swabs_tested"].apply(
-            clean_count
-        )
         return df
 
     def read(self):
+        # Read both source data and merge
         art = self._read_art()
         pcr = self._read_pcr()
-        df = pd.merge(art, pcr, how="outer").sort_values(by="date")
-        df["Daily change in cumulative total"] = (
-            df["average_daily_number_of_art_swabs_tested_over_the_past_week"]
-            + df["average_daily_number_of_pcr_swabs_tested"]
-        )
-        df["date"] = pd.to_datetime(df["date"])
+        df = pd.merge(art, pcr).sort_values(by="date")
+        return df
 
-        i = 0
-        z = len(df)
-        while i < (z * 7):
-            new = pd.DataFrame(
-                {
-                    "date": pd.date_range(
-                        df["date"][i] + timedelta(days=1), df["date"][i] + timedelta(days=6)
-                    ).to_list(),
-                    "average_daily_number_of_art_swabs_tested_over_the_past_week": df[
-                        "average_daily_number_of_art_swabs_tested_over_the_past_week"
-                    ][i],
-                    "average_daily_number_of_pcr_swabs_tested": df["average_daily_number_of_pcr_swabs_tested"][i],
-                    "Daily change in cumulative total": df["Daily change in cumulative total"][i],
-                }
-            )
-            df = df.append(new).sort_values(by="date").reset_index(drop=True)
-            i += 7
-        return df.dropna()
+    def pipe_fill_gaps(self, df: pd.DataFrame):
+        """Fill gaps with average daily value."""
+        df["Date"] = pd.to_datetime(df["Date"])
+        # Check difference of 7 days
+        if not (df.Date.diff().iloc[1:].dt.days == 7).all():
+            raise ValueError("Not all values are separated by 7 days. Please check `Date` value!")
+        # Create date range
+        dt_min = df.Date.min()
+        dt_max = df.Date.max() + timedelta(days=6)
+        ds = pd.Series(pd.date_range(dt_min, dt_max), name="Date")
+        # Merge with dataframe & fillna
+        df = df.merge(ds, how="outer", sort=True)  # .sort_values("date")
+        df = df.fillna(method="ffill")
+        df["Date"] = clean_date_series(df["Date"])
+        return df
+
+    def pipe_metric(self, df: pd.DataFrame):
+        return df.assign(
+            **{
+                "Daily change in cumulative total": df.art.apply(clean_count) + df.pcr.apply(clean_count),
+                "Cumulative total": pd.NA,
+            }
+        )
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.pipe(self.pipe_rename_columns).pipe(self.pipe_metadata)
+        return (
+            df.pipe(self.pipe_rename_columns).pipe(self.pipe_fill_gaps).pipe(self.pipe_metric).pipe(self.pipe_metadata)
+        )
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df["Cumulative total"] = pd.NA
         self.export_datafile(df)
 
 
