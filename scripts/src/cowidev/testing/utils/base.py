@@ -3,6 +3,7 @@ import os
 import pandas as pd
 
 from cowidev.utils import paths
+from cowidev.utils.clean.numbers import metrics_to_num_int
 
 
 COLUMNS_ORDER = [
@@ -53,6 +54,7 @@ class CountryTestBase:
         output_path = self.get_output_path(filename)
         if attach:
             df = merge_with_current_data(df, output_path)
+        df = metrics_to_num_int(df, ["Cumulative total", "Daily change in cumulative total"])
         df = self._postprocessing(df)
         if reset_index:
             df = df.reset_index(drop=True)
