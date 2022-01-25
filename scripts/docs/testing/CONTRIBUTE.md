@@ -82,7 +82,7 @@ consider that the data provided by Johns Hopkins University on confirmed cases m
    forward-fill) and create the 7-day average daily series. So in this situation, our dataset will have Cumulative total
    and 7-day, **which is perfect**.
     
-    - Examples: [`greece.py`](../../scripts/testing/automations/incremental/greece.py), [`italy.py`](../../scripts/testing/automations/batch/italy.py), [`brazil.py`](../../scripts/testing/automations/incremental/brazil.py)
+    - Examples: [`greece.py`](../../scripts/testing/automations/incremental/greece.py), [`italy.py`](../../scripts/testing/automations/batch/italy.py), [`brazil.py`](../../scripts/testing/automations/batch/brazil.py)
 2. The second-best situation, if there is no `Cumulative total`, is to collect `Daily change in cumulative total` every
    day instead. If the daily number is _really_ present each day, then our script will calculate the 7-day average.
 
@@ -94,4 +94,4 @@ consider that the data provided by Johns Hopkins University on confirmed cases m
    - Examples: [`moldova.py`](../../scripts/testing/automations/incremental/moldova.py)
 
 #### `Positive rate`
-Examples: [`argentina.py`](../../scripts/testing/automations/incremental/argentina.py), [`france.py`](../../scripts/testing/automations/incremental/france.py)
+Examples: [`argentina.py`](../../scripts/testing/automations/batch/argentina.py), [`france.py`](../../scripts/testing/automations/batch/france.py)
