@@ -23,11 +23,15 @@ class Austria(CountryTestBase):
         return df
 
     def pipe_date(self, df: pd.DataFrame):
-        return df.assign(Date=clean_date_series(df["Date"], "%d.%m.%Y"))
+        return df.assign(Date=clean_date_series(df["Date"], "%d.%m.%Y")).sort_values("Date")
 
     def pipe_filter(self, df: pd.DataFrame):
-        df = df.sort_values("Cumulative total").groupby("Cumulative total", as_index=False).head(1).sort_values("Date")
+        df = df.drop_duplicates(subset=["Cumulative total"], keep="first")
         return df
+
+    def pipe_exluce_dp(self, df: pd.DataFrame):
+        dates = ["2022-01-22"]
+        return df[~df.Date.isin(dates)]
 
     def pipeline(self, df: pd.DataFrame):
         return (
@@ -35,11 +39,13 @@ class Austria(CountryTestBase):
             .pipe(self.pipe_date)
             .pipe(self.pipe_metadata)
             .pipe(self.pipe_filter)
+            .pipe(self.pipe_exluce_dp)
             .pipe(make_monotonic)
         )
 
     def export(self):
-        df = self.read().pipe(self.pipeline)
+        df = self.read()
+        df = df.pipe(self.pipeline)
         self.export_datafile(df)
 
 

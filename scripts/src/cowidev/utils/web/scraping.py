@@ -1,5 +1,5 @@
 import json
-from urllib.error import HTTPError
+from urllib.error import URLError
 
 from bs4 import BeautifulSoup
 import requests
@@ -43,7 +43,9 @@ def get_response(
     except Exception as err:
         raise err
     if not response.ok:
-        raise HTTPError(f"Web {source} not found! {response.content}")
+        raise ValueError(
+            f"Source {source} not reached! Error code {response.status_code} {response.reason}: {response.content}",
+        )
     return response
 
 

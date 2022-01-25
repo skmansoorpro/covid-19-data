@@ -10,7 +10,7 @@ df[, Weekly := as.integer(str_replace_all(`Nukleinsyrapåvisning Genomförda tes
 df <- df[str_detect(Vecka, "[vV]ecka")]
 df[, Vecka := as.integer(str_replace(Vecka, "[vV]ecka ", ""))]
 df <- df[Vecka < 52]
-df[, Date := ymd("2021-01-03") + 7 * Vecka]
+df[, Date := ymd("2022-01-02") + 7 * Vecka]
 
 df <- df[, c("Date", "Weekly")]
 setorder(df, Date)

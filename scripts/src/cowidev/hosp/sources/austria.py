@@ -35,6 +35,9 @@ def main() -> pd.DataFrame:
     df = df[df.Bundesland == "Alle"].drop(columns="Bundesland").rename(columns={"Meldedat": "date"})
     df["date"] = clean_date_series(df.date, "%d.%m.%Y")
 
+    # FZHosp only includes patients in a "normal ward", i.e. all patients – ICU patients
+    df["FZHosp"] = df.FZHosp + df.FZICU
+
     df = df.melt("date", var_name="indicator").dropna(subset=["value"])
     df["indicator"] = df.indicator.replace(
         {
