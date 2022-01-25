@@ -24,6 +24,7 @@ class Jersey:
             "VaccinationsTotalNumberDoses": "total_vaccinations",
             "VaccinationsTotalNumberFirstDoseVaccinations": "people_vaccinated",
             "VaccinationsTotalNumberSecondDoseVaccinations": "people_fully_vaccinated",
+            "VaccinationsTotalNumberThirdDoseVaccinations": "total_boosters",
         }
 
     def read(self):
@@ -64,6 +65,7 @@ class Jersey:
                     "total_vaccinations",
                     "people_vaccinated",
                     "people_fully_vaccinated",
+                    "total_boosters",
                 ]
             ]
         )
