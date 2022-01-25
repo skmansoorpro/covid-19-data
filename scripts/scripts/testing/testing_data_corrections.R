@@ -11,10 +11,6 @@ collated[Country == "Austria" & Date < "2021-02-01", `Short-term tests per case`
 collated[Country == "Ecuador" & Date < "2020-09-14", `Short-term positive rate` := NA]
 collated[Country == "Ecuador" & Date < "2020-09-14", `Short-term tests per case` := NA]
 
-# Mauritania: the test definition does not match the case definition (screening tests possibly included in testing figures)
-collated[Country == "Mauritania", `Short-term positive rate` := NA]
-collated[Country == "Mauritania", `Short-term tests per case` := NA]
-
 # Lebanon: the test definition does not match the case definition (testing figures exclude antigen tests, which can be used to diagnose cases of COVID-19)
 collated[Country == "Lebanon", `Short-term positive rate` := NA]
 collated[Country == "Lebanon", `Short-term tests per case` := NA]
