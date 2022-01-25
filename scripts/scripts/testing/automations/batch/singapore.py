@@ -3,7 +3,7 @@ from datetime import timedelta
 
 
 from cowidev.testing import CountryTestBase
-from cowidev.utils import clean_date_series, clean_count
+from cowidev.utils import clean_count
 from cowidev.utils.web import request_json
 
 
@@ -65,7 +65,6 @@ class Singapore(CountryTestBase):
             )
             df = df.append(new).sort_values(by="date").reset_index(drop=True)
             i += 7
-        print(df.dropna().tail(15))
         return df.dropna()
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
