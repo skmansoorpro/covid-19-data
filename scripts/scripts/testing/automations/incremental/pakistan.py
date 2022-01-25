@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup, element
 import pandas as pd
 
 from cowidev.utils.web import get_soup
-from cowidev.utils.clean import clean_count, clean_date
+from cowidev.utils.clean import clean_count, extract_clean_date
 from cowidev.testing.utils.incremental import increment
 
 
@@ -13,16 +13,16 @@ class Pakistan:
     units = "tests performed"
     source_label = "Government of Pakistan"
     notes = ""
-    _source_url = "http://www.covid.gov.pk/"
+    source_url = "http://www.covid.gov.pk/"
     regex = {
         "header": "Pakistan statistics ",
         "count": r"Total Tests",
-        "date": r"(\d+ \w+ \d+)",
+        "date": r"(\d+ \w+, \d+)",
     }
 
     def read(self) -> pd.Series:
         """Read data from source."""
-        soup = get_soup(self._source_url)
+        soup = get_soup(self.source_url)
         data = self._parse_data(soup)
         return pd.Series(data)
 
@@ -38,7 +38,7 @@ class Pakistan:
         date = self._parse_date_from_soup(soup)
 
         record = {
-            "source_url": self._source_url,
+            "source_url": self.source_url,
             "date": date,
             "count": count,
         }
@@ -57,8 +57,7 @@ class Pakistan:
     def _parse_date_from_soup(self, soup: BeautifulSoup) -> str:
         """Get date from soup."""
         date_text = soup.find(text=self.regex["header"]).parent.findChild(id="last-update")
-        date = re.search(self.regex["date"], date_text.text.replace(",", "")).group()
-        return clean_date(date, "%d %b %Y")
+        return extract_clean_date(date_text.text, self.regex["date"], "%d %b, %Y")
 
     def export(self):
         """Export data to csv."""
