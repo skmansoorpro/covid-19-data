@@ -1,4 +1,5 @@
 import re
+import pandas as pd
 
 
 class NumericCleaner:
@@ -88,3 +89,14 @@ class NumericCleaner:
 def clean_count(count):
     cleaner = NumericCleaner()
     return cleaner.run(count)
+
+
+def _series_to_int64(ds):
+    return ds.astype(pd.Int64Dtype())
+
+
+def metrics_to_num_int(df, metrics):
+    for metric in metrics:
+        if metric in df.columns:  # and any(df[metric].isnull()):
+            df[metric] = _series_to_int64(df[metric])
+    return df

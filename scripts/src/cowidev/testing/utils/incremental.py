@@ -5,6 +5,7 @@ import datetime
 
 import pandas as pd
 from cowidev.utils import paths
+from cowidev.utils.clean.numbers import metrics_to_num_int
 
 
 UNITS_ACCEPTED = {"people tested", "samples tested", "tests performed", "units unclear", "tests performed (CDC)"}
@@ -51,6 +52,8 @@ def increment(
         df_current = df_current[df_current.Date != date]
         df = pd.concat([df_current, df])
 
+    # Ensure Int64 type
+    df = metrics_to_num_int(df, ["Cumulative total", "Daily change in cumulative total"])
     df = df.sort_values("Date")
     if count is not None:
         df = df[~df["Cumulative total"].duplicated(keep="first") | (df["Cumulative total"].isnull())]
