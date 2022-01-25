@@ -1,11 +1,9 @@
-import io
-import requests
-
 import pandas as pd
 
 from cowidev.testing import CountryTestBase
 from cowidev.testing.utils import make_monotonic
-from cowidev.utils import clean_date_series
+from cowidev.utils import clean_date_series, clean_count
+from cowidev.utils.web.download import read_csv_from_url
 
 
 class Australia(CountryTestBase):
@@ -17,30 +15,20 @@ class Australia(CountryTestBase):
     source_label: str = "Australian Government Department of Health"
     rename_columns: str = {
         "Total": "Cumulative total",
-        "Total_Increase": "Daily change in cumulative total",
+        "Total Increase": "Daily change in cumulative total",
     }
 
     def read(self) -> pd.DataFrame:
-        response = requests.get(self.source_url)
-        df = pd.read_csv(
-            io.StringIO(response.content.decode()),
-            header=1,
-            usecols=["Date", "Total", "Total Increase"],
-        )
-        df.columns = df.columns.str.replace(" ", "_")
-        df = df.drop(list(range(42)))
-        df = self._clean_metrics(df)
-
+        df = read_csv_from_url(self.source_url, header=1, usecols=["Date", "Total", "Total Increase"])
         return df
 
-    def _clean_metrics(
-        self,
-        df: pd.DataFrame,
-    ) -> pd.DataFrame:
-        """Change the metrics from str to int"""
-        df.replace({"-": 0, ",": ""}, regex=True, inplace=True)
-        df = df.assign(
-            Total_Increase=pd.to_numeric(df.Total_Increase), Total=pd.to_numeric(df.Total)
+    def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
+        df = df.replace("-", 0)
+        return df.assign(
+            **{
+                "Cumulative total": df["Cumulative total"].apply(clean_count),
+                "Daily change in cumulative total": df["Daily change in cumulative total"].apply(clean_count),
+            }
         )
         return df
 
@@ -50,9 +38,12 @@ class Australia(CountryTestBase):
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
             df.pipe(self.pipe_rename_columns)
+            .pipe(self.pipe_metrics)
             .pipe(self.pipe_date)
             .pipe(self.pipe_metadata)
             .pipe(make_monotonic)
+            .sort_values("Date")
+            .drop_duplicates(subset=["Cumulative total", "Daily change in cumulative total"], keep="first")
         )
 
     def export(self):
