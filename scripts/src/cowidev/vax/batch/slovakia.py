@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+import epiweeks
 import pandas as pd
 
 from cowidev.utils import clean_date, paths
@@ -31,6 +32,8 @@ class Slovakia:
         check_known_columns(
             df,
             [
+                "iso_week",
+                "iso_year",
                 "week",
                 "vaccine",
                 "gender",
@@ -46,14 +49,11 @@ class Slovakia:
 
     def pipe_date(self, df: pd.DataFrame) -> pd.DataFrame:
         # Change week to date
+        df["date"] = df.apply(self._week_to_date, axis=1)
+        return df.drop(columns=["iso_year", "iso_week", "week"])
 
-        return df.assign(date=df.week.apply(self._week_to_date))
-
-    def _week_to_date(self, week):
-        date = clean_date(self.date_start + timedelta(weeks=week))
-        if date > localdatenow("Europe/Bratislava"):
-            return localdatenow("Europe/Bratislava")
-        return date
+    def _week_to_date(self, row):
+        return epiweeks.Week(row.iso_year, row.iso_week).startdate()
 
     def pipe_vaccine_checks(self, df: pd.DataFrame) -> pd.DataFrame:
         # Get vax timeline
