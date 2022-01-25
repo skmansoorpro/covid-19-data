@@ -50,6 +50,11 @@ def increment(
         # Merge
         df_current = df_current[df_current.Date != date]
         df = pd.concat([df_current, df])
+        
+        if "Cumulative total" in df.columns and any(df["Cumulative total"].isnull()):
+            df["Cumulative total"]=df["Cumulative total"].astype(pd.Int64Dtype())
+        if "Daily change in cumulative total" in df.columns and any(df["Daily change in cumulative total"].isnull()):
+            df["Daily change in cumulative total"]=df["Daily change in cumulative total"].astype(pd.Int64Dtype())
 
     df = df.sort_values("Date")
     if count is not None:

@@ -86,4 +86,10 @@ def merge_with_current_data(df: pd.DataFrame, filepath: str) -> pd.DataFrame:
     df_current = pd.read_csv(filepath)
     df_current = df_current[df_current.Date < df.Date.min()]
     df = pd.concat([df_current, df]).sort_values("Date")
+
+    if "Cumulative total" in df.columns and any(df["Cumulative total"].isnull()):
+        df["Cumulative total"]=df["Cumulative total"].astype(pd.Int64Dtype())
+    if "Daily change in cumulative total" in df.columns and any(df["Daily change in cumulative total"].isnull()):
+        df["Daily change in cumulative total"]=df["Daily change in cumulative total"].astype(pd.Int64Dtype())
+
     return df
