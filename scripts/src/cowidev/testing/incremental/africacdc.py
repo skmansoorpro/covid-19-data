@@ -23,6 +23,7 @@ ACDC_COUNTRIES = {
         "name": "Chad",
     },
     "Cote d'Ivoire": {"name": "Cote d'Ivoire"},  # Automate
+    "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
     "Ghana": {"name": "Ghana"},  # Automate
     "Madagascar": {"name": "Madagascar"},  # Automate
     "Mauritania": {

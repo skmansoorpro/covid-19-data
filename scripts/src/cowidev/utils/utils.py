@@ -12,6 +12,39 @@ import pandas as pd
 from cowidev.utils.web.download import download_file_from_url
 
 
+def make_monotonic(
+    df: pd.DataFrame, column_date: str, column_metrics: list, max_removed_rows=10, strict=False
+) -> pd.DataFrame:
+    # Forces vaccination time series to become monotonic.
+    # The algorithm assumes that the most recent values are the correct ones,
+    # and therefore removes previous higher values.
+    n_rows_before = len(df)
+    dates_before = set(df.date)
+    df_before = df.copy()
+
+    df = df.sort_values(column_date)
+    for metric in column_metrics:
+        while not df[metric].ffill().fillna(0).is_monotonic:
+            diff = df[metric].ffill().shift(-1) - df[metric].ffill()
+            if strict:
+                df = df[(diff > 0) | (diff.isna())]
+            else:
+                df = df[(diff >= 0) | (diff.isna())]
+    dates_now = set(df.date)
+
+    if max_removed_rows is not None:
+        num_removed_rows = n_rows_before - len(df)
+        if num_removed_rows > max_removed_rows:
+            dates_wrong = dates_before.difference(dates_now)
+            df_wrong = df_before[df_before.date.isin(dates_wrong)]
+            raise Exception(
+                f"{num_removed_rows} rows have been removed. That is more than maximum allowed ({max_removed_rows}) by"
+                f" make_monotonic() - check the data. Check \n{df_wrong}"  # {', '.join(sorted(dates_wrong))}"
+            )
+
+    return df
+
+
 def series_monotonic(ds):
     diff = ds.ffill().shift(-1) - ds.ffill()
     return ds[(diff >= 0) | (diff.isna())]

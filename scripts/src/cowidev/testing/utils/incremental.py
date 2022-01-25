@@ -53,7 +53,8 @@ def increment(
 
     df = df.sort_values("Date")
     if count is not None:
-        df = df.drop_duplicates(subset=["Cumulative total"], keep="first")
+        df = df[~df["Cumulative total"].duplicated(keep="first") | (df["Cumulative total"].isnull())]
+        # df = df.drop_duplicates(subset=["Cumulative total"], keep="first")
     # Export
     df.to_csv(output_path, index=False)
 
@@ -84,8 +85,20 @@ def _check_fields(
     if units not in UNITS_ACCEPTED:
         raise ValueError(f"Value for `units` is not accepted ({units}). Should be one of {UNITS_ACCEPTED}")
 
-    # Check metrics
-    if (daily_change is None) or (cumulative_total is not None):
+    # Check metric daily_change
+    if (cumulative_total is None) or (daily_change is not None):
+        if not isinstance(daily_change, numbers.Number):
+            type_wrong = type(location).__name__
+            raise TypeError(
+                f"Check `daily_change` type! Should be numeric, found {type_wrong}. Value was {daily_change}"
+            )
+    # Check metric cumulative_total
+    if pd.isna(cumulative_total):
+        if not isinstance(daily_change, numbers.Number):
+            raise TypeError(
+                f"Check `cumulative_total` type! It can't be NaN if no value for `daily_change` is provided."
+            )
+    elif (daily_change is None) or (cumulative_total is not None):
         if not isinstance(cumulative_total, numbers.Number):
             type_wrong = type(location).__name__
             raise TypeError(
@@ -93,12 +106,6 @@ def _check_fields(
             )
         if df_current["Cumulative total"].max() > cumulative_total:
             raise ValueError(f"`cumulative_total` can't be lower than currently highers 'Cumulative total' value.")
-    if (cumulative_total is None) or (daily_change is not None):
-        if not isinstance(daily_change, numbers.Number):
-            type_wrong = type(location).__name__
-            raise TypeError(
-                f"Check `cumulative_total` type! Should be numeric, found {type_wrong}. Value was {cumulative_total}"
-            )
     # Check date
     if not isinstance(date, str):
         type_wrong = type(date).__name__
