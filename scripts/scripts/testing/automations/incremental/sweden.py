@@ -1,17 +1,15 @@
-import os
 import re
+from datetime import timedelta
 
 from epiweeks import Week
 from bs4 import BeautifulSoup, element
 import pandas as pd
 
-from cowidev.utils import paths
-from cowidev.utils.web import get_soup
-from cowidev.utils.clean import clean_count, clean_date
-from cowidev.testing.utils.incremental import increment
+from cowidev.utils import get_soup, clean_count, clean_date
+from cowidev.testing.utils.base import CountryTestBase
 
 
-class Sweden:
+class Sweden(CountryTestBase):
     location = "Sweden"
     units = "tests performed"
     source_label = "Swedish Public Health Agency"
@@ -25,61 +23,80 @@ class Sweden:
 
     def read(self) -> pd.Series:
         """Reads data from source."""
-
         soup = get_soup(self.source_url)
         data = self._parse_data(soup)
+        df = self._build_df(data)
+        return df
 
-        return pd.Series(data)
+    def _build_df(self, data: dict):
+        # Create dataframe
+        df = pd.DataFrame([data])
+        # Create date range (check week distance)
+        dt_min = self._load_last_date() + timedelta(days=1)
+        dt = clean_date(df.Date.max(), "%Y-%m-%d", as_datetime=True)
+        if ((days_diff := (dt - dt_min).days) != 6) & (days_diff != -1):
+            raise ValueError(f"Date distance is no longer a week ({days_diff})! Please check.")
+        ds = pd.Series(pd.date_range(dt - timedelta(days=6), dt).astype(str), name="Date")
+        # Distribute week value over 7 days
+        df = df.merge(ds, how="right")
+        df = df.assign(
+            **{
+                "Source URL": self.source_url,
+                "Daily change in cumulative total": round(df["Daily change in cumulative total"].bfill() / 7),
+            }
+        )
+        return df
 
     def _parse_data(self, soup: BeautifulSoup) -> dict:
         """Gets data from the source page."""
         # Extract the relevant element
         elem = self._get_relevant_element(soup)
-        if not elem:
-            raise TypeError("Website Structure Changed, please update the script")
-        # get the week numeber
-        self._get_week_num_from_element(elem)
-        if self.week_num == 1:
-            raise ValueError("Week 1: New Year, please update date in the script")
+        # Get the week number
+        week_num = self._get_week_num_from_element(elem)
         # Extract the text from the element
         text = self._get_text_from_element(elem)
         # Extract the metrics
-        daily_change = self._parse_metrics(text)
+        daily_change = self._parse_metrics(text, week_num)
         # Parse date
-        date = self._parse_date()
+        date = self._parse_date(week_num)
         # Calculate the cumulative total
         # count = self._calc_cumulative_total(daily_change, date)   #if needed
 
         record = {
-            "source_url": self.source_url,
-            "date": date,
-            "daily_change": daily_change,
+            "Date": date,
+            "Daily change in cumulative total": daily_change,
             # "count": count,                       #if needed
         }
         return record
-
-    def _get_week_num_from_element(self, elem: element.Tag) -> None:
-        self.week_num = int(re.search(self.regex["week"], elem.text).group(1))
 
     def _get_relevant_element(self, soup: BeautifulSoup) -> element.Tag:
         """Gets element from the soup."""
         elem_list = soup.find_all("h2")
         elem = [title for title in elem_list if self.regex["title"] in title.text]
-        return elem[0]
+        elem = elem[0]
+        if not elem:
+            raise TypeError("Website Structure Changed, please update the script")
+        return elem
+
+    def _get_week_num_from_element(self, elem: element.Tag) -> None:
+        week_num = int(re.search(self.regex["week"], elem.text).group(1))
+        if self.week_num == 1:
+            raise ValueError("Week 1: New Year, please update date in the script")
+        return week_num
 
     def _get_text_from_element(self, elem: element.Tag) -> str:
         """Gets text from element."""
         elem = elem.find_next_sibling("table")
         return elem.text.replace(" ", "").replace("\n", " ")
 
-    def _parse_metrics(self, text: str) -> int:
+    def _parse_metrics(self, text: str, week_num) -> int:
         """Gets metrics from the text."""
-        count = re.search(fr"[vV]ecka{self.week_num} \d+ (\d+)", text).group(1)
+        count = re.search(fr"[vV]ecka{week_num} \d+ (\d+)", text).group(1)
         return clean_count(count)
 
-    def _parse_date(self) -> str:
+    def _parse_date(self, week_num) -> str:
         """parses the date from the week number."""
-        date = Week(2022, self.week_num, system="iso").enddate()
+        date = Week(2022, week_num, system="iso").enddate()
         return clean_date(date)
 
     # IF NEEDED
@@ -93,19 +110,15 @@ class Sweden:
     #     count = _df["Cumulative total"].iloc[-1] + daily_change
     #     return clean_count(count)
 
+    def _load_last_date(self):
+        df_current = self.load_datafile()
+        date = df_current.Date.max()
+        return clean_date(date, "%Y-%m-%d", as_datetime=True)
+
     def export(self):
         """Exports data to csv."""
-        data = self.read()
-        increment(
-            sheet_name=self.location,
-            country=self.location,
-            units=self.units,
-            date=data["date"],
-            source_url=data["source_url"],
-            source_label=self.source_label,
-            daily_change=data["daily_change"],
-            # count=data["count"],                        #if needed
-        )
+        df = self.read().pipe(self.pipe_metadata)
+        self.export_datafile(df, attach=True)
 
 
 def main():
