@@ -24,7 +24,7 @@ For a more detailed description of _The Economist's_ estimates, including metada
 
 Stored in [`excess_mortality.csv`](https://github.com/owid/covid-19-data/blob/master/public/data/excess_mortality/excess_mortality.csv).
 
-As of 18 January 2022, the data columns are:
+As of 26 January 2022, the data columns are:
 
 - `location`: name of the country or region
 - `date`: date on which a reporting week or month ended in 2020–2022 only (week dates according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_week_date)). These dates do not apply to other years, such as "deaths_2019_all_ages"; instead, the deaths data across years is organized according to the week or month number in that year — see the "time" and "time_unit" columns below.
@@ -40,8 +40,10 @@ As of 18 January 2022, the data columns are:
 - `p_avg_65_74`: P-scores using 5-year average baseline for ages 65–74
 - `p_avg_75_84`: P-scores using 5-year average baseline for ages 75–84
 - `p_avg_85p`: P-scores using 5-year average baseline for ages 85 and above
+- `deaths_2022_all_ages`: reported number of weekly or monthly deaths from all causes for all ages in 2022
 - `deaths_2021_all_ages`: reported number of weekly or monthly deaths from all causes for all ages in 2021
 - `deaths_2020_all_ages`: reported number of weekly or monthly deaths from all causes for all ages in 2020
+- `deaths_2020_2022_all_ages`: reported number of weekly or monthly deaths from all causes for all ages in 2020–2022
 - `projected_deaths_2020_2022_all_ages`: projected number of weekly or monthly deaths from all causes for all ages for 2020–2022
 - `average_deaths_2015_2019_all_ages`: average number of weekly or monthly deaths from all causes for all ages over the years 2015–2019
 - `deaths_2019_all_ages`: reported number of weekly or monthly deaths from all causes for all ages in 2019
