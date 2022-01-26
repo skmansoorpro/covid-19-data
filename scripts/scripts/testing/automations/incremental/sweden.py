@@ -1,7 +1,7 @@
 import os
 import re
 
-
+from epiweeks import Week
 from bs4 import BeautifulSoup, element
 import pandas as pd
 
@@ -48,13 +48,13 @@ class Sweden:
         # Parse date
         date = self._parse_date()
         # Calculate the cumulative total
-        #count = self._calc_cumulative_total(daily_change, date)   #if needed
+        # count = self._calc_cumulative_total(daily_change, date)   #if needed
 
         record = {
             "source_url": self.source_url,
             "date": date,
             "daily_change": daily_change,
-            #"count": count,                       #if needed
+            # "count": count,                       #if needed
         }
         return record
 
@@ -79,10 +79,11 @@ class Sweden:
 
     def _parse_date(self) -> str:
         """parses the date from the week number."""
-        date = pd.to_datetime("2022-01-02") + pd.DateOffset(days=self.week_num * 7)
+        date = Week(2022, self.week_num, system="iso").enddate()
         return clean_date(date)
 
     # IF NEEDED
+
     # def _calc_cumulative_total(self, daily_change: int, date: str) -> int:
     #     """Calculates the cumulative total."""
     #     output_path = os.path.join(paths.SCRIPTS.OLD, "testing", "automated_sheets", f"{self.location}.csv")
@@ -103,7 +104,7 @@ class Sweden:
             source_url=data["source_url"],
             source_label=self.source_label,
             daily_change=data["daily_change"],
-            #count=data["count"],                        #if needed
+            # count=data["count"],                        #if needed
         )
 
 
