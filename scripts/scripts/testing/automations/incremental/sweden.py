@@ -15,20 +15,20 @@ class Sweden(CountryTestBase):
     source_label = "Swedish Public Health Agency"
     notes = ""
     source_url = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/statistik-och-analyser/antalet-testade-for-covid-19/"
-    week_num = None
     regex = {
         "title": r"Antalet testade individer och genomförda test per",
         "week": r"[vV]ecka (\d+)",
     }
 
-    def read(self) -> pd.Series:
+    def read(self) -> pd.DataFrame:
         """Reads data from source."""
         soup = get_soup(self.source_url)
         data = self._parse_data(soup)
         df = self._build_df(data)
         return df
 
-    def _build_df(self, data: dict):
+    def _build_df(self, data: dict) -> pd.DataFrame:
+        """Builds dataframe from data."""
         # Create dataframe
         df = pd.DataFrame([data])
         # Create date range (check week distance)
@@ -59,13 +59,10 @@ class Sweden(CountryTestBase):
         daily_change = self._parse_metrics(text, week_num)
         # Parse date
         date = self._parse_date(week_num)
-        # Calculate the cumulative total
-        # count = self._calc_cumulative_total(daily_change, date)   #if needed
 
         record = {
             "Date": date,
             "Daily change in cumulative total": daily_change,
-            # "count": count,                       #if needed
         }
         return record
 
@@ -78,16 +75,17 @@ class Sweden(CountryTestBase):
             raise TypeError("Website Structure Changed, please update the script")
         return elem
 
-    def _get_week_num_from_element(self, elem: element.Tag) -> None:
+    def _get_week_num_from_element(self, elem: element.Tag) -> int:
+        """Gets week number from element."""
         week_num = int(re.search(self.regex["week"], elem.text).group(1))
-        if self.week_num == 1:
+        if week_num == 1:
             raise ValueError("Week 1: New Year, please update date in the script")
         return week_num
 
     def _get_text_from_element(self, elem: element.Tag) -> str:
         """Gets text from element."""
-        elem = elem.find_next_sibling("table")
-        return elem.text.replace(" ", "").replace("\n", " ")
+        elem = elem.find_next_sibling("table").text.replace(" ", "").replace("\n", " ")
+        return elem
 
     def _parse_metrics(self, text: str, week_num) -> int:
         """Gets metrics from the text."""
@@ -99,18 +97,8 @@ class Sweden(CountryTestBase):
         date = Week(2022, week_num, system="iso").enddate()
         return clean_date(date)
 
-    # IF NEEDED
-
-    # def _calc_cumulative_total(self, daily_change: int, date: str) -> int:
-    #     """Calculates the cumulative total."""
-    #     output_path = os.path.join(paths.SCRIPTS.OLD, "testing", "automated_sheets", f"{self.location}.csv")
-    #     _df = pd.read_csv(output_path).sort_values("Date")
-    #     if _df["Date"].iloc[-1] == date:
-    #         return _df["Cumulative total"].iloc[-1]
-    #     count = _df["Cumulative total"].iloc[-1] + daily_change
-    #     return clean_count(count)
-
-    def _load_last_date(self):
+    def _load_last_date(self) -> str:
+        """Loads the last date from the datafile."""
         df_current = self.load_datafile()
         date = df_current.Date.max()
         return clean_date(date, "%Y-%m-%d", as_datetime=True)
