@@ -13,7 +13,13 @@ class UnitedStates(CountryTestBase):
     rename_columns = {"date": "Date"}
 
     def read(self):
-        df = pd.read_csv(self.source_url, usecols=["date", "new_results_reported"], parse_dates=["date"])
+        df = pd.read_csv(
+            self.source_url, usecols=["date", "new_results_reported", "overall_outcome"], parse_dates=["date"]
+        )
+        return df
+
+    def pipe_positive_rate(self, df: pd.DataFrame) -> pd.DataFrame:
+
         return df
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -26,9 +32,26 @@ class UnitedStates(CountryTestBase):
 
 
 def pipe_metrics(df: pd.DataFrame) -> pd.DataFrame:
-    return df.groupby("Date", as_index=False).agg(
-        **{"Daily change in cumulative total": ("new_results_reported", sum)}
+    # daily change in positive tests
+    pos = (
+        df[df["overall_outcome"] == "Positive"]
+        .groupby("Date", as_index=False)
+        .agg(**{"Daily change in positive total": ("new_results_reported", sum)})
     )
+
+    # daily change in total tests
+    df = df.groupby("Date", as_index=False).agg(**{"Daily change in cumulative total": ("new_results_reported", sum)})
+
+    # generate positive rate
+    df["Positive rate"] = (
+        (
+            (pos["Daily change in positive total"].rolling(7).mean())
+            / (df["Daily change in cumulative total"].rolling(7).mean())
+        )
+        .round(3)
+        .fillna("")
+    )
+    return df
 
 
 def pipe_date(df: pd.DataFrame) -> pd.DataFrame:
