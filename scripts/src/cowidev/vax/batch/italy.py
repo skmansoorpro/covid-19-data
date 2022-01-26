@@ -29,6 +29,7 @@ class Italy:
         "Moderna": "Moderna",
         "Vaxzevria (AstraZeneca)": "Oxford/AstraZeneca",
         "Janssen": "Johnson&Johnson",
+        "ND": "unknown",
     }
     one_dose_vaccines: list = ["Johnson&Johnson"]
     vax_date_mapping = None
@@ -66,7 +67,8 @@ class Italy:
         return df.rename(columns=self.columns_rename)
 
     def translate_vaccine_columns(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.replace({"vaccine": self.vaccine_mapping})
+        df = df.replace({"vaccine": self.vaccine_mapping})
+        return df[df.vaccine != "unknown"]
 
     def get_total_vaccinations(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.assign(
@@ -114,7 +116,7 @@ class Italy:
 
     def vaccine_start_dates(self, df: pd.DataFrame) -> List[Tuple[str, str]]:
         date2vax = sorted(
-            ((df.loc[df["vaccine"] == vaccine, "date"].min(), vaccine) for vaccine in self.vaccine_mapping.values()),
+            ((df.loc[df["vaccine"] == vaccine, "date"].min(), vaccine) for vaccine in df.vaccine.unique()),
             key=lambda x: x[0],
             reverse=True,
         )
