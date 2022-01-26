@@ -37,10 +37,14 @@ def pipe_metrics(df: pd.DataFrame) -> pd.DataFrame:
         df[df["overall_outcome"] == "Positive"]
         .groupby("Date", as_index=False)
         .agg(**{"Daily change in positive total": ("new_results_reported", sum)})
-    )
+    ).sort_values("Date")
 
     # daily change in total tests
-    df = df.groupby("Date", as_index=False).agg(**{"Daily change in cumulative total": ("new_results_reported", sum)})
+    df = (
+        df.groupby("Date", as_index=False)
+        .agg(**{"Daily change in cumulative total": ("new_results_reported", sum)})
+        .sort_values("Date")
+    )
 
     # generate positive rate
     df["Positive rate"] = (
