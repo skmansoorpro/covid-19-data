@@ -40,7 +40,7 @@ class Sweden(CountryTestBase):
         # Extract the text from the element
         text = self._get_text_from_element(elem)
         # Extract the metrics
-        weekly_change = self._parse_metrics(text)
+        weekly_change = self._parse_metrics(text,week_num)
         # Parse date
         week = self._parse_date()
         # Create list
@@ -88,11 +88,6 @@ class Sweden(CountryTestBase):
         """parses the date from the week number."""
         week = Week(2022, self.week_num, system="iso").iterdates()
         return week
-
-    def _load_last_date(self):
-        df_current = self.load_datafile()
-        date = df_current.Date.max()
-        return clean_date(date, "%Y-%m-%d", as_datetime=True)
 
     def export(self):
         """Exports data to csv."""
