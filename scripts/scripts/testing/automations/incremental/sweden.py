@@ -35,12 +35,8 @@ class Sweden(CountryTestBase):
         """Gets data from the source page."""
         # Extract the relevant element
         elem = self._get_relevant_element(soup)
-        if not elem:
-            raise TypeError("Website Structure Changed, please update the script")
-        # get the week numeber
-        self._get_week_num_from_element(elem)
-        if self.week_num == 1:
-            raise ValueError("Week 1: New Year, please update date in the script")
+        # Get the week number
+        week_num = self._get_week_num_from_element(elem)
         # Extract the text from the element
         text = self._get_text_from_element(elem)
         # Extract the metrics
@@ -67,22 +63,36 @@ class Sweden(CountryTestBase):
         """Gets element from the soup."""
         elem_list = soup.find_all("h2")
         elem = [title for title in elem_list if self.regex["title"] in title.text]
-        return elem[0]
+        elem = elem[0]
+        if not elem:
+            raise TypeError("Website Structure Changed, please update the script")
+        return elem
+
+    def _get_week_num_from_element(self, elem: element.Tag) -> None:
+        week_num = int(re.search(self.regex["week"], elem.text).group(1))
+        if self.week_num == 1:
+            raise ValueError("Week 1: New Year, please update date in the script")
+        return week_num
 
     def _get_text_from_element(self, elem: element.Tag) -> str:
         """Gets text from element."""
         text = elem.find_next_sibling("table").text.replace(" ", "").replace("\n", " ")
         return text
 
-    def _parse_metrics(self, text: str) -> int:
+    def _parse_metrics(self, text: str, week_num) -> int:
         """Gets metrics from the text."""
-        count = re.search(fr"[vV]ecka{self.week_num} \d+ (\d+)", text).group(1)
+        count = re.search(fr"[vV]ecka{week_num} \d+ (\d+)", text).group(1)
         return clean_count(count)
 
     def _parse_date(self) -> Iterator:
         """parses the date from the week number."""
         week = Week(2022, self.week_num, system="iso").iterdates()
         return week
+
+    def _load_last_date(self):
+        df_current = self.load_datafile()
+        date = df_current.Date.max()
+        return clean_date(date, "%Y-%m-%d", as_datetime=True)
 
     def export(self):
         """Exports data to csv."""

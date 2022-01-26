@@ -55,7 +55,7 @@ For each country we collect metadata variables such as:
 
 - `Country`: Name of the country or territory
 - `Date`: Date of the reported data
-- `Units`: Units of the reported data. This can be one of `people tested`, `tests performed` and `samples tested`. 
+- `Units`: Units of the reported data. This can be _just one_ of `people tested`, `tests performed` and `samples tested`. That is, a country file can't contain  mixed units.
     - `people tested`: Number of people tested.
     - `tests performed`: Number of tests performed. A single person can be tested more than once in a given day.
     - `samples tested`: Number of samples tested. In some cases, more than one sample may be required to
