@@ -1,5 +1,6 @@
 import re
 from typing import Iterator
+from datetime import timedelta
 
 from epiweeks import Week
 from bs4 import BeautifulSoup, element
@@ -16,8 +17,7 @@ class Sweden(CountryTestBase):
     units = "tests performed"
     source_label = "Swedish Public Health Agency"
     notes = ""
-    source_url_ref = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/statistik-och-analyser/antalet-testade-for-covid-19/"
-    week_num = None
+    source_url = "https://www.folkhalsomyndigheten.se/smittskydd-beredskap/utbrott/aktuella-utbrott/covid-19/statistik-och-analyser/antalet-testade-for-covid-19/"
     regex = {
         "title": r"Antalet testade individer och genomförda test per",
         "week": r"[vV]ecka (\d+)",
@@ -25,11 +25,30 @@ class Sweden(CountryTestBase):
 
     def read(self) -> pd.DataFrame:
         """Reads data from source."""
-
-        soup = get_soup(self.source_url_ref)
+        soup = get_soup(self.source_url)
         data = self._parse_data(soup)
+        df = self._build_df(data)
+        return df
 
-        return pd.DataFrame(data)
+    def _build_df(self, data: dict) -> pd.DataFrame:
+        """Builds dataframe from data."""
+        # Create dataframe
+        df = pd.DataFrame([data])
+        # Create date range (check week distance)
+        dt_min = self._load_last_date() + timedelta(days=1)
+        dt = clean_date(df.Date.max(), "%Y-%m-%d", as_datetime=True)
+        if ((days_diff := (dt - dt_min).days) != 6) & (days_diff != -1):
+            raise ValueError(f"Date distance is no longer a week ({days_diff})! Please check.")
+        ds = pd.Series(pd.date_range(dt - timedelta(days=6), dt).astype(str), name="Date")
+        # Distribute week value over 7 days
+        df = df.merge(ds, how="right")
+        df = df.assign(
+            **{
+                "Source URL": self.source_url,
+                "Daily change in cumulative total": round(df["Daily change in cumulative total"].bfill()),
+            }
+        )
+        return df
 
     def _parse_data(self, soup: BeautifulSoup) -> list:
         """Gets data from the source page."""
@@ -40,24 +59,15 @@ class Sweden(CountryTestBase):
         # Extract the text from the element
         text = self._get_text_from_element(elem)
         # Extract the metrics
-        weekly_change = self._parse_metrics(text,week_num)
+        weekly_change = self._parse_metrics(text, week_num)
         # Parse date
-        week = self._parse_date()
-        # Create list
-        data = []
-        for day in week:
-            daily_change = round(weekly_change / 7.0)
-            record = {
-                "Date": clean_date(day),
-                "Daily change in cumulative total": daily_change,
-            }
-            data.append(record)
+        date = self._parse_date(week_num)
 
-        return data
-
-    def _get_week_num_from_element(self, elem: element.Tag) -> None:
-        """Gets week number from element."""
-        self.week_num = int(re.search(self.regex["week"], elem.text).group(1))
+        record = {
+            "Date": date,
+            "Daily change in cumulative total": round(weekly_change / 7),
+        }
+        return record
 
     def _get_relevant_element(self, soup: BeautifulSoup) -> element.Tag:
         """Gets element from the soup."""
@@ -68,26 +78,33 @@ class Sweden(CountryTestBase):
             raise TypeError("Website Structure Changed, please update the script")
         return elem
 
-    def _get_week_num_from_element(self, elem: element.Tag) -> None:
+    def _get_week_num_from_element(self, elem: element.Tag) -> int:
+        """Gets week number from element."""
         week_num = int(re.search(self.regex["week"], elem.text).group(1))
-        if self.week_num == 1:
+        if week_num == 1:
             raise ValueError("Week 1: New Year, please update date in the script")
         return week_num
 
     def _get_text_from_element(self, elem: element.Tag) -> str:
         """Gets text from element."""
-        text = elem.find_next_sibling("table").text.replace(" ", "").replace("\n", " ")
-        return text
+        elem = elem.find_next_sibling("table").text.replace(" ", "").replace("\n", " ")
+        return elem
 
     def _parse_metrics(self, text: str, week_num) -> int:
         """Gets metrics from the text."""
         count = re.search(fr"[vV]ecka{week_num} \d+ (\d+)", text).group(1)
         return clean_count(count)
 
-    def _parse_date(self) -> Iterator:
+    def _parse_date(self, week_num) -> Iterator:
         """parses the date from the week number."""
-        week = Week(2022, self.week_num, system="iso").iterdates()
-        return week
+        date = Week(2022, week_num, system="iso").enddate()
+        return clean_date(date)
+
+    def _load_last_date(self) -> str:
+        """Loads the last date from the datafile."""
+        df_current = self.load_datafile()
+        date = df_current.Date.max()
+        return clean_date(date, "%Y-%m-%d", as_datetime=True)
 
     def export(self):
         """Exports data to csv."""
