@@ -24,6 +24,8 @@ class CostaRica(CountryTestBase):
         return df.assign(Date=clean_date_series(df["FECHA"], format_input="%d/%m/%Y"))
 
     def pipe_aggregate(self, df: pd.DataFrame):
+        df = df[pd.to_numeric(df["nue_descar"], errors="coerce").notnull()]
+        df["nue_descar"] = df["nue_descar"].astype(float)
         return df.groupby("Date", as_index=False).sum()
 
     def pipe_metrics(self, df: pd.DataFrame):
