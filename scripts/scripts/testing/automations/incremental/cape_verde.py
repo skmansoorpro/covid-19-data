@@ -12,11 +12,10 @@ class CapeVerde:
     location = "Cape Verde"
     units = "tests performed"
     source_label = "Government of Cape Verde"
-    notes = ""
     source_url = "https://covid19.cv/category/boletim-epidemiologico/"
     regex = {
         "date": r"(\d+ (?:de )?\w+ de 20\d+)",
-        "count": r"(total|totais) (de|dos|das) (\d+) (resultados|amostras)",
+        "count": r"(?:total|totais) (?:de|dos|das) (\d+) (?:resultados|amostras)",
     }
 
     def read(self) -> pd.Series:
@@ -72,7 +71,7 @@ class CapeVerde:
         match = re.search(self.regex["count"], text)
         if not match:
             raise ValueError("Website Structure Changed, please update the script")
-        return clean_count(match.group(3))
+        return clean_count(match.group(1))
 
     def export(self):
         """Export data to CSV."""
