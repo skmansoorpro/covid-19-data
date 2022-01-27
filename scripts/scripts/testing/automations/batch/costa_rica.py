@@ -24,8 +24,12 @@ class CostaRica(CountryTestBase):
         return df.assign(Date=clean_date_series(df["FECHA"], format_input="%d/%m/%Y"))
 
     def pipe_aggregate(self, df: pd.DataFrame):
-        df = df[pd.to_numeric(df["nue_descar"], errors="coerce").notnull()]
-        df["nue_descar"] = df["nue_descar"].astype(float)
+        df = df[~df.nue_descar.isin(["nd"])]
+        df = df.assign(
+            # nue_posi=pd.to_numeric(df["nue_posi"], errors="coerce"),
+            # conf_nexo=pd.to_numeric(df["conf_nexo"], errors="coerce"),
+            nue_descar=pd.to_numeric(df["nue_descar"], errors="coerce"),
+        )
         return df.groupby("Date", as_index=False).sum()
 
     def pipe_metrics(self, df: pd.DataFrame):
@@ -38,7 +42,10 @@ class CostaRica(CountryTestBase):
         return df.sort_values("Date")
 
     def pipeline(self, df: pd.DataFrame):
-        df = df.pipe(self.pipe_date).pipe(self.pipe_aggregate).pipe(self.pipe_metrics).pipe(self.pipe_metadata)
+        df = df.pipe(self.pipe_date)
+        df = df.pipe(self.pipe_aggregate)
+        df = df.pipe(self.pipe_metrics)
+        df = df.pipe(self.pipe_metadata)
         return df
 
     def export(self):
