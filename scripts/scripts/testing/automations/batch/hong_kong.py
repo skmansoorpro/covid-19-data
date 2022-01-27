@@ -25,7 +25,17 @@ class HongKong(CountryTestBase):
 
     def _load_cases(self):
         url = "http://www.chp.gov.hk/files/misc/latest_situation_of_reported_cases_covid_19_eng.csv"
-        df = pd.read_csv(url, usecols=["As of date", "Number of confirmed cases"])
+        df = pd.read_csv(
+            url,
+            usecols=[
+                "As of date",
+                "Number of confirmed cases",
+                "Number of cases tested positive for SARS-CoV-2 virus",
+            ],
+        )
+        df["Number of confirmed cases"] = df["Number of confirmed cases"].fillna(
+            df["Number of cases tested positive for SARS-CoV-2 virus"]
+        )
         return df.assign(Date=clean_date_series(df["As of date"], "%d/%m/%Y"))
 
     def pipe_row_sum(self, df):
