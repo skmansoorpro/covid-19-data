@@ -12,7 +12,7 @@ from cowidev.testing.utils.incremental import increment
 class Ukraine:
     location = "Ukraine"
     units = "tests performed"
-    source_label = "Ministry of Health of Ukraine"
+    source_label = "Cabinet of Ministers of Ukraine"
     notes = ""
     source_url = "https://covid19.gov.ua/en"
     regex = {
