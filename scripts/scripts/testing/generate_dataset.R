@@ -55,9 +55,6 @@ confirmed_cases <- fread("https://covid.ourworldindata.org/data/owid-covid-data.
 setnames(confirmed_cases, c("date", "location"), c("Date", "Country"))
 confirmed_cases[, Date := ymd(Date)]
 
-# Exclude countries from positive rate calculations
-positive_rate_exclusions <- c("Brazil")
-
 # Process each country's data
 parse_country <- function(sheet_name) {
     message(sheet_name)
@@ -163,31 +160,29 @@ parse_country <- function(sheet_name) {
 
     setDT(collated)
 
-    if (!collated$Country[1] %in% positive_rate_exclusions) {
-        collated <- merge(collated, confirmed_cases, by = c("Country", "Date"), all.x = TRUE)
+    collated <- merge(collated, confirmed_cases, by = c("Country", "Date"), all.x = TRUE)
 
-        if ("Positive rate" %in% names(collated)) {
-            collated$pr_method <- "official"
-            setnames(collated, "Positive rate", "Short-term positive rate")
-            stopifnot(min(collated$`Short-term positive rate`, na.rm = TRUE) >= 0)
-            stopifnot(max(collated$`Short-term positive rate`, na.rm = TRUE) <= 1)
-        } else {
-            collated$pr_method <- "OWID"
-            collated[, `Short-term positive rate` := new_cases_smoothed / `7-day smoothed daily change`]
-            collated[`Short-term positive rate` < 0 | `Short-term positive rate` > 1, `Short-term positive rate` := NA]
-        }
-
-        # Tests per case = inverse of positive rate
-        collated[, `Short-term tests per case` := ifelse(`Short-term positive rate` > 0, round(1 / `Short-term positive rate`, 1), NA_integer_)]
-        collated[, `Short-term positive rate` := round(`Short-term positive rate`, 4)]
-
-        # Cumulative versions based on JHU data
-        collated[, `Cumulative positive rate` := round(total_cases / `Cumulative total`, 3)]
-        collated[`Cumulative positive rate` < 0 | `Cumulative positive rate` > 1, `Cumulative positive rate` := NA]
-        collated[, `Cumulative tests per case` := ifelse(`Cumulative positive rate` > 0, round(1 / `Cumulative positive rate`, 1), NA_integer_)]
-
-        collated[, c("total_cases", "new_cases_smoothed") := NULL]
+    if ("Positive rate" %in% names(collated)) {
+        collated$pr_method <- "official"
+        setnames(collated, "Positive rate", "Short-term positive rate")
+        stopifnot(min(collated$`Short-term positive rate`, na.rm = TRUE) >= 0)
+        stopifnot(max(collated$`Short-term positive rate`, na.rm = TRUE) <= 1)
+    } else {
+        collated$pr_method <- "OWID"
+        collated[, `Short-term positive rate` := new_cases_smoothed / `7-day smoothed daily change`]
+        collated[`Short-term positive rate` < 0 | `Short-term positive rate` > 1, `Short-term positive rate` := NA]
     }
+
+    # Tests per case = inverse of positive rate
+    collated[, `Short-term tests per case` := ifelse(`Short-term positive rate` > 0, round(1 / `Short-term positive rate`, 1), NA_integer_)]
+    collated[, `Short-term positive rate` := round(`Short-term positive rate`, 4)]
+
+    # Cumulative versions based on JHU data
+    collated[, `Cumulative positive rate` := round(total_cases / `Cumulative total`, 3)]
+    collated[`Cumulative positive rate` < 0 | `Cumulative positive rate` > 1, `Cumulative positive rate` := NA]
+    collated[, `Cumulative tests per case` := ifelse(`Cumulative positive rate` > 0, round(1 / `Cumulative positive rate`, 1), NA_integer_)]
+
+    collated[, c("total_cases", "new_cases_smoothed") := NULL]
 
     # Sanity checks
     if (any(collated$`Daily change in cumulative total` == 0, na.rm = TRUE)) {

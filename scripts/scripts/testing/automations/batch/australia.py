@@ -15,19 +15,17 @@ class Australia(CountryTestBase):
     source_label: str = "Australian Government Department of Health"
     rename_columns: str = {
         "Total": "Cumulative total",
-        "Total Increase": "Daily change in cumulative total",
     }
 
     def read(self) -> pd.DataFrame:
-        df = read_csv_from_url(self.source_url, header=1, usecols=["Date", "Total", "Total Increase"])
+        df = read_csv_from_url(self.source_url, header=1, usecols=["Date", "Total"])
         return df
 
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
-        df = df.replace("-", 0)
+        df = df.drop(df[df["Cumulative total"] == "-"].index)
         return df.assign(
             **{
                 "Cumulative total": df["Cumulative total"].apply(clean_count),
-                "Daily change in cumulative total": df["Daily change in cumulative total"].apply(clean_count),
             }
         )
         return df
@@ -43,7 +41,7 @@ class Australia(CountryTestBase):
             .pipe(self.pipe_metadata)
             .pipe(make_monotonic)
             .sort_values("Date")
-            .drop_duplicates(subset=["Cumulative total", "Daily change in cumulative total"], keep="first")
+            .drop_duplicates(subset=["Cumulative total"], keep="first")
         )
 
     def export(self):
