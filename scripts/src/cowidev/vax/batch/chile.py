@@ -110,7 +110,7 @@ class Chile:
         df_man.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
         export_metadata_manufacturer(
             df_man,
-            "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
+            "Ministry of Health, via Ministry of Science GitHub repository",
             self.source_url_ref,
         )
 
