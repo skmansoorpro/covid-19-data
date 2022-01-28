@@ -41,14 +41,14 @@ class Chile:
         return df[(df[colname] == "Total") & (df.value > 0)]
 
     def pipe_calculate_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
-        check_known_columns(df, ["Region", "date", "Primera", "Refuerzo", "Segunda", "Unica"])
+        check_known_columns(df, ["Region", "date", "Primera", "Refuerzo", "Segunda", "Unica", "Cuarta"])
         df = df.fillna(0)
         return df.assign(
             people_vaccinated=df.Primera + df.Unica,
             people_fully_vaccinated=df.Segunda + df.Unica,
-            total_vaccinations=df.Primera + df.Refuerzo + df.Segunda + df.Unica,
-            total_boosters=df.Refuerzo,
-        ).drop(columns=["Primera", "Refuerzo", "Segunda", "Unica"])
+            total_vaccinations=df.Primera + df.Refuerzo + df.Segunda + df.Unica + df.Cuarta,
+            total_boosters=df.Refuerzo + df.Cuarta,
+        ).drop(columns=["Primera", "Refuerzo", "Segunda", "Unica", "Cuarta"])
 
     def pipe_add_vaccine_list(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.merge(self.vaccine_list, on="date", how="left").sort_values("date")
@@ -110,7 +110,7 @@ class Chile:
         df_man.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
         export_metadata_manufacturer(
             df_man,
-            "Ministerio de Ciencia, Tecnología, Conocimiento e Innovación",
+            "Ministry of Health, via Ministry of Science GitHub repository",
             self.source_url_ref,
         )
 

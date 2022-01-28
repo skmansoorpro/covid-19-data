@@ -172,9 +172,9 @@ class Denmark(CountryVaxBase):
         df = df.merge(df_current, on="date", how="left")
         df = df.assign(single_shots=df.single_shots.fillna(df.single_shots_current))
         df = df.assign(
-            total_vaccinations=df.people_vaccinated
-            + df.people_fully_vaccinated
-            + df.total_boosters
+            total_vaccinations=df.people_vaccinated.ffill().fillna(0)
+            + df.people_fully_vaccinated.ffill().fillna(0)
+            + df.total_boosters.ffill().fillna(0)
             - df.single_shots.ffill().fillna(0)
         )
         return df

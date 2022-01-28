@@ -5,6 +5,7 @@ import pandas as pd
 from cowidev.vax.utils.utils import build_vaccine_timeline
 from cowidev.vax.utils.base import CountryVaxBase
 from cowidev.vax.utils.files import load_data
+from cowidev.vax.utils.utils import make_monotonic
 
 
 class Indonesia(CountryVaxBase):
@@ -15,6 +16,15 @@ class Indonesia(CountryVaxBase):
 
     def read(self) -> pd.DataFrame:
         data = requests.get(self.source_url).json()
+        assert set(data["vaksinasi"]["harian"][-1].keys()) == {
+            "key_as_string",
+            "key",
+            "doc_count",
+            "jumlah_vaksinasi_2",
+            "jumlah_vaksinasi_1",
+            "jumlah_jumlah_vaksinasi_1_kum",
+            "jumlah_jumlah_vaksinasi_2_kum",
+        }, f'New columns found! Check {data["vaksinasi"]["harian"][-1].keys()}'
         records = [
             {
                 "date": record["key_as_string"],
@@ -58,10 +68,36 @@ class Indonesia(CountryVaxBase):
         df.loc[df.date >= "2021-09-11", "people_fully_vaccinated"] = pd.NA  # single shot data missing from 2021-09-11
         return df
 
+    def pipe_add_latest_who(self, df: pd.DataFrame) -> pd.DataFrame:
+        who = pd.read_csv(
+            "https://covid19.who.int/who-data/vaccination-data.csv",
+            usecols=[
+                "COUNTRY",
+                "DATA_SOURCE",
+                "DATE_UPDATED",
+                "TOTAL_VACCINATIONS",
+                "PERSONS_FULLY_VACCINATED",
+                "PERSONS_VACCINATED_1PLUS_DOSE",
+            ],
+        )
+
+        who = who[(who.COUNTRY == self.location) & (who.DATA_SOURCE == "REPORTING")]
+        if len(who) == 0:
+            return df
+
+        last_who_report_date = who.DATE_UPDATED.values[0]
+        df.loc[df.date == last_who_report_date, "total_vaccinations"] = who.TOTAL_VACCINATIONS.values[0]
+        df.loc[df.date == last_who_report_date, "people_vaccinated"] = who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]
+        df.loc[df.date == last_who_report_date, "people_fully_vaccinated"] = who.PERSONS_FULLY_VACCINATED.values[0]
+        df.loc[df.date == last_who_report_date, "source_url"] = "https://covid19.who.int/"
+        return df
+
     def pipeline(self, ds: pd.Series) -> pd.Series:
         return (
             ds.pipe(self.pipe_metadata)
             .pipe(self.pipe_metrics)
+            .pipe(self.pipe_add_latest_who)
+            .pipe(make_monotonic)
             .pipe(self.pipe_merge_legacy)
             .pipe(self.pipe_vaccine)[
                 [

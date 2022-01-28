@@ -13,7 +13,7 @@ from cowidev.vax.utils.incremental import enrich_data, increment
 
 class Mexico:
     def __init__(self):
-        self.source_page = "https://www.gob.mx/salud/documentos/presentaciones-de-las-conferencias-de-prensa-2021"
+        self.source_page = "https://www.gob.mx/salud/documentos/presentaciones-2022"
         self.location = "Mexico"
 
     def read(self):
@@ -34,7 +34,7 @@ class Mexico:
                 f.write(requests.get(url).content)
             with open(tf.name, mode="rb") as f:
                 reader = PyPDF2.PdfFileReader(f)
-                return [reader.getPage(i).extractText() for i in range(9)]
+                return [reader.getPage(i).extractText() for i in range(reader.getNumPages())]
 
     def _parse_data(self, url) -> pd.Series:
         pages = self._get_pages_relevant_pdf(url)
@@ -48,8 +48,11 @@ class Mexico:
                 date = localdate("America/Mexico_City")
 
             elif "Personas vacunadas reportadas" in page_text:
-                people_vaccinated = clean_count(re.search(r"Personas vacunadas \*\s?([\d,]{10,})", page_text).group(1))
-                people_fully_vaccinated = clean_count(re.search(r"Esquema completo ([\d,]{10,})", page_text).group(1))
+                matches = re.search(
+                    r"([\d,]{10,}) Esquema completo ([\d,]{10,}) Personas vacunadas con esq. completo", page_text
+                )
+                people_vaccinated = clean_count(matches.group(1))
+                people_fully_vaccinated = clean_count(matches.group(2))
 
         # Tests
         assert total_vaccinations >= 94300526

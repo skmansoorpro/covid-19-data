@@ -3,6 +3,7 @@ import pandas as pd
 from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
 from cowidev.utils.web import request_json
+from cowidev.vax.utils.utils import make_monotonic
 
 
 def main():
@@ -50,8 +51,7 @@ def main():
 
     df = df[df.total_vaccinations > 0].sort_values("date")
 
-    # The data contains an error that creates a negative change
-    df = df[df.date != "2021-03-03"]
+    df = make_monotonic(df)
 
     df = df[
         [

@@ -5,6 +5,7 @@ import datetime
 
 import pandas as pd
 from cowidev.utils import paths
+from cowidev.utils.clean.numbers import metrics_to_num_int
 
 
 UNITS_ACCEPTED = {"people tested", "samples tested", "tests performed", "units unclear", "tests performed (CDC)"}
@@ -21,12 +22,7 @@ def increment(
     daily_change=None,
     count=None,
 ):
-    # Read current dataframe
     output_path = os.path.join(paths.SCRIPTS.OLD, "testing", "automated_sheets", f"{sheet_name}.csv")
-    df_current = pd.read_csv(output_path)
-
-    # Sanity checks
-    _check_fields(df_current, country, source_url, source_label, units, date, count, daily_change)
 
     # Create new df
     df = pd.DataFrame(
@@ -46,11 +42,22 @@ def increment(
     if daily_change is not None:
         df["Daily change in cumulative total"] = daily_change
 
-    # Merge
-    df_current = df_current[df_current.Date != date]
-    df = pd.concat([df_current, df])
+    # If file exists, merge
+    if os.path.isfile(output_path):
+        # Read current dataframe
+        df_current = pd.read_csv(output_path)
+        # Sanity checks
+        _check_fields(df_current, country, source_url, source_label, units, date, count, daily_change)
+        # Merge
+        df_current = df_current[df_current.Date != date]
+        df = pd.concat([df_current, df])
+
+    # Ensure Int64 type
+    df = metrics_to_num_int(df, ["Cumulative total", "Daily change in cumulative total"])
     df = df.sort_values("Date")
-    df = df.drop_duplicates(subset=["Cumulative total"], keep="first")
+    if count is not None:
+        df = df[~df["Cumulative total"].duplicated(keep="first") | (df["Cumulative total"].isnull())]
+        # df = df.drop_duplicates(subset=["Cumulative total"], keep="first")
     # Export
     df.to_csv(output_path, index=False)
 
@@ -81,8 +88,20 @@ def _check_fields(
     if units not in UNITS_ACCEPTED:
         raise ValueError(f"Value for `units` is not accepted ({units}). Should be one of {UNITS_ACCEPTED}")
 
-    # Check metrics
-    if (daily_change is None) or (cumulative_total is not None):
+    # Check metric daily_change
+    if (cumulative_total is None) or (daily_change is not None):
+        if not isinstance(daily_change, numbers.Number):
+            type_wrong = type(location).__name__
+            raise TypeError(
+                f"Check `daily_change` type! Should be numeric, found {type_wrong}. Value was {daily_change}"
+            )
+    # Check metric cumulative_total
+    if pd.isna(cumulative_total):
+        if not isinstance(daily_change, numbers.Number):
+            raise TypeError(
+                f"Check `cumulative_total` type! It can't be NaN if no value for `daily_change` is provided."
+            )
+    elif (daily_change is None) or (cumulative_total is not None):
         if not isinstance(cumulative_total, numbers.Number):
             type_wrong = type(location).__name__
             raise TypeError(
@@ -90,12 +109,6 @@ def _check_fields(
             )
         if df_current["Cumulative total"].max() > cumulative_total:
             raise ValueError(f"`cumulative_total` can't be lower than currently highers 'Cumulative total' value.")
-    if (cumulative_total is None) or (daily_change is not None):
-        if not isinstance(daily_change, numbers.Number):
-            type_wrong = type(location).__name__
-            raise TypeError(
-                f"Check `cumulative_total` type! Should be numeric, found {type_wrong}. Value was {cumulative_total}"
-            )
     # Check date
     if not isinstance(date, str):
         type_wrong = type(date).__name__

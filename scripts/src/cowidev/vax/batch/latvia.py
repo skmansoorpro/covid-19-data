@@ -9,6 +9,7 @@ logger = get_logger()
 
 
 vaccine_mapping = {
+    # "Ambirix": "",
     "BBIBP-CorV": "Sinopharm/Beijing",
     "BBIBP-CorV(Sinopharm)": "Sinopharm/Beijing",
     "Comirnaty": "Pfizer/BioNTech",
@@ -21,7 +22,9 @@ vaccine_mapping = {
     "Covishield(ChAdOx1_nCoV-19)": "Oxford/AstraZeneca",
     "Moderna COVID-19 vaccine": "Moderna",
     "Spikevax": "Moderna",
+    "Spikevax (previously COVID-19 Vaccine Moderna)": "Moderna",
     "Vaxzevria": "Oxford/AstraZeneca",
+    "Vaxzevria (previously COVID-19 Vaccine AstraZeneca)": "Oxford/AstraZeneca",
 }
 one_dose_vaccines = ["Johnson&Johnson"]
 
@@ -51,9 +54,10 @@ class Latvia(CountryVaxBase):
     def pipe_base(self, df: pd.DataFrame) -> pd.DataFrame:
         df["Vakcinācijas datums"] = df["Vakcinācijas datums"].str.slice(0, 10)
         df["vaccine"] = df["Preparāts"].str.strip()
-        vaccines_wrong = set(df["vaccine"].unique()).difference(vaccine_mapping)
+        vaccines_wrong = set(df["vaccine"].unique()).difference(set(vaccine_mapping) | {"Ambirix"})
         if vaccines_wrong:
             raise ValueError(f"Missing vaccines: {vaccines_wrong}")
+        df = df[~df.vaccine.isin(["Ambirix"])]
         return (
             df.replace(vaccine_mapping)
             .drop(columns=["Preparāts"])
