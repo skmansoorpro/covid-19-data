@@ -50,7 +50,7 @@ class CountryTestBase:
         df = df[cols]
         return df
 
-    def export_datafile(self, df, filename=None, attach=False, reset_index=False):
+    def export_datafile(self, df, filename=None, attach=False, reset_index=False, **kwargs):
         output_path = self.get_output_path(filename)
         if attach:
             df = merge_with_current_data(df, output_path)
@@ -58,7 +58,7 @@ class CountryTestBase:
         df = self._postprocessing(df)
         if reset_index:
             df = df.reset_index(drop=True)
-        df.to_csv(output_path, index=False)
+        df.to_csv(output_path, index=False, **kwargs)
 
     def load_datafile(self, filename=None):
         return pd.read_csv(self.get_output_path(filename))

@@ -24,12 +24,15 @@ ACDC_COUNTRIES = {
     },
     "Cote d'Ivoire": {"name": "Cote d'Ivoire"},  # Automate
     "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
+    "Gabon": {"name": "Gabon"},  # Automate
+    "Gambia": {"name": "Gambia"},  # Automate
     "Ghana": {"name": "Ghana"},  # Automate
     "Madagascar": {"name": "Madagascar"},  # Automate
     "Mauritania": {
         "name": "Mauritania",
     },  # Deprecate R script
     "Mozambique": {"name": "Mozambique"},  # Automate
+    "Namibia": {"name": "Namibia"},  # Automate
     "South Sudan": {  # Deprecate R script
         "name": "South Sudan",
     },

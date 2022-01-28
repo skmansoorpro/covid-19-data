@@ -6,7 +6,7 @@ from cowidev.testing import CountryTestBase
 class Chile(CountryTestBase):
     location = "Chile"
     source_url_ref = "https://github.com/MinCiencia/Datos-COVID19/tree/master/output/producto49"
-    source_label = "Chile Ministry of Health"
+    source_label = "Ministry of Health, via Ministry of Science GitHub repository"
     units = "tests performed"
 
     def export(self):
