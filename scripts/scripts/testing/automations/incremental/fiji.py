@@ -15,6 +15,8 @@ class Fiji:
     notes = ""
     source_url = "https://www.health.gov.fj/page/"
     _num_max_pages = 3
+    _num_rows_per_page = 3
+    __element = None
     regex = {
         "title": r"COVID-19 Update",
         "year": r"\d{4}",
@@ -23,29 +25,34 @@ class Fiji:
     }
 
     def read(self) -> pd.Series:
+        """Read data from source."""
         data = []
 
         for cnt in range(1, self._num_max_pages + 1):
             url = f"{self.source_url}{cnt}/"
             soup = get_soup(url)
-            data, proceed = self._parse_data(soup)
-            if not proceed:
-                break
-
-        return pd.Series(data)
+            for _ in range(self._num_rows_per_page):
+                data, proceed = self._parse_data(soup)
+                if not proceed:
+                    return pd.Series(data)
+        return None
 
     def _parse_data(self, soup: BeautifulSoup) -> tuple:
         """Get data from the source page."""
-        # Get relevant element
-        elem, year = self._get_relevant_element_and_year(soup)
-        if not elem:
+        # Get relevant element list
+        self._get_list_of_elements(soup)
+        if not self.__element:
             return None, True
+        # Get relevant element and year from element list
+        elem, year = self._get_relevant_element_and_year()
         # Extract url and date from element
         url = self._parse_link_from_element(elem)
         # Extract text from url
         text = self._get_text_from_url(url)
         # Extract metrics from text
         date = self._parse_date_from_text(year, text)
+        if not date:
+            return None, True
         # Extract metrics from text
         daily_change = self._parse_metrics(text)
         record = {
@@ -55,19 +62,23 @@ class Fiji:
         }
         return record, False
 
-    def _get_relevant_element_and_year(self, soup: BeautifulSoup) -> tuple:
-        """Get the relevant element and year from the source page."""
+    def _get_list_of_elements(self, soup: BeautifulSoup) -> None:
+        """Get the relevant elements list from the source page."""
         elem_list = soup.find_all("h2")
-        elem = [title for title in elem_list if self.regex["title"] in title.text]
-        elem = elem[0]
-        if not elem:
-            return None, None
+        self.__element = [title for title in elem_list if self.regex["title"] in title.text]
+
+    def _get_relevant_element_and_year(self) -> tuple:
+        """Get the relevant element and year from the element list."""
+        elem = self.__element.pop(0)
         year = re.search(self.regex["year"], elem.text).group()
         return elem, year
 
     def _parse_date_from_text(self, year: str, text: str) -> str:
         """Get date from relevant element."""
-        month_day = re.search(self.regex["date"], text).group(1)
+        match = re.search(self.regex["date"], text)
+        if not match:
+            return None
+        month_day = match.group(1)
         return clean_date(f"{month_day} {year}", "%B %d %Y")
 
     def _parse_link_from_element(self, elem: element.Tag) -> str:
@@ -78,15 +89,19 @@ class Fiji:
     def _get_text_from_url(self, url: str) -> str:
         """Extract text from the url."""
         soup = get_soup(url)
-        text = soup.get_text(strip=True).replace("\n", " ").lower()
+        text = soup.get_text().replace("\n", " ").replace("\xa0", "").lower()
         return text
 
     def _parse_metrics(self, text: str) -> int:
         """Get metrics from news text."""
-        count = re.search(self.regex["count"], text).group(1)
+        match = re.search(self.regex["count"], text)
+        if not match:
+            raise TypeError(("Website Structure Changed, please update the script"))
+        count = match.group(1)
         return clean_count(count)
 
     def export(self):
+        """Export data to csv."""
         data = self.read()
         increment(
             sheet_name=self.location,
