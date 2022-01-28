@@ -1,10 +1,8 @@
-from multiprocessing.sharedctypes import Value
 import re
 import os
 import tempfile
 
 import requests
-import gdown
 import pdftotext
 import pandas as pd
 
