@@ -8,7 +8,7 @@ from cowidev.utils.clean import clean_count, clean_date
 from cowidev.testing.utils.incremental import increment
 
 
-class Rusiia:
+class Russia:
     location = "Russia"
     units = "tests performed"
     source_label = "Government of the Russian Federation"
@@ -67,6 +67,7 @@ class Rusiia:
         soup = get_soup(url)
         date = self._parse_date(soup)
         text = soup.find(class_="news-detail").text.replace("\n", " ").replace("\xa0", "")
+        text = re.sub(r'(\d)\s+(\d)', r'\1\2', text)
         return text, date
 
     def _parse_date(self, soup: BeautifulSoup) -> str:
@@ -100,7 +101,7 @@ class Rusiia:
 
 
 def main():
-    Rusiia().export()
+    Russia().export()
 
 
 if __name__ == "__main__":

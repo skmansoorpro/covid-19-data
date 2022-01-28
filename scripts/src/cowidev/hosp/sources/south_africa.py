@@ -28,3 +28,7 @@ def main() -> pd.DataFrame:
     df["entity"] = METADATA["entity"]
 
     return df, METADATA
+
+
+if __name__ == "__main__":
+    main()
