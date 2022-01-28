@@ -31,3 +31,7 @@ def main():
     df["entity"] = METADATA["entity"]
 
     return df, METADATA
+
+
+if __name__ == "__main__":
+    main()

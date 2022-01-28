@@ -70,3 +70,7 @@ def main():
     METADATA = update_metadata(df)
     df = df.pipe(pipe_undo_100k).pipe(pipe_week_to_date).drop(columns=["population"])
     return df, METADATA
+
+
+if __name__ == "__main__":
+    main()
