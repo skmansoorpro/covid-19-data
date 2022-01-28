@@ -1,4 +1,4 @@
-from cowidev.utils.gdrive.gsheets import Sheets
+from gsheets import Sheets
 
 
 class GSheetApi:
