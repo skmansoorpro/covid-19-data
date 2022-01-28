@@ -1,8 +1,10 @@
-from cowidev.utils.gdrive.gsheets import Sheets
+from gsheets import Sheets
+
+from cowidev.utils.gdrive.credentials import CLIENT_SECRETS_PATH
 
 
 class GSheetApi:
-    def __init__(self, credentials) -> None:
+    def __init__(self, credentials=CLIENT_SECRETS_PATH) -> None:
         self.credentials = credentials
         self.sheets = Sheets.from_files(credentials)
 
