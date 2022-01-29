@@ -1,12 +1,14 @@
-import requests
 import zipfile
-import io
+import tempfile
+
+from cowidev.utils.web.download import download_file_from_url
 
 
 def extract_zip(input_path, output_folder):
     if input_path.startswith("http"):
-        content = requests.get(input_path).content
-        z = zipfile.ZipFile(io.BytesIO(content))
+        with tempfile.NamedTemporaryFile() as tf:
+            download_file_from_url(input_path, tf.name)
+            z = zipfile.ZipFile(tf.name)
     else:
         z = zipfile.ZipFile(input_path)
     z.extractall(output_folder)
