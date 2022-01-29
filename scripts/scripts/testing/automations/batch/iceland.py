@@ -19,7 +19,7 @@ class Iceland(CountryTestBase):
         "title_positive": r"Fjöldi smita innanlands",
         "element": r"window\.infographicData=({.*})",
     }
-    rename_columns: str = {
+    rename_columns: dict = {
         "Symptomatic tests": "t1",
         "Quarantine- and random tests": "t2",
         "deCODE Genetics screening": "t3",
@@ -90,13 +90,14 @@ class Iceland(CountryTestBase):
         return df
 
     def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Calculate PR"""
-        positives_over_period = df["positive"].diff().abs()
-        tests_over_period = df["Cumulative total"].diff()
-        return df.assign(**{"Positive rate": (positives_over_period / tests_over_period).round(5)})
+        """Calculate Positive Rate"""
+        df["Positive rate"] = (
+            df["positive"].rolling(7).sum().div(df["daily_change"].rolling(7).sum()).round(5)
+        ).fillna(0)
+        return df
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Pipeline"""
+        """Pipeline for data processing"""
         return (
             df.pipe(self.pipe_rename_columns)
             .pipe(self.pipe_date)
