@@ -18,12 +18,12 @@ class ElSalvador(CountryTestBase):
         content = response.content
         data = (
             content.decode()
-            .split("['Casos nuevos' , 'Pruebas', 'Recuperados', 'Fallecidos'],")[1]
-            .split("[],")[0]
-            .strip()
-            .split("[")[1]
-            .split("]")[0]
-            .split(",")
+                .split("['Casos nuevos' , 'Pruebas', 'Recuperados', 'Fallecidos'],")[1]
+                .split("[],")[0]
+                .strip()
+                .split("[")[1]
+                .split("]")[0]
+                .split(",")
         )
         data_dict = {"Date": d, "positive": data[0], "test": data[1]}
         return data_dict
@@ -35,11 +35,11 @@ class ElSalvador(CountryTestBase):
         dates = [
             s.strip()
             for s in content.decode()
-            .split("var datesEnabled = [")[1]
-            .split("];")[0]
-            .replace("'", "")
-            .replace("\n", "")
-            .split(",")
+                .split("var datesEnabled = [")[1]
+                .split("];")[0]
+                .replace("'", "")
+                .replace("\n", "")
+                .split(",")
             if len(s.strip()) > 0
         ]
         result = map(self.get_date, dates)
@@ -51,14 +51,14 @@ class ElSalvador(CountryTestBase):
         df["Daily change in cumulative total"] = df["test"]
         df["Daily change in cumulative total"] = df["Daily change in cumulative total"].astype(int)
 
-        df = df[df["Daily change in cumulative total"] != 0]
+        df = df[df["Daily change in cumulative total"] != 0].reset_index()
 
         df["Positive rate"] = (
-            df["positive"].rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()
+                df["positive"].rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()
         ).round(3)
 
         df["Positive rate"] = df["Positive rate"].fillna(0)
-        df = df[["Date", "Daily change in cumulative total", "Positive rate"]]
+        df = df[["Date", "Daily change in cumulative total", "Positive rate", "positive"]]
         return df
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -66,8 +66,8 @@ class ElSalvador(CountryTestBase):
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        self.export_datafile(df)
-
+        #self.export_datafile(df)
+        df.to_csv(self.get_output_path(), index=False)
 
 def main():
     ElSalvador().export()
@@ -75,3 +75,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
