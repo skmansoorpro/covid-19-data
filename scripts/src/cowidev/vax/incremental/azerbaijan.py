@@ -15,11 +15,11 @@ class Azerbaijan:
     source_url = "https://koronavirusinfo.az"
     regex = {
         "title": r"Vaksinasiya",
-        "date": r"Ümumi (\d{2}.\d{2}.\d{4}) Vurulan",
-        "total": r"ümumi sayı (\d+) Gün",
-        "dose1": r"sayı \d+ (\d+) \d+\-ci",
-        "dose2": r"sayı (\d+) \d+\-ci",
-        "dose3": r"sayı (\d+) \“Buster\”",
+        "date": r"(\d{2}\.\d{2}\.20\d{2})",
+        "total": r"ümumi sayı .* (\d+) Gün",
+        "dose1": r"sayı \d+ (\d{5,}) 1\-ci",
+        "dose2": r"sayı (\d{5,}) 2\-ci",
+        "dose3": r"sayı (\d{5,}) \“Buster\”",
     }
 
     def read(self) -> pd.Series:
