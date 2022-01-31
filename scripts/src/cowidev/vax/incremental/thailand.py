@@ -41,7 +41,7 @@ class Thailand:
 
     def pipe_vaccines(self, df: pd.DataFrame) -> pd.DataFrame:
         """Add vaccine information"""
-        return df.assign(vaccine="Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing, Sinovac, Moderna")
+        return df.assign(vaccine="Moderna, Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing, Sinovac")
 
     def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
         """Add metadata"""
