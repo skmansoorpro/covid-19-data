@@ -5,9 +5,8 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import pdftotext
 
-from cowidev.utils.clean import clean_date, clean_count
+from cowidev.utils import clean_date, clean_count, get_soup
 from cowidev.utils.web.download import download_file_from_url
-from cowidev.utils.web.scraping import get_soup
 from cowidev.vax.utils.incremental import enrich_data, increment
 
 
