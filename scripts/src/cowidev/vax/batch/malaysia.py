@@ -60,6 +60,10 @@ class Malaysia:
                 "pending1",
                 "pending2",
                 "pending3",
+                "daily_partial_adol",
+                "daily_full_adol",
+                "cumul_full_adol",
+                "cumul_partial_adol",
             ],
         )
         return df

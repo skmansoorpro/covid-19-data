@@ -1,118 +1,114 @@
 import tempfile
 import re
 
-import requests
 import pandas as pd
 from bs4 import BeautifulSoup
-import PyPDF2
-from pdfreader import SimplePDFViewer
+import pdftotext
 
-from cowidev.utils.clean import clean_date, clean_count
-from cowidev.utils.web.scraping import get_soup
+from cowidev.utils import clean_date, clean_count, get_soup
+from cowidev.utils.web.download import download_file_from_url
 from cowidev.vax.utils.incremental import enrich_data, increment
 
 
-def read(source: str):
-    soup = get_soup(source)
-    url = parse_pdf_link(soup, source)
-    if not url.endswith(".pdf"):
-        raise ValueError(f"File reporting metrics is not a PDF: {url}!")
-    ds = pd.Series(parse_data(url))
-    return ds
-
-
-def parse_pdf_link(soup: BeautifulSoup, source: str):
-    href = soup.find("a", string="Vaksinasiya").get("href")
-    return f"{source}{href}"
-
-
-def parse_data(source_pdf: str):
-    with tempfile.NamedTemporaryFile() as tf:
-        with open(tf.name, mode="wb") as f:
-            f.write(requests.get(source_pdf).content)
-        (
-            total_vaccinations,
-            people_vaccinated,
-            people_fully_vaccinated,
-            total_boosters,
-        ) = parse_vaccinations(tf.name)
-        date = parse_date(tf.name)
-    return {
-        "total_vaccinations": total_vaccinations,
-        "people_vaccinated": people_vaccinated,
-        "people_fully_vaccinated": people_fully_vaccinated,
-        "total_boosters": total_boosters,
-        "date": date,
+class Azerbaijan:
+    location = "Azerbaijan"
+    source_url = "https://koronavirusinfo.az"
+    regex = {
+        "title": r"Vaksinasiya",
+        "date": r"(\d{2}\.\d{2}\.20\d{2})",
+        "total": r"ümumi sayı .* (\d+) Gün",
+        "dose1": r"sayı \d+ (\d{5,}) 1\-ci",
+        "dose2": r"sayı (\d{5,}) 2\-ci",
+        "dose3": r"sayı (\d{5,}) \“Buster\”",
     }
 
+    def read(self) -> pd.Series:
+        """Read data from source."""
+        soup = get_soup(self.source_url)
+        data = self._parse_data(soup)
+        return pd.Series(data)
 
-def parse_date(filename):
-    # Read pdf (for date)
-    with open(filename, mode="rb") as f:
-        reader = PyPDF2.PdfFileReader(f)
-        page = reader.getPage(0)
-        text = page.extractText()
-    # Get date
-    date_str = re.search(r"\n(?P<count>\d{1,2}.\d{1,2}.\d{4})\n", text).group(1)
-    return clean_date(date_str, "%d.%m.%Y")
+    def _parse_data(self, soup: BeautifulSoup) -> dict:
+        """get data from the source page."""
+        # Get pdf url
+        url = self._parse_pdf_link(soup)
 
+        if not url.endswith(".pdf"):
+            raise ValueError(f"File reporting metrics is not a PDF: {url}!")
+        # Extract pdf text
+        text = self._parse_pdf_text(url)
+        # Extract date from text
+        date = self._parse_date(text)
+        # Extract metrics from text
+        total_vaccinations, people_vaccinated, people_fully_vaccinated, total_boosters = self._parse_metrics(text)
+        record = {
+            "total_vaccinations": total_vaccinations,
+            "people_vaccinated": people_vaccinated,
+            "people_fully_vaccinated": people_fully_vaccinated,
+            "total_boosters": total_boosters,
+            "source_url": url,
+            "date": date,
+        }
+        return record
 
-def parse_vaccinations(filename):
-    # Read pdf (for metrics)
-    with open(filename, mode="rb") as f:
-        viewer = SimplePDFViewer(f)
-        viewer.render()
-    # Get list with strings
-    strs = viewer.canvas.strings
-    # Infer figures
-    numbers = []
-    for str in strs:
-        try:
-            numbers.append(clean_count(str))
-        except:
-            pass
-    numbers.sort()
-    total_vaccinations = numbers[-1]
-    people_vaccinated = numbers[-2]
-    people_fully_vaccinated = numbers[-3]
-    total_boosters = numbers[-4]
-    # Sanity check
-    if people_vaccinated + people_fully_vaccinated + total_boosters != total_vaccinations:
-        raise ValueError(
-            f"people_vaccinated + people_fully_vaccinated + total_boosters != total_vaccinations ({people_vaccinated} + {people_fully_vaccinated} + {total_boosters} != {total_vaccinations})"
+    def _parse_pdf_link(self, soup: BeautifulSoup) -> str:
+        """Parse pdf link from source page."""
+        href = soup.find("a", string=self.regex["title"]).get("href")
+        return f"{self.source_url}{href}"
+
+    def _parse_pdf_text(self, url: str) -> str:
+        """Parse pdf text from url."""
+        with tempfile.NamedTemporaryFile() as tmp:
+            download_file_from_url(url, tmp.name)
+            with open(tmp.name, "rb") as f:
+                text = pdftotext.PDF(f)[0]
+        text = re.sub(r"(\d)\s(\d)", r"\1\2", text)
+        text = re.sub(r"\s+", " ", text)
+        return text
+
+    def _parse_date(self, text: str) -> str:
+        """Parse date from text."""
+        date_str = re.search(self.regex["date"], text).group(1)
+        return clean_date(date_str, "%d.%m.%Y")
+
+    def _parse_metrics(self, text: str) -> tuple:
+        """Parse metrics from text."""
+        total_vaccinations = re.search(self.regex["total"], text).group(1)
+        people_vaccinated = re.search(self.regex["dose1"], text).group(1)
+        people_fully_vaccinated = re.search(self.regex["dose2"], text).group(1)
+        total_boosters = re.search(self.regex["dose3"], text).group(1)
+        return (
+            clean_count(total_vaccinations),
+            clean_count(people_vaccinated),
+            clean_count(people_fully_vaccinated),
+            clean_count(total_boosters),
         )
-    return total_vaccinations, people_vaccinated, people_fully_vaccinated, total_boosters
 
+    def enrich_vaccine(self, ds: pd.Series) -> pd.Series:
+        """Enrich data with vaccine names."""
+        return enrich_data(ds, "vaccine", "Oxford/AstraZeneca, Pfizer/BioNTech, Sinovac, Sputnik V")
 
-def enrich_location(ds: pd.Series) -> pd.Series:
-    return enrich_data(ds, "location", "Azerbaijan")
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Pipeline for data."""
+        return df.pipe(self.enrich_vaccine)
 
-
-def enrich_vaccine(ds: pd.Series) -> pd.Series:
-    return enrich_data(ds, "vaccine", "Oxford/AstraZeneca, Pfizer/BioNTech, Sinovac, Sputnik V")
-
-
-def enrich_source(ds: pd.Series, source: str) -> pd.Series:
-    return enrich_data(ds, "source_url", source)
-
-
-def pipeline(df: pd.DataFrame, source: str) -> pd.DataFrame:
-    return df.pipe(enrich_location).pipe(enrich_vaccine).pipe(enrich_source, source)
+    def export(self):
+        """Export data to csv."""
+        data = self.read().pipe(self.pipeline)
+        increment(
+            location=self.location,
+            total_vaccinations=data["total_vaccinations"],
+            people_vaccinated=data["people_vaccinated"],
+            people_fully_vaccinated=data["people_fully_vaccinated"],
+            total_boosters=data["total_boosters"],
+            date=data["date"],
+            source_url=data["source_url"],
+            vaccine=data["vaccine"],
+        )
 
 
 def main():
-    source = "https://koronavirusinfo.az"
-    data = read(source).pipe(pipeline, source)
-    increment(
-        location=data["location"],
-        total_vaccinations=data["total_vaccinations"],
-        people_vaccinated=data["people_vaccinated"],
-        people_fully_vaccinated=data["people_fully_vaccinated"],
-        total_boosters=data["total_boosters"],
-        date=data["date"],
-        source_url=data["source_url"],
-        vaccine=data["vaccine"],
-    )
+    Azerbaijan().export()
 
 
 if __name__ == "__main__":
