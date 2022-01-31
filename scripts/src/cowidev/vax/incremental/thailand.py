@@ -12,29 +12,31 @@ class Thailand:
 
     def read(self) -> pd.DataFrame:
         """Read data from source"""
-        df = self._parse_metrics(self.source_url)
+        df = self._parse_data(self.source_url)
         return df
 
-    def _parse_metrics(self, url: str) -> pd.DataFrame:
+    def _parse_data(self, url: str) -> pd.DataFrame:
         """Parse metrics from source"""
+        # Get raw dataframe
         ts = TS()
-        df = pd.DataFrame()
         ts.loads(url)
-        ws = ts.getWorksheet("D_Vac_Stack")
-        df["date"] = clean_date_series(ws.data["DAY(txn_date)-value"].drop_duplicates())
-        df["people_vaccinated"] = ws.data.loc[
-            ws.data["vaccine_plan_group-alias"] == "1", "SUM(vaccine_total_acm)-value"
-        ].reset_index(drop=True)
-        df["people_fully_vaccinated"] = ws.data.loc[
-            ws.data["vaccine_plan_group-alias"] == "2", "SUM(vaccine_total_acm)-value"
-        ].reset_index(drop=True)
-        df["total_boosters"] = ws.data.loc[
-            ws.data["vaccine_plan_group-alias"] == "3", "SUM(vaccine_total_acm)-value"
-        ].reset_index(drop=True)
-        return df
+        return ts.getWorksheet("D_Vac_Stack").data
+
+    def pipe_date(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df.assign(date=clean_date_series(df["DAY(txn_date)-value"]))
 
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Add Total Vaccinations"""
+        df = (
+            df.pivot("date", "vaccine_plan_group-alias", "SUM(vaccine_total_acm)-value")
+            .reset_index()
+            .rename(
+                columns={
+                    "1": "people_vaccinated",
+                    "2": "people_fully_vaccinated",
+                    "3": "total_boosters",
+                }
+            )
+        )
         return df.assign(total_vaccinations=df.people_vaccinated + df.people_fully_vaccinated + df.total_boosters)
 
     def pipe_vaccines(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -47,7 +49,7 @@ class Thailand:
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for data"""
-        return df.pipe(self.pipe_metrics).pipe(self.pipe_vaccines).pipe(self.pipe_metadata)
+        return df.pipe(self.pipe_date).pipe(self.pipe_metrics).pipe(self.pipe_vaccines).pipe(self.pipe_metadata)
 
     def export(self):
         """Export data to CSV"""
