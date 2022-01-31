@@ -70,8 +70,8 @@ class Vietnam:
         metrics = [
             "total_vaccinations",
             "people_vaccinated",
-            "people_fully_vaccinated",
-            "total_boosters",
+            # "people_fully_vaccinated",
+            # "total_boosters",
         ]
         return {m: clean_count(re.search(self.regex["metrics"], text).group(i + 1)) for i, m in enumerate(metrics)}
 
@@ -101,8 +101,8 @@ class Vietnam:
             vaccine=data["vaccine"],
             source_url=data["source_url"],
             people_vaccinated=data["people_vaccinated"],
-            people_fully_vaccinated=data["people_fully_vaccinated"],
-            total_boosters=data["total_boosters"],
+            # people_fully_vaccinated=data["people_fully_vaccinated"],
+            # total_boosters=data["total_boosters"],
         )
 
 
