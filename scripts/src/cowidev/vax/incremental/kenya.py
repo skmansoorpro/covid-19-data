@@ -1,25 +1,31 @@
 import os
 import tempfile
 import re
-import urllib3
 
 import pandas as pd
 import pdftotext
 
-from cowidev.utils import clean_count, get_soup
-from cowidev.vax.utils.incremental import merge_with_current_data
+from cowidev.utils import clean_count, get_soup, paths
+from cowidev.utils.clean import extract_clean_date
 from cowidev.utils.web.download import download_file_from_url
-from cowidev.utils import paths
-
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+from cowidev.vax.utils.incremental import merge_with_current_data
 
 
 class Kenya:
-    def __init__(self):
-        self.location = "Kenya"
-        self.source_url = "https://www.health.go.ke"
-        self.output_file = os.path.join(f"{paths.SCRIPTS.OUTPUT_VAX_MAIN}", f"{self.location}.csv")
-        self.last_update = self.get_last_update()
+    location = "Kenya"
+    source_url = "https://www.health.go.ke"
+    output_file = os.path.join(f"{paths.SCRIPTS.OUTPUT_VAX_MAIN}", f"{location}.csv")
+    regex = {
+        "date": r"date: [a-z]+ ([0-9]+).{0,2},? ([a-z]+),? (202\d)",
+        "metrics": {
+            "total_vaccinations": r"total doses administered ([\d,]+)",
+            "people_vaccinated_adults": r"partially vaccinated adult population ([\d,]+)",
+            "people_vaccinated_teens": r"partially vaccinated teenage population\( 15-17yrs\) ([\d,]+)",
+            "people_fully_vaccinated_adults": r"fully vaccinated adult population ([\d,]+)",
+            "people_fully_vaccinated_teens": r"fully vaccinated teenage population\( 15-17yrs\) ([\d,]+)",
+            "total_boosters": r"booster doses ([\d,]+)",
+        },
+    }
 
     def read(self) -> pd.DataFrame:
         """Read data from source"""
@@ -59,40 +65,33 @@ class Kenya:
             download_file_from_url(url_pdf, tmp.name, verify=False)
             with open(tmp.name, "rb") as f:
                 text = pdftotext.PDF(f)[0]
-            text = text.replace("\n", "")
+            text = text.replace("\n", " ")
             text = " ".join(text.split()).lower()
         return text
 
     def _parse_date(self, pdf_text: str) -> str:
         """Parse date from pdf text"""
-        regex = r"date: [a-z]+ ([0-9]+.{0,2},? [a-z]+,? 202\d)"
-        date_str = re.search(regex, pdf_text).group(1)
-        date = str(pd.to_datetime(date_str).date())
-        return date
+        return extract_clean_date(pdf_text, self.regex["date"], "%d %B %Y")
 
     def _parse_metrics(self, pdf_text: str) -> tuple:
         """Parse metrics from pdf text"""
-        total_vaccinations = clean_count(re.search(r"total doses administered ([\d,]+)", pdf_text).group(1))
-
-        people_vaccinated_adults = clean_count(
-            re.search(r"partially vaccinated adult population ([\d,]+)", pdf_text).group(1)
+        # Extract metrics from text
+        metrics = {
+            metric: clean_count(re.search(regex, pdf_text).group(1)) for metric, regex in self.regex["metrics"].items()
+        }
+        # Process and get new metrics
+        metrics = metrics | {
+            "people_vaccinated": metrics["people_vaccinated_adults"] + metrics["people_vaccinated_teens"],
+            "people_fully_vaccinated": (
+                metrics["people_fully_vaccinated_adults"] + metrics["people_fully_vaccinated_teens"]
+            ),
+        }
+        return (
+            metrics["total_vaccinations"],
+            metrics["people_vaccinated"],
+            metrics["people_fully_vaccinated"],
+            metrics["total_boosters"],
         )
-        people_vaccinated_teens = clean_count(
-            re.search(r"partially vaccinated teenage population\( 15-17yrs\) ([\d,]+)", pdf_text).group(1)
-        )
-        people_vaccinated = people_vaccinated_adults + people_vaccinated_teens
-
-        people_fully_vaccinated_adults = clean_count(
-            re.search(r"fully vaccinated adult population ([\d,]+)", pdf_text).group(1)
-        )
-        people_fully_vaccinated_teens = clean_count(
-            re.search(r"fully vaccinated teenage population\( 15-17yrs\) ([\d,]+)", pdf_text).group(1)
-        )
-        people_fully_vaccinated = people_fully_vaccinated_adults + people_fully_vaccinated_teens
-
-        total_boosters = clean_count(re.search(r"booster doses ([\d,]+)", pdf_text).group(1))
-
-        return total_vaccinations, people_vaccinated, people_fully_vaccinated, total_boosters
 
     def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for metadata"""
@@ -102,7 +101,8 @@ class Kenya:
         """Pipeline for data"""
         return ds.pipe(self.pipe_metadata)
 
-    def get_last_update(self) -> str:
+    @property
+    def last_update(self) -> str:
         """Get last update date"""
         return pd.read_csv(self.output_file).date.max()
 
