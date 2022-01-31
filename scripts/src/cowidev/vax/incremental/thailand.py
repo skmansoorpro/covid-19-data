@@ -1,192 +1,64 @@
-import re
-import requests
-from datetime import datetime
-import tempfile
-
-from bs4 import BeautifulSoup
 import pandas as pd
-from pdfreader import SimplePDFViewer
-from PyPDF2 import PdfFileReader
+from tableauscraper import TableauScraper as TS
 
-from cowidev.utils.clean import clean_count
-from cowidev.utils.clean.dates import clean_date, localdate
-from cowidev.utils.web.scraping import get_soup
+from cowidev.utils import paths, clean_date_series
 from cowidev.vax.utils.incremental import merge_with_current_data
-from cowidev.utils import paths
 
 
 class Thailand:
-    location: str = "Thailand"
-    source_url: str = "https://ddc.moph.go.th/dcd/pagecontent.php?page=643&dept=dcd"
-    base_url_template: str = "https://ddc.moph.go.th/vaccine-covid19/diaryReportMonth/{}/9/{}"
-    regex_date: str = r"\s?ข้อมูล ณ วันที่ (\d{1,2}) (.*) (\d{4})"
-    _year_difference_conversion = 543
-    _current_month = localdate("Asia/Bangkok", date_format="%m")
-    _current_year = localdate("Asia/Bangkok", date_format="%Y")
+    location = "Thailand"
+    source_url = "https://public.tableau.com/views/SATCOVIDDashboard/1-dash-tiles-w"
+    source_url_ref = "https://ddc.moph.go.th/covid19-dashboard/"
 
-    @property
-    def regex_vax(self):
-        regex_aux = r"\((?:รา|รำ)ย\)"
-        regex_aux_extra = {3: "(?: ขึ้นไป)?"}
-        regex_vax = (
-            r" ".join([f"เข็มที่ {i}{regex_aux_extra.get(i, '')} {regex_aux}" for i in range(1, 4)])
-            + r" รวม \(โดส\)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)"
-        )
-        return regex_vax
-
-    def read(self, last_update: str) -> pd.DataFrame:
-        # Get Newest Month Report Page
-        url_month = self.base_url_template.format(self._current_month, self._current_year)
-        soup_month = get_soup(url_month)
-        # Get links
-        df = self._parse_data(soup_month, last_update)
+    def read(self) -> pd.DataFrame:
+        """Read data from source"""
+        df = self._parse_metrics(self.source_url)
         return df
 
-    def _parse_data(self, soup: BeautifulSoup, last_update: str):
-        links = self._get_month_links(soup)
-        records = []
-        for link in links:
-            # print(link["date"], link["link"])
-            if link["date"] <= last_update:
-                break
-            record = self._parse_metrics(link)
-            if record is None:
-                continue
-            records.append(record)
-            # break
-        return pd.DataFrame(records)
+    def _parse_metrics(self, url: str) -> pd.DataFrame:
+        """Parse metrics from source"""
+        ts = TS()
+        df = pd.DataFrame()
+        ts.loads(url)
+        ws = ts.getWorksheet("D_Vac_Stack")
+        df["date"] = clean_date_series(ws.data["DAY(txn_date)-value"].drop_duplicates())
+        df["people_vaccinated"] = ws.data.loc[
+            ws.data["vaccine_plan_group-alias"] == "1", "SUM(vaccine_total_acm)-value"
+        ].reset_index(drop=True)
+        df["people_fully_vaccinated"] = ws.data.loc[
+            ws.data["vaccine_plan_group-alias"] == "2", "SUM(vaccine_total_acm)-value"
+        ].reset_index(drop=True)
+        df["total_boosters"] = ws.data.loc[
+            ws.data["vaccine_plan_group-alias"] == "3", "SUM(vaccine_total_acm)-value"
+        ].reset_index(drop=True)
+        return df
 
-    def _get_month_links(self, soup):
-        links = soup.find_all("a", class_="selectModelMedia")
-        links = [
-            {
-                "link": link.get("href"),
-                "date": self._parse_date_from_link_title(link.parent.parent.text.strip()),
-            }
-            for link in links
-        ]
-        return sorted(links, key=lambda x: x["date"], reverse=True)
+    def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Add Total Vaccinations"""
+        return df.assign(total_vaccinations=df.people_vaccinated + df.people_fully_vaccinated + df.total_boosters)
 
-    def _parse_date_from_link_title(self, title):
-        match = re.search(r".*วันที่\s+(\d+) .* (25\d\d)", title).group(1, 2)
-        year = int(match[1]) - self._year_difference_conversion
-        return clean_date(f"{year}-{self._current_month}-{match[0]}", "%Y-%m-%d")
+    def pipe_vaccines(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Add vaccine information"""
+        return df.assign(vaccine="Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing, Sinovac, Moderna")
 
-    def _parse_metrics(self, link: str):
-        raw_text = self._text_from_pdf(link["link"])
-        if raw_text is None:
-            return None
-        text = self._substitute_special_chars(raw_text)
-        record = self._parse_variables(text)
-        record["date"] = link["date"]
-        record["source_url"] = link["link"].replace(" ", "%20")
-        return record
-
-    def _text_from_pdf(self, pdf_link: str):
-        with tempfile.NamedTemporaryFile() as tf:
-            with open(tf.name, mode="wb") as f:
-                f.write(requests.get(pdf_link).content)
-            with open(tf.name, mode="rb") as f:
-                viewer = SimplePDFViewer(f)
-                viewer.render()
-                raw_text = "".join(viewer.canvas.strings)
-                ratio = self._get_ratio_pdf_file(f)
-                # print(ratio)
-                if ratio > 1:
-                    # print(ratio, "discard")
-                    return None
-        return raw_text
-
-    def _get_ratio_pdf_file(self, handler):
-        """>1: horizontal, <1: vertical"""
-        input1 = PdfFileReader(handler)
-        dimension = input1.getPage(0).mediaBox
-        return dimension[2] / dimension[3]
-
-    def _substitute_special_chars(self, raw_text: str):
-        """Correct Thai Special Character Error."""
-        special_char_replace = {
-            "\uf701": "\u0e34",
-            "\uf702": "\u0e35",
-            "\uf703": "\u0e36",
-            "\uf704": "\u0e37",
-            "\uf705": "\u0e48",
-            "\uf706": "\u0e49",
-            "\uf70a": "\u0e48",
-            "\uf70b": "\u0e49",
-            "\uf70e": "\u0e4c",
-            "\uf710": "\u0e31",
-            "\uf712": "\u0e47",
-            "\uf713": "\u0e48",
-            "\uf714": "\u0e49",
-        }
-        special_char_replace = dict((re.escape(k), v) for k, v in special_char_replace.items())
-        pattern = re.compile("|".join(special_char_replace.keys()))
-        text = pattern.sub(lambda m: special_char_replace[re.escape(m.group(0))], raw_text)
-        return text
-
-    def _parse_variables(self, text: str):
-        metrics = re.search(self.regex_vax, text).groups()
-        people_vaccinated = clean_count(metrics[0])
-        people_fully_vaccinated = clean_count(metrics[1])
-        total_boosters = clean_count(metrics[2])
-        total_vaccinations = clean_count(metrics[3])
-        return {
-            "total_vaccinations": total_vaccinations,
-            "people_vaccinated": people_vaccinated,
-            "people_fully_vaccinated": people_fully_vaccinated,
-            "total_boosters": total_boosters,
-        }
-
-    def _parse_date(self, text: str):
-        thai_date_replace = {
-            # Months
-            "มกราคม": 1,
-            "กุมภาพันธ์": 2,
-            "มีนาคม": 3,
-            "เมษายน": 4,
-            "พฤษภาคม": 5,
-            "พฤษภำคม": 5,
-            "มิถุนายน": 6,
-            "มิถุนำยน": 6,
-            "กรกฎาคม": 7,
-            "กรกฎำคม": 7,
-            "สิงหาคม": 8,
-            "สิงหำคม": 8,
-            "กันยายน": 9,
-            "ตุลาคม": 10,
-            "พฤศจิกายน": 11,
-            "ธันวาคม": 12,
-        }
-        date_raw = re.search(self.regex_date, text)
-        day = clean_count(date_raw.group(1))
-        month = thai_date_replace[date_raw.group(2)]
-        year = clean_count(date_raw.group(3)) - self._year_difference_conversion
-        return clean_date(datetime(year, month, day))
-
-    def pipe_location(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.assign(location=self.location)
-
-    def pipe_vaccine(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.assign(vaccine="Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing, Sinovac")
+    def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Add metadata"""
+        return df.assign(location=self.location, source_url=self.source_url_ref)
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.pipe(self.pipe_location).pipe(self.pipe_vaccine)
+        """Pipeline for data"""
+        return df.pipe(self.pipe_metrics).pipe(self.pipe_vaccines).pipe(self.pipe_metadata)
 
-    def to_csv(self):
-        output_file = paths.out_vax(self.location)
-        last_update = pd.read_csv(output_file).date.max()
-        df = self.read(last_update)
-        if not df.empty:
-            df = df.pipe(self.pipeline)
-            df = merge_with_current_data(df, output_file)
-            df.to_csv(output_file, index=False)
-        else:
-            print("df empty, nothing exported!")
+    def export(self):
+        """Export data to CSV"""
+        df = self.read()
+        merge_with_current_data(df.pipe(self.pipeline), paths.out_vax(self.location)).to_csv(
+            paths.out_vax(self.location), index=False
+        )
 
 
 def main():
-    Thailand().to_csv()
+    Thailand().export()
 
 
 if __name__ == "__main__":
