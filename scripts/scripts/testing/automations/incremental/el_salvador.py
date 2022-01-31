@@ -4,10 +4,8 @@ from datetime import datetime, timedelta
 
 import pandas as pd
 from cowidev.testing import CountryTestBase
-from cowidev.testing.utils.incremental import increment
 from cowidev.utils.clean import clean_date, clean_count
 from cowidev.utils.web import get_soup
-import cowidev.testing
 
 
 class ElSalvador(CountryTestBase):
@@ -57,24 +55,9 @@ class ElSalvador(CountryTestBase):
 
     def pipe_date(self, df: pd.DataFrame) -> pd.DataFrame:
         """Clean date"""
-        # Note: Some python environments doesn't work as expected the %b to match months in text in spanish.
-        # I use an alternative and more secure method to don't use the locale translation.
-        df["Date"] = df["Date"].replace({
-            "ene": "01",
-            "feb": "02",
-            "mar": "03",
-            "abr": "04",
-            "may": "05",
-            "jun": "06",
-            "jul": "07",
-            "ago": "08",
-            "sep": "09",
-            "oct": "10",
-            "nov": "11",
-            "dic": "12"
-        }, regex=True)
-        last_date = datetime.strptime(df[-1:]["Date"].item() + "-" + str(datetime.today().year), '%d-%m-%Y')
-
+        last_date = clean_date(
+            df[-1:]["Date"].item() + "-" + str(datetime.today().year), "%d-%b-%Y", lang="es", as_datetime=True
+        )
         first_date = last_date - timedelta(len(df.index) - 1)
         df["Date"] = pd.Series(pd.date_range(first_date, last_date).astype(str))
         return df
@@ -105,19 +88,20 @@ class ElSalvador(CountryTestBase):
         """Pipeline for data processing"""
         return (
             df.pipe(self.pipe_rename_columns)
-                .pipe(self.pipe_date)
-                .pipe(self.pipe_metadata)
-                .pipe(self.pipe_merge)
-                .pipe(self.pipe_positive)
-                .pipe(self.pipe_numeric)
-                .pipe(self.pipe_pr)
+            .pipe(self.pipe_date)
+            .pipe(self.pipe_metadata)
+            .pipe(self.pipe_merge)
+            .pipe(self.pipe_positive)
+            .pipe(self.pipe_numeric)
+            .pipe(self.pipe_pr)
         )
 
     def export(self):
         """Export data to csv"""
         df = self.read().pipe(self.pipeline)
-        #self.export_datafile(df, float_format="%.5f")
+        # self.export_datafile(df, float_format="%.5f")
         df.to_csv(self.get_output_path(), index=False)
+
 
 def main():
     ElSalvador().export()
