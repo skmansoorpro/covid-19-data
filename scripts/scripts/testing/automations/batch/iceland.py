@@ -32,7 +32,8 @@ class Iceland(CountryTestBase):
     def read(self) -> pd.DataFrame:
         """Read data from source"""
         data_id = self._get_data_id_from_source(self.source_url_ref)
-        df = self._load_data(data_id)
+        data = self._load_data(data_id)
+        df = self._build_df(data)
         return df
 
     def _get_data_id_from_source(self, source_url: str) -> str:
@@ -41,7 +42,7 @@ class Iceland(CountryTestBase):
         data_id = soup.find(class_="infogram-embed")["data-id"]
         return data_id
 
-    def _load_data(self, data_id: str) -> pd.DataFrame:
+    def _load_data(self, data_id):
         """Load data from source"""
         url = f"{self.source_url}{data_id}"
         soup = get_soup(url)
@@ -49,43 +50,36 @@ class Iceland(CountryTestBase):
         if not match:
             raise ValueError("Website Structure Changed, please update the script")
         data = json.loads(match.group(1))
+        return data
+
+    def _build_df(self, data: dict) -> pd.DataFrame:
+        """Create df from raw data"""
         data = data["elements"]["content"]["content"]["entities"]
-        data_test = [data[idx] for idx in data if re.search(self.regex["title_test"], str(data[idx].values()))][0]
-        data_positive = [
-            data[idx] for idx in data if re.search(self.regex["title_positive"], str(data[idx].values()))
-        ][0]
-        data_list = data_test["props"]["chartData"]["data"]
-        data_list.extend(data_positive["props"]["chartData"]["data"])
-        df = pd.DataFrame()
-        for frame in data_list:
-            col = frame.pop(0)
-            col[0] = "Date"
-            df = df.append(pd.DataFrame(frame, columns=col), ignore_index=True)
+        data_test = [v for v in data.values() if re.search(self.regex["title_test"], str(v))][0]
+        data_positive = [v for v in data.values() if re.search(self.regex["title_positive"], str(v))][0]
+        data_list = data_test["props"]["chartData"]["data"] + data_positive["props"]["chartData"]["data"]
+        df = pd.concat(
+            [pd.DataFrame(frame[1:], columns=["Date"] + frame[0][1:]) for frame in data_list], ignore_index=True
+        )
         return df
 
     def pipe_date(self, df: pd.DataFrame) -> pd.DataFrame:
         """Clean date"""
-        return df.assign(Date=clean_date_series(df["Date"], "%d.%m.%y"))
-
-    def pipe_numeric(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Clean numeric columns"""
-        df["t1"] = df["t1"].apply(clean_count)
-        df["t2"] = df["t2"].apply(clean_count)
-        df["t3"] = df["t3"].apply(clean_count)
-        df["p1"] = df["p1"].apply(clean_count)
-        df["p2"] = df["p2"].apply(clean_count)
-        df["p3"] = df["p3"].apply(clean_count)
-        return df
+        return df.assign(Date=clean_date_series(df["Date"], "%d.%m.%y")).sort_values("Date")
 
     def pipe_row_sum(self, df: pd.DataFrame) -> pd.DataFrame:
         """Sum rows"""
-        df = df.assign(positive=df[["p1", "p2", "p3"]].sum(axis=1))
-        return df.assign(daily_change=df[["t1", "t2", "t3"]].sum(axis=1))
+        return df.assign(
+            positive=df[["p1", "p2", "p3"]].applymap(clean_count).sum(axis=1),
+            daily_change=df[["t1", "t2", "t3"]].applymap(clean_count).sum(axis=1),
+        )
 
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
         """Process metrics"""
-        df = df.groupby("Date", as_index=False).sum()
-        df = df.sort_values("Date")
+        df = df.groupby("Date", as_index=False).sum().sort_values("Date")
+        # Check that all dates are available
+        if (pd.to_datetime(df.Date).diff().dt.days.dropna() != 1).any():
+            raise ValueError("Can't estimate cumulative total because some dates are missing!")
         df = df.assign(**{"Cumulative total": df.daily_change.cumsum()})
         return df
 
@@ -101,7 +95,6 @@ class Iceland(CountryTestBase):
         return (
             df.pipe(self.pipe_rename_columns)
             .pipe(self.pipe_date)
-            .pipe(self.pipe_numeric)
             .pipe(self.pipe_row_sum)
             .pipe(self.pipe_metrics)
             .pipe(self.pipe_pr)
