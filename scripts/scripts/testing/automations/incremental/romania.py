@@ -19,7 +19,7 @@ class Romania:
     _num_max_pages = 3
     regex = {
         "title": r"BULETIN DE PRESĂ",
-        "date": r"(\d{2} \w+ \d{4})",
+        "date": r"(\d{1,2} \w+ \d{4})",
         "pcr": r"au fost prelucrate (\d+)",
         "art": r"de teste RT-PCR și (\d+)",
     }
