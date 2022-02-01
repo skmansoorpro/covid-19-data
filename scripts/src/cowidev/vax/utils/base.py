@@ -2,6 +2,7 @@ import pandas as pd
 
 from cowidev.utils import paths
 from cowidev.utils.s3 import S3, obj_from_s3
+from cowidev.utils.utils import make_monotonic
 from cowidev.utils.clean.dates import localdate
 from cowidev.utils.clean.numbers import metrics_to_num_int, metrics_to_num_float
 from cowidev.vax.utils.files import export_metadata
@@ -67,6 +68,15 @@ class CountryVaxBase:
     def output_path_manufacturer(self):
         """Country output file for manufacturer data."""
         return paths.out_vax(self.location, manufacturer=True)
+
+    def make_monotonic(self, df, max_removed_rows=10, strict=False):
+        return make_monotonic(
+            df=df,
+            column_date="date",
+            column_metrics=["total_vaccinations", "people_vaccinated", "people_fully_vaccinated"],
+            max_removed_rows=max_removed_rows,
+            strict=strict,
+        )
 
     def _postprocessing(self, df):
         """Minor post processing after all transformations.
