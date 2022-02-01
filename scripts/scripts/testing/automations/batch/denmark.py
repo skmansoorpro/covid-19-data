@@ -2,7 +2,7 @@ import os
 import tempfile
 import pandas as pd
 
-from cowidev.utils import clean_count, get_soup, clean_date_series
+from cowidev.utils import clean_count, get_soup
 from cowidev.utils.io import extract_zip
 from cowidev.testing import CountryTestBase
 
