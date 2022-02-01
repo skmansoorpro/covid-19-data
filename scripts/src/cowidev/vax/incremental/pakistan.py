@@ -17,10 +17,11 @@ class Pakistan:
         return pd.Series(data=self._parse_data(soup))
 
     def _parse_data(self, soup):
-        counters = soup.find_all(class_="counter")
+        counters = soup.find_all(class_="counter-main")
         people_vaccinated = clean_count(counters[0].text)
         people_fully_vaccinated = clean_count(counters[1].text)
-        total_vaccinations = clean_count(counters[2].text)
+        total_boosters = clean_count(counters[2].text)
+        total_vaccinations = clean_count(counters[3].text)
 
         date = soup.find("span", id="last-update").text
         date = re.search(r"\d+.*202\d", date).group(0)
@@ -30,6 +31,7 @@ class Pakistan:
             "total_vaccinations": total_vaccinations,
             "people_vaccinated": people_vaccinated,
             "people_fully_vaccinated": people_fully_vaccinated,
+            "total_boosters": total_boosters,
             "date": date,
             "source_url": self.source_url,
         }
@@ -56,6 +58,7 @@ class Pakistan:
             total_vaccinations=data["total_vaccinations"],
             people_vaccinated=data["people_vaccinated"],
             people_fully_vaccinated=data["people_fully_vaccinated"],
+            total_boosters=data["total_boosters"],
             date=data["date"],
             source_url=data["source_url"],
             vaccine=data["vaccine"],

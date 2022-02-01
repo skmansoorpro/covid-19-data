@@ -1,29 +1,37 @@
-import io
-import requests
-
 import pandas as pd
 
-from cowidev.utils import paths
-from cowidev.utils.clean import clean_date
+from cowidev.utils import clean_date, clean_date_series
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.utils import make_monotonic
+from cowidev.utils.web.download import read_csv_from_url
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Australia:
-    def __init__(self):
-        self.source_url = "https://covidbaseau.com/"
-        self.source_file = "https://covidbaseau.com/people-vaccinated.csv"
-        self.location = "Australia"
-        self.columns_rename = {
-            "dose_1": "people_vaccinated",
-            "dose_2": "people_fully_vaccinated",
-            "dose_3": "total_boosters",
-        }
+class Australia(CountryVaxBase):
+    source_url = {
+        "main": "https://covidbaseau.com/people-vaccinated.csv",
+        "age_1d": "https://covidbaseau.com/historical/Vaccinations%20By%20Age%20Group%20and%20State%20First.csv",
+        "age_2d": "https://covidbaseau.com/historical/Vaccinations%20By%20Age%20Group%20and%20State%20Second.csv",
+    }
+    source_url_ref = "https://covidbaseau.com/"
+    source_file = "https://covidbaseau.com/people-vaccinated.csv"
+    location = "Australia"
+    columns_rename = {
+        "dose_1": "people_vaccinated",
+        "dose_2": "people_fully_vaccinated",
+        "dose_3": "total_boosters",
+    }
 
     def read(self) -> pd.DataFrame:
-        response = requests.get("https://covidbaseau.com/people-vaccinated.csv")
-        df = pd.read_csv(io.StringIO(response.content.decode()))
+        df = read_csv_from_url(self.source_url["main"])
         check_known_columns(df, ["date", "dose_1", "dose_2", "dose_3"])
+        return df
+
+    def read_age(self) -> pd.DataFrame:
+        df_1 = read_csv_from_url(self.source_url["age_1d"], header=1).dropna(axis=1, how="all")
+        df_1 = df_1.melt("Date", var_name="age_group", value_name="people_vaccinated_per_hundred")
+        df_2 = read_csv_from_url(self.source_url["age_2d"], header=1).dropna(axis=1, how="all")
+        df_2 = df_2.melt("Date", var_name="age_group", value_name="people_fully_vaccinated_per_hundred")
+        df = df_1.merge(df_2, on=["Date", "age_group"], how="left")
         return df
 
     def pipe_total_vaccinations(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -45,7 +53,7 @@ class Australia:
         return df
 
     def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.assign(location=self.location, source_url=self.source_url)
+        return df.assign(location=self.location, source_url=self.source_url_ref)
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
@@ -54,13 +62,57 @@ class Australia:
             .pipe(self.pipe_vaccine)
             .pipe(self.pipe_date)
             .pipe(self.pipe_metadata)
-            .pipe(make_monotonic)
+            .pipe(self.make_monotonic)
             .sort_values("date")
         )
 
+    def pipe_age_groups(self, df):
+        regex = r"(\d{1,2})+?(?:-(\d{1,2}))?"
+        df[["age_group_min", "age_group_max"]] = df.age_group.str.extract(regex)
+        return df
+
+    def pipe_age_numeric(self, df):
+        regex = r"([\d\.]+).*"
+        metrics = ["people_vaccinated_per_hundred", "people_fully_vaccinated_per_hundred"]
+        for metric in metrics:
+            df.loc[:, metric] = df[metric].str.extract(regex, expand=False).astype(float)
+        return df
+
+    def pipe_age_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df.assign(
+            date=clean_date_series(df.Date),
+            location=self.location,
+        )
+
+    def pipeline_age(self, df: pd.DataFrame) -> pd.DataFrame:
+        return (
+            df.pipe(self.pipe_age_groups)
+            .pipe(self.pipe_age_numeric)
+            .pipe(self.pipe_age_metadata)
+            # .dropna(subset=["people_vaccinated_per_hundred", "people_fully_vaccinated_per_hundred"], how="all")
+            .drop_duplicates(subset=["people_vaccinated_per_hundred", "people_fully_vaccinated_per_hundred"])
+            .sort_values(["date", "age_group_min"])[
+                [
+                    "location",
+                    "date",
+                    "age_group_min",
+                    "age_group_max",
+                    "people_vaccinated_per_hundred",
+                    "people_fully_vaccinated_per_hundred",
+                ]
+            ]
+        )
+
     def to_csv(self):
+        # Main
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        # Age
+        df_age = self.read_age().pipe(self.pipeline_age)
+        self.export_datafile(
+            df=df,
+            df_age=df_age,
+            meta_age={"source_name": "Ministry of Health via covidbaseau.com", "source_url": self.source_url_ref},
+        )
 
 
 def main():
