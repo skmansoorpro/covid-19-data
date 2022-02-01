@@ -2,7 +2,7 @@ import tempfile
 import re
 
 import pandas as pd
-import pdftotext
+from pdfminer.high_level import extract_text
 
 from cowidev.utils import clean_count, clean_date, get_soup
 from cowidev.utils.web.download import download_file_from_url
@@ -33,9 +33,7 @@ class Mexico:
         with tempfile.NamedTemporaryFile() as tmp:
             download_file_from_url(url, tmp.name)
             with open(tmp.name, "rb") as f:
-                pdf = pdftotext.PDF(f)
-
-        text = "\n\n".join(pdf)
+                text = extract_text(f)
         text = re.sub(r"\s+", " ", text)
         text = re.sub(r"(\d)\,(\d)", r"\1\2", text)
         return text
@@ -44,13 +42,15 @@ class Mexico:
         """Parse the data from the pdf url"""
         text = self._get_text_from_pdf(url)
         total_vaccinations = clean_count(
-            re.search(r"(\d+) \d+ \d+ Total de dosis aplicadas reportadas", text).group(1)
+            re.search(r"COVID-19 (\d+) Total de dosis aplicadas reportadas", text).group(1)
         )
         date = clean_date(re.search(r"(\d{1,2} \w+\, 20\d{2})", text).group(1), "%d %B, %Y", lang="es")
 
-        matches = re.search(r"Esquema Nuevos (\d+) completo esquemas Personas vacunadas reportadas (\d+)", text)
-        people_vaccinated = clean_count(matches.group(1))
-        people_fully_vaccinated = clean_count(matches.group(2))
+        matches = re.search(
+            r"Esquema completo (\d+) Personas vacunadas con esq. completo Nuevos esquemas (\d+) Personas", text
+        )
+        people_vaccinated = clean_count(matches.group(2))
+        people_fully_vaccinated = clean_count(matches.group(1))
 
         # Tests
         assert total_vaccinations >= 94300526
