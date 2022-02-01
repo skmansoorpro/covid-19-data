@@ -665,6 +665,7 @@ date,indicator,value,entity
 2022-01-25,Daily ICU occupancy,575.0,United Kingdom
 2022-01-26,Daily ICU occupancy,561.0,United Kingdom
 2022-01-27,Daily ICU occupancy,549.0,United Kingdom
+2022-01-28,Daily ICU occupancy,535.0,United Kingdom
 2020-03-27,Daily hospital occupancy,7267.0,United Kingdom
 2020-03-28,Daily hospital occupancy,8278.0,United Kingdom
 2020-03-29,Daily hospital occupancy,9525.0,United Kingdom
@@ -1300,43 +1301,44 @@ date,indicator,value,entity
 2021-12-19,Daily hospital occupancy,7668.0,United Kingdom
 2021-12-20,Daily hospital occupancy,7911.0,United Kingdom
 2021-12-21,Daily hospital occupancy,8126.0,United Kingdom
-2021-12-22,Daily hospital occupancy,8345.0,United Kingdom
-2021-12-23,Daily hospital occupancy,8380.0,United Kingdom
-2021-12-24,Daily hospital occupancy,8601.0,United Kingdom
-2021-12-25,Daily hospital occupancy,8408.0,United Kingdom
-2021-12-26,Daily hospital occupancy,8824.0,United Kingdom
-2021-12-27,Daily hospital occupancy,9843.0,United Kingdom
-2021-12-28,Daily hospital occupancy,11004.0,United Kingdom
-2021-12-29,Daily hospital occupancy,12051.0,United Kingdom
-2021-12-30,Daily hospital occupancy,13242.0,United Kingdom
-2021-12-31,Daily hospital occupancy,14274.0,United Kingdom
-2022-01-01,Daily hospital occupancy,14604.0,United Kingdom
-2022-01-02,Daily hospital occupancy,15238.0,United Kingdom
-2022-01-03,Daily hospital occupancy,16428.0,United Kingdom
-2022-01-04,Daily hospital occupancy,17418.0,United Kingdom
-2022-01-05,Daily hospital occupancy,18140.0,United Kingdom
-2022-01-06,Daily hospital occupancy,18611.0,United Kingdom
-2022-01-07,Daily hospital occupancy,18791.0,United Kingdom
-2022-01-08,Daily hospital occupancy,18720.0,United Kingdom
-2022-01-09,Daily hospital occupancy,19160.0,United Kingdom
-2022-01-10,Daily hospital occupancy,19964.0,United Kingdom
-2022-01-11,Daily hospital occupancy,19865.0,United Kingdom
-2022-01-12,Daily hospital occupancy,19827.0,United Kingdom
-2022-01-13,Daily hospital occupancy,19653.0,United Kingdom
-2022-01-14,Daily hospital occupancy,19432.0,United Kingdom
-2022-01-15,Daily hospital occupancy,19182.0,United Kingdom
-2022-01-16,Daily hospital occupancy,19304.0,United Kingdom
-2022-01-17,Daily hospital occupancy,19533.0,United Kingdom
-2022-01-18,Daily hospital occupancy,19088.0,United Kingdom
-2022-01-19,Daily hospital occupancy,18586.0,United Kingdom
-2022-01-20,Daily hospital occupancy,18065.0,United Kingdom
-2022-01-21,Daily hospital occupancy,17618.0,United Kingdom
-2022-01-22,Daily hospital occupancy,16975.0,United Kingdom
-2022-01-23,Daily hospital occupancy,16940.0,United Kingdom
-2022-01-24,Daily hospital occupancy,17210.0,United Kingdom
-2022-01-25,Daily hospital occupancy,16608.0,United Kingdom
-2022-01-26,Daily hospital occupancy,16514.0,United Kingdom
-2022-01-27,Daily hospital occupancy,16149.0,United Kingdom
+2021-12-22,Daily hospital occupancy,8346.0,United Kingdom
+2021-12-23,Daily hospital occupancy,8381.0,United Kingdom
+2021-12-24,Daily hospital occupancy,8602.0,United Kingdom
+2021-12-25,Daily hospital occupancy,8409.0,United Kingdom
+2021-12-26,Daily hospital occupancy,8825.0,United Kingdom
+2021-12-27,Daily hospital occupancy,9844.0,United Kingdom
+2021-12-28,Daily hospital occupancy,11005.0,United Kingdom
+2021-12-29,Daily hospital occupancy,12052.0,United Kingdom
+2021-12-30,Daily hospital occupancy,13244.0,United Kingdom
+2021-12-31,Daily hospital occupancy,14276.0,United Kingdom
+2022-01-01,Daily hospital occupancy,14606.0,United Kingdom
+2022-01-02,Daily hospital occupancy,15240.0,United Kingdom
+2022-01-03,Daily hospital occupancy,16430.0,United Kingdom
+2022-01-04,Daily hospital occupancy,17420.0,United Kingdom
+2022-01-05,Daily hospital occupancy,18142.0,United Kingdom
+2022-01-06,Daily hospital occupancy,18613.0,United Kingdom
+2022-01-07,Daily hospital occupancy,18793.0,United Kingdom
+2022-01-08,Daily hospital occupancy,18722.0,United Kingdom
+2022-01-09,Daily hospital occupancy,19162.0,United Kingdom
+2022-01-10,Daily hospital occupancy,19966.0,United Kingdom
+2022-01-11,Daily hospital occupancy,19868.0,United Kingdom
+2022-01-12,Daily hospital occupancy,19830.0,United Kingdom
+2022-01-13,Daily hospital occupancy,19656.0,United Kingdom
+2022-01-14,Daily hospital occupancy,19436.0,United Kingdom
+2022-01-15,Daily hospital occupancy,19186.0,United Kingdom
+2022-01-16,Daily hospital occupancy,19308.0,United Kingdom
+2022-01-17,Daily hospital occupancy,19537.0,United Kingdom
+2022-01-18,Daily hospital occupancy,19093.0,United Kingdom
+2022-01-19,Daily hospital occupancy,18592.0,United Kingdom
+2022-01-20,Daily hospital occupancy,18072.0,United Kingdom
+2022-01-21,Daily hospital occupancy,17628.0,United Kingdom
+2022-01-22,Daily hospital occupancy,16985.0,United Kingdom
+2022-01-23,Daily hospital occupancy,16951.0,United Kingdom
+2022-01-24,Daily hospital occupancy,17223.0,United Kingdom
+2022-01-25,Daily hospital occupancy,16623.0,United Kingdom
+2022-01-26,Daily hospital occupancy,16535.0,United Kingdom
+2022-01-27,Daily hospital occupancy,16176.0,United Kingdom
+2022-01-28,Daily hospital occupancy,15938.0,United Kingdom
 2020-03-29,Weekly new hospital admissions,13918.0,United Kingdom
 2020-03-30,Weekly new hospital admissions,15835.0,United Kingdom
 2020-03-31,Weekly new hospital admissions,16949.0,United Kingdom
@@ -1387,13 +1389,13 @@ date,indicator,value,entity
 2020-05-15,Weekly new hospital admissions,6620.0,United Kingdom
 2020-05-16,Weekly new hospital admissions,6490.0,United Kingdom
 2020-05-17,Weekly new hospital admissions,6367.0,United Kingdom
-2020-05-18,Weekly new hospital admissions,6188.0,United Kingdom
-2020-05-19,Weekly new hospital admissions,6085.0,United Kingdom
-2020-05-20,Weekly new hospital admissions,5969.0,United Kingdom
-2020-05-21,Weekly new hospital admissions,5903.0,United Kingdom
-2020-05-22,Weekly new hospital admissions,5773.0,United Kingdom
-2020-05-23,Weekly new hospital admissions,5602.0,United Kingdom
-2020-05-24,Weekly new hospital admissions,5396.0,United Kingdom
+2020-05-18,Weekly new hospital admissions,6187.0,United Kingdom
+2020-05-19,Weekly new hospital admissions,6084.0,United Kingdom
+2020-05-20,Weekly new hospital admissions,5968.0,United Kingdom
+2020-05-21,Weekly new hospital admissions,5902.0,United Kingdom
+2020-05-22,Weekly new hospital admissions,5772.0,United Kingdom
+2020-05-23,Weekly new hospital admissions,5601.0,United Kingdom
+2020-05-24,Weekly new hospital admissions,5395.0,United Kingdom
 2020-05-25,Weekly new hospital admissions,5150.0,United Kingdom
 2020-05-26,Weekly new hospital admissions,4968.0,United Kingdom
 2020-05-27,Weekly new hospital admissions,4830.0,United Kingdom
@@ -1430,13 +1432,13 @@ date,indicator,value,entity
 2020-06-27,Weekly new hospital admissions,2368.0,United Kingdom
 2020-06-28,Weekly new hospital admissions,2289.0,United Kingdom
 2020-06-29,Weekly new hospital admissions,2115.0,United Kingdom
-2020-06-30,Weekly new hospital admissions,2049.0,United Kingdom
-2020-07-01,Weekly new hospital admissions,1948.0,United Kingdom
-2020-07-02,Weekly new hospital admissions,1840.0,United Kingdom
-2020-07-03,Weekly new hospital admissions,1715.0,United Kingdom
-2020-07-04,Weekly new hospital admissions,1631.0,United Kingdom
-2020-07-05,Weekly new hospital admissions,1618.0,United Kingdom
-2020-07-06,Weekly new hospital admissions,1602.0,United Kingdom
+2020-06-30,Weekly new hospital admissions,2050.0,United Kingdom
+2020-07-01,Weekly new hospital admissions,1949.0,United Kingdom
+2020-07-02,Weekly new hospital admissions,1841.0,United Kingdom
+2020-07-03,Weekly new hospital admissions,1716.0,United Kingdom
+2020-07-04,Weekly new hospital admissions,1632.0,United Kingdom
+2020-07-05,Weekly new hospital admissions,1619.0,United Kingdom
+2020-07-06,Weekly new hospital admissions,1603.0,United Kingdom
 2020-07-07,Weekly new hospital admissions,1520.0,United Kingdom
 2020-07-08,Weekly new hospital admissions,1460.0,United Kingdom
 2020-07-09,Weekly new hospital admissions,1458.0,United Kingdom
@@ -1591,13 +1593,13 @@ date,indicator,value,entity
 2020-12-05,Weekly new hospital admissions,10090.0,United Kingdom
 2020-12-06,Weekly new hospital admissions,10172.0,United Kingdom
 2020-12-07,Weekly new hospital admissions,10427.0,United Kingdom
-2020-12-08,Weekly new hospital admissions,10718.0,United Kingdom
-2020-12-09,Weekly new hospital admissions,10988.0,United Kingdom
-2020-12-10,Weekly new hospital admissions,11240.0,United Kingdom
-2020-12-11,Weekly new hospital admissions,11498.0,United Kingdom
-2020-12-12,Weekly new hospital admissions,11920.0,United Kingdom
-2020-12-13,Weekly new hospital admissions,12203.0,United Kingdom
-2020-12-14,Weekly new hospital admissions,12497.0,United Kingdom
+2020-12-08,Weekly new hospital admissions,10717.0,United Kingdom
+2020-12-09,Weekly new hospital admissions,10987.0,United Kingdom
+2020-12-10,Weekly new hospital admissions,11239.0,United Kingdom
+2020-12-11,Weekly new hospital admissions,11497.0,United Kingdom
+2020-12-12,Weekly new hospital admissions,11919.0,United Kingdom
+2020-12-13,Weekly new hospital admissions,12202.0,United Kingdom
+2020-12-14,Weekly new hospital admissions,12496.0,United Kingdom
 2020-12-15,Weekly new hospital admissions,12670.0,United Kingdom
 2020-12-16,Weekly new hospital admissions,12997.0,United Kingdom
 2020-12-17,Weekly new hospital admissions,13388.0,United Kingdom
@@ -1752,13 +1754,13 @@ date,indicator,value,entity
 2021-05-15,Weekly new hospital admissions,736.0,United Kingdom
 2021-05-16,Weekly new hospital admissions,712.0,United Kingdom
 2021-05-17,Weekly new hospital admissions,712.0,United Kingdom
-2021-05-18,Weekly new hospital admissions,726.0,United Kingdom
-2021-05-19,Weekly new hospital admissions,736.0,United Kingdom
-2021-05-20,Weekly new hospital admissions,761.0,United Kingdom
-2021-05-21,Weekly new hospital admissions,792.0,United Kingdom
-2021-05-22,Weekly new hospital admissions,819.0,United Kingdom
-2021-05-23,Weekly new hospital admissions,855.0,United Kingdom
-2021-05-24,Weekly new hospital admissions,890.0,United Kingdom
+2021-05-18,Weekly new hospital admissions,727.0,United Kingdom
+2021-05-19,Weekly new hospital admissions,737.0,United Kingdom
+2021-05-20,Weekly new hospital admissions,762.0,United Kingdom
+2021-05-21,Weekly new hospital admissions,793.0,United Kingdom
+2021-05-22,Weekly new hospital admissions,820.0,United Kingdom
+2021-05-23,Weekly new hospital admissions,856.0,United Kingdom
+2021-05-24,Weekly new hospital admissions,891.0,United Kingdom
 2021-05-25,Weekly new hospital admissions,896.0,United Kingdom
 2021-05-26,Weekly new hospital admissions,901.0,United Kingdom
 2021-05-27,Weekly new hospital admissions,894.0,United Kingdom
@@ -1805,13 +1807,13 @@ date,indicator,value,entity
 2021-07-07,Weekly new hospital admissions,3289.0,United Kingdom
 2021-07-08,Weekly new hospital admissions,3527.0,United Kingdom
 2021-07-09,Weekly new hospital admissions,3695.0,United Kingdom
-2021-07-10,Weekly new hospital admissions,3854.0,United Kingdom
-2021-07-11,Weekly new hospital admissions,3981.0,United Kingdom
-2021-07-12,Weekly new hospital admissions,4197.0,United Kingdom
-2021-07-13,Weekly new hospital admissions,4373.0,United Kingdom
-2021-07-14,Weekly new hospital admissions,4560.0,United Kingdom
-2021-07-15,Weekly new hospital admissions,4723.0,United Kingdom
-2021-07-16,Weekly new hospital admissions,4861.0,United Kingdom
+2021-07-10,Weekly new hospital admissions,3853.0,United Kingdom
+2021-07-11,Weekly new hospital admissions,3980.0,United Kingdom
+2021-07-12,Weekly new hospital admissions,4196.0,United Kingdom
+2021-07-13,Weekly new hospital admissions,4372.0,United Kingdom
+2021-07-14,Weekly new hospital admissions,4559.0,United Kingdom
+2021-07-15,Weekly new hospital admissions,4722.0,United Kingdom
+2021-07-16,Weekly new hospital admissions,4860.0,United Kingdom
 2021-07-17,Weekly new hospital admissions,5019.0,United Kingdom
 2021-07-18,Weekly new hospital admissions,5225.0,United Kingdom
 2021-07-19,Weekly new hospital admissions,5371.0,United Kingdom
@@ -1894,13 +1896,13 @@ date,indicator,value,entity
 2021-10-04,Weekly new hospital admissions,5230.0,United Kingdom
 2021-10-05,Weekly new hospital admissions,5287.0,United Kingdom
 2021-10-06,Weekly new hospital admissions,5255.0,United Kingdom
-2021-10-07,Weekly new hospital admissions,5366.0,United Kingdom
-2021-10-08,Weekly new hospital admissions,5460.0,United Kingdom
-2021-10-09,Weekly new hospital admissions,5536.0,United Kingdom
-2021-10-10,Weekly new hospital admissions,5552.0,United Kingdom
-2021-10-11,Weekly new hospital admissions,5588.0,United Kingdom
-2021-10-12,Weekly new hospital admissions,5695.0,United Kingdom
-2021-10-13,Weekly new hospital admissions,5844.0,United Kingdom
+2021-10-07,Weekly new hospital admissions,5367.0,United Kingdom
+2021-10-08,Weekly new hospital admissions,5461.0,United Kingdom
+2021-10-09,Weekly new hospital admissions,5537.0,United Kingdom
+2021-10-10,Weekly new hospital admissions,5553.0,United Kingdom
+2021-10-11,Weekly new hospital admissions,5589.0,United Kingdom
+2021-10-12,Weekly new hospital admissions,5696.0,United Kingdom
+2021-10-13,Weekly new hospital admissions,5845.0,United Kingdom
 2021-10-14,Weekly new hospital admissions,5941.0,United Kingdom
 2021-10-15,Weekly new hospital admissions,6107.0,United Kingdom
 2021-10-16,Weekly new hospital admissions,6222.0,United Kingdom
@@ -1926,13 +1928,13 @@ date,indicator,value,entity
 2021-11-05,Weekly new hospital admissions,6827.0,United Kingdom
 2021-11-06,Weekly new hospital admissions,6752.0,United Kingdom
 2021-11-07,Weekly new hospital admissions,6630.0,United Kingdom
-2021-11-08,Weekly new hospital admissions,6545.0,United Kingdom
-2021-11-09,Weekly new hospital admissions,6459.0,United Kingdom
-2021-11-10,Weekly new hospital admissions,6460.0,United Kingdom
-2021-11-11,Weekly new hospital admissions,6533.0,United Kingdom
-2021-11-12,Weekly new hospital admissions,6567.0,United Kingdom
-2021-11-13,Weekly new hospital admissions,6514.0,United Kingdom
-2021-11-14,Weekly new hospital admissions,6433.0,United Kingdom
+2021-11-08,Weekly new hospital admissions,6546.0,United Kingdom
+2021-11-09,Weekly new hospital admissions,6460.0,United Kingdom
+2021-11-10,Weekly new hospital admissions,6461.0,United Kingdom
+2021-11-11,Weekly new hospital admissions,6534.0,United Kingdom
+2021-11-12,Weekly new hospital admissions,6568.0,United Kingdom
+2021-11-13,Weekly new hospital admissions,6515.0,United Kingdom
+2021-11-14,Weekly new hospital admissions,6434.0,United Kingdom
 2021-11-15,Weekly new hospital admissions,6260.0,United Kingdom
 2021-11-16,Weekly new hospital admissions,6168.0,United Kingdom
 2021-11-17,Weekly new hospital admissions,6044.0,United Kingdom
@@ -1941,66 +1943,67 @@ date,indicator,value,entity
 2021-11-20,Weekly new hospital admissions,5765.0,United Kingdom
 2021-11-21,Weekly new hospital admissions,5713.0,United Kingdom
 2021-11-22,Weekly new hospital admissions,5614.0,United Kingdom
-2021-11-23,Weekly new hospital admissions,5493.0,United Kingdom
+2021-11-23,Weekly new hospital admissions,5492.0,United Kingdom
 2021-11-24,Weekly new hospital admissions,5545.0,United Kingdom
 2021-11-25,Weekly new hospital admissions,5482.0,United Kingdom
 2021-11-26,Weekly new hospital admissions,5441.0,United Kingdom
 2021-11-27,Weekly new hospital admissions,5422.0,United Kingdom
 2021-11-28,Weekly new hospital admissions,5380.0,United Kingdom
-2021-11-29,Weekly new hospital admissions,5448.0,United Kingdom
-2021-11-30,Weekly new hospital admissions,5500.0,United Kingdom
-2021-12-01,Weekly new hospital admissions,5408.0,United Kingdom
-2021-12-02,Weekly new hospital admissions,5471.0,United Kingdom
-2021-12-03,Weekly new hospital admissions,5473.0,United Kingdom
-2021-12-04,Weekly new hospital admissions,5505.0,United Kingdom
-2021-12-05,Weekly new hospital admissions,5635.0,United Kingdom
+2021-11-29,Weekly new hospital admissions,5449.0,United Kingdom
+2021-11-30,Weekly new hospital admissions,5502.0,United Kingdom
+2021-12-01,Weekly new hospital admissions,5409.0,United Kingdom
+2021-12-02,Weekly new hospital admissions,5472.0,United Kingdom
+2021-12-03,Weekly new hospital admissions,5474.0,United Kingdom
+2021-12-04,Weekly new hospital admissions,5506.0,United Kingdom
+2021-12-05,Weekly new hospital admissions,5636.0,United Kingdom
 2021-12-06,Weekly new hospital admissions,5696.0,United Kingdom
 2021-12-07,Weekly new hospital admissions,5800.0,United Kingdom
 2021-12-08,Weekly new hospital admissions,5863.0,United Kingdom
 2021-12-09,Weekly new hospital admissions,5972.0,United Kingdom
 2021-12-10,Weekly new hospital admissions,6061.0,United Kingdom
 2021-12-11,Weekly new hospital admissions,6103.0,United Kingdom
-2021-12-12,Weekly new hospital admissions,6124.0,United Kingdom
-2021-12-13,Weekly new hospital admissions,6174.0,United Kingdom
-2021-12-14,Weekly new hospital admissions,6183.0,United Kingdom
-2021-12-15,Weekly new hospital admissions,6245.0,United Kingdom
-2021-12-16,Weekly new hospital admissions,6216.0,United Kingdom
-2021-12-17,Weekly new hospital admissions,6272.0,United Kingdom
+2021-12-12,Weekly new hospital admissions,6125.0,United Kingdom
+2021-12-13,Weekly new hospital admissions,6175.0,United Kingdom
+2021-12-14,Weekly new hospital admissions,6184.0,United Kingdom
+2021-12-15,Weekly new hospital admissions,6246.0,United Kingdom
+2021-12-16,Weekly new hospital admissions,6217.0,United Kingdom
+2021-12-17,Weekly new hospital admissions,6273.0,United Kingdom
 2021-12-18,Weekly new hospital admissions,6316.0,United Kingdom
-2021-12-19,Weekly new hospital admissions,6471.0,United Kingdom
-2021-12-20,Weekly new hospital admissions,6761.0,United Kingdom
-2021-12-21,Weekly new hospital admissions,7062.0,United Kingdom
+2021-12-19,Weekly new hospital admissions,6470.0,United Kingdom
+2021-12-20,Weekly new hospital admissions,6760.0,United Kingdom
+2021-12-21,Weekly new hospital admissions,7061.0,United Kingdom
 2021-12-22,Weekly new hospital admissions,7521.0,United Kingdom
-2021-12-23,Weekly new hospital admissions,7998.0,United Kingdom
-2021-12-24,Weekly new hospital admissions,8303.0,United Kingdom
-2021-12-25,Weekly new hospital admissions,8877.0,United Kingdom
-2021-12-26,Weekly new hospital admissions,9396.0,United Kingdom
-2021-12-27,Weekly new hospital admissions,10136.0,United Kingdom
-2021-12-28,Weekly new hospital admissions,11181.0,United Kingdom
-2021-12-29,Weekly new hospital admissions,12384.0,United Kingdom
-2021-12-30,Weekly new hospital admissions,13365.0,United Kingdom
-2021-12-31,Weekly new hospital admissions,14267.0,United Kingdom
-2022-01-01,Weekly new hospital admissions,14923.0,United Kingdom
-2022-01-02,Weekly new hospital admissions,15492.0,United Kingdom
-2022-01-03,Weekly new hospital admissions,15999.0,United Kingdom
-2022-01-04,Weekly new hospital admissions,16086.0,United Kingdom
-2022-01-05,Weekly new hospital admissions,15868.0,United Kingdom
-2022-01-06,Weekly new hospital admissions,15805.0,United Kingdom
-2022-01-07,Weekly new hospital admissions,15731.0,United Kingdom
-2022-01-08,Weekly new hospital admissions,15742.0,United Kingdom
-2022-01-09,Weekly new hospital admissions,15839.0,United Kingdom
-2022-01-10,Weekly new hospital admissions,15819.0,United Kingdom
-2022-01-11,Weekly new hospital admissions,15823.0,United Kingdom
-2022-01-12,Weekly new hospital admissions,15599.0,United Kingdom
-2022-01-13,Weekly new hospital admissions,15417.0,United Kingdom
-2022-01-14,Weekly new hospital admissions,15319.0,United Kingdom
-2022-01-15,Weekly new hospital admissions,15013.0,United Kingdom
-2022-01-16,Weekly new hospital admissions,14729.0,United Kingdom
-2022-01-17,Weekly new hospital admissions,14285.0,United Kingdom
-2022-01-18,Weekly new hospital admissions,13881.0,United Kingdom
-2022-01-19,Weekly new hospital admissions,13666.0,United Kingdom
-2022-01-20,Weekly new hospital admissions,13401.0,United Kingdom
-2022-01-21,Weekly new hospital admissions,13113.0,United Kingdom
-2022-01-22,Weekly new hospital admissions,12748.0,United Kingdom
-2022-01-23,Weekly new hospital admissions,12485.0,United Kingdom
-2022-01-24,Weekly new hospital admissions,12223.0,United Kingdom
+2021-12-23,Weekly new hospital admissions,7999.0,United Kingdom
+2021-12-24,Weekly new hospital admissions,8304.0,United Kingdom
+2021-12-25,Weekly new hospital admissions,8878.0,United Kingdom
+2021-12-26,Weekly new hospital admissions,9398.0,United Kingdom
+2021-12-27,Weekly new hospital admissions,10139.0,United Kingdom
+2021-12-28,Weekly new hospital admissions,11185.0,United Kingdom
+2021-12-29,Weekly new hospital admissions,12386.0,United Kingdom
+2021-12-30,Weekly new hospital admissions,13367.0,United Kingdom
+2021-12-31,Weekly new hospital admissions,14272.0,United Kingdom
+2022-01-01,Weekly new hospital admissions,14928.0,United Kingdom
+2022-01-02,Weekly new hospital admissions,15496.0,United Kingdom
+2022-01-03,Weekly new hospital admissions,16003.0,United Kingdom
+2022-01-04,Weekly new hospital admissions,16089.0,United Kingdom
+2022-01-05,Weekly new hospital admissions,15872.0,United Kingdom
+2022-01-06,Weekly new hospital admissions,15810.0,United Kingdom
+2022-01-07,Weekly new hospital admissions,15735.0,United Kingdom
+2022-01-08,Weekly new hospital admissions,15750.0,United Kingdom
+2022-01-09,Weekly new hospital admissions,15847.0,United Kingdom
+2022-01-10,Weekly new hospital admissions,15826.0,United Kingdom
+2022-01-11,Weekly new hospital admissions,15830.0,United Kingdom
+2022-01-12,Weekly new hospital admissions,15607.0,United Kingdom
+2022-01-13,Weekly new hospital admissions,15422.0,United Kingdom
+2022-01-14,Weekly new hospital admissions,15323.0,United Kingdom
+2022-01-15,Weekly new hospital admissions,15014.0,United Kingdom
+2022-01-16,Weekly new hospital admissions,14733.0,United Kingdom
+2022-01-17,Weekly new hospital admissions,14292.0,United Kingdom
+2022-01-18,Weekly new hospital admissions,13889.0,United Kingdom
+2022-01-19,Weekly new hospital admissions,13679.0,United Kingdom
+2022-01-20,Weekly new hospital admissions,13415.0,United Kingdom
+2022-01-21,Weekly new hospital admissions,13132.0,United Kingdom
+2022-01-22,Weekly new hospital admissions,12767.0,United Kingdom
+2022-01-23,Weekly new hospital admissions,12501.0,United Kingdom
+2022-01-24,Weekly new hospital admissions,12242.0,United Kingdom
+2022-01-25,Weekly new hospital admissions,12093.0,United Kingdom
