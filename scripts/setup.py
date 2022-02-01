@@ -17,13 +17,13 @@ setup(
     name="cowidev",
     version="0.0.1.dev0",
     description="Update tools for OWID COVID dataset.",
-    #long_description=long_description,
+    # long_description=long_description,
     long_description_content_type="text/markdown",
     author="Our World in Data",
     author_email="info@ourworldindata.org",
     license="MIT",
     install_requires=requirements,
-    packages=find_packages('src'),
+    packages=find_packages("src"),
     package_dir={"": "src"},
     # py_modules=[
     #     os.path.splitext(os.path.basename(path))[0] for path in glob.glob("scripts/cowidev/*.py")
@@ -52,6 +52,7 @@ setup(
         "console_scripts": [
             "cowidev-grapher-db=cowidev.grapher.db.__main__:main",
             "cowid-vax=cowidev.vax.cmd.__main__:main",
+            "cowid-test=cowidev.testing.cmd.__main__:main",
             "cowid-vax-track=cowidev.vax.tracking.__main__:main",
         ]
     },
