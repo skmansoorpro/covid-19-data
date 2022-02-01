@@ -2,7 +2,7 @@ import json
 
 import pandas as pd
 
-from cowidev.utils.gsheets import GSheetApi
+from cowidev.utils.gdrive import GSheetApi
 
 
 class TestingGSheet:
