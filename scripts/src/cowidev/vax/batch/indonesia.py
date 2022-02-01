@@ -86,6 +86,7 @@ class Indonesia(CountryVaxBase):
             return df
 
         last_who_report_date = who.DATE_UPDATED.values[0]
+        df = df[-((df.date > last_who_report_date) & (df.total_vaccinations < who.TOTAL_VACCINATIONS.values[0]))]
         df.loc[df.date == last_who_report_date, "total_vaccinations"] = who.TOTAL_VACCINATIONS.values[0]
         df.loc[df.date == last_who_report_date, "people_vaccinated"] = who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]
         df.loc[df.date == last_who_report_date, "people_fully_vaccinated"] = who.PERSONS_FULLY_VACCINATED.values[0]

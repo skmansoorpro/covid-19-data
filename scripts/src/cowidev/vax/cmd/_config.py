@@ -4,7 +4,7 @@ from datetime import date
 from pyaml_env import parse_config
 from itertools import chain
 
-from cowidev.vax.utils.gsheets import GSheetApi
+from cowidev.utils.gdrive import GSheetApi
 from cowidev.vax.cmd.get_data import (
     MODULES_NAME,
     MODULES_NAME_BATCH,
