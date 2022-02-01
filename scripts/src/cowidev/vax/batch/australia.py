@@ -13,7 +13,6 @@ class Australia(CountryVaxBase):
         "age_2d": "https://covidbaseau.com/historical/Vaccinations%20By%20Age%20Group%20and%20State%20Second.csv",
     }
     source_url_ref = "https://covidbaseau.com/"
-    source_url_ref_age = "https://covidbaseau.com/vaccinations/#line4"
     source_file = "https://covidbaseau.com/people-vaccinated.csv"
     location = "Australia"
     columns_rename = {
@@ -112,7 +111,7 @@ class Australia(CountryVaxBase):
         self.export_datafile(
             df=df,
             df_age=df_age,
-            meta_age={"source_name": "Ministry of Health via vacuna.uy", "source_url": "self.source_url_ref_age"},
+            meta_age={"source_name": "Ministry of Health via covidbaseau.com", "source_url": self.source_url_ref},
         )
 
 
