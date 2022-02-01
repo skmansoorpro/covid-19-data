@@ -130,6 +130,9 @@ class Romania:
             return df
 
         last_who_report_date = who.DATE_UPDATED.values[0]
+        df = df[
+            -((df.date > last_who_report_date) & (df.people_vaccinated < who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]))
+        ]
         df.loc[df.date == last_who_report_date, "total_vaccinations"] = pd.NA
         df.loc[df.date == last_who_report_date, "people_vaccinated"] = who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]
         df.loc[df.date == last_who_report_date, "people_fully_vaccinated"] = pd.NA

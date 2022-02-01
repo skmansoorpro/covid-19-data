@@ -2,6 +2,7 @@ import os
 from glob import glob
 
 import pandas as pd
+from cowidev.utils.utils import make_monotonic as _make_monotonic
 
 
 def get_latest_file(path, extension):
@@ -9,10 +10,19 @@ def get_latest_file(path, extension):
     return max(files, key=os.path.getctime)
 
 
-def make_monotonic(df: pd.DataFrame, max_removed_rows=10) -> pd.DataFrame:
+def make_monotonic(df: pd.DataFrame, max_removed_rows=10, new_version=False) -> pd.DataFrame:
     # Forces vaccination time series to become monotonic.
     # The algorithm assumes that the most recent values are the correct ones,
     # and therefore removes previous higher values.
+    if new_version:
+        return _make_monotonic(
+            df=df,
+            column_date="date",
+            column_metrics=["total_vaccinations", "people_vaccinated", "people_fully_vaccinated"],
+            max_removed_rows=max_removed_rows,
+            strict=False,
+        )
+
     n_rows_before = len(df)
     dates_before = set(df.date)
     df_before = df.copy()
