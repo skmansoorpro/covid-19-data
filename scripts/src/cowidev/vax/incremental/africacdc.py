@@ -6,7 +6,7 @@ from cowidev.utils.clean import clean_date
 from cowidev.utils.web import request_json
 from cowidev.vax.utils.incremental import increment
 from cowidev.vax.utils.orgs import WHO_VACCINES, ACDC_COUNTRIES, ACDC_VACCINES
-from cowidev.vax.cmd.utils import get_logger
+from cowidev.utils.log import get_logger
 
 
 logger = get_logger()

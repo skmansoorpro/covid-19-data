@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
 
+from cowidev.utils.log import get_logger
+from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.incremental import increment
 from cowidev.vax.utils.checks import VACCINES_ONE_DOSE
 from cowidev.vax.utils.orgs import WHO_VACCINES, WHO_COUNTRIES
-from cowidev.vax.cmd.utils import get_logger
-from cowidev.utils.utils import check_known_columns
 
 
 logger = get_logger()

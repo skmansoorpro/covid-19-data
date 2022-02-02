@@ -3,7 +3,7 @@ import os
 import tempfile
 
 import requests
-import pdftotext
+from pdfminer.high_level import extract_text 
 import pandas as pd
 
 
@@ -52,8 +52,7 @@ class Philippines(CountryTestBase):
     def _parse_drive_id_from_pdf(self, pdf_path):
         # Get link from pdf
         with open(pdf_path, "rb") as f:
-            pdf = pdftotext.PDF(f)
-        text = "\n\n".join(pdf)
+            text = extract_text(f)
         link = re.search(r"https://bit\.ly/.*", text).group()
         # Unshorten
         resp = requests.get(link)

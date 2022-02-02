@@ -125,6 +125,7 @@ one by one. Prior to running these, make sure you are correctly using your [conf
 automated step.
 
 #### Data pipeline configuration
+**This section is being re-factored, in an attempt to improve credentials and configuration files.**
 To correctly use the configuration in your [config.yaml](../../config.yaml), you can:
   - Set environment variable `${OWID_COVID_VAX_CONFIG_FILE}` to file's path.
   - Save configuration under `~/.config/cowid/config.yaml` and run.
