@@ -86,7 +86,7 @@ class Iceland(CountryTestBase):
     def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
         """Calculate Positive Rate"""
         df["Positive rate"] = (
-            df["positive"].rolling(7).sum().div(df["daily_change"].rolling(7).sum()).round(5)
+            df["positive"].rolling(7).sum().div(df["daily_change"].rolling(7).sum()).round(3)
         ).fillna(0)
         return df
 
