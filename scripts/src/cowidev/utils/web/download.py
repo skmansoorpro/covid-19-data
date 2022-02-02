@@ -1,9 +1,18 @@
-import requests
 import tempfile
+from urllib.parse import urlparse
 import pandas as pd
 
+import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.ssl_ import create_urllib3_context
 
-def read_xlsx_from_url(url: str, timeout=30, as_series: bool = False, drop=False, **kwargs) -> pd.DataFrame:
+
+CIPHERS = "HIGH:!DH:!aNULL:DEFAULT@SECLEVEL=1"
+
+
+def read_xlsx_from_url(
+    url: str, timeout=30, as_series: bool = False, verify=True, drop=False, ciphers_low=False, **kwargs
+) -> pd.DataFrame:
     """Download and load xls file from URL.
 
     Args:
@@ -16,7 +25,7 @@ def read_xlsx_from_url(url: str, timeout=30, as_series: bool = False, drop=False
         pandas.DataFrame: Data loaded.
     """
     with tempfile.NamedTemporaryFile() as tmp:
-        download_file_from_url(url, tmp.name, timeout=timeout)
+        download_file_from_url(url, tmp.name, timeout=timeout, verify=verify, ciphers_low=ciphers_low)
         df = pd.read_excel(tmp.name, **kwargs)
     if as_series:
         return df.T.squeeze()
@@ -25,16 +34,44 @@ def read_xlsx_from_url(url: str, timeout=30, as_series: bool = False, drop=False
     return df
 
 
-def read_csv_from_url(url, timeout=30, verify=True, **kwargs):
+def read_csv_from_url(url, timeout=30, verify=True, ciphers_low=False, **kwargs):
     with tempfile.NamedTemporaryFile(mode="w+", delete=False) as tmp:
-        download_file_from_url(url, tmp.name, timeout=timeout, verify=verify)
+        download_file_from_url(url, tmp.name, timeout=timeout, verify=verify, ciphers_low=ciphers_low)
         df = pd.read_csv(tmp.name, **kwargs)
     # df = df.dropna(how="all")
     return df
 
 
-def download_file_from_url(url, save_path, chunk_size=1024 * 1024, timeout=30, verify=True):
-    r = requests.get(url, stream=True, timeout=timeout, verify=verify)
+def download_file_from_url(url, save_path, chunk_size=1024 * 1024, timeout=30, verify=True, ciphers_low=False):
+    if ciphers_low:
+        base_url = get_base_url(url)
+        s = requests.Session()
+        s.mount(base_url, DESAdapter())
+        r = s.get(url)
+    else:
+        r = requests.get(url, stream=True, timeout=timeout, verify=verify)
     with open(save_path, "wb") as fd:
         for chunk in r.iter_content(chunk_size=chunk_size):
             fd.write(chunk)
+
+
+class DESAdapter(HTTPAdapter):
+    """
+    A TransportAdapter that re-enables 3DES support in Requests.
+
+    From: https://stackoverflow.com/a/46186957/5056599
+    """
+
+    def init_poolmanager(self, *args, **kwargs):
+        context = create_urllib3_context(ciphers=CIPHERS)
+        kwargs["ssl_context"] = context
+        return super(DESAdapter, self).init_poolmanager(*args, **kwargs)
+
+    def proxy_manager_for(self, *args, **kwargs):
+        context = create_urllib3_context(ciphers=CIPHERS)
+        kwargs["ssl_context"] = context
+        return super(DESAdapter, self).proxy_manager_for(*args, **kwargs)
+
+
+def get_base_url(url):
+    return f"https://{urlparse(url).netloc}"

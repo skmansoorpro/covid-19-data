@@ -3,7 +3,7 @@ import tempfile
 import re
 
 import pandas as pd
-import pdftotext
+from pdfminer.high_level import extract_text
 
 from cowidev.utils import clean_count, get_soup, paths
 from cowidev.utils.clean import extract_clean_date
@@ -19,9 +19,9 @@ class Kenya:
         "date": r"date: [a-z]+ ([0-9]+).{0,2},? ([a-z]+),? (202\d)",
         "metrics": {
             "total_vaccinations": r"total doses administered ([\d,]+)",
-            "people_vaccinated_adults": r"partially vaccinated adult population ([\d,]+)",
+            "people_vaccinated_adults": r"proportion of adults fully vaccinated ([\d,]+)",
             "people_vaccinated_teens": r"partially vaccinated teenage population\( 15-17yrs\) ([\d,]+)",
-            "people_fully_vaccinated_adults": r"fully vaccinated adult population ([\d,]+)",
+            "people_fully_vaccinated_adults": r"proportion of adults fully vaccinated [\d,]+ ([\d,]+)",
             "people_fully_vaccinated_teens": r"fully vaccinated teenage population\( 15-17yrs\) ([\d,]+)",
             "total_boosters": r"booster doses ([\d,]+)",
         },
@@ -64,9 +64,9 @@ class Kenya:
         with tempfile.NamedTemporaryFile() as tmp:
             download_file_from_url(url_pdf, tmp.name, verify=False)
             with open(tmp.name, "rb") as f:
-                text = pdftotext.PDF(f)[0]
-            text = text.replace("\n", " ")
-            text = " ".join(text.split()).lower()
+                text = extract_text(f)
+        text = text.replace("\n", " ")
+        text = " ".join(text.split()).lower()
         return text
 
     def _parse_date(self, pdf_text: str) -> str:
