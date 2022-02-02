@@ -3,14 +3,14 @@ import re
 import pandas as pd
 
 from cowidev.utils.clean import clean_count, clean_date
+from cowidev.utils.gdrive import GSheetApi
 from cowidev.vax.utils.incremental import enrich_data, increment
 
 
 class Colombia:
-    def __init__(self, gsheets_api) -> None:
-        self.location = "Colombia"
-        self.source_url = "https://docs.google.com/spreadsheets/d/1eblBeozGn1soDGXbOIicwyEDkUqNMzzpJoAKw84TTA4"
-        self.gsheets_api = gsheets_api
+    location = "Colombia"
+    source_url = "https://docs.google.com/spreadsheets/d/1eblBeozGn1soDGXbOIicwyEDkUqNMzzpJoAKw84TTA4"
+    gsheets_api = GSheetApi()
 
     @property
     def sheet_id(self):
@@ -91,5 +91,5 @@ class Colombia:
             print("skipped")
 
 
-def main(gsheets_api):
-    Colombia(gsheets_api=gsheets_api).export()
+def main():
+    Colombia().export()

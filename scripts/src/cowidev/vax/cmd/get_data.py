@@ -32,9 +32,8 @@ LOG_GET_GLOBAL = "s3://covid-19/log/vax-get-data-global.csv"
 
 
 class CountryDataGetter:
-    def __init__(self, skip_countries: list, gsheets_api):
+    def __init__(self, skip_countries: list):
         self.skip_countries = skip_countries
-        self.gsheets_api = gsheets_api
 
     def run(self, module_name: str):
         t0 = time.time()
@@ -43,8 +42,6 @@ class CountryDataGetter:
             logger.info(f"VAX - {module_name}: skipped! ⚠️")
             return {"module_name": module_name, "success": None, "skipped": True, "time": None}
         args = []
-        if country == "colombia":
-            args.append(self.gsheets_api)
         logger.info(f"VAX - {module_name}: started")
         module = importlib.import_module(module_name)
         try:
@@ -65,7 +62,6 @@ def main_get_data(
     n_jobs: int = -2,
     modules_name: list = MODULES_NAME,
     skip_countries: list = [],
-    gsheets_api=None,
 ):
     """Get data from sources and export to output folder.
 
@@ -74,7 +70,7 @@ def main_get_data(
     t0 = time.time()
     print("-- Getting data... --")
     skip_countries = [x.lower() for x in skip_countries]
-    country_data_getter = CountryDataGetter(skip_countries, gsheets_api)
+    country_data_getter = CountryDataGetter(skip_countries)
     modules_name = _load_modules_order(modules_name)
     if parallel:
         modules_execution_results = Parallel(n_jobs=n_jobs, backend="threading")(
