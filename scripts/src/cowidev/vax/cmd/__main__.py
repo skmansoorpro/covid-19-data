@@ -21,7 +21,6 @@ def main():
             n_jobs=cfg.njobs,
             modules_name=cfg.countries,
             skip_countries=cfg.skip_countries,
-            gsheets_api=config.gsheets_api,
         )
     if "process" in config.mode:
         cfg = config.ProcessDataConfig()
