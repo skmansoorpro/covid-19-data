@@ -38,7 +38,7 @@ class Luxembourg(CountryTestBase):
         df = df.sort_values("Date")
         cases_over_period = df["positive"].diff().rolling(7).sum()
         tests_over_period = df["Cumulative total"].diff().rolling(7).sum()
-        return df.assign(**{"Positive rate": (cases_over_period / tests_over_period).round(5)}).fillna(0)
+        return df.assign(**{"Positive rate": (cases_over_period / tests_over_period).round(3)}).fillna(0)
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for data"""
