@@ -37,23 +37,23 @@ The CSV and XLSX files follow a format of 1 row per location and date. The JSON 
 The variables represent all of our main data related to confirmed cases, deaths, hospitalizations, and testing, as well as other variables of potential interest.
 
 ### Confirmed cases
-| Variable                         | Description                                                           |
-|:---------------------------------|:----------------------------------------------------------------------|
-| `total_cases`                    | Total confirmed cases of COVID-19                                     |
-| `new_cases`                      | New confirmed cases of COVID-19                                       |
-| `new_cases_smoothed`             | New confirmed cases of COVID-19 (7-day smoothed)                      |
-| `total_cases_per_million`        | Total confirmed cases of COVID-19 per 1,000,000 people                |
-| `new_cases_per_million`          | New confirmed cases of COVID-19 per 1,000,000 people                  |
-| `new_cases_smoothed_per_million` | New confirmed cases of COVID-19 (7-day smoothed) per 1,000,000 people |
+| Variable                         | Description                                                                                                               |
+|:---------------------------------|:--------------------------------------------------------------------------------------------------------------------------|
+| `total_cases`                    | Total confirmed cases of COVID-19. Counts can include probable cases, where reported.                                     |
+| `new_cases`                      | New confirmed cases of COVID-19. Counts can include probable cases, where reported.                                       |
+| `new_cases_smoothed`             | New confirmed cases of COVID-19 (7-day smoothed). Counts can include probable cases, where reported.                      |
+| `total_cases_per_million`        | Total confirmed cases of COVID-19 per 1,000,000 people. Counts can include probable cases, where reported.                |
+| `new_cases_per_million`          | New confirmed cases of COVID-19 per 1,000,000 people. Counts can include probable cases, where reported.                  |
+| `new_cases_smoothed_per_million` | New confirmed cases of COVID-19 (7-day smoothed) per 1,000,000 people. Counts can include probable cases, where reported. |
 ### Confirmed deaths
-| Variable                          | Description                                                             |
-|:----------------------------------|:------------------------------------------------------------------------|
-| `total_deaths`                    | Total deaths attributed to COVID-19                                     |
-| `new_deaths`                      | New deaths attributed to COVID-19                                       |
-| `new_deaths_smoothed`             | New deaths attributed to COVID-19 (7-day smoothed)                      |
-| `total_deaths_per_million`        | Total deaths attributed to COVID-19 per 1,000,000 people                |
-| `new_deaths_per_million`          | New deaths attributed to COVID-19 per 1,000,000 people                  |
-| `new_deaths_smoothed_per_million` | New deaths attributed to COVID-19 (7-day smoothed) per 1,000,000 people |
+| Variable                          | Description                                                                                                                  |
+|:----------------------------------|:-----------------------------------------------------------------------------------------------------------------------------|
+| `total_deaths`                    | Total deaths attributed to COVID-19. Counts can include probable deaths, where reported.                                     |
+| `new_deaths`                      | New deaths attributed to COVID-19. Counts can include probable deaths, where reported.                                       |
+| `new_deaths_smoothed`             | New deaths attributed to COVID-19 (7-day smoothed). Counts can include probable deaths, where reported.                      |
+| `total_deaths_per_million`        | Total deaths attributed to COVID-19 per 1,000,000 people. Counts can include probable deaths, where reported.                |
+| `new_deaths_per_million`          | New deaths attributed to COVID-19 per 1,000,000 people. Counts can include probable deaths, where reported.                  |
+| `new_deaths_smoothed_per_million` | New deaths attributed to COVID-19 (7-day smoothed) per 1,000,000 people. Counts can include probable deaths, where reported. |
 ### Excess mortality
 | Variable                                  | Description                                                                                                                                                                                                                                                                                   |
 |:------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

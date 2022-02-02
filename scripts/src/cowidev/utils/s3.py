@@ -8,11 +8,15 @@ import json
 import tempfile
 from os import path
 from typing import Optional, Union
-import logging
 
 import pandas as pd
 import boto3
 from botocore.exceptions import ClientError
+
+from cowidev.utils.log import get_logger
+
+
+logger = get_logger()
 
 
 class S3:
@@ -69,7 +73,7 @@ class S3:
         try:
             self.client.upload_file(local_path, bucket_name, s3_file, ExtraArgs=extra_args)
         except ClientError as e:
-            logging.error(e)
+            logger.error(e)
             raise UploadError(e)
 
         return None
@@ -90,7 +94,7 @@ class S3:
         try:
             self.client.download_file(bucket_name, s3_file, local_path)
         except ClientError as e:
-            logging.error(e)
+            logger.error(e)
             raise UploadError(e)
 
     def obj_to_s3(self, obj, s3_path, public=False, **kwargs):

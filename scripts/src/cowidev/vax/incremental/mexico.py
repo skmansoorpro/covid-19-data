@@ -2,78 +2,72 @@ import tempfile
 import re
 
 import pandas as pd
-import requests
-import PyPDF2
+from pdfminer.high_level import extract_text
 
-from cowidev.utils.clean import clean_count
-from cowidev.utils.clean.dates import localdate
-from cowidev.utils.web.scraping import get_soup
+from cowidev.utils import clean_count, clean_date, get_soup
+from cowidev.utils.web.download import download_file_from_url
 from cowidev.vax.utils.incremental import enrich_data, increment
 
 
 class Mexico:
-    def __init__(self):
-        self.source_page = "https://www.gob.mx/salud/documentos/presentaciones-2022"
-        self.location = "Mexico"
+    location: str = "Mexico"
+    source_page: str = "https://www.gob.mx/salud/documentos/presentaciones-2022"
+    regex = {
+        "date": r"(\d{1,2} \w+\, 20\d{2})",
+        "total_vaccinations": r"COVID-19 (\d+) Total de dosis aplicadas reportadas",
+        "people_vaccinated": r"Nuevos esquemas (\d+) Personas vacunadas reportadas",
+        "people_fully_vaccinated": r"(\d+) Personas vacunadas con esq\. completo",
+    }
 
     def read(self):
+        """Read the data from the source"""
         soup = get_soup(self.source_page)
         link = self._parse_link_pdf(soup)
         return self._parse_data(link)
 
     def _parse_link_pdf(self, soup) -> list:
+        """Parse the link to the pdf"""
         link = soup.find(class_="list-unstyled").find("a")["href"]
         link = "http://www.gob.mx" + link
         self.source_url = link
         # print(link)
         return link
 
-    def _get_pages_relevant_pdf(self, url) -> list:
-        with tempfile.NamedTemporaryFile() as tf:
-            with open(tf.name, mode="wb") as f:
-                f.write(requests.get(url).content)
-            with open(tf.name, mode="rb") as f:
-                reader = PyPDF2.PdfFileReader(f)
-                return [reader.getPage(i).extractText() for i in range(reader.getNumPages())]
+    def _get_text_from_pdf(self, url: str) -> str:
+        """Get the text from the pdf url"""
+        with tempfile.NamedTemporaryFile() as tmp:
+            download_file_from_url(url, tmp.name)
+            with open(tmp.name, "rb") as f:
+                text = extract_text(f)
+        text = re.sub(r"\s+", " ", text)
+        text = re.sub(r"(\d)\,(\d)", r"\1\2", text)
+        return text
 
-    def _parse_data(self, url) -> pd.Series:
-        pages = self._get_pages_relevant_pdf(url)
-        for page_text in pages:
-            page_text = re.sub(r"\s+", " ", page_text)
+    def _parse_data(self, url: str) -> pd.Series:
+        """Parse the data from the pdf url"""
+        text = self._get_text_from_pdf(url)
+        data = {
+            "total_vaccinations": clean_count(re.search(self.regex["total_vaccinations"], text).group(1)),
+            "people_vaccinated": clean_count(re.search(self.regex["people_vaccinated"], text).group(1)),
+            "people_fully_vaccinated": clean_count(re.search(self.regex["people_fully_vaccinated"], text).group(1)),
+            "date": clean_date(re.search(self.regex["date"], text).group(1), "%d %B, %Y", lang="es"),
+        }
+        self._check_data(data)
+        return pd.Series(data)
 
-            if "Total de dosis aplicadas reportadas" in page_text:
-                total_vaccinations = clean_count(
-                    re.search(r"([\d,]{10,}) ?Total de dosis aplicadas reportadas", page_text).group(1)
-                )
-                date = localdate("America/Mexico_City")
-
-            elif "Personas vacunadas reportadas" in page_text:
-                matches = re.search(
-                    r"([\d,]{10,}) Esquema completo ([\d,]{10,}) Personas vacunadas con esq. completo", page_text
-                )
-                people_vaccinated = clean_count(matches.group(1))
-                people_fully_vaccinated = clean_count(matches.group(2))
-
-        # Tests
-        assert total_vaccinations >= 94300526
-        assert people_vaccinated >= 61616895
-        assert people_fully_vaccinated >= 41115211
-        assert people_vaccinated <= total_vaccinations
-        assert people_fully_vaccinated >= 0.5 * people_vaccinated
-
-        return pd.Series(
-            {
-                "total_vaccinations": total_vaccinations,
-                "people_vaccinated": people_vaccinated,
-                "people_fully_vaccinated": people_fully_vaccinated,
-                "date": date,
-            }
-        )
+    def _check_data(self, data):
+        assert data["total_vaccinations"] >= 94300526
+        assert data["people_vaccinated"] >= 61616895
+        assert data["people_fully_vaccinated"] >= 41115211
+        assert data["people_vaccinated"] <= data["total_vaccinations"]
+        assert data["people_fully_vaccinated"] >= 0.5 * data["people_vaccinated"]
 
     def pipe_location(self, ds: pd.Series) -> pd.Series:
+        """Pipe location to the data"""
         return enrich_data(ds, "location", self.location)
 
     def pipe_vaccine(self, ds: pd.Series) -> pd.Series:
+        """Pipe vaccine to the data"""
         return enrich_data(
             ds,
             "vaccine",
@@ -81,12 +75,15 @@ class Mexico:
         )
 
     def pipe_source(self, ds: pd.Series) -> pd.Series:
+        """Pipe source url to the data"""
         return enrich_data(ds, "source_url", self.source_url)
 
     def pipeline(self, ds: pd.Series) -> pd.Series:
+        """Pipeline for the data"""
         return ds.pipe(self.pipe_location).pipe(self.pipe_vaccine).pipe(self.pipe_source)
 
     def export(self):
+        """Export the data to a csv"""
         data = self.read().pipe(self.pipeline)
         increment(
             location=data["location"],

@@ -21,7 +21,7 @@ class Fiji:
         "title": r"COVID-19 Update",
         "year": r"\d{4}",
         "date": r"tests have been reported for (\w+ \d+)",
-        "count": r"(\d+) tests have been reported",
+        "count": r"tests since 2020 is (\d+,\d+)",
     }
 
     def read(self) -> pd.Series:
@@ -54,11 +54,11 @@ class Fiji:
         if not date:
             return None, True
         # Extract metrics from text
-        daily_change = self._parse_metrics(text)
+        count = self._parse_metrics(text)
         record = {
             "source_url": url,
             "date": date,
-            "daily_change": daily_change,
+            "count": count,
         }
         return record, False
 
@@ -110,7 +110,7 @@ class Fiji:
             date=data["date"],
             source_url=data["source_url"],
             source_label=self.source_label,
-            daily_change=data["daily_change"],
+            count=data["count"],
         )
 
 
