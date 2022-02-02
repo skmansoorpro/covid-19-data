@@ -2,12 +2,12 @@ import os
 
 import pandas as pd
 
-from cowidev.vax.utils.gsheets import VaccinationGSheet
-from cowidev.vax.process import process_location
-from cowidev.vax.cmd.utils import get_logger, print_eoe
 from pandas.core.base import DataError
 from pandas.errors import ParserError
 from cowidev.utils import paths
+from cowidev.utils.log import get_logger, print_eoe
+from cowidev.vax.utils.gsheets import VaccinationGSheet
+from cowidev.vax.process import process_location
 
 
 logger = get_logger()

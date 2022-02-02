@@ -1,7 +1,6 @@
 import os
 import itertools
 from datetime import datetime
-from collections import ChainMap
 from math import isnan
 import glob
 import json
@@ -14,7 +13,7 @@ from pandas.api.types import is_numeric_dtype
 from cowidev.utils import paths
 from cowidev.utils.utils import pd_series_diff_values
 from cowidev.utils.clean import clean_date
-from cowidev.vax.cmd.utils import get_logger
+from cowidev.utils.log import get_logger
 from cowidev.vax.utils.checks import VACCINES_ACCEPTED
 
 

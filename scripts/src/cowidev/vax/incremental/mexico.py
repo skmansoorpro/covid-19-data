@@ -10,9 +10,14 @@ from cowidev.vax.utils.incremental import enrich_data, increment
 
 
 class Mexico:
-    def __init__(self):
-        self.source_page = "https://www.gob.mx/salud/documentos/presentaciones-2022"
-        self.location = "Mexico"
+    location: str = "Mexico"
+    source_page: str = "https://www.gob.mx/salud/documentos/presentaciones-2022"
+    regex = {
+        "date": r"(\d{1,2} \w+\, 20\d{2})",
+        "total_vaccinations": r"COVID-19 (\d+) Total de dosis aplicadas reportadas",
+        "people_vaccinated": r"Nuevos esquemas (\d+) Personas vacunadas reportadas",
+        "people_fully_vaccinated": r"(\d+) Personas vacunadas con esq\. completo",
+    }
 
     def read(self):
         """Read the data from the source"""
@@ -41,32 +46,21 @@ class Mexico:
     def _parse_data(self, url: str) -> pd.Series:
         """Parse the data from the pdf url"""
         text = self._get_text_from_pdf(url)
-        total_vaccinations = clean_count(
-            re.search(r"COVID-19 (\d+) Total de dosis aplicadas reportadas", text).group(1)
-        )
-        date = clean_date(re.search(r"(\d{1,2} \w+\, 20\d{2})", text).group(1), "%d %B, %Y", lang="es")
+        data = {
+            "total_vaccinations": clean_count(re.search(self.regex["total_vaccinations"], text).group(1)),
+            "people_vaccinated": clean_count(re.search(self.regex["people_vaccinated"], text).group(1)),
+            "people_fully_vaccinated": clean_count(re.search(self.regex["people_fully_vaccinated"], text).group(1)),
+            "date": clean_date(re.search(self.regex["date"], text).group(1), "%d %B, %Y", lang="es"),
+        }
+        self._check_data(data)
+        return pd.Series(data)
 
-        matches = re.search(
-            r"Esquema completo (\d+) Personas vacunadas con esq. completo Nuevos esquemas (\d+) Personas", text
-        )
-        people_vaccinated = clean_count(matches.group(2))
-        people_fully_vaccinated = clean_count(matches.group(1))
-
-        # Tests
-        assert total_vaccinations >= 94300526
-        assert people_vaccinated >= 61616895
-        assert people_fully_vaccinated >= 41115211
-        assert people_vaccinated <= total_vaccinations
-        assert people_fully_vaccinated >= 0.5 * people_vaccinated
-
-        return pd.Series(
-            {
-                "total_vaccinations": total_vaccinations,
-                "people_vaccinated": people_vaccinated,
-                "people_fully_vaccinated": people_fully_vaccinated,
-                "date": date,
-            }
-        )
+    def _check_data(self, data):
+        assert data["total_vaccinations"] >= 94300526
+        assert data["people_vaccinated"] >= 61616895
+        assert data["people_fully_vaccinated"] >= 41115211
+        assert data["people_vaccinated"] <= data["total_vaccinations"]
+        assert data["people_fully_vaccinated"] >= 0.5 * data["people_vaccinated"]
 
     def pipe_location(self, ds: pd.Series) -> pd.Series:
         """Pipe location to the data"""
