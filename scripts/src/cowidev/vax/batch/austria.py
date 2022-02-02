@@ -2,6 +2,7 @@ import pandas as pd
 
 from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
+from cowidev.utils.web.download import read_csv_from_url
 
 
 class Austria:
@@ -17,7 +18,7 @@ class Austria:
     one_dose_vaccines: str = ["Janssen"]
 
     def read(self) -> pd.DataFrame:
-        df = pd.read_csv(self.source_url, sep=";")
+        df = read_csv_from_url(self.source_url, sep=";", ciphers_low=True)
         check_known_columns(
             df, ["date", "state_id", "state_name", "vaccine", "dose_number", "doses_administered_cumulative"]
         )
