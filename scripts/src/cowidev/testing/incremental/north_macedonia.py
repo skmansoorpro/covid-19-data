@@ -1,11 +1,10 @@
 import os
-from cowidev.testing.utils.base import CountryTestBase
 
-import requests
 import pandas as pd
-from bs4 import BeautifulSoup
 
+from cowidev.utils import get_soup
 from cowidev.utils.clean.dates import localdatenow
+from cowidev.testing.utils.base import CountryTestBase
 
 
 class NorthMacedonia(CountryTestBase):
@@ -14,7 +13,7 @@ class NorthMacedonia(CountryTestBase):
     def export(self):
         url = "https://koronavirus.gov.mk/"
 
-        soup = BeautifulSoup(requests.get(url).content, "html.parser")
+        soup = get_soup(url)
         count = int(soup.find_all("td")[7].text.replace(",", ""))
         # print(count)
 
