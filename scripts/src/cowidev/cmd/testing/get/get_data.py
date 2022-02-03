@@ -13,12 +13,11 @@ logger = get_logger()
 
 
 class CountryDataGetter:
-    def __init__(self, skip_countries: list = []):
-        self.skip_countries = skip_countries
+    def __init__(self, modules_skip: list = []):
+        self.modules_skip = modules_skip
 
     def _skip_module(self, module_name):
-        country = module_name.split(".")[-1]
-        return country.lower() in self.skip_countries
+        return module_name in self.modules_skip
 
     def run(self, module_name: str):
         t0 = time.time()
@@ -44,8 +43,8 @@ class CountryDataGetter:
 def main_get_data(
     parallel: bool = False,
     n_jobs: int = -2,
-    modules_name: list = MODULES_NAME,
-    skip_countries: list = [],
+    modules: list = MODULES_NAME,
+    modules_skip: list = [],
 ):
     """Get data from sources and export to output folder.
 
@@ -53,19 +52,17 @@ def main_get_data(
     """
     t0 = time.time()
     print("-- Getting data... --")
-    skip_countries = skip_countries if skip_countries else []
-    skip_countries = [x.lower() for x in skip_countries]
-    country_data_getter = CountryDataGetter(skip_countries)
+    country_data_getter = CountryDataGetter(modules_skip)
     if parallel:
         modules_execution_results = Parallel(n_jobs=n_jobs, backend="threading")(
             delayed(country_data_getter.run)(
                 module_name,
             )
-            for module_name in modules_name
+            for module_name in modules
         )
     else:
         modules_execution_results = []
-        for module_name in modules_name:
+        for module_name in modules:
             modules_execution_results.append(
                 country_data_getter.run(
                     module_name,
