@@ -3,7 +3,7 @@ import tempfile
 
 from bs4 import BeautifulSoup, element
 import pandas as pd
-import pdftotext
+from pdfminer.high_level import extract_text
 
 from cowidev.utils.web import get_soup
 from cowidev.utils.web.download import download_file_from_url
@@ -92,8 +92,7 @@ class Romania:
         with tempfile.NamedTemporaryFile() as tmp:
             download_file_from_url(url, tmp.name)
             with open(tmp.name, "rb") as f:
-                pdf = pdftotext.PDF(f)
-                text = "\n\n".join(pdf)
+                text = extract_text(f)
         text = re.sub(r"(\d)\.(\d)", r"\1\2", text)
         return text
 
