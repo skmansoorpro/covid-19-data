@@ -41,7 +41,7 @@ class CountryTestBase:
     def get_output_path(self, filename=None):
         if filename is None:
             filename = self.location
-        output_path = os.path.join(paths.SCRIPTS.OLD, "testing", "automated_sheets", f"{filename}.csv")
+        output_path = os.path.join(paths.SCRIPTS.OUTPUT_TEST_MAIN, f"{filename}.csv")
         # output_path = os.path.join(paths.SCRIPTS, "output", "testing", "main_data", f"{filename}.csv")
         return output_path
 
