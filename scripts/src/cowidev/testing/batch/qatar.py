@@ -8,6 +8,8 @@ import json
 import requests
 import datetime
 import pandas as pd
+from cowidev.testing import CountryTestBase
+
 
 COUNTRY = "Qatar"
 UNITS = "people tested"
@@ -37,21 +39,27 @@ sample_official_data = [
         "2020-03-14",
         {
             SERIES_TYPE: 6788,
-            "source": "http://web.archive.org/web/20200314165537/https://www.moph.gov.qa/english/Pages/Coronavirus2019.aspx",
+            "source": (
+                "http://web.archive.org/web/20200314165537/https://www.moph.gov.qa/english/Pages/Coronavirus2019.aspx"
+            ),
         },
     ),
     (
         "2020-03-18",
         {
             SERIES_TYPE: 8873,
-            "source": "http://web.archive.org/web/20200319122812/https://www.moph.gov.qa/english/Pages/Coronavirus2019.aspx",
+            "source": (
+                "http://web.archive.org/web/20200319122812/https://www.moph.gov.qa/english/Pages/Coronavirus2019.aspx"
+            ),
         },
     ),
     (
         "2020-04-27",
         {
             SERIES_TYPE: 85709,
-            "source": "http://web.archive.org/web/20200427153616/https://www.moph.gov.qa/english/Pages/Coronavirus2019.aspx",
+            "source": (
+                "http://web.archive.org/web/20200427153616/https://www.moph.gov.qa/english/Pages/Coronavirus2019.aspx"
+            ),
         },
     ),
     (
@@ -106,28 +114,31 @@ sample_official_data = [
 ]
 
 
-def main() -> None:
-    df = get_data()
-    df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
-    df["Country"] = COUNTRY
-    df["Units"] = UNITS
-    df["Source label"] = SOURCE_LABEL
-    df["Notes"] = ""
-    sanity_checks(df)
-    df = df.sort_values("Date").groupby("Cumulative total", as_index=False).head(1)
-    df = df[
-        [
-            "Country",
-            "Units",
-            "Date",
-            SERIES_TYPE,
-            "Source URL",
-            "Source label",
-            "Notes",
+class Qatar(CountryTestBase):
+    location = "Qatar"
+
+    def export(self) -> None:
+        df = get_data()
+        df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
+        df["Country"] = COUNTRY
+        df["Units"] = UNITS
+        df["Source label"] = SOURCE_LABEL
+        df["Notes"] = ""
+        sanity_checks(df)
+        df = df.sort_values("Date").groupby("Cumulative total", as_index=False).head(1)
+        df = df[
+            [
+                "Country",
+                "Units",
+                "Date",
+                SERIES_TYPE,
+                "Source URL",
+                "Source label",
+                "Notes",
+            ]
         ]
-    ]
-    df.to_csv(f"automated_sheets/{COUNTRY}.csv", index=False)
-    return None
+        self.export_datafile(df)
+        return None
 
 
 def get_data() -> pd.DataFrame:
@@ -195,5 +206,5 @@ def sanity_checks(df: pd.DataFrame) -> None:
     return None
 
 
-if __name__ == "__main__":
-    main()
+def main():
+    Qatar().export()

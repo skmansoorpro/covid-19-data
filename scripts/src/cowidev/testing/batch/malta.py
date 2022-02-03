@@ -35,7 +35,3 @@ class Malta(CountryTestBase):
 
 def main():
     Malta().export()
-
-
-if __name__ == "__main__":
-    main()

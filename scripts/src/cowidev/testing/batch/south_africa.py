@@ -62,7 +62,3 @@ def pipe_date(df: pd.DataFrame) -> pd.DataFrame:
 
 def main():
     SouthAfrica().export()
-
-
-if __name__ == "__main__":
-    main()

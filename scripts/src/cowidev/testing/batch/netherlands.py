@@ -30,7 +30,3 @@ class Netherlands(CountryTestBase):
 
 def main():
     Netherlands().export()
-
-
-if __name__ == "__main__":
-    main()

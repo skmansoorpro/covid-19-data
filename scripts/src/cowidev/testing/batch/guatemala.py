@@ -70,7 +70,3 @@ class Guatemala(CountryTestBase):
 
 def main():
     Guatemala().export()
-
-
-if __name__ == "__main__":
-    main()

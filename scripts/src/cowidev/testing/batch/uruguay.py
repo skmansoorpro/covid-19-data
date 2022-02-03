@@ -36,7 +36,3 @@ class Uruguay(CountryTestBase):
 
 def main():
     Uruguay().export()
-
-
-if __name__ == "__main__":
-    main()

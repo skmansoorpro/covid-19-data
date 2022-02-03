@@ -80,7 +80,3 @@ class Zambia(CountryTestBase):
 
 def main():
     Zambia().export()
-
-
-if __name__ == "__main__":
-    main()

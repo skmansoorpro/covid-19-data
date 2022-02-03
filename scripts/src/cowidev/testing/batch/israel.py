@@ -32,7 +32,3 @@ class Israel(CountryTestBase):
 
 def main():
     Israel().export()
-
-
-if __name__ == "__main__":
-    main()

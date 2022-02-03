@@ -37,7 +37,3 @@ class UnitedKingdom(CountryTestBase):
 
 def main():
     UnitedKingdom().export()
-
-
-if __name__ == "__main__":
-    main()

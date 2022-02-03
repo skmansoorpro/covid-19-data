@@ -1,4 +1,5 @@
 from datetime import datetime
+from cowidev.testing.utils.base import CountryTestBase
 
 import pandas as pd
 
@@ -43,12 +44,13 @@ def pipeline(df: pd.DataFrame, location: str) -> pd.DataFrame:
     ].sort_values("Date")
 
 
+class Taiwan(CountryTestBase):
+    def export(self):
+        source_url = "https://od.cdc.gov.tw/eic/covid19/covid19_tw_specimen.csv"
+        location = "Taiwan"
+        df = read(source_url).pipe(pipeline, location)
+        self.export_datafile(df)
+
+
 def main():
-    source_url = "https://od.cdc.gov.tw/eic/covid19/covid19_tw_specimen.csv"
-    location = "Taiwan"
-    df = read(source_url).pipe(pipeline, location)
-    df.to_csv(f"automated_sheets/{location}.csv", index=False)
-
-
-if __name__ == "__main__":
-    main()
+    Taiwan().export()

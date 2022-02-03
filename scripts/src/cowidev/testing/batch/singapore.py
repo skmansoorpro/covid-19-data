@@ -76,7 +76,3 @@ class Singapore(CountryTestBase):
 
 def main():
     Singapore().export()
-
-
-if __name__ == "__main__":
-    main()

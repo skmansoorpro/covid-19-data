@@ -5,6 +5,7 @@ import re
 import json
 import requests
 import pandas as pd
+from cowidev.testing import CountryTestBase
 
 COUNTRY = "Norway"
 UNITS = "people tested"
@@ -14,28 +15,31 @@ SOURCE_URL = "https://www.fhi.no/en/id/infectious-diseases/coronavirus/daily-rep
 DATA_URL = "https://www.fhi.no/api/chartdata/api/90789"
 
 
-def main() -> None:
-    df = get_data()
-    df.sort_values("Date", inplace=True)
-    df["Country"] = COUNTRY
-    df["Units"] = UNITS
-    df["Source URL"] = SOURCE_URL
-    df["Source label"] = SOURCE_LABEL
-    df["Notes"] = ""
-    sanity_checks(df)
-    df = df[
-        [
-            "Country",
-            "Units",
-            "Date",
-            "Daily change in cumulative total",
-            "Source URL",
-            "Source label",
-            "Notes",
+class Norway(CountryTestBase):
+    location = "Norway"
+
+    def export(self) -> None:
+        df = get_data()
+        df.sort_values("Date", inplace=True)
+        df["Country"] = COUNTRY
+        df["Units"] = UNITS
+        df["Source URL"] = SOURCE_URL
+        df["Source label"] = SOURCE_LABEL
+        df["Notes"] = ""
+        sanity_checks(df)
+        df = df[
+            [
+                "Country",
+                "Units",
+                "Date",
+                "Daily change in cumulative total",
+                "Source URL",
+                "Source label",
+                "Notes",
+            ]
         ]
-    ]
-    df.to_csv("automated_sheets/Norway.csv", index=False)
-    return None
+        self.export_datafile(df)
+        return None
 
 
 def get_data() -> pd.DataFrame:
@@ -61,5 +65,5 @@ def sanity_checks(df: pd.DataFrame) -> None:
     return None
 
 
-if __name__ == "__main__":
-    main()
+def main():
+    Norway().export()

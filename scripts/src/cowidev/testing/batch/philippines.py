@@ -90,7 +90,3 @@ class Philippines(CountryTestBase):
 
 def main():
     Philippines().export()
-
-
-if __name__ == "__main__":
-    main()

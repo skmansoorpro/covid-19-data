@@ -52,7 +52,3 @@ class Luxembourg(CountryTestBase):
 
 def main():
     Luxembourg().export()
-
-
-if __name__ == "__main__":
-    main()

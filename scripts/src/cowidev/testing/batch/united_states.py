@@ -54,7 +54,3 @@ class UnitedStates(CountryTestBase):
 
 def main():
     UnitedStates().export()
-
-
-if __name__ == "__main__":
-    main()

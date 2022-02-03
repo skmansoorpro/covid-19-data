@@ -109,7 +109,3 @@ class Iceland(CountryTestBase):
 
 def main():
     Iceland().export()
-
-
-if __name__ == "__main__":
-    main()

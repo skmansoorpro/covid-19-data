@@ -52,7 +52,3 @@ class Turkey(CountryTestBase):
 
 def main():
     Turkey().export()
-
-
-if __name__ == "__main__":
-    main()

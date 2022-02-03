@@ -31,7 +31,7 @@ class Belgium(CountryTestBase):
         df = df.pipe(self.pipe_metadata)
         return df
 
-    def main(self):
+    def export(self):
         df = self.read().pipe(self.pipeline)
         self.export_datafile(df)
 

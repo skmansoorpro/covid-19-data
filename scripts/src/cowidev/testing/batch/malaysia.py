@@ -32,7 +32,3 @@ class Malaysia(CountryTestBase):
 
 def main():
     Malaysia().export()
-
-
-if __name__ == "__main__":
-    main()

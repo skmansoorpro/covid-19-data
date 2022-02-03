@@ -50,7 +50,3 @@ class Lithuania(CountryTestBase):
 
 def main():
     Lithuania().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -19,6 +19,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
 
+from cowidev.testing import CountryTestBase
+
 
 COUNTRY = "Kazakhstan"
 UNITS = "tests performed"
@@ -53,33 +55,36 @@ sample_official_data = [
 ]
 
 
-def main() -> None:
-    i = 0
-    df = None
-    while df is None and i < MAX_TRIES:
-        # print(f'retrieving COVID-19 testing data (attempt {1+i} of {MAX_TRIES})...')
-        df = get_data()
-        i += 1
-    assert df is not None, f"Failed to retrieve testing data after {i} tries."
-    df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
-    df["Country"] = COUNTRY
-    df["Units"] = UNITS
-    df["Source label"] = SOURCE_LABEL
-    df["Notes"] = ""
-    sanity_checks(df)
-    df = df[
-        [
-            "Country",
-            "Units",
-            "Date",
-            SERIES_TYPE,
-            "Source URL",
-            "Source label",
-            "Notes",
+class Kazakhstan(CountryTestBase):
+    location = "Kazakhstan"
+
+    def export(self) -> None:
+        i = 0
+        df = None
+        while df is None and i < MAX_TRIES:
+            # print(f'retrieving COVID-19 testing data (attempt {1+i} of {MAX_TRIES})...')
+            df = get_data()
+            i += 1
+        assert df is not None, f"Failed to retrieve testing data after {i} tries."
+        df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
+        df["Country"] = COUNTRY
+        df["Units"] = UNITS
+        df["Source label"] = SOURCE_LABEL
+        df["Notes"] = ""
+        sanity_checks(df)
+        df = df[
+            [
+                "Country",
+                "Units",
+                "Date",
+                SERIES_TYPE,
+                "Source URL",
+                "Source label",
+                "Notes",
+            ]
         ]
-    ]
-    df.to_csv("automated_sheets/Kazakhstan.csv", index=False)
-    return None
+        self.export_datafile(df)
+        return None
 
 
 def get_data() -> pd.DataFrame:
@@ -190,5 +195,5 @@ def sanity_checks(df: pd.DataFrame) -> None:
     return None
 
 
-if __name__ == "__main__":
-    main()
+def main():
+    Kazakhstan().export()

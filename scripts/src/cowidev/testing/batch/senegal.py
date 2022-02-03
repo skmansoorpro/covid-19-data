@@ -5,6 +5,7 @@ Dashboard: http://www.sante.gouv.sn/
 """
 
 import json
+from cowidev.testing.utils.base import CountryTestBase
 import requests
 import datetime
 import pandas as pd
@@ -41,7 +42,9 @@ hardcoded_data = [
     {
         "Date": "2020-04-01",
         SERIES_TYPE: 195,
-        "source": "http://www.sante.gouv.sn/sites/default/files/Communiqu%C3%A9%20N%C2%B031%20du%2001%20avril%202020.pdf",
+        "source": (
+            "http://www.sante.gouv.sn/sites/default/files/Communiqu%C3%A9%20N%C2%B031%20du%2001%20avril%202020.pdf"
+        ),
     },
     {
         "Date": "2020-03-31",
@@ -166,12 +169,16 @@ hardcoded_data = [
     {
         "Date": "2020-03-07",
         SERIES_TYPE: 2,
-        "Source URL": "http://www.sante.gouv.sn/sites/default/files/Communiqu%C3%A9%20N%C2%B06%20sur%20le%20Coronavirus.pdf",
+        "Source URL": (
+            "http://www.sante.gouv.sn/sites/default/files/Communiqu%C3%A9%20N%C2%B06%20sur%20le%20Coronavirus.pdf"
+        ),
     },
     {
         "Date": "2020-03-06",
         SERIES_TYPE: 2,
-        "Source URL": "http://www.sante.gouv.sn/sites/default/files/Communiqu%C3%A9%20N%C2%B05%20sur%20le%20Cotonavirus.pdf",
+        "Source URL": (
+            "http://www.sante.gouv.sn/sites/default/files/Communiqu%C3%A9%20N%C2%B05%20sur%20le%20Cotonavirus.pdf"
+        ),
     },
     {
         "Date": "2020-03-04",
@@ -267,7 +274,9 @@ sample_official_data = [
         "2020-04-01",
         {
             SERIES_TYPE: 195,
-            "source": "http://www.sante.gouv.sn/sites/default/files/Communiqu%C3%A9%20N%C2%B031%20du%2001%20avril%202020.pdf",
+            "source": (
+                "http://www.sante.gouv.sn/sites/default/files/Communiqu%C3%A9%20N%C2%B031%20du%2001%20avril%202020.pdf"
+            ),
         },
     ),
     (
@@ -315,27 +324,30 @@ sample_official_data = [
 ]
 
 
-def main() -> None:
-    df = get_data()
-    df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
-    df["Country"] = COUNTRY
-    df["Units"] = UNITS
-    df["Source label"] = SOURCE_LABEL
-    df["Notes"] = ""
-    sanity_checks(df)
-    df = df[
-        [
-            "Country",
-            "Units",
-            "Date",
-            SERIES_TYPE,
-            "Source URL",
-            "Source label",
-            "Notes",
+class Senegal(CountryTestBase):
+    location = "Senegal"
+
+    def export(self) -> None:
+        df = get_data()
+        df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
+        df["Country"] = COUNTRY
+        df["Units"] = UNITS
+        df["Source label"] = SOURCE_LABEL
+        df["Notes"] = ""
+        sanity_checks(df)
+        df = df[
+            [
+                "Country",
+                "Units",
+                "Date",
+                SERIES_TYPE,
+                "Source URL",
+                "Source label",
+                "Notes",
+            ]
         ]
-    ]
-    df.to_csv("automated_sheets/Senegal.csv", index=False)
-    return None
+        self.export_datafile(df)
+        return None
 
 
 def get_data() -> pd.DataFrame:
@@ -393,5 +405,5 @@ def sanity_checks(df: pd.DataFrame) -> None:
     return None
 
 
-if __name__ == "__main__":
-    main()
+def main():
+    Senegal().export()

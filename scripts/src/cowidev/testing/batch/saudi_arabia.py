@@ -5,9 +5,11 @@ Dashboard: https://covid19.moh.gov.sa/
 """
 
 import json
-import requests
 import datetime
+
+import requests
 import pandas as pd
+from cowidev.testing.utils.base import CountryTestBase
 
 COUNTRY = "Saudi Arabia"
 UNITS = "tests performed"
@@ -36,27 +38,30 @@ hardcoded_data = [
 ]
 
 
-def main() -> None:
-    df = get_data()
-    df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
-    df["Country"] = COUNTRY
-    df["Units"] = UNITS
-    df["Source label"] = SOURCE_LABEL
-    df["Notes"] = ""
-    sanity_checks(df)
-    df = df[
-        [
-            "Country",
-            "Units",
-            "Date",
-            SERIES_TYPE,
-            "Source URL",
-            "Source label",
-            "Notes",
+class SaudiArabia(CountryTestBase):
+    location = "Saudi Arabia"
+
+    def export(self) -> None:
+        df = get_data()
+        df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
+        df["Country"] = COUNTRY
+        df["Units"] = UNITS
+        df["Source label"] = SOURCE_LABEL
+        df["Notes"] = ""
+        sanity_checks(df)
+        df = df[
+            [
+                "Country",
+                "Units",
+                "Date",
+                SERIES_TYPE,
+                "Source URL",
+                "Source label",
+                "Notes",
+            ]
         ]
-    ]
-    df.to_csv(f"automated_sheets/{COUNTRY}.csv", index=False)
-    return None
+        self.export_datafile(df)
+        return None
 
 
 def get_data() -> pd.DataFrame:
@@ -112,5 +117,5 @@ def sanity_checks(df: pd.DataFrame) -> None:
     return None
 
 
-if __name__ == "__main__":
-    main()
+def main():
+    SaudiArabia().export()

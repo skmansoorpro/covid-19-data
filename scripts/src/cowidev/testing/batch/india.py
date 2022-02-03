@@ -38,7 +38,3 @@ class India(CountryTestBase):
 
 def main():
     India().export()
-
-
-if __name__ == "__main__":
-    main()

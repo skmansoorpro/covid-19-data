@@ -34,7 +34,3 @@ class Latvia(CountryTestBase):
 
 def main():
     Latvia().export()
-
-
-if __name__ == "__main__":
-    main()

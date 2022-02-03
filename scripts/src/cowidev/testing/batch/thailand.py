@@ -33,7 +33,3 @@ class Thailand(CountryTestBase):
 
 def main():
     Thailand().export()
-
-
-if __name__ == "__main__":
-    main()

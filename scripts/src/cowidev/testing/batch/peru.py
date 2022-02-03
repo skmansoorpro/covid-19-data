@@ -86,7 +86,3 @@ class Peru(CountryTestBase):
 
 def main():
     Peru().export()
-
-
-if __name__ == "__main__":
-    main()

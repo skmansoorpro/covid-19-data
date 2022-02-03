@@ -55,7 +55,3 @@ class Denmark(CountryTestBase):
 
 def main():
     Denmark().export()
-
-
-if __name__ == "__main__":
-    main()

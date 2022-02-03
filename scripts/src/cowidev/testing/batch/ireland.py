@@ -89,7 +89,3 @@ def sanity_checks(df: pd.DataFrame) -> None:
 
 def main():
     Ireland().export()
-
-
-if __name__ == "__main__":
-    main()

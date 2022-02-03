@@ -4,6 +4,7 @@ Dashboard: https://fcsa.gov.ae/en-us/Pages/Covid19/UAE-Covid-19-Updates.aspx
 """
 
 import json
+from cowidev.testing.utils.base import CountryTestBase
 import requests
 import datetime
 import pandas as pd
@@ -109,27 +110,30 @@ sample_official_data = [
 ]
 
 
-def main() -> None:
-    df = get_data()
-    df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
-    df["Country"] = COUNTRY
-    df["Units"] = UNITS
-    df["Source label"] = SOURCE_LABEL
-    df["Notes"] = ""
-    sanity_checks(df)
-    df = df[
-        [
-            "Country",
-            "Units",
-            "Date",
-            SERIES_TYPE,
-            "Source URL",
-            "Source label",
-            "Notes",
+class UAE(CountryTestBase):
+    location: str = "United Arab Emirates"
+
+    def export(self) -> None:
+        df = get_data()
+        df["Source URL"] = df["Source URL"].apply(lambda x: SOURCE_URL if pd.isnull(x) else x)
+        df["Country"] = COUNTRY
+        df["Units"] = UNITS
+        df["Source label"] = SOURCE_LABEL
+        df["Notes"] = ""
+        sanity_checks(df)
+        df = df[
+            [
+                "Country",
+                "Units",
+                "Date",
+                SERIES_TYPE,
+                "Source URL",
+                "Source label",
+                "Notes",
+            ]
         ]
-    ]
-    df.to_csv("automated_sheets/United Arab Emirates.csv", index=False)
-    return None
+        self.export_datafile(df)
+        return None
 
 
 def _ts_to_dt(ts):
@@ -194,5 +198,5 @@ def sanity_checks(df: pd.DataFrame) -> None:
     return None
 
 
-if __name__ == "__main__":
-    main()
+def main():
+    UAE().export()

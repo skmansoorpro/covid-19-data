@@ -4,6 +4,7 @@ API endpoint: https://www.hpb.health.gov.lk/api/get-current-statistical
 
 import re
 import json
+from cowidev.testing.utils.base import CountryTestBase
 import requests
 import pandas as pd
 
@@ -54,27 +55,28 @@ official_cumulative_totals = [
 ]
 
 
-def main() -> None:
-    df = get_data()
-    df = df.sort_values("Date")
-    df["Country"] = COUNTRY
-    df["Units"] = UNITS
-    df["Source URL"] = SOURCE_URL
-    df["Source label"] = SOURCE_LABEL
-    df["Notes"] = ""
-    sanity_checks(df)
-    df = df[
-        [
-            "Country",
-            "Units",
-            "Date",
-            "Daily change in cumulative total",
-            "Source URL",
-            "Source label",
-            "Notes",
+class SriLanka(CountryTestBase):
+    def export(self) -> None:
+        df = get_data()
+        df = df.sort_values("Date")
+        df["Country"] = COUNTRY
+        df["Units"] = UNITS
+        df["Source URL"] = SOURCE_URL
+        df["Source label"] = SOURCE_LABEL
+        df["Notes"] = ""
+        sanity_checks(df)
+        df = df[
+            [
+                "Country",
+                "Units",
+                "Date",
+                "Daily change in cumulative total",
+                "Source URL",
+                "Source label",
+                "Notes",
+            ]
         ]
-    ]
-    df.to_csv("automated_sheets/Sri Lanka.csv", index=False)
+        self.export_datafile(df)
 
 
 def get_data() -> pd.DataFrame:
@@ -108,5 +110,5 @@ def sanity_checks(df: pd.DataFrame) -> None:
         ), f"scraped value ({val:,d}) != official value ({d['cumulative_total']:,d}) on {dt}"
 
 
-if __name__ == "__main__":
-    main()
+def main():
+    SriLanka().export()
