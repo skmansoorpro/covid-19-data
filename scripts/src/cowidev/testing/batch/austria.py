@@ -3,6 +3,7 @@ import pandas as pd
 from cowidev.testing import CountryTestBase
 from cowidev.testing.utils import make_monotonic
 from cowidev.utils import clean_date_series
+from cowidev.utils.web.download import read_csv_from_url
 
 
 class Austria(CountryTestBase):
@@ -17,7 +18,9 @@ class Austria(CountryTestBase):
     }
 
     def read(self) -> pd.DataFrame:
-        df = pd.read_csv(self.source_url, sep=";", usecols=["Meldedat", "TestGesamt", "Bundesland"])
+        df = read_csv_from_url(
+            self.source_url, sep=";", ciphers_low=True, usecols=["Meldedat", "TestGesamt", "Bundesland"]
+        )
         df = df[df.Bundesland == "Alle"]
         df = df.groupby("Meldedat", as_index=False)["TestGesamt"].sum()
         return df
