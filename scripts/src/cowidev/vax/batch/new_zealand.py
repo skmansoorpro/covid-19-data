@@ -72,9 +72,12 @@ class NewZealand(CountryVaxBase):
 
     def pipe_merge_data(self, df: pd.DataFrame) -> pd.DataFrame:
         df_current = self.load_datafile(usecols=["date", "people_vaccinated_5_12"])
+        date_first_5_12 = df_current.dropna().date.min()
         df["date"] = df.date.astype(str)
         df = df.merge(df_current, on="date")
-        return pd.concat([df, self.latest]).drop_duplicates("date", keep="last").reset_index(drop=True)
+        df = pd.concat([df, self.latest]).drop_duplicates("date", keep="last").reset_index(drop=True)
+        msk = (df.people_vaccinated_5_12.isna()) & (df.date > date_first_5_12)
+        return df[~msk]
 
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
         people_vaccinated = df.people_vaccinated_12 + df.people_vaccinated_5_12.fillna(0)
