@@ -8,17 +8,35 @@ config_raw = parse_config(CONFIG_FILE, raise_if_na=False)
 
 
 @dataclass()
+class BaseGetConfig:
+    parallel: bool
+    njobs: int
+    countries: list
+    skip_countries: list
+
+
+@dataclass()
+class TestingGetConfig(BaseGetConfig):
+    pass
+
+
+@dataclass()
 class Base4Config:
-    get: dict
+    get: TestingGetConfig
     process: dict
     generate: dict
     export: dict
 
 
+@dataclass()
 class TestingConfig(Base4Config):
-    pass
+    # get: TestingGetConfig
+
+    def __post_init__(self):
+        self.get = TestingGetConfig(**self.get)
 
 
+@dataclass()
 class VaccinationsConfig(Base4Config):
     pass
 
