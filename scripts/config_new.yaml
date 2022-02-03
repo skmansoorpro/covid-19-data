@@ -56,6 +56,7 @@ pipeline:
     get:
       parallel: True
       countries: 
+        - All
       njobs: -2
       skip_countries:
     process:
