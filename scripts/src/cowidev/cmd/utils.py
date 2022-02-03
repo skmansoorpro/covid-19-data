@@ -1,3 +1,4 @@
+import ast
 import click
 
 
@@ -45,3 +46,18 @@ class OptionEatAll(click.Option):
                 break
 
         return retval
+
+
+class PythonLiteralOption(click.Option):
+    """From https://stackoverflow.com/a/47730333/5056599"""
+
+    def type_cast_value(self, ctx, value):
+        if isinstance(value, list):
+            return value
+        try:
+            return ast.literal_eval(value)
+        except:
+            try:
+                return value.split(",")
+            except:
+                raise click.BadParameter(value)
