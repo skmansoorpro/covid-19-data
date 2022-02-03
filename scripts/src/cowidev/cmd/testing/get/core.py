@@ -1,7 +1,6 @@
 import click
 
-from cowidev.cmd.utils import OptionEatAll
-from cowidev.testing.cmd.get.get_data import main_get_data
+from cowidev.cmd.testing.get.get_data import main_get_data
 from cowidev.testing.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_NAME_INCREMENTAL, country_to_module
 
 
@@ -10,13 +9,11 @@ from cowidev.testing.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_
 @click.option("--n-jobs", default=-2, type=int, help="Number of threads to use.", show_default=True)
 @click.option("--countries", "-c", default="all", help="List of countries to skip (comma-separated)")
 @click.option("--skip-countries", "-s", default=None, help="List of countries to skip (comma-separated)")
-def test_get(parallel, n_jobs, countries, skip_countries):
+def click_test_get(parallel, n_jobs, countries, skip_countries):
     modules = _countries_to_modules(countries)
     if skip_countries:
         skip_countries = countries = [c.strip() for c in skip_countries.split(",")]
         _check_countries(skip_countries)
-    print(modules)
-    print(parallel, n_jobs)
     main_get_data(
         parallel=parallel,
         n_jobs=n_jobs,
