@@ -1,9 +1,10 @@
 import click
-from cowidev.testing.cmd import click_test
+from cowidev.cmd.testing import click_test
 
 
 @click.group()
 def cli():
+    """COVID-19 Data pipeline tool by Our World in Data."""
     pass
 
 
