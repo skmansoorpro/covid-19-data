@@ -56,6 +56,8 @@ official_cumulative_totals = [
 
 
 class SriLanka(CountryTestBase):
+    location = "Sri Lanka"
+
     def export(self) -> None:
         df = get_data()
         df = df.sort_values("Date")

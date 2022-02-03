@@ -45,6 +45,8 @@ def pipeline(df: pd.DataFrame, location: str) -> pd.DataFrame:
 
 
 class Taiwan(CountryTestBase):
+    location = "Taiwan"
+
     def export(self):
         source_url = "https://od.cdc.gov.tw/eic/covid19/covid19_tw_specimen.csv"
         location = "Taiwan"
