@@ -4,11 +4,8 @@ import importlib
 from joblib import Parallel, delayed
 import pandas as pd
 
-from cowidev.testing.countries import incremental, batch, MODULES_NAME
-from cowidev.utils.log import get_logger, print_eoe, system_details
-
-# from cowidev.utils.s3 import obj_from_s3, obj_to_s3
-from cowidev.utils.clean.dates import localdate
+from cowidev.testing.countries import MODULES_NAME
+from cowidev.utils.log import get_logger, print_eoe
 
 
 # Logger
@@ -56,6 +53,7 @@ def main_get_data(
     """
     t0 = time.time()
     print("-- Getting data... --")
+    skip_countries = skip_countries if skip_countries else []
     skip_countries = [x.lower() for x in skip_countries]
     country_data_getter = CountryDataGetter(skip_countries)
     if parallel:
