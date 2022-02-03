@@ -70,6 +70,7 @@ def _countries_to_modules(countries):
         # Get module equivalent names
         modules = [country_to_module[country] for country in countries]
         return modules
+    return []
 
 
 def _check_countries(countries):

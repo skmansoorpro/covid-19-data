@@ -52,8 +52,10 @@ class PythonLiteralOption(click.Option):
     """From https://stackoverflow.com/a/47730333/5056599"""
 
     def type_cast_value(self, ctx, value):
-        if isinstance(value, list):
+        if isinstance(value, (list, tuple)):
             return value
+        if value is None:
+            return []
         try:
             return ast.literal_eval(value)
         except:
