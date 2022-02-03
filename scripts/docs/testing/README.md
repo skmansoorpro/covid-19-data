@@ -1,6 +1,7 @@
-# Testing update automation
+### ⚠️ Currently being re-written
+---
 
-_Currently being re-written_
+# Testing update automation
 
 [![Python 3"](https://img.shields.io/badge/python-3.7|3.8|3.9-blue.svg?&logo=python&logoColor=yellow)](https://www.python.org/downloads/release/python-3)
 [![Contribute](https://img.shields.io/badge/-contribute-0055ff)](CONTRIBUTE.md)
