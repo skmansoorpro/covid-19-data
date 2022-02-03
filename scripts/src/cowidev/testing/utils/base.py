@@ -45,6 +45,10 @@ class CountryTestBase:
         # output_path = os.path.join(paths.SCRIPTS, "output", "testing", "main_data", f"{filename}.csv")
         return output_path
 
+    @property
+    def output_path(self):
+        return os.path.join(paths.SCRIPTS.OUTPUT_TEST_MAIN, f"{self.location}.csv")
+
     def _postprocessing(self, df):
         df = df.sort_values("Date")
         cols = [col for col in COLUMNS_ORDER if col in df.columns]
