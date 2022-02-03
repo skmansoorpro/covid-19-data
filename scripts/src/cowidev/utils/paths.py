@@ -133,3 +133,7 @@ def out_vax(country: str, public=False, age=False, manufacturer=False, proposal=
         return os.path.join(SCRIPTS.OUTPUT_VAX_MAIN, f"{country}.csv")
     else:
         return os.path.join(DATA.VAX_COUNTRY, f"{country}.csv")
+
+
+CONFIG_FILE = os.path.join(str(SCRIPTS), "config.yaml")
+CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "owid")

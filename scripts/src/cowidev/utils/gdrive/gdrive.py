@@ -5,13 +5,14 @@ import gdown
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
-from cowidev.utils.gdrive.credentials import CONFIG_PATH, CLIENT_SECRETS_PATH, CREDENTIALS_PATH, SETTINGS_PATH
+from cowidev.utils.gdrive.credentials import CLIENT_SECRETS_PATH, CREDENTIALS_PATH, SETTINGS_PATH
+from cowidev.utils.paths import CONFIG_DIR
 
 
 def gdrive_init(encoding="utf8"):
     """From https://github.com/lucasrodes/whatstk/blob/bcb9cf7c256df1c9e270aab810b74ab0f7329436/whatstk/utils/gdrive.py#L38"""
-    if not os.path.isdir(CONFIG_PATH):
-        os.makedirs(CONFIG_PATH, exist_ok=True)
+    if not os.path.isdir(CONFIG_DIR):
+        os.makedirs(CONFIG_DIR, exist_ok=True)
 
     # Copy credentials to config folder
     # copyfile(client_secret_file, CLIENT_SECRETS_PATH)
@@ -39,7 +40,7 @@ def gdrive_init(encoding="utf8"):
 
 
 def _is_gdrive_config_valid():
-    if not os.path.isdir(CONFIG_PATH):
+    if not os.path.isdir(CONFIG_DIR):
         return False
     if not os.path.isfile(CLIENT_SECRETS_PATH):
         raise ValueError(f"Credentials not found at {CLIENT_SECRETS_PATH}. Please check!")
