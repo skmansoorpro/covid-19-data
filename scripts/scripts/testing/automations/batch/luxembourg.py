@@ -19,7 +19,7 @@ class Luxembourg(CountryTestBase):
     def read(self) -> pd.DataFrame:
         """Read data from source"""
         table = self._get_relevant_table(self.source_url_ref)
-        df = pd.read_html(table, header=0)[0]
+        df = pd.read_html(table, header=0)[0].drop_duplicates(["Nombre de tests PCR effectués"])
         return df
 
     def _get_relevant_table(self, url: str) -> element.Tag:
