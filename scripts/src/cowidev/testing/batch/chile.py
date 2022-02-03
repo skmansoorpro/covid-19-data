@@ -32,7 +32,3 @@ class Chile(CountryTestBase):
 
 def main():
     Chile().export()
-
-
-if __name__ == "__main__":
-    main()

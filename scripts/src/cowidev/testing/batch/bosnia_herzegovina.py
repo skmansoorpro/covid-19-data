@@ -73,7 +73,3 @@ class BosniaHerzegovina(CountryTestBase):
 
 def main():
     BosniaHerzegovina().export()
-
-
-if __name__ == "__main__":
-    main()

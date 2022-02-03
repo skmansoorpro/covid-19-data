@@ -46,7 +46,3 @@ class Cuba(CountryTestBase):
 
 def main():
     Cuba().export()
-
-
-if __name__ == "__main__":
-    main()

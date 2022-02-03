@@ -55,7 +55,3 @@ class CostaRica(CountryTestBase):
 
 def main():
     CostaRica().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -40,7 +40,3 @@ class Czechia(CountryTestBase):
 
 def main():
     Czechia().export()
-
-
-if __name__ == "__main__":
-    main()

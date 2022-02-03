@@ -267,7 +267,3 @@ class Bolivia(CountryTestBase):
 
 def main():
     Bolivia().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -53,7 +53,3 @@ class Canada(CountryTestBase):
 
 def main():
     Canada().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -72,7 +72,3 @@ class Colombia(CountryTestBase):
 
 def main():
     Colombia().export()
-
-
-if __name__ == "__main__":
-    main()

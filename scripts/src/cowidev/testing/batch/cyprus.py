@@ -39,7 +39,3 @@ class Cyprus(CountryTestBase):
 
 def main():
     Cyprus().export()
-
-
-if __name__ == "__main__":
-    main()

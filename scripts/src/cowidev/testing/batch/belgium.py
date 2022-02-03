@@ -36,5 +36,5 @@ class Belgium(CountryTestBase):
         self.export_datafile(df)
 
 
-if __name__ == "__main__":
-    Belgium().main()
+def main():
+    Belgium().export()
