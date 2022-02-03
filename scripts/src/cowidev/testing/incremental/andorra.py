@@ -3,9 +3,9 @@ import datetime
 import pandas as pd
 
 from cowidev.utils import get_soup
+from cowidev.testing.utils.base import CountryTestBase
 
 COUNTRY = "Andorra"
-PATH = f"automated_sheets/{COUNTRY}.csv"
 URL = "https://www.govern.ad/covid19/"
 SOURCE_LABEL = "Tauler COVID-19, Govern d'Andorra"
 
@@ -78,33 +78,36 @@ def is_404(soup):
     return "404" in soup.find("title").text
 
 
+class Andorra(CountryTestBase):
+    location = "Andorra"
+
+    def export(self):
+        """Main function.
+
+        Update file in `PATH`.
+        """
+        data = pd.read_csv(self.output_path)
+
+        # Retrieve HTML page (using fake header, otherwise 404 error)
+        soup = get_soup(URL)
+
+        if not is_404(soup):
+            date = get_date(soup)
+
+            if data.Date.max() < date:
+                count = get_count(soup)
+                if count > data["Cumulative total"].max():
+                    new_row = {
+                        "Cumulative total": count,
+                        "Date": date,
+                        "Country": COUNTRY,
+                        "Units": "people tested",
+                        "Source URL": URL,
+                        "Source label": SOURCE_LABEL,
+                    }
+                    data = data.append(new_row, ignore_index=True)
+                    self.export_datafile(data)
+
+
 def main():
-    """Main function.
-
-    Update file in `PATH`.
-    """
-    data = pd.read_csv(PATH)
-
-    # Retrieve HTML page (using fake header, otherwise 404 error)
-    soup = get_soup(URL)
-
-    if not is_404(soup):
-        date = get_date(soup)
-
-        if data.Date.max() < date:
-            count = get_count(soup)
-            if count > data["Cumulative total"].max():
-                new_row = {
-                    "Cumulative total": count,
-                    "Date": date,
-                    "Country": COUNTRY,
-                    "Units": "people tested",
-                    "Source URL": URL,
-                    "Source label": SOURCE_LABEL,
-                }
-                data = data.append(new_row, ignore_index=True)
-                data.to_csv(PATH, index=False)
-
-
-if __name__ == "__main__":
-    main()
+    Andorra().export()

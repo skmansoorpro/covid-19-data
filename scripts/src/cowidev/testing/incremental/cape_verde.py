@@ -89,7 +89,3 @@ class CapeVerde:
 
 def main():
     CapeVerde().export()
-
-
-if __name__ == "__main__":
-    main()

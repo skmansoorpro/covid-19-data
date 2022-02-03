@@ -45,7 +45,3 @@ class NewZealand:
 
 def main():
     NewZealand().export()
-
-
-if __name__ == "__main__":
-    main()

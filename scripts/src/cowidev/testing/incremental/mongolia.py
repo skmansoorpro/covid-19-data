@@ -29,7 +29,3 @@ class Mongolia:
 
 def main():
     Mongolia().export()
-
-
-if __name__ == "__main__":
-    main()

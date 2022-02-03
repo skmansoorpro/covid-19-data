@@ -1,5 +1,6 @@
 import json
 import datetime
+from cowidev.testing.utils.base import CountryTestBase
 
 import requests
 import pandas as pd
@@ -33,28 +34,31 @@ def rwanda_get_tests_snapshot():
     return date, tests_cumul, tests_today
 
 
+class Rwanda(CountryTestBase):
+    location = "Rwanda"
+
+    def export(self):
+        date, tests_cumul, tests_today = rwanda_get_tests_snapshot()
+
+        existing = pd.read_csv(self.output_path)
+
+        if date > existing["Date"].max():
+
+            new = pd.DataFrame(
+                {
+                    "Country": self.location,
+                    "Date": [date],
+                    "Cumulative total": tests_cumul,
+                    "Source URL": SOURCE_URL,
+                    "Source label": "Rwanda Ministry of Health",
+                    "Units": "samples tested",
+                    "Notes": pd.NA,
+                }
+            )
+
+            df = pd.concat([new, existing]).sort_values("Date", ascending=False)
+            self.export_datafile(df)
+
+
 def main():
-    date, tests_cumul, tests_today = rwanda_get_tests_snapshot()
-
-    existing = pd.read_csv("automated_sheets/Rwanda.csv")
-
-    if date > existing["Date"].max():
-
-        new = pd.DataFrame(
-            {
-                "Country": "Rwanda",
-                "Date": [date],
-                "Cumulative total": tests_cumul,
-                "Source URL": SOURCE_URL,
-                "Source label": "Rwanda Ministry of Health",
-                "Units": "samples tested",
-                "Notes": pd.NA,
-            }
-        )
-
-        df = pd.concat([new, existing]).sort_values("Date", ascending=False)
-        df.to_csv("automated_sheets/Rwanda.csv", index=False)
-
-
-if __name__ == "__main__":
-    main()
+    Rwanda().export()

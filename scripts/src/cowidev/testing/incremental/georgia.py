@@ -113,7 +113,3 @@ class Georgia:
 
 def main():
     Georgia().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -121,7 +121,3 @@ class Moldova:
 
 def main():
     Moldova().export()
-
-
-if __name__ == "__main__":
-    main()

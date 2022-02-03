@@ -1,5 +1,6 @@
 import re
 import time
+from cowidev.testing.utils.base import CountryTestBase
 
 import pandas as pd
 from selenium import webdriver
@@ -24,28 +25,31 @@ def get_tests_snapshot():
     return date, tests_cumul
 
 
+class Croatia(CountryTestBase):
+    location = "Croatia"
+
+    def export(self):
+        date, tests_cumul = get_tests_snapshot()
+
+        existing = pd.read_csv(self.output_path)
+
+        if tests_cumul > existing["Cumulative total"].max() and date > existing["Date"].max():
+
+            new = pd.DataFrame(
+                {
+                    "Country": self.location,
+                    "Date": [date],
+                    "Cumulative total": tests_cumul,
+                    "Source URL": SOURCE_URL,
+                    "Source label": "Government of Croatia",
+                    "Units": "people tested",
+                    "Notes": pd.NA,
+                }
+            )
+
+            df = pd.concat([new, existing]).sort_values("Date")
+            self.export_datafile(df)
+
+
 def main():
-    date, tests_cumul = get_tests_snapshot()
-
-    existing = pd.read_csv("automated_sheets/Croatia.csv")
-
-    if tests_cumul > existing["Cumulative total"].max() and date > existing["Date"].max():
-
-        new = pd.DataFrame(
-            {
-                "Country": "Croatia",
-                "Date": [date],
-                "Cumulative total": tests_cumul,
-                "Source URL": SOURCE_URL,
-                "Source label": "Government of Croatia",
-                "Units": "people tested",
-                "Notes": pd.NA,
-            }
-        )
-
-        df = pd.concat([new, existing]).sort_values("Date")
-        df.to_csv("automated_sheets/Croatia.csv", index=False)
-
-
-if __name__ == "__main__":
-    main()
+    Croatia().export()

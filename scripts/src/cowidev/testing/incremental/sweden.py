@@ -114,7 +114,3 @@ class Sweden(CountryTestBase):
 
 def main():
     Sweden().export()
-
-
-if __name__ == "__main__":
-    main()

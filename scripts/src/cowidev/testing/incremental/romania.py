@@ -119,7 +119,3 @@ class Romania:
 
 def main():
     Romania().export()
-
-
-if __name__ == "__main__":
-    main()

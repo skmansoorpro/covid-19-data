@@ -76,7 +76,3 @@ class Ukraine:
 
 def main():
     Ukraine().export()
-
-
-if __name__ == "__main__":
-    main()

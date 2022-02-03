@@ -8,11 +8,6 @@ from cowidev.utils.clean import clean_count, clean_date
 from cowidev.testing.utils.incremental import increment
 
 
-import urllib3
-
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-
 class Iran:
     location = "Iran"
     units = "tests performed"
@@ -61,9 +56,7 @@ class Iran:
         """Get the relevant element in news feed."""
         news_list = soup.find_all("h3")
 
-        url_idx = [
-            i for i, news in enumerate(news_list) if re.search(self.regex["title"], news.text)
-        ]
+        url_idx = [i for i, news in enumerate(news_list) if re.search(self.regex["title"], news.text)]
 
         if not url_idx:
             return None
@@ -73,10 +66,7 @@ class Iran:
         """Extract text from the url."""
         soup = get_soup(url, verify=False)
         text = (
-            soup.find("div", class_="content_detail_body")
-            .get_text(strip=True)
-            .replace("\xa0", " ")
-            .replace(",", "")
+            soup.find("div", class_="content_detail_body").get_text(strip=True).replace("\xa0", " ").replace(",", "")
         )
         return text
 
@@ -120,7 +110,3 @@ class Iran:
 
 def main():
     Iran().export()
-
-
-if __name__ == "__main__":
-    main()

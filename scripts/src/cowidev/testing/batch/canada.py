@@ -4,9 +4,9 @@ from cowidev.testing import CountryTestBase
 
 
 class Canada(CountryTestBase):
+    location = "Canada"
     source_url = "https://health-infobase.canada.ca/src/data/covidLive/covid19-download.csv"
     source_url_ref = "https://health-infobase.canada.ca/src/data/covidLive/covid19-download.csv"
-    location = "Canada"
     rename_columns = {
         "numtests": "Cumulative total",
         "numtested": "Cumulative total",

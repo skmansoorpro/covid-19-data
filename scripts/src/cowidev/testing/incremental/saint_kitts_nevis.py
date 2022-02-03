@@ -1,33 +1,32 @@
 import os
+from cowidev.testing.utils.base import CountryTestBase
+
 import pandas as pd
 
 from cowidev.utils import get_soup
 from cowidev.utils.clean.dates import localdatenow
-from cowidev.testing.utils.base import CountryTestBase
 
 
-class AntiguaBarbuda(CountryTestBase):
-    location = "Antigua and Barbuda"
+class SaintKittsNevis(CountryTestBase):
+    location = "Saint Kitts and Nevis"
 
     def export(self):
-        url = "https://covid19.gov.ag"
-        location = "Antigua and Barbuda"
-        output_file = f"automated_sheets/{location}.csv"
-        soup = get_soup(url)
+        url = "https://covid19.gov.kn/src/stats2/"
 
-        stats = soup.find_all("p", attrs={"class": "case-Number"})
-        count = int(stats[3].text)
+        soup = get_soup(url)
+        df = pd.read_html(str(soup.find("table")))[0]
+        count = df.loc[df[0] == "No. of Persons Tested", 1].item()
         # print(count)
 
-        date_str = localdatenow("America/St_Johns")
+        date_str = localdatenow("America/St_Kitts")
         df = pd.DataFrame(
             {
-                "Country": location,
+                "Country": self.location,
                 "Date": [date_str],
                 "Cumulative total": count,
                 "Source URL": url,
                 "Source label": "Ministry of Health",
-                "Units": "tests performed",
+                "Units": "people tested",
                 "Notes": pd.NA,
             }
         )
@@ -36,8 +35,8 @@ class AntiguaBarbuda(CountryTestBase):
             existing = pd.read_csv(self.output_path)
             if count > existing["Cumulative total"].max() and date_str > existing["Date"].max():
                 df = pd.concat([df, existing]).sort_values("Date", ascending=False).drop_duplicates()
-                self.export_datafile(df)
+                df.to_csv(self.output_path, index=False)
 
 
 def main():
-    AntiguaBarbuda().export()
+    SaintKittsNevis().export()

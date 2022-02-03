@@ -74,7 +74,3 @@ class Libya:
 
 def main():
     Libya().export()
-
-
-if __name__ == "__main__":
-    main()

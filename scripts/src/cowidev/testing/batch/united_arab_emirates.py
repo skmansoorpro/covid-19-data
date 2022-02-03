@@ -110,7 +110,7 @@ sample_official_data = [
 ]
 
 
-class UAE(CountryTestBase):
+class UnitedArabEmirates(CountryTestBase):
     location: str = "United Arab Emirates"
 
     def export(self) -> None:
@@ -199,4 +199,4 @@ def sanity_checks(df: pd.DataFrame) -> None:
 
 
 def main():
-    UAE().export()
+    UnitedArabEmirates().export()

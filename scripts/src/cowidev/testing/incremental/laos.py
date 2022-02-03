@@ -83,7 +83,3 @@ class Laos:
 
 def main():
     Laos().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -105,7 +105,3 @@ class ElSalvador(CountryTestBase):
 
 def main():
     ElSalvador().export()
-
-
-if __name__ == "__main__":
-    main()

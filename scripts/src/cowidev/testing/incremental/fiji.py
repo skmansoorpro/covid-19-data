@@ -116,7 +116,3 @@ class Fiji:
 
 def main():
     Fiji().export()
-
-
-if __name__ == "__main__":
-    main()
