@@ -14,7 +14,7 @@ class CapeVerde:
     source_label = "Government of Cape Verde"
     source_url = "https://covid19.cv/category/boletim-epidemiologico/"
     regex = {
-        "date": r"(\d+ (?:de )?\w+ de 20\d+)",
+        "date": r"(\d+) (?:de )?(\w+) de (20\d+)",
         "count": r"(?:total|totais) (?:de|dos|das) (\d+) (?:resultados|amostras)",
     }
 
@@ -53,7 +53,7 @@ class CapeVerde:
 
     def _parse_date(self, text: str) -> str:
         """Get date from relevant element."""
-        return extract_clean_date(text.lower(), self.regex["date"], "%d %B de %Y", lang="pt")
+        return extract_clean_date(text.lower(), self.regex["date"], "%d %B %Y", lang="pt")
 
     def _parse_link_from_element(self, elem: element.Tag) -> str:
         """Get link from relevant element."""
