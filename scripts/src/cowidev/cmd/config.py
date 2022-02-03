@@ -60,9 +60,5 @@ class Config:
         self.pipeline = PipelineConfig(**self.pipeline)
 
 
-def normalize_country_name(country_name: str):
-    return country_name.strip().replace("-", "_").replace(" ", "_").lower()
-
-
 config_raw["global_"] = config_raw.pop("global")
 CONFIG = Config(**config_raw)

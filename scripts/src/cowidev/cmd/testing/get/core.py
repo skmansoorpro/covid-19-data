@@ -2,7 +2,7 @@ import click
 
 from cowidev.cmd.testing.get.get_data import main_get_data
 from cowidev.cmd.config import CONFIG
-from cowidev.cmd.utils import PythonLiteralOption
+from cowidev.cmd.utils import PythonLiteralOption, normalize_country_name
 from cowidev.testing.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_NAME_INCREMENTAL, country_to_module
 
 
@@ -36,11 +36,8 @@ from cowidev.testing.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_
     cls=PythonLiteralOption,
 )
 def click_test_get(parallel, n_jobs, countries, skip_countries):
-    print(countries)
-    print(skip_countries)
     modules = _countries_to_modules(countries)
     modules_skip = _countries_to_modules(skip_countries)
-    print(modules_skip)
     main_get_data(
         parallel=parallel,
         n_jobs=n_jobs,
@@ -56,7 +53,7 @@ def _comma_separated_to_list(x):
 def _countries_to_modules(countries):
     if isinstance(countries, str):
         countries = _comma_separated_to_list(countries)
-    countries = [c.strip().lower() for c in countries]
+    countries = [normalize_country_name(c) for c in countries]
     if len(countries) == 1:
         if countries[0].lower() == "all":
             return MODULES_NAME
