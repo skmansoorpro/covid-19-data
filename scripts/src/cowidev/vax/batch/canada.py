@@ -29,6 +29,7 @@ class Canada:
                 "change_vaccinations",
                 "change_vaccinated",
                 "change_boosters_1",
+                "change_boosters_2",
                 "change_vaccines_distributed",
                 "total_cases",
                 "total_fatalities",
@@ -39,20 +40,29 @@ class Canada:
                 "total_vaccinations",
                 "total_vaccinated",
                 "total_boosters_1",
+                "total_boosters_2",
                 "total_vaccines_distributed",
             ],
         )
-        return df[["date", "total_vaccinations", "total_vaccinated", "total_boosters_1"]]
+        return df[["date", "total_vaccinations", "total_vaccinated", "total_boosters_1", "total_boosters_2"]]
 
     def pipe_filter_rows(self, df: pd.DataFrame):
         # Only records since vaccination campaign started
         return df[df.total_vaccinations > 0]
 
     def pipe_rename_columns(self, df: pd.DataFrame):
-        return df.rename(columns={"total_vaccinated": "people_fully_vaccinated", "total_boosters_1": "total_boosters"})
+        return df.rename(
+            columns={
+                "total_vaccinated": "people_fully_vaccinated",
+            }
+        )
 
-    def pipe_people_vaccinated(self, df: pd.DataFrame):
-        df = df.assign(people_vaccinated=(df.total_vaccinations - df.people_fully_vaccinated - df.total_boosters))
+    def pipe_metrics(self, df: pd.DataFrame):
+        total_boosters = df.total_boosters_1 + df.total_boosters_2.fillna(0)
+        df = df.assign(
+            people_vaccinated=(df.total_vaccinations - df.people_fully_vaccinated - total_boosters.fillna(0)),
+            total_boosters=total_boosters,
+        )
         # Booster data was not recorded for these dates, hence estimations on people vaccinated will not be accurate
         # df.loc[(df.date >= "2021-10-04") & (df.date <= "2021-10-09"), "people_vaccinated"] = pd.NA
         return df
@@ -68,10 +78,21 @@ class Canada:
         df = (
             df.pipe(self.pipe_filter_rows)
             .pipe(self.pipe_rename_columns)
-            .pipe(self.pipe_people_vaccinated)
+            .pipe(self.pipe_metrics)
             .pipe(self.pipe_metadata)
             .pipe(make_monotonic)
-            .sort_values("date")
+            .sort_values("date")[
+                [
+                    "location",
+                    "date",
+                    "vaccine",
+                    "source_url",
+                    "total_vaccinations",
+                    "people_vaccinated",
+                    "people_fully_vaccinated",
+                    "total_boosters",
+                ]
+            ]
         )
         return df
 

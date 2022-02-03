@@ -69,6 +69,9 @@ class CountryVaxBase:
         """Country output file for manufacturer data."""
         return paths.out_vax(self.location, manufacturer=True)
 
+    def load_datafile(self, **kwargs):
+        return pd.read_csv(self.output_path, **kwargs)
+
     def make_monotonic(self, df, max_removed_rows=10, strict=False):
         return make_monotonic(
             df=df,

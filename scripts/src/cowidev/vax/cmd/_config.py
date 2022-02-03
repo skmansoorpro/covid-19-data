@@ -93,7 +93,7 @@ class ConfigParams(object):
 
     @property
     def gsheets_api(self):
-        return GSheetApi(self.google_credential_file)
+        return GSheetApi()
 
     def _get_project_dir_from_config(self):
         try:

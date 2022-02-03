@@ -5,14 +5,36 @@ import platform
 import logging
 
 
+# def get_logger():
+#     # Logging config
+#     logging.basicConfig(
+#         format="%(asctime)s %(levelname)-8s %(message)s",
+#         level=logging.INFO,
+#         datefmt="%Y-%m-%d %H:%M:%S",
+#     )
+#     logger = logging.getLogger(name="cowidev-logger")
+#     return logger
+
+
 def get_logger():
-    # Logging config
-    logging.basicConfig(
-        format="%(asctime)s %(levelname)-8s %(message)s",
-        level=logging.INFO,
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-    logger = logging.getLogger()
+    # create logger
+    logger = logging.getLogger(name="cowidev-logger")
+    logger.setLevel(logging.INFO)
+
+    # create console handler and set level to debug
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+
+    # create formatter
+    formatter = logging.Formatter("%(asctime)s %(levelname)-8s %(message)s")
+
+    # add formatter to ch
+    ch.setFormatter(formatter)
+
+    # add ch to logger
+    if not logger.handlers:
+        logger.addHandler(ch)
+
     return logger
 
 
