@@ -5,9 +5,8 @@ import tempfile
 import itertools
 from datetime import timedelta
 
-from bs4 import BeautifulSoup
 import pandas as pd
-import PyPDF2
+from pdfminer.high_level import extract_text
 
 from cowidev.utils.clean import clean_count, clean_date
 from cowidev.utils.clean.dates import localdatenow
@@ -121,9 +120,7 @@ class SriLanka:
             with open(tf.name, mode="wb") as f:
                 f.write(requests.get(pdf_path).content)
             with open(tf.name, mode="rb") as f:
-                reader = PyPDF2.PdfFileReader(f)
-                page = reader.getPage(0)
-                text = page.extractText().replace("\n", "")
+                text = extract_text(f)
         return text
 
     def _parse_vaccines_table_as_df(self, text):

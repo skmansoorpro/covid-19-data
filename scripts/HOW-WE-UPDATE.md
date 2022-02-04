@@ -37,7 +37,7 @@ other sub-processes producing data that may appear on our website (Grapher) but 
   ┌──────────────────────────────────────────────────────────┐          │
   │ <a href="vaccination/">Vaccination</a>                                              │          │
   │                                                          │          │
-  │  module: <a href="../../scripts/src/cowidev/vax/__main__.py">cowidev.vax</a>                                     │          │
+  │  module: <a href="../../scripts/src/cowidev/vax/">cowidev.vax</a>                                     │          │
   │  update: daily at 12:00 UTC                              │          │
   │                                                          │          │
   │           ┌───┐     ┌───────┐     ┌────────┐    ┌──────┐ │          │
@@ -68,13 +68,12 @@ other sub-processes producing data that may appear on our website (Grapher) but 
   ┌──────────────────────────────────────────────────────────┐          │      │ Megafile                         │
   │ Testing                                                  │          │      │                                  │
   │                                                          │          │      │  module: <a href="../../scripts/src/cowidev/megafile/__main__.py">cowidev.megafile</a>        │
-  │  module: <a href="../../scripts/scripts/testing/">scripts/scripts/testing/</a>                        │          ├─────►│  update: daily at 6h and 18h UTC │
+  │  module: <a href="../../scripts/src/cowidev/testing">cowidev.testing</a>                                 │          ├─────►│  update: daily at 6h and 18h UTC │
   │  update: 3 times per week                                │          │      │                                  │
   │                                                          │          │      │  output:  <a href="owid-covid-data.csv">owid-covid-data.csv</a>    │
-  │           ┌─────────────────┐     ┌────────────────┐     │          │      │                                  │
-  │  steps:   │<a href="../../scripts/scripts/testing/run_python_scripts.py">run_python_script</a>├────►│<a href="../../scripts/scripts/testing/generate_dataset.R">generate_dataset</a>│     │          │      └──────────────────────────────────┘
-  │           │<a href="../../scripts/scripts/testing/run_r_scripts.R">run_R_scripts</a>    │     └────────────────┘     │          │
-  │           └─────────────────┘                            │          │
+  │           ┌───┐     ┌────────────────┐                   │          │      │                                  │
+  │  steps:   │<a href="../../scripts/src/cowidev/cmd/testing/get/">get</a>├────►│<a href="../../scripts/scripts/testing/generate_dataset.R">generate_dataset</a>│                   │          │      └──────────────────────────────────┘
+  │           └───┘     └────────────────┘                   │          │
   │                                                          │          │
   │  output:  <a href="testing/covid-testing-all-observations.csv">covid-testing-all-observations.csv</a> ──────────── ──────────┤
   │                                                          │          │
