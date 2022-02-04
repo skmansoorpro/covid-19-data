@@ -22,7 +22,7 @@ class TestingGetConfig(BaseGetConfig):
 
 @dataclass()
 class Base4Config:
-    get: TestingGetConfig
+    get: BaseGetConfig
     process: dict
     generate: dict
     export: dict
@@ -30,9 +30,14 @@ class Base4Config:
 
 @dataclass()
 class TestingConfig(Base4Config):
-    # get: TestingGetConfig
+    get: TestingGetConfig
 
     def __post_init__(self):
+        if self.get["countries"] is None:
+            self.get["countries"] = "all"
+        if self.get["skip_countries"] is None:
+            self.get["skip_countries"] = []
+
         self.get = TestingGetConfig(**self.get)
 
 
@@ -53,12 +58,11 @@ class PipelineConfig:
 
 @dataclass()
 class Config:
-    global_: list
     pipeline: PipelineConfig
 
     def __post_init__(self):
         self.pipeline = PipelineConfig(**self.pipeline)
 
 
-config_raw["global_"] = config_raw.pop("global")
+# config_raw["global_"] = config_raw.pop("global")
 CONFIG = Config(**config_raw)

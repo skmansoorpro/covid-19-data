@@ -1,8 +1,3 @@
-global:
-  project_dir: !ENV ${OWID_COVID_PROJECT_DIR}
-  credentials: !ENV ${OWID_COVID_VAX_CREDENTIALS_FILE}
-
-
 pipeline:
 
   vaccinations:
@@ -56,7 +51,6 @@ pipeline:
     get:
       parallel: True
       countries: 
-        - All
       njobs: -2
       skip_countries:
     process:
