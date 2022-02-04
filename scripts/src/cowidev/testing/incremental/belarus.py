@@ -13,7 +13,6 @@ class Belarus(CountryTestBase):
     location = "Belarus"
 
     def export(self):
-        path = os.path.join(get_project_dir(), "scripts", "scripts", "testing", "automated_sheets", "Belarus.csv")
         data = pd.read_csv(self.output_path)
 
         # get and parse daily updates page

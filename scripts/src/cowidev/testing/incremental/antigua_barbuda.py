@@ -12,7 +12,6 @@ class AntiguaBarbuda(CountryTestBase):
     def export(self):
         url = "https://covid19.gov.ag"
         location = "Antigua and Barbuda"
-        output_file = f"automated_sheets/{location}.csv"
         soup = get_soup(url)
 
         stats = soup.find_all("p", attrs={"class": "case-Number"})
