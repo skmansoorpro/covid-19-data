@@ -9,7 +9,7 @@ class Japan(CountryTestBase):
     source_label = "Ministry of Health, Labour and Welfare"
     source_url = "https://www.mhlw.go.jp/content/pcr_tested_daily.csv"
     source_url_ref = source_url
-    rename_columns = {"日付": "Date", "PCR 検査実施件数(単日)": "Daily change in cumulative total"}
+    rename_columns = {"日付": "Date", "PCR 検査実施人数(単日)": "Daily change in cumulative total"}
 
     def read(self) -> pd.DataFrame:
         return pd.read_csv(self.source_url, usecols=self.rename_columns.keys(), parse_dates=["日付"])
