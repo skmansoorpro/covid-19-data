@@ -39,7 +39,7 @@ class Sweden(object):
 
     def _read_daily_data_people(self, df):
         return df.assign(
-            people_vaccinated=df["Antal vaccinerademed minst 1 dos*"].apply(clean_count),
+            people_vaccinated=df["Antal vaccinerademed minst 1 dos (1)"].apply(clean_count),
             people_fully_vaccinated=df["Antal vaccinerademed minst 2 doser"].apply(clean_count),
         )
 
