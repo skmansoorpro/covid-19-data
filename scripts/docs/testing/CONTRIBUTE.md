@@ -5,7 +5,7 @@
 
 We welcome contributions to our testing dataset! 
 
-Automated countries can be found under the [`automations/`](../../scripts/testing/automations) folder. Some countries have a _batch_ collection process while others an _incremental_ one.
+Automated countries can be found under the [`cowidev.testing`](../../src/cowidev/testing) folder. Some countries have a _batch_ collection process while others an _incremental_ one.
 
 - **batch**: The complete timeseries is updated at every execution. This process is preferred, as it means the source can correct past data.
 - **incremental**: Only the last data point is added. 
@@ -28,17 +28,17 @@ To automate the data import process for a country, make sure that:
 
 ### Steps to contribute
 1. Decide if the import is batch (i.e. the entire time series) or incremental (last value). See the scripts in
-   [`automations/batch/`](../../scripts/testing/automations/batch) and [`automations/incremental/`](../../scripts/testing/automations/incremental) for more details. **Note: Batch is preferred over incremental**.
-2. Create a script in the right location, based on your decision at step 1: either in [`automations/batch/`](../../scripts/testing/automations/batch) or
-   [`automations/incremental/`](../../scripts/testing/automations/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
+   [`cowidev.testing.batch`](../../src/cowidev/testing/batch) and [`cowidev.testing.incremental`](../../src/cowidev/testing/incremental) for more details. **Note: Batch is preferred over incremental**.
+2. Create a script in the right location, based on your decision at step 1: either in [`cowidev.testing.batch`](../../src/cowidev/testing/batch) or
+   [`cowidev.testing.incremental`](../../src/cowidev/testing/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
     - Batch imports:
-        - CSV: [France](../../scripts/testing/automations/batch/france.py)
-        - API/JSON: [Portugal](../../scripts/testing/automations/batch/portugal.py)
-        - HTML: [Bosnia & Herzegovina](../../scripts/testing/automations/batch/bosnia_herzegovina.py)
-        - HTML, with JS: [Turkey](../../scripts/testing/automations/batch/turkey.py)
+        - CSV: [France](../../src/cowidev/testing/batch/france.py)
+        - API/JSON: [Portugal](../../src/cowidev/testing/batch/portugal.py)
+        - HTML: [Bosnia & Herzegovina](../../src/cowidev/testing/batch/bosnia_herzegovina.py)
+        - HTML, with JS: [Turkey](../../src/cowidev/testing/batch/turkey.py)
     - Incremental imports:
-        - CSV: [Equatorial Guinea](../../scripts/testing/automations/incremental/equatorial-guinea.py)
-        - HTML: [Bahrain](../../scripts/testing/automations/incremental/bahrain.py)
+        - CSV: [Equatorial Guinea](../../src/cowidev/testing/incremental/equatorial_guinea.py)
+        - HTML: [Bahrain](../../src/cowidev/testing/incremental/bahrain.py)
 3. Make sure that you are collecting the right metrics (for more details, read the [Metrics collected](#metrics-collected) section).
 4. Test that the script works and is stable.
 5. Create a pull request with your code.
@@ -85,16 +85,16 @@ consider that the data provided by Johns Hopkins University on confirmed cases m
    forward-fill) and create the 7-day average daily series. So in this situation, our dataset will have Cumulative total
    and 7-day, **which is perfect**.
     
-    - Examples: [`greece.py`](../../scripts/testing/automations/incremental/greece.py), [`italy.py`](../../scripts/testing/automations/batch/italy.py), [`brazil.py`](../../scripts/testing/automations/batch/brazil.py)
+    - Examples: [`greece.py`](../../src/cowidev/testing/incremental/greece.py), [`italy.py`](../../src/cowidev/testing/batch/italy.py), [`brazil.py`](../../src/cowidev/testing/batch/brazil.py)
 2. The second-best situation, if there is no `Cumulative total`, is to collect `Daily change in cumulative total` every
    day instead. If the daily number is _really_ present each day, then our script will calculate the 7-day average.
 
-   - Examples: [`chile.py`](../../scripts/testing/automations/batch/chile.py), [`albania.py`](../../scripts/testing/automations/incremental/albania.py)
+   - Examples: [`chile.py`](../../src/cowidev/testing/batch/chile.py), [`albania.py`](../../src/cowidev/testing/incremental/albania.py)
 3. The "worst" situation is to have an irregular series of Daily change in cumulative total. This is basically of little
    use, because we can't calculate any cumulative total (because some days are missing) and we also can't calculate the
    7-day average (because some days are missing).
    
-   - Examples: [`moldova.py`](../../scripts/testing/automations/incremental/moldova.py)
+   - Examples: [`moldova.py`](../../src/cowidev/testing/incremental/moldova.py)
 
 #### `Positive rate`
-Examples: [`argentina.py`](../../scripts/testing/automations/batch/argentina.py), [`france.py`](../../scripts/testing/automations/batch/france.py)
+Examples: [`argentina.py`](../../src/cowidev/testing/batch/argentina.py), [`france.py`](../../src/cowidev/testing/batch/france.py)
