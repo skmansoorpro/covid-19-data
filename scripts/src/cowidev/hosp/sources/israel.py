@@ -19,6 +19,8 @@ def main():
 
     df = df.sort_values("date")
 
+    df.loc[df.date < "2020-09-01", "countCriticalStatus"] = pd.NA
+
     df["newHospitalized"] = df.newHospitalized.rolling(7).sum()
     df["icu_admissions"] = (df.countBreathCum - df.countBreathCum.shift()).rolling(7).sum()
 
