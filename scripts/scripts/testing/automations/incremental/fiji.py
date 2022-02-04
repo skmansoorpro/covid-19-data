@@ -21,7 +21,7 @@ class Fiji:
         "title": r"COVID-19 Update",
         "year": r"\d{4}",
         "date": r"tests have been reported for (\w+ \d+)",
-        "count": r"tests since 2020 is (\d+,\d+)",
+        "count": r"tests since 2020 are (\d+,\d+)",
     }
 
     def read(self) -> pd.Series:
