@@ -1,10 +1,8 @@
-import json
-import re
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import pandas as pd
 from cowidev.testing import CountryTestBase
-from cowidev.utils.clean import clean_date, clean_count
+from cowidev.utils.clean import clean_date
 from cowidev.utils.web import get_soup
 
 
@@ -13,13 +11,21 @@ class Suriname(CountryTestBase):
     units: str = "tests performed"
     source_label: str = "Directorate National Security"
     source_url: str = "https://covid-19.sr/"
+    source_url_ref: str = "https://covid-19.sr/"
 
     def read(self) -> pd.DataFrame:
         """Read data from source"""
-        soup = get_soup(self.source_url)
+        body = str(get_soup(self.source_url))
         date = clean_date(datetime.now())
-        count = clean_count(soup.select(".vc_custom_1643848135697 .stats-number")[0]["data-counter-value"])
-        negative = clean_count(soup.select(".vc_custom_1643848161956 .stats-number")[0]["data-counter-value"])
+
+        count = 0
+        if "Totaal Testen" in body:
+            count = int(body.split("Totaal Testen")[0].split('data-counter-value="')[-1].split('"')[0])
+
+        negative = 0
+        if "Totaal negatieve" in body:
+            negative = int(body.split("Totaal negatieve")[0].split('data-counter-value="')[-1].split('"')[0])
+
         positive = count - negative
         df = pd.DataFrame({"Date": [date], "Daily change in cumulative total": [count], "positive": [positive]})
         return df
@@ -32,9 +38,14 @@ class Suriname(CountryTestBase):
         return df
 
     def pipe_merge(self, df: pd.DataFrame) -> pd.DataFrame:
-        df_current = pd.read_csv(self.get_output_path())
+        df_current = pd.read_csv("automated_sheets/Suriname.csv")
         df_current = df_current[df_current.Date < df.Date.min()]
         df = pd.concat([df_current, df]).sort_values("Date")
+        if (
+            df[["Daily change in cumulative total", "positive"]].iloc[-2]
+            == df[["Daily change in cumulative total", "positive"]].iloc[-1]
+        ).all():
+            print("Check duplicate data")
         return df
 
     def pipe_positive(self, df: pd.DataFrame) -> pd.DataFrame:
