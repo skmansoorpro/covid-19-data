@@ -21,7 +21,7 @@ class Romania:
         "title": r"BULETIN DE PRESĂ",
         "date": r"(\d{1,2} \w+ \d{4})",
         "pcr": r"au fost prelucrate (\d+)",
-        "art": r"de teste RT-PCR și (\d+)",
+        "art": r"teste RT-PCR și (\d+)",
     }
 
     def read(self) -> pd.Series:
