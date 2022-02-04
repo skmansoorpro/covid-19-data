@@ -9,3 +9,7 @@ def cli():
 
 
 cli.add_command(click_test)
+
+
+if __name__ == "__main__":
+    cli()
