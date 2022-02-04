@@ -53,7 +53,7 @@ class CapeVerde:
 
     def _parse_date(self, text: str) -> str:
         """Get date from relevant element."""
-        return extract_clean_date(text.lower(), self.regex["date"], "%d %B de %Y", lang="pt")
+        return extract_clean_date(text.lower(), self.regex["date"], "%d de %B de %Y", lang="pt")
 
     def _parse_link_from_element(self, elem: element.Tag) -> str:
         """Get link from relevant element."""
