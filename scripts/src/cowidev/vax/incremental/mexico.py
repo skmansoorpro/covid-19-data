@@ -14,7 +14,7 @@ class Mexico:
     source_page: str = "https://www.gob.mx/salud/documentos/presentaciones-2022"
     regex = {
         "date": r"(\d{1,2} \w+\, 20\d{2})",
-        "total_vaccinations": r"COVID-19 (\d+) Total de dosis aplicadas reportadas",
+        "total_vaccinations": r"(?:COVID-19 )?(\d+) Total de dosis aplicadas reportadas",
         "people_vaccinated": r"(?:Nuevos esquemas )?(\d+) Personas vacunadas reportadas",
         "people_fully_vaccinated": r"(\d+) Personas vacunadas con esq\. completo",
     }
