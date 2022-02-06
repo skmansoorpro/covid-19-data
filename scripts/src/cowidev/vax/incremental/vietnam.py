@@ -16,12 +16,11 @@ class Vietnam:
         "title": r"Ngày",
         "date": r"(\d{2}\-\d{2}\-\d{4})",
         "metrics": (
-            r"tổng số liều vắc xin đã được tiêm là ([\d\.]+) liều, trong đó tiêm mũi 1 là ([\d\.]+) liều, tiêm mũi"
-            r" 2 là"
-            r" ([\d\.]+) liều, tiêm mũi 3 .* là ([\d\.]+) liều."
+            r"tổng số liều (vắc xin|vaccine) đã được tiêm là ([\d\.]+) liều, "
+            r"trong đó tiêm mũi 1 là ([\d\.]+) liều, tiêm mũi 2 là ([\d\.]+) liều, "
+            r"tiêm mũi 3 .* là ([\d\.]+) liều"
         ),
     }
-    # Trong ngày 30/01 có 159.885 liều vaccine phòng COVID-19 được tiêm. Như vậy, tổng số liều vắc xin đã được tiêm là 181.280.001 liều, trong đó tiêm mũi 1 là 79.059.864 liều, tiêm mũi 2 là 74.137.789 liều, tiêm mũi 3 (tiêm bổ sung/tiêm nhắc và mũi 3 liều cơ bản) là 28.082.348 liều.
 
     def read(self) -> pd.Series:
         """Read data from source."""
