@@ -22,7 +22,7 @@ def increment(
     daily_change=None,
     count=None,
 ):
-    output_path = os.path.join(paths.SCRIPTS.OLD, "testing", "automated_sheets", f"{sheet_name}.csv")
+    output_path = os.path.join(paths.SCRIPTS.OUTPUT_TEST_MAIN, f"{sheet_name}.csv")
 
     # Create new df
     df = pd.DataFrame(

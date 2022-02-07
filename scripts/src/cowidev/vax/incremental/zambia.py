@@ -20,9 +20,7 @@ class Zambia:
 
     def read(self):
         data = request_json(self.source_url)["features"][0]["attributes"]
-        date = clean_date(
-            str(datetime.fromtimestamp(data["Date"] / 1000)), fmt="%Y-%d-%m %H:%M:%S", output_fmt="%Y-%m-%d"
-        )
+        date = clean_date(datetime.fromtimestamp(data["EditDate"] / 1000))
 
         return pd.Series(
             {

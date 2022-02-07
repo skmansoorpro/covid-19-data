@@ -65,6 +65,8 @@ def _get_scripts_dir(project_dir: str):
         "OUTPUT_VAX_PROPOSALS": os.path.join(_SCRIPTS_OUTPUT_VAX_DIR, "proposals"),
         "OUTPUT_VAX_LOG": os.path.join(_SCRIPTS_OUTPUT_VAX_DIR, "log"),
         "OUTPUT_TEST": _SCRIPTS_OUTPUT_TEST_DIR,
+        # "OUTPUT_TEST_MAIN": os.path.join(_SCRIPTS_OUTPUT_TEST_DIR, "main_data"),
+        "OUTPUT_TEST_MAIN": os.path.join(_SCRIPTS_OLD_DIR, "testing", "automated_sheets"),
         "DOCS": _SCRIPTS_DOCS_DIR,
         "DOCS_VAX": os.path.join(_SCRIPTS_DOCS_DIR, "vaccination"),
         "TMP": os.path.join(_SCRIPTS_DIR, "tmp"),
@@ -133,3 +135,8 @@ def out_vax(country: str, public=False, age=False, manufacturer=False, proposal=
         return os.path.join(SCRIPTS.OUTPUT_VAX_MAIN, f"{country}.csv")
     else:
         return os.path.join(DATA.VAX_COUNTRY, f"{country}.csv")
+
+
+CONFIG_FILE_NEW = os.path.join(str(SCRIPTS), "config_new.yaml")
+CONFIG_FILE = os.path.join(str(SCRIPTS), "config.yaml")
+CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "owid")
