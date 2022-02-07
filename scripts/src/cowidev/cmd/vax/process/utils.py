@@ -69,12 +69,10 @@ def process_location(df: pd.DataFrame, monotonic_check_skip: list = [], anomaly_
 
 
 class VaccinationGSheet:
-    def __init__(self, sheet_id: str = SECRETS.vaccinations.sheet_id, gsheets_api=GSheetApi()):
-        self._api = gsheets_api
-        self.sheet_id = sheet_id
-        self.sheets = self._api.sheets
-        self.sheet = self._api.get_sheet(self.sheet_id)
-        self.metadata = self.get_metadata()
+    _api = GSheetApi()
+    sheet_id = SECRETS.vaccinations.sheet_id
+    sheets = _api.sheets
+    sheet = _api.get_sheet(sheet_id)
 
     @classmethod
     def from_json(cls, path: str):
@@ -85,6 +83,10 @@ class VaccinationGSheet:
             credentials=conf["google_credentials"],
             sheet_id=conf["google_spreadsheet_vax_id"],
         )
+
+    @property
+    def metadata(self):
+        return self.get_metadata()
 
     def get_metadata(self, refresh: bool = False) -> pd.DataFrame:
         """Get metadata from LOCATIONS tab."""
