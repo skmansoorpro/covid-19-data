@@ -30,7 +30,7 @@ def main_process_data(
     print("-- Processing data... --")
     # Get data from sheets
     logger.info("Getting data from Google Spreadsheet...")
-    gsheet = VaccinationGSheet(gsheets_api, google_spreadsheet_vax_id)
+    gsheet = VaccinationGSheet(google_spreadsheet_vax_id, gsheets_api)
     df_manual_list = gsheet.df_list()
 
     # Get automated-country data
