@@ -49,18 +49,20 @@ class CountryTestBase:
     def output_path(self):
         return os.path.join(paths.SCRIPTS.OUTPUT_TEST_MAIN, f"{self.location}.csv")
 
-    def _postprocessing(self, df):
+    def _postprocessing(self, df: pd.DataFrame, extra_cols: list):
         df = df.sort_values("Date")
         cols = [col for col in COLUMNS_ORDER if col in df.columns]
+        if extra_cols:
+            cols += extra_cols
         df = df[cols]
         return df
 
-    def export_datafile(self, df, filename=None, attach=False, reset_index=False, **kwargs):
+    def export_datafile(self, df, filename=None, attach=False, reset_index=False, extra_cols=None, **kwargs):
         output_path = self.get_output_path(filename)
         if attach:
             df = merge_with_current_data(df, output_path)
         df = metrics_to_num_int(df, ["Cumulative total", "Daily change in cumulative total"])
-        df = self._postprocessing(df)
+        df = self._postprocessing(df, extra_cols)
         if reset_index:
             df = df.reset_index(drop=True)
         df.to_csv(output_path, index=False, **kwargs)
@@ -88,9 +90,13 @@ class CountryTestBase:
     def pipe_rename_columns(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.rename(columns=self.rename_columns)
 
+    def pipe_merge_current(self, df: pd.DataFrame):
+        return merge_with_current_data(df, self.output_path)
+
 
 def merge_with_current_data(df: pd.DataFrame, filepath: str) -> pd.DataFrame:
     df_current = pd.read_csv(filepath)
     df_current = df_current[df_current.Date < df.Date.min()]
     df = pd.concat([df_current, df]).sort_values("Date")
+    # df = df.drop_duplicates(subset=[], keep='last')
     return df
