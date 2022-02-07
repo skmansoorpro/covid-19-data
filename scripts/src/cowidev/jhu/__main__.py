@@ -82,6 +82,9 @@ def get_metric(metric, region):
     # Relabel as 'International'
     df.loc[df["Country/Region"].isin(["Diamond Princess", "MS Zaandam"]), "Country/Region"] = "International"
 
+    # Exclude special entities
+    df = df[-df["Country/Region"].isin(["Summer Olympics 2020", "Winter Olympics 2022"])]
+
     # Relabel Hong Kong to its own time series
     subregion_to_region = [
         "Anguilla",
@@ -171,9 +174,7 @@ def check_data_correctness(df_merged):
 
     # Check for missing population figures
     df_pop = load_population()
-    pop_entity_diff = (
-        set(df_uniq["location"]) - set(df_pop["location"]) - set(["International", "Summer Olympics 2020"])
-    )
+    pop_entity_diff = set(df_uniq["location"]) - set(df_pop["location"]) - set(["International"])
     if len(pop_entity_diff) > 0:
         # this is not an error, so don't increment errors variable
         print("\n" + WARNING + " These entities were not found in the population dataset:")
