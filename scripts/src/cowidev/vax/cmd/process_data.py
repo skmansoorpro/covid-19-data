@@ -6,8 +6,8 @@ from pandas.core.base import DataError
 from pandas.errors import ParserError
 from cowidev.utils import paths
 from cowidev.utils.log import get_logger, print_eoe
-from cowidev.vax.utils.gsheets import VaccinationGSheet
-from cowidev.vax.process import process_location
+from cowidev.cmd.vax.process.utils import process_location
+from cowidev.cmd.vax.process.utils import VaccinationGSheet
 
 
 logger = get_logger()
@@ -30,7 +30,7 @@ def main_process_data(
     print("-- Processing data... --")
     # Get data from sheets
     logger.info("Getting data from Google Spreadsheet...")
-    gsheet = VaccinationGSheet(google_spreadsheet_vax_id, gsheets_api)
+    gsheet = VaccinationGSheet()
     df_manual_list = gsheet.df_list()
 
     # Get automated-country data
