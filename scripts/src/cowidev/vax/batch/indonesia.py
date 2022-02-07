@@ -1,6 +1,7 @@
 import requests
 
 import pandas as pd
+from tableauscraper import TableauScraper as TS
 
 from cowidev.vax.utils.utils import build_vaccine_timeline
 from cowidev.vax.utils.base import CountryVaxBase
@@ -12,7 +13,6 @@ class Indonesia(CountryVaxBase):
     location = "Indonesia"
     source_url_ref = "https://data.covid19.go.id/public/index.html"
     source_url = "https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json"
-    # source with news, as images :(: https://covid19.go.id/p/berita?page=2&search=
 
     def read(self) -> pd.DataFrame:
         data = requests.get(self.source_url).json()
@@ -62,42 +62,36 @@ class Indonesia(CountryVaxBase):
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.assign(
             people_vaccinated=df["dose_1"],
-            total_vaccinations=df["dose_1"] + df["dose_2"],  # partial estimate (booster data missing)
-            people_fully_vaccinated=df["dose_2"],  # single shot data missing
+            total_vaccinations=df["dose_1"] + df["dose_2"],
+            # single-shot data is missing, but the proportion of
+            # J&J is very small, so it's an acceptable approximation
+            # (see https://github.com/owid/covid-19-data/issues/2323#issuecomment-1031114133)
+            people_fully_vaccinated=df["dose_2"],
         )
-        df.loc[df.date >= "2021-09-11", "people_fully_vaccinated"] = pd.NA  # single shot data missing from 2021-09-11
+        df.loc[df.date >= "2022-01-01", "total_vaccinations"] = pd.NA  # booster data missing
         return df
 
-    def pipe_add_latest_who(self, df: pd.DataFrame) -> pd.DataFrame:
-        who = pd.read_csv(
-            "https://covid19.who.int/who-data/vaccination-data.csv",
-            usecols=[
-                "COUNTRY",
-                "DATA_SOURCE",
-                "DATE_UPDATED",
-                "TOTAL_VACCINATIONS",
-                "PERSONS_FULLY_VACCINATED",
-                "PERSONS_VACCINATED_1PLUS_DOSE",
-            ],
-        )
+    def pipe_add_latest_boosters(self, df: pd.DataFrame) -> pd.DataFrame:
+        ts = TS()
 
-        who = who[(who.COUNTRY == self.location) & (who.DATA_SOURCE == "REPORTING")]
-        if len(who) == 0:
-            return df
+        ts.loads("https://public.tableau.com/views/DashboardVaksinKemkes/TotalVaksinasiDosis1")
+        first_doses = ts.getWorkbook().worksheets[0].data["SUM(Divaksin 1)-alias"].values[0]
 
-        last_who_report_date = who.DATE_UPDATED.values[0]
-        df = df[-((df.date > last_who_report_date) & (df.total_vaccinations < who.TOTAL_VACCINATIONS.values[0]))]
-        df.loc[df.date == last_who_report_date, "total_vaccinations"] = who.TOTAL_VACCINATIONS.values[0]
-        df.loc[df.date == last_who_report_date, "people_vaccinated"] = who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]
-        df.loc[df.date == last_who_report_date, "people_fully_vaccinated"] = who.PERSONS_FULLY_VACCINATED.values[0]
-        df.loc[df.date == last_who_report_date, "source_url"] = "https://covid19.who.int/"
+        ts.loads("https://public.tableau.com/views/DashboardVaksinKemkes/TotalVaksinasiDosis2")
+        second_doses = ts.getWorkbook().worksheets[0].data["SUM(Divaksin 2)-alias"].values[0]
+
+        ts.loads("https://public.tableau.com/views/DashboardVaksinKemkes/TotalVaksinasiDosis3")
+        boosters = ts.getWorkbook().worksheets[0].data["SUM(Divaksin 3)-alias"].values[0]
+
+        df.loc[df.date == df.date.max(), "total_boosters"] = boosters
+        df.loc[df.date == df.date.max(), "total_vaccinations"] = first_doses + second_doses + boosters
         return df
 
     def pipeline(self, ds: pd.Series) -> pd.Series:
         return (
             ds.pipe(self.pipe_metadata)
             .pipe(self.pipe_metrics)
-            .pipe(self.pipe_add_latest_who)
+            .pipe(self.pipe_add_latest_boosters)
             .pipe(make_monotonic)
             .pipe(self.pipe_merge_legacy)
             .pipe(self.pipe_vaccine)[
@@ -109,6 +103,7 @@ class Indonesia(CountryVaxBase):
                     "total_vaccinations",
                     "people_vaccinated",
                     "people_fully_vaccinated",
+                    "total_boosters",
                 ]
             ]
         )
