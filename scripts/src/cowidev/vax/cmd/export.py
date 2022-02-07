@@ -1,7 +1,7 @@
 import os
 import webbrowser
 import pyperclip
-from cowidev.vax.cmd.utils import get_logger
+from cowidev.utils.log import get_logger
 from cowidev.megafile.generate import generate_megafile
 from cowidev.utils import paths
 

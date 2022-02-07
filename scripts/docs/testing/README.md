@@ -1,6 +1,7 @@
-# Testing update automation
+### ⚠️ Currently being re-written
+---
 
-_Currently being re-written_
+# Testing update automation
 
 [![Python 3"](https://img.shields.io/badge/python-3.7|3.8|3.9-blue.svg?&logo=python&logoColor=yellow)](https://www.python.org/downloads/release/python-3)
 [![Contribute](https://img.shields.io/badge/-contribute-0055ff)](CONTRIBUTE.md)
@@ -25,7 +26,7 @@ The [testing directory](../../scripts/testing) contains the following files:
 | File name      | Description |
 | ----------- | ----------- |
 | [`automated_sheets/`](../../scripts/testing/automated_sheets)      | Temporary automated imports are placed here.       |
-| [`automations/`](../../scripts/testing/automations)      | Scripts to automate country data imports.       |
+| [`automations/`](../../scripts/testing/automations)      | Deprecated.       |
 | [`input/`](../../scripts/testing/input)      | Input data pipeline configuration.       |
 | [`auto_quick_collect.sh`](../../scripts/testing/auto_quick_collect.sh), [`collect_data.sh`](../../scripts/testing/collect_data.sh)      |  Bash scripts to generate the dataset    |
 | [`attempts.R`](../../scripts/testing/attempts.R),  [`generate_dataset.R`](../../scripts/testing/generate_dataset.R), [`generate_html.R`](../../scripts/testing/generate_html.R), [`replace_audited_metadata.R`](../../scripts/testing/replace_audited_metadata.R), [`run_r_scripts.R`](../../scripts/testing/run_r_scripts.R), [`smoother.R`](../../scripts/testing/smoother.R), [`run_python_scripts.py`](../../scripts/testing/run_python_scripts.py)      | R/Python individual scripts to generate the testing dataset.       |

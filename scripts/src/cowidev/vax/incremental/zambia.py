@@ -20,11 +20,13 @@ class Zambia:
 
     def read(self):
         data = request_json(self.source_url)["features"][0]["attributes"]
+        date = clean_date(datetime.fromtimestamp(data["EditDate"] / 1000))
+
         return pd.Series(
             {
                 "total_vaccinations": data["Vaccine_total"],
                 "people_fully_vaccinated": data["Vaccine_total_last24"],
-                "date": clean_date(datetime.fromtimestamp(data["Date"] / 1000)),
+                "date": date,
             }
         )
 

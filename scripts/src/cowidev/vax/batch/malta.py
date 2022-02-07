@@ -22,6 +22,8 @@ class Malta:
 
     def read(self) -> pd.DataFrame:
         df = pd.read_csv(self.source_url)
+        # Temporal fix
+        df.columns = [col.replace("\ufeff", "") for col in df.columns]
         check_known_columns(
             df,
             [

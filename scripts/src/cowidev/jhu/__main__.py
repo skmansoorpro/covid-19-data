@@ -48,7 +48,8 @@ LARGE_DATA_CORRECTIONS = [
     ("Denmark", "2021-12-21", "deaths"),
     ("Ecuador", "2020-09-07", "deaths"),
     ("Ecuador", "2021-07-20", "deaths"),
-    ("France", "2020-04-05", "cases"),
+    ("France", "2020-04-04", "cases"),
+    ("France", "2020-04-07", "cases"),
     ("France", "2020-11-04", "cases"),
     ("France", "2021-05-20", "cases"),
     ("India", "2021-06-10", "deaths"),
@@ -57,6 +58,8 @@ LARGE_DATA_CORRECTIONS = [
     ("South Africa", "2021-11-23", "cases"),
     ("South Africa", "2022-01-06", "deaths"),
     ("Turkey", "2020-12-10", "cases"),
+    ("United Kingdom", "2022-01-31", "cases"),
+    ("United Kingdom", "2022-02-01", "deaths"),
 ]
 
 

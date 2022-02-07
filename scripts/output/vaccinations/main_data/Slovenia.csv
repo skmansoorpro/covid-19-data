@@ -53,348 +53,356 @@ date,total_vaccinations,people_vaccinated,people_fully_vaccinated,total_boosters
 2021-02-16,126153.0,75396.0,50785.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
 2021-02-17,131731.0,80344.0,51417.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
 2021-02-18,140832.0,88676.0,52187.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-19,147615.0,94851.0,52795.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-20,150158.0,97376.0,52813.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-21,150159.0,97376.0,52814.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-22,150638.0,97851.0,52818.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-23,152174.0,99375.0,52830.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-24,159185.0,106196.0,53020.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-25,170177.0,116998.0,53211.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-26,177991.0,124263.0,53760.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-27,178922.0,125183.0,53771.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-02-28,178922.0,125183.0,53771.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-01,180061.0,126322.0,53771.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-02,182251.0,128502.0,53782.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-03,189735.0,135084.0,54685.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-04,201133.0,141819.0,59351.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-05,211511.0,146418.0,65131.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-06,213470.0,147782.0,65727.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-07,213472.0,147784.0,65727.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-08,215279.0,149195.0,66123.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-09,219472.0,152889.0,66623.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-10,229239.0,157682.0,71599.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-11,243439.0,163952.0,79533.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-12,257099.0,172435.0,84714.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-13,265802.0,178878.0,86974.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-14,265803.0,178879.0,86974.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-15,267438.0,180221.0,87267.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-16,268502.0,180500.0,88052.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-17,274668.0,180952.0,93766.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-18,284782.0,182631.0,102204.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-19,292291.0,185613.0,106737.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-20,296538.0,189679.0,106918.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-21,296540.0,189680.0,106919.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-22,297678.0,190809.0,106928.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-23,301995.0,194810.0,107244.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-24,312000.0,202187.0,109876.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-25,326491.0,214116.0,112439.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-26,342638.0,227910.0,114792.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-27,349942.0,234717.0,115289.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-28,351203.0,235975.0,115292.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-29,352340.0,237105.0,115299.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-30,360400.0,244841.0,115623.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-03-31,375167.0,258278.0,116954.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-01,394656.0,275079.0,119644.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-02,406919.0,285218.0,121769.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-03,410050.0,288320.0,121798.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-04,411646.0,289914.0,121800.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-05,411647.0,289915.0,121800.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-06,414486.0,292385.0,122169.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-07,420657.0,298535.0,122190.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-08,436074.0,313294.0,122848.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-09,456339.0,331858.0,124550.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-10,465551.0,340940.0,124681.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-11,467193.0,342569.0,124694.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-12,469056.0,344226.0,124900.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-13,472934.0,347319.0,125687.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-14,484638.0,355160.0,129551.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-15,504194.0,364657.0,139615.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-16,518341.0,373065.0,145356.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-17,524501.0,375572.0,149009.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-18,525787.0,376851.0,149016.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-19,528497.0,379187.0,149390.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-20,535189.0,384409.0,150867.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-21,552076.0,392156.0,160021.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-22,572103.0,400303.0,171942.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-23,589804.0,411195.0,178772.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-24,592754.0,413686.0,179236.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-25,593429.0,414344.0,179256.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-26,593816.0,414723.0,179264.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-27,594282.0,415184.0,179272.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-28,602287.0,418379.0,184088.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-29,621684.0,424403.0,197473.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-04-30,642848.0,430759.0,212359.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-01,650082.0,431632.0,218726.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-02,653535.0,432924.0,220887.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-03,661582.0,438030.0,223833.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-04,671463.0,445214.0,226648.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-05,689541.0,455402.0,234624.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-06,717462.0,471100.0,246918.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-07,738895.0,484697.0,255548.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-08,749178.0,490234.0,260842.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-09,750968.0,491889.0,260979.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-10,753961.0,494221.0,262361.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-11,764043.0,502500.0,264505.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-12,785085.0,519120.0,270382.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-13,813285.0,538661.0,280168.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-14,837356.0,556113.0,288892.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-15,846091.0,563052.0,293243.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-16,849229.0,563235.0,296199.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-17,857268.0,566795.0,301330.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-18,869530.0,577163.0,304976.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-19,892442.0,593108.0,313045.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-20,922389.0,616748.0,320153.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-21,948547.0,631848.0,333014.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-22,959487.0,635334.0,340582.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-23,962561.0,636550.0,342440.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-24,968762.0,637760.0,347793.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-25,978442.0,641504.0,354828.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-26,999851.0,648784.0,369999.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-27,1028731.0,658071.0,390576.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-28,1050289.0,666634.0,404799.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-29,1060759.0,670509.0,411703.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-30,1060762.0,670510.0,411705.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-05-31,1067301.0,673511.0,415796.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-01,1082387.0,678264.0,427683.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-02,1111562.0,694191.0,442266.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-03,1148053.0,712533.0,462257.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-04,1176382.0,723704.0,483313.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-05,1188972.0,730351.0,490231.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-06,1193821.0,734416.0,492962.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-07,1201148.0,737508.0,497410.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-08,1215011.0,745021.0,505247.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-09,1238165.0,754823.0,519368.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-10,1270891.0,771049.0,537163.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-11,1295112.0,778875.0,554601.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-12,1305922.0,783566.0,561298.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-13,1309256.0,786194.0,562008.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-14,1315958.0,789135.0,565947.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-15,1325639.0,794833.0,570917.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-16,1342082.0,802127.0,581585.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-17,1362389.0,809879.0,595839.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-18,1376296.0,814806.0,605836.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-19,1378620.0,816144.0,607176.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-20,1380118.0,816234.0,608589.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-21,1385371.0,817985.0,612715.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-22,1395759.0,821070.0,620542.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-23,1415680.0,826046.0,636408.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-24,1441404.0,831179.0,658124.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-25,1441464.0,831189.0,658183.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-26,1445495.0,831627.0,661939.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-27,1445509.0,831637.0,661950.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-28,1451707.0,832946.0,667145.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-29,1463409.0,834901.0,677490.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-06-30,1477628.0,838659.0,688827.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-01,1497508.0,842364.0,705731.0,1.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-02,1511888.0,846250.0,717046.0,3.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-03,1513434.0,846673.0,718252.0,3.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-04,1513452.0,846673.0,718270.0,3.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-05,1520015.0,848124.0,723804.0,3.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-06,1528332.0,850371.0,730518.0,4.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-07,1540831.0,854868.0,739729.0,6.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-08,1556704.0,860592.0,751098.0,9.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-09,1567904.0,864903.0,759286.0,32.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-10,1568996.0,865629.0,759908.0,33.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-11,1569226.0,865846.0,760046.0,34.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-12,1575507.0,868857.0,764126.0,35.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-13,1582185.0,871935.0,768488.0,36.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-14,1593140.0,878192.0,775009.0,36.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-15,1607059.0,885737.0,783971.0,40.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-16,1617216.0,892066.0,789952.0,41.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-17,1618871.0,893447.0,791034.0,41.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-18,1618902.0,893475.0,791043.0,41.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-19,1623960.0,896643.0,794039.0,43.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-20,1629480.0,900113.0,797412.0,44.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-21,1639131.0,906283.0,802910.0,47.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-22,1650054.0,912720.0,809231.0,49.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-23,1659228.0,918592.0,814512.0,49.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-24,1660718.0,919705.0,815267.0,49.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-25,1660738.0,919713.0,815284.0,49.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-26,1665760.0,923049.0,817914.0,50.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-27,1672171.0,927910.0,820811.0,50.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-28,1680960.0,933129.0,825947.0,62.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-29,1691439.0,938780.0,832188.0,65.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-30,1699377.0,942889.0,837469.0,70.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-07-31,1701399.0,944331.0,838693.0,71.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-01,1701408.0,944339.0,838702.0,71.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-02,1706169.0,946973.0,841679.0,73.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-03,1711781.0,950700.0,844395.0,74.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-04,1719858.0,954835.0,849394.0,77.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-05,1729644.0,959654.0,855685.0,82.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-06,1737501.0,962853.0,861083.0,85.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-07,1738436.0,963512.0,861568.0,87.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-08,1738940.0,963898.0,861728.0,87.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-09,1742856.0,966096.0,864043.0,87.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-10,1747742.0,968770.0,866898.0,87.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-11,1754447.0,972167.0,871129.0,93.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-12,1763772.0,976073.0,877399.0,96.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-13,1771458.0,979326.0,882775.0,98.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-14,1772151.0,979797.0,883229.0,98.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-15,1772228.0,979864.0,883268.0,98.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-16,1777587.0,982702.0,886476.0,110.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-17,1784008.0,986216.0,890241.0,111.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-18,1791636.0,990242.0,894686.0,117.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-19,1800678.0,994530.0,900415.0,124.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-20,1807913.0,998246.0,905072.0,130.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-21,1808817.0,998803.0,905633.0,130.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-22,1808819.0,998805.0,905635.0,130.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-23,1813501.0,1001300.0,908321.0,139.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-24,1819673.0,1004940.0,911970.0,146.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-25,1826800.0,1008786.0,915932.0,162.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-26,1835976.0,1013603.0,921223.0,174.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-27,1843078.0,1017184.0,925493.0,193.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-28,1844090.0,1017923.0,926065.0,194.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-29,1844146.0,1017971.0,926090.0,194.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-30,1848544.0,1020538.0,928459.0,208.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-08-31,1853353.0,1023569.0,931098.0,217.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-01,1858687.0,1026469.0,934081.0,243.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-02,1866571.0,1030343.0,938934.0,270.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-03,1873005.0,1033834.0,942582.0,301.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-04,1873600.0,1034277.0,942893.0,306.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-05,1873600.0,1034277.0,942893.0,306.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-06,1878168.0,1036902.0,945318.0,346.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-07,1884943.0,1041460.0,948784.0,571.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-08,1893330.0,1046368.0,952980.0,1053.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-09,1904721.0,1052758.0,958423.0,2089.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-10,1913575.0,1057959.0,963012.0,2741.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-11,1915225.0,1059141.0,963753.0,2974.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-12,1915226.0,1059142.0,963754.0,2974.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-13,1924251.0,1065984.0,967342.0,3404.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-14,1939766.0,1078483.0,972944.0,4373.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-15,1956698.0,1090818.0,979262.0,5548.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-16,1978216.0,1105702.0,988489.0,7599.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-17,1995262.0,1117304.0,995654.0,9569.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-18,2002856.0,1123647.0,997962.0,10176.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-19,2006213.0,1126347.0,998715.0,10491.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-20,2013507.0,1131301.0,1001320.0,11349.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-21,2021457.0,1136165.0,1003907.0,12716.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-22,2029764.0,1140469.0,1006871.0,14152.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-23,2041440.0,1146638.0,1012513.0,16045.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-24,2051613.0,1152471.0,1018043.0,17480.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-25,2053389.0,1153690.0,1019030.0,17768.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-26,2053974.0,1154198.0,1019481.0,17806.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-27,2059146.0,1156979.0,1022326.0,18350.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-28,2066329.0,1160829.0,1026298.0,19359.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-29,2073616.0,1163191.0,1029651.0,21170.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-09-30,2082102.0,1165727.0,1034518.0,22339.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-01,2088869.0,1167409.0,1038612.0,23373.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-02,2089914.0,1167780.0,1039131.0,23556.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-03,2089959.0,1167805.0,1039151.0,23556.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-04,2094887.0,1168810.0,1042796.0,23912.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-05,2102410.0,1170065.0,1048687.0,24350.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-06,2110706.0,1171321.0,1055077.0,25070.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-07,2123531.0,1172869.0,1065156.0,26346.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-08,2133489.0,1173895.0,1073357.0,27160.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-09,2135207.0,1174142.0,1074784.0,27253.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-10,2135461.0,1174180.0,1074992.0,27261.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-11,2141007.0,1174885.0,1079519.0,27625.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-12,2147183.0,1175953.0,1083969.0,28334.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-13,2152869.0,1176798.0,1087905.0,29276.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-14,2161067.0,1177841.0,1093656.0,30740.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-15,2166974.0,1178732.0,1097528.0,31921.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-16,2167427.0,1178880.0,1097809.0,31950.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-17,2167466.0,1178890.0,1097838.0,31950.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-18,2170623.0,1179557.0,1099756.0,32542.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-19,2174296.0,1180283.0,1101888.0,33378.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-20,2178414.0,1181101.0,1104049.0,34561.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-21,2185113.0,1182256.0,1107424.0,36789.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-22,2190506.0,1183142.0,1109627.0,39152.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-23,2190925.0,1183289.0,1109836.0,39221.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-24,2190925.0,1183289.0,1109836.0,39221.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-25,2193663.0,1184116.0,1110890.0,40094.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-26,2197565.0,1185181.0,1112432.0,41418.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-27,2201465.0,1186071.0,1113594.0,43310.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-28,2208867.0,1187710.0,1115722.0,47005.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-29,2213068.0,1188716.0,1116886.0,49061.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-30,2213600.0,1188928.0,1117019.0,49252.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-10-31,2213604.0,1188928.0,1117019.0,49256.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-01,2213604.0,1188928.0,1117019.0,49256.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-02,2219017.0,1190351.0,1118421.0,51879.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-03,2228500.0,1191544.0,1119545.0,59084.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-04,2245349.0,1193546.0,1121243.0,72297.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-05,2260592.0,1195320.0,1122546.0,84543.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-06,2265774.0,1196055.0,1122828.0,88721.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-07,2267807.0,1196303.0,1122957.0,90384.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-08,2279873.0,1198121.0,1123890.0,99768.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-09,2294370.0,1200223.0,1124863.0,111291.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-10,2312961.0,1202244.0,1126108.0,126672.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-11,2336185.0,1204965.0,1127831.0,145540.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-12,2357809.0,1207481.0,1129387.0,163199.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-13,2364422.0,1208615.0,1129772.0,168320.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-14,2365792.0,1208850.0,1129844.0,169390.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-15,2377239.0,1210878.0,1130738.0,177966.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-16,2394303.0,1213421.0,1131837.0,191437.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-17,2411048.0,1215758.0,1133201.0,204550.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-18,2431146.0,1218463.0,1135157.0,220078.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-19,2446983.0,1220707.0,1136793.0,232134.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-20,2452329.0,1221670.0,1137190.0,236154.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-21,2453560.0,1221891.0,1137280.0,237082.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-22,2461041.0,1223109.0,1137754.0,242928.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-23,2471153.0,1224697.0,1139074.0,250206.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-24,2484697.0,1226173.0,1140476.0,260959.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-25,2500310.0,1227739.0,1142605.0,272948.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-26,2513315.0,1229146.0,1144620.0,282597.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-27,2517531.0,1229756.0,1145205.0,285648.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-28,2518032.0,1229831.0,1145284.0,286002.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-29,2525358.0,1230752.0,1146886.0,290866.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-11-30,2534316.0,1231899.0,1148603.0,297009.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-01,2545304.0,1232820.0,1150542.0,305189.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-02,2557722.0,1233890.0,1153382.0,313760.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-03,2568237.0,1234888.0,1156039.0,320679.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-04,2570409.0,1235140.0,1156564.0,322088.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-05,2570824.0,1235217.0,1156707.0,322286.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-06,2577066.0,1235840.0,1158600.0,326066.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-07,2584308.0,1236525.0,1160598.0,330685.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-08,2593027.0,1237228.0,1162896.0,336463.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-09,2602791.0,1237992.0,1165758.0,342668.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-10,2611479.0,1238571.0,1168576.0,348026.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-11,2613082.0,1238710.0,1169107.0,348972.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-12,2613314.0,1238731.0,1169191.0,349103.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-13,2618073.0,1239171.0,1170506.0,352161.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-14,2624410.0,1239691.0,1171874.0,356678.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-15,2633556.0,1240386.0,1173583.0,363502.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-16,2643689.0,1241181.0,1175514.0,370980.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-17,2652224.0,1241843.0,1177302.0,377151.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-18,2653919.0,1242022.0,1177616.0,378379.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-19,2661804.0,1242547.0,1178184.0,385241.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-20,2677679.0,1243687.0,1179804.0,398523.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-21,2694353.0,1244925.0,1181491.0,412445.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-22,2712610.0,1246337.0,1183192.0,427763.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-23,2731630.0,1247960.0,1185193.0,443345.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-24,2734992.0,1248235.0,1185749.0,445931.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-25,2734992.0,1248235.0,1185749.0,445931.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-26,2735241.0,1248263.0,1185783.0,446121.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-27,2741376.0,1248726.0,1186602.0,451050.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-28,2748919.0,1249331.0,1187741.0,456931.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-29,2755004.0,1249770.0,1188588.0,461808.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-30,2760641.0,1250373.0,1189384.0,466098.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2021-12-31,2761884.0,1250476.0,1189573.0,467074.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-01,2761885.0,1250476.0,1189573.0,467075.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-02,2762012.0,1250487.0,1189590.0,467174.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-03,2767391.0,1250927.0,1190448.0,471355.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-04,2774788.0,1251500.0,1191310.0,477381.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-05,2785378.0,1252213.0,1192466.0,486197.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-06,2797633.0,1253130.0,1193810.0,496306.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-07,2808462.0,1253742.0,1195055.0,505358.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-08,2809879.0,1253853.0,1195257.0,506479.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-09,2810227.0,1253873.0,1195306.0,506761.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-10,2816503.0,1254254.0,1196294.0,511733.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-11,2823581.0,1254788.0,1197438.0,517206.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-12,2830980.0,1255275.0,1198575.0,523043.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-13,2847218.0,1256274.0,1200758.0,536211.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-14,2863134.0,1257130.0,1202525.0,549613.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-15,2872731.0,1257703.0,1203311.0,557905.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-16,2872919.0,1257717.0,1203340.0,558052.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-17,2875489.0,1257942.0,1203730.0,560041.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-18,2879188.0,1258296.0,1204405.0,562772.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-19,2883438.0,1258642.0,1205102.0,566030.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-20,2888190.0,1259059.0,1205962.0,569560.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-21,2893229.0,1259433.0,1206601.0,573652.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-22,2893837.0,1259486.0,1206684.0,574136.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-23,2893934.0,1259495.0,1206695.0,574214.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-24,2896065.0,1259647.0,1207033.0,575882.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-25,2898829.0,1259906.0,1207543.0,577918.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-26,2902583.0,1260187.0,1208225.0,580752.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-27,2907037.0,1260488.0,1208984.0,584201.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-28,2911537.0,1260758.0,1209834.0,587645.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
-2022-01-29,2911537.0,,,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-19,147616.0,94852.0,52795.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-20,150159.0,97377.0,52813.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-21,150160.0,97377.0,52814.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-22,150639.0,97852.0,52818.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-23,152175.0,99376.0,52830.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-24,159186.0,106197.0,53020.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-25,170178.0,116999.0,53211.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-26,177992.0,124264.0,53760.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-27,178923.0,125184.0,53771.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-02-28,178923.0,125184.0,53771.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-01,180062.0,126323.0,53771.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-02,182252.0,128503.0,53782.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-03,189736.0,135085.0,54685.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-04,201134.0,141820.0,59351.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-05,211512.0,146419.0,65131.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-06,213471.0,147783.0,65727.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-07,213473.0,147785.0,65727.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-08,215280.0,149196.0,66123.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-09,219473.0,152890.0,66623.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-10,229241.0,157683.0,71600.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-11,243441.0,163953.0,79534.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-12,257102.0,172436.0,84716.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-13,265806.0,178879.0,86977.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-14,265807.0,178880.0,86977.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-15,267442.0,180222.0,87270.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-16,268506.0,180501.0,88055.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-17,274672.0,180953.0,93769.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-18,284786.0,182632.0,102207.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-19,292295.0,185614.0,106740.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-20,296542.0,189680.0,106921.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-21,296544.0,189681.0,106922.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-22,297682.0,190810.0,106931.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-23,301999.0,194811.0,107247.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-24,312004.0,202188.0,109879.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-25,326498.0,214120.0,112442.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-26,342645.0,227914.0,114795.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-27,349949.0,234721.0,115292.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-28,351210.0,235979.0,115295.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-29,352347.0,237109.0,115302.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-30,360407.0,244845.0,115626.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-03-31,375174.0,258282.0,116957.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-01,394664.0,275084.0,119647.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-02,406928.0,285224.0,121772.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-03,410059.0,288326.0,121801.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-04,411655.0,289920.0,121803.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-05,411656.0,289921.0,121803.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-06,414495.0,292391.0,122172.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-07,420666.0,298541.0,122193.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-08,436083.0,313300.0,122851.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-09,456348.0,331864.0,124552.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-10,465560.0,340946.0,124683.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-11,467202.0,342575.0,124696.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-12,469066.0,344233.0,124902.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-13,472944.0,347326.0,125689.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-14,484648.0,355167.0,129552.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-15,504204.0,364664.0,139616.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-16,518351.0,373072.0,145356.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-17,524511.0,375579.0,149009.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-18,525797.0,376858.0,149016.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-19,528507.0,379194.0,149390.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-20,535199.0,384416.0,150865.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-21,552086.0,392163.0,160018.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-22,572113.0,400310.0,171940.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-23,589814.0,411201.0,178768.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-24,592764.0,413692.0,179232.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-25,593439.0,414350.0,179252.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-26,593826.0,414729.0,179260.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-27,594292.0,415190.0,179268.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-28,602297.0,418385.0,184083.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-29,621694.0,424409.0,197467.0,,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-04-30,642858.0,430765.0,212353.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-01,650092.0,431638.0,218720.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-02,653545.0,432930.0,220881.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-03,661592.0,438036.0,223827.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-04,671474.0,445220.0,226641.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-05,689552.0,455408.0,234615.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-06,717474.0,471107.0,246909.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-07,738907.0,484704.0,255537.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-08,749190.0,490241.0,260829.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-09,750980.0,491896.0,260966.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-10,753974.0,494228.0,262349.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-11,764057.0,502508.0,264493.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-12,785099.0,519128.0,270368.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-13,813301.0,538671.0,280150.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-14,837372.0,556123.0,288874.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-15,846107.0,563062.0,293223.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-16,849245.0,563245.0,296179.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-17,857284.0,566805.0,301309.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-18,869546.0,577173.0,304954.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-19,892458.0,593118.0,313022.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-20,922404.0,616757.0,320126.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-21,948564.0,631857.0,332984.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-22,959504.0,635342.0,340551.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-23,962578.0,636558.0,342409.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-24,968778.0,637767.0,347761.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-25,978458.0,641511.0,354794.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-26,999867.0,648791.0,369965.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-27,1028748.0,658078.0,390541.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-28,1050307.0,666641.0,404763.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-29,1060777.0,670516.0,411666.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-30,1060780.0,670517.0,411668.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-05-31,1067319.0,673518.0,415759.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-01,1082405.0,678271.0,427646.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-02,1111579.0,694197.0,442227.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-03,1148071.0,712537.0,462217.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-04,1176400.0,723708.0,483273.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-05,1188990.0,730355.0,490191.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-06,1193840.0,734421.0,492923.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-07,1201167.0,737513.0,497369.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-08,1215030.0,745026.0,505205.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-09,1238185.0,754829.0,519324.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-10,1270912.0,771056.0,537117.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-11,1295135.0,778883.0,554554.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-12,1305945.0,783574.0,561251.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-13,1309279.0,786202.0,561960.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-14,1315981.0,789143.0,565899.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-15,1325663.0,794842.0,570869.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-16,1342106.0,802136.0,581536.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-17,1362412.0,809888.0,595785.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-18,1376320.0,814815.0,605783.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-19,1378644.0,816153.0,607123.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-20,1380142.0,816243.0,608536.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-21,1385395.0,817994.0,612662.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-22,1395783.0,821079.0,620487.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-23,1415705.0,826056.0,636353.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-24,1441430.0,831189.0,658068.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-25,1441490.0,831199.0,658127.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-26,1445521.0,831637.0,661883.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-27,1445535.0,831647.0,661894.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-28,1451733.0,832956.0,667088.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-29,1463435.0,834910.0,677432.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-06-30,1477654.0,838668.0,688769.0,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-01,1497534.0,842373.0,705671.0,1.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-02,1511914.0,846258.0,716986.0,3.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-03,1513460.0,846681.0,718192.0,3.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-04,1513478.0,846681.0,718210.0,3.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-05,1520041.0,848132.0,723743.0,3.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-06,1528359.0,850379.0,730458.0,4.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-07,1540858.0,854876.0,739667.0,6.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-08,1556731.0,860600.0,751034.0,9.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-09,1567931.0,864911.0,759219.0,32.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-10,1569023.0,865637.0,759841.0,33.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-11,1569253.0,865854.0,759979.0,34.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-12,1575534.0,868865.0,764058.0,35.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-13,1582213.0,871943.0,768421.0,36.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-14,1593169.0,878200.0,774941.0,36.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-15,1607088.0,885745.0,783902.0,40.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-16,1617245.0,892074.0,789879.0,41.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-17,1618900.0,893455.0,790961.0,41.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-18,1618931.0,893483.0,790970.0,41.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-19,1623989.0,896651.0,793966.0,43.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-20,1629509.0,900121.0,797337.0,44.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-21,1639161.0,906292.0,802835.0,47.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-22,1650084.0,912729.0,809155.0,49.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-23,1659258.0,918601.0,814432.0,49.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-24,1660747.0,919714.0,815183.0,49.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-25,1660767.0,919722.0,815200.0,49.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-26,1665789.0,923058.0,817830.0,50.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-27,1672200.0,927919.0,820726.0,50.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-28,1680990.0,933138.0,825860.0,62.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-29,1691471.0,938790.0,832101.0,65.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-30,1699409.0,942899.0,837380.0,70.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-07-31,1701431.0,944341.0,838602.0,71.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-01,1701440.0,944349.0,838611.0,71.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-02,1706201.0,946983.0,841587.0,73.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-03,1711813.0,950710.0,844302.0,74.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-04,1719890.0,954845.0,849301.0,77.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-05,1729676.0,959664.0,855591.0,82.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-06,1737533.0,962863.0,860987.0,85.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-07,1738468.0,963522.0,861470.0,87.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-08,1738972.0,963908.0,861629.0,87.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-09,1742887.0,966105.0,863940.0,87.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-10,1747774.0,968780.0,866796.0,87.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-11,1754479.0,972177.0,871027.0,93.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-12,1763804.0,976083.0,877297.0,96.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-13,1771490.0,979336.0,882670.0,98.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-14,1772183.0,979807.0,883123.0,98.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-15,1772260.0,979874.0,883162.0,98.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-16,1777620.0,982714.0,886371.0,110.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-17,1784041.0,986228.0,890136.0,111.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-18,1791670.0,990254.0,894582.0,117.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-19,1800712.0,994542.0,900311.0,124.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-20,1807947.0,998258.0,904968.0,130.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-21,1808851.0,998815.0,905529.0,130.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-22,1808853.0,998817.0,905531.0,130.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-23,1813535.0,1001312.0,908217.0,139.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-24,1819708.0,1004953.0,911866.0,146.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-25,1826835.0,1008799.0,915828.0,162.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-26,1836011.0,1013616.0,921119.0,174.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-27,1843113.0,1017197.0,925388.0,193.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-28,1844125.0,1017936.0,925960.0,194.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-29,1844181.0,1017984.0,925985.0,194.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-30,1848579.0,1020551.0,928353.0,208.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-08-31,1853388.0,1023582.0,930991.0,217.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-01,1858722.0,1026482.0,933974.0,243.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-02,1866606.0,1030356.0,938825.0,270.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-03,1873040.0,1033847.0,942471.0,301.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-04,1873635.0,1034290.0,942781.0,306.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-05,1873635.0,1034290.0,942781.0,306.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-06,1878205.0,1036917.0,945205.0,346.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-07,1884980.0,1041475.0,948670.0,571.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-08,1893368.0,1046383.0,952866.0,1053.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-09,1904760.0,1052773.0,958309.0,2090.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-10,1913616.0,1057975.0,962899.0,2743.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-11,1915266.0,1059157.0,963640.0,2976.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-12,1915267.0,1059158.0,963641.0,2976.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-13,1924292.0,1066000.0,967226.0,3406.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-14,1939807.0,1078499.0,972827.0,4375.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-15,1956740.0,1090835.0,979145.0,5550.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-16,1978269.0,1105719.0,988372.0,7612.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-17,1995315.0,1117321.0,995535.0,9582.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-18,2002910.0,1123664.0,997842.0,10190.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-19,2006267.0,1126364.0,998595.0,10505.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-20,2013561.0,1131318.0,1001197.0,11363.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-21,2021513.0,1136182.0,1003783.0,12732.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-22,2029821.0,1140487.0,1006748.0,14168.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-23,2041499.0,1146658.0,1012390.0,16061.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-24,2051673.0,1152492.0,1017921.0,17496.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-25,2053449.0,1153711.0,1018908.0,17784.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-26,2054034.0,1154219.0,1019359.0,17822.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-27,2059210.0,1157002.0,1022208.0,18366.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-28,2066395.0,1160853.0,1026180.0,19376.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-29,2073684.0,1163217.0,1029535.0,21187.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-09-30,2082172.0,1165754.0,1034401.0,22357.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-01,2088939.0,1167436.0,1038495.0,23391.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-02,2089984.0,1167807.0,1039014.0,23574.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-03,2090029.0,1167832.0,1039034.0,23574.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-04,2094957.0,1168837.0,1042679.0,23930.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-05,2102481.0,1170093.0,1048570.0,24368.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-06,2110777.0,1171349.0,1054960.0,25088.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-07,2123602.0,1172897.0,1065038.0,26364.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-08,2133561.0,1173922.0,1073237.0,27179.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-09,2135279.0,1174169.0,1074664.0,27272.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-10,2135533.0,1174207.0,1074872.0,27280.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-11,2141080.0,1174912.0,1079398.0,27645.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-12,2147256.0,1175980.0,1083848.0,28354.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-13,2152942.0,1176825.0,1087784.0,29296.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-14,2161140.0,1177868.0,1093535.0,30760.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-15,2167048.0,1178759.0,1097406.0,31942.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-16,2167501.0,1178907.0,1097687.0,31971.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-17,2167540.0,1178917.0,1097716.0,31971.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-18,2170697.0,1179584.0,1099634.0,32563.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-19,2174371.0,1180310.0,1101767.0,33399.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-20,2178489.0,1181128.0,1103924.0,34582.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-21,2185194.0,1182283.0,1107301.0,36814.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-22,2190587.0,1183169.0,1109504.0,39177.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-23,2191006.0,1183316.0,1109713.0,39246.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-24,2191006.0,1183316.0,1109713.0,39246.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-25,2193745.0,1184144.0,1110767.0,40119.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-26,2197648.0,1185210.0,1112309.0,41444.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-27,2201551.0,1186100.0,1113472.0,43338.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-28,2208955.0,1187740.0,1115601.0,47033.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-29,2213157.0,1188747.0,1116765.0,49089.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-30,2213689.0,1188959.0,1116898.0,49280.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-10-31,2213693.0,1188959.0,1116898.0,49284.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-01,2213693.0,1188959.0,1116898.0,49284.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-02,2219108.0,1190384.0,1118299.0,51907.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-03,2228595.0,1191577.0,1119424.0,59115.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-04,2245449.0,1193579.0,1121122.0,72333.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-05,2260693.0,1195353.0,1122425.0,84580.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-06,2265875.0,1196088.0,1122706.0,88759.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-07,2267908.0,1196336.0,1122835.0,90422.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-08,2279977.0,1198154.0,1123768.0,99809.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-09,2294474.0,1200256.0,1124741.0,111332.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-10,2313066.0,1202276.0,1125986.0,126714.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-11,2336292.0,1204997.0,1127708.0,145585.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-12,2357918.0,1207513.0,1129264.0,163246.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-13,2364532.0,1208647.0,1129649.0,168368.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-14,2365902.0,1208882.0,1129721.0,169438.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-15,2377349.0,1210910.0,1130615.0,178014.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-16,2394421.0,1213453.0,1131714.0,191493.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-17,2411167.0,1215790.0,1133078.0,204607.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-18,2431265.0,1218495.0,1135034.0,220135.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-19,2447107.0,1220740.0,1136670.0,232195.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-20,2452453.0,1221703.0,1137067.0,236215.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-21,2453683.0,1221924.0,1137157.0,237142.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-22,2461165.0,1223142.0,1137632.0,242988.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-23,2471278.0,1224730.0,1138952.0,250267.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-24,2484826.0,1226207.0,1140354.0,261023.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-25,2500440.0,1227773.0,1142483.0,273013.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-26,2513448.0,1229180.0,1144498.0,282665.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-27,2517664.0,1229790.0,1145083.0,285716.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-28,2518165.0,1229865.0,1145162.0,286070.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-29,2525491.0,1230786.0,1146764.0,290934.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-11-30,2534452.0,1231933.0,1148483.0,297078.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-01,2545440.0,1232854.0,1150422.0,305258.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-02,2557858.0,1233924.0,1153262.0,313829.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-03,2568374.0,1234922.0,1155919.0,320749.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-04,2570546.0,1235174.0,1156444.0,322158.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-05,2570962.0,1235251.0,1156588.0,322356.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-06,2577204.0,1235874.0,1158481.0,326136.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-07,2584448.0,1236559.0,1160479.0,330757.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-08,2593168.0,1237262.0,1162777.0,336536.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-09,2602933.0,1238025.0,1165639.0,342743.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-10,2611624.0,1238604.0,1168457.0,348104.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-11,2613229.0,1238744.0,1168989.0,349050.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-12,2613461.0,1238765.0,1169073.0,349181.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-13,2618221.0,1239205.0,1170389.0,352238.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-14,2624559.0,1239725.0,1171757.0,356756.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-15,2633706.0,1240420.0,1173466.0,363581.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-16,2643841.0,1241215.0,1175397.0,371061.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-17,2652378.0,1241877.0,1177185.0,377234.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-18,2654073.0,1242056.0,1177499.0,378462.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-19,2661958.0,1242581.0,1178067.0,385324.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-20,2677837.0,1243721.0,1179687.0,398607.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-21,2694513.0,1244959.0,1181374.0,412531.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-22,2712770.0,1246371.0,1183075.0,427849.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-23,2731790.0,1247993.0,1185076.0,443431.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-24,2735152.0,1248268.0,1185632.0,446017.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-25,2735152.0,1248268.0,1185632.0,446017.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-26,2735401.0,1248296.0,1185666.0,446207.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-27,2741536.0,1248759.0,1186485.0,451136.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-28,2749079.0,1249364.0,1187624.0,457017.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-29,2755165.0,1249804.0,1188471.0,461894.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-30,2760807.0,1250412.0,1189267.0,466184.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2021-12-31,2762050.0,1250515.0,1189456.0,467160.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-01,2762051.0,1250515.0,1189456.0,467161.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-02,2762178.0,1250526.0,1189473.0,467260.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-03,2767561.0,1250970.0,1190331.0,471441.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-04,2774962.0,1251545.0,1191193.0,477469.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-05,2785559.0,1252263.0,1192349.0,486287.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-06,2797822.0,1253186.0,1193694.0,496397.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-07,2808655.0,1253800.0,1194939.0,505450.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-08,2810072.0,1253911.0,1195141.0,506570.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-09,2810420.0,1253931.0,1195190.0,506852.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-10,2816698.0,1254313.0,1196178.0,511825.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-11,2823785.0,1254852.0,1197322.0,517302.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-12,2831189.0,1255340.0,1198460.0,523142.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-13,2847439.0,1256343.0,1200644.0,536317.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-14,2863360.0,1257200.0,1202409.0,549722.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-15,2872959.0,1257774.0,1203195.0,558015.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-16,2873147.0,1257788.0,1203224.0,558162.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-17,2875720.0,1258013.0,1203614.0,560154.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-18,2879422.0,1258369.0,1204289.0,562887.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-19,2883674.0,1258716.0,1204986.0,566146.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-20,2888449.0,1259140.0,1205848.0,569691.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-21,2893496.0,1259516.0,1206490.0,573787.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-22,2894106.0,1259570.0,1206573.0,574273.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-23,2894203.0,1259579.0,1206584.0,574351.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-24,2896335.0,1259731.0,1206922.0,576020.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-25,2899105.0,1259991.0,1207432.0,578062.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-26,2902864.0,1260272.0,1208113.0,580903.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-27,2907372.0,1260583.0,1208883.0,584385.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-28,2911956.0,1260865.0,1209748.0,587887.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-29,2912602.0,1260903.0,1209839.0,588420.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-30,2912730.0,1260910.0,1209867.0,588517.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-01-31,2915325.0,1261031.0,1210263.0,590631.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-02-01,2918740.0,1261195.0,1210863.0,593317.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-02-02,2923226.0,1261425.0,1211651.0,596828.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-02-03,2928483.0,1261664.0,1212485.0,601085.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-02-04,2932906.0,1261902.0,1213269.0,604555.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-02-05,2933790.0,1261946.0,1213414.0,605270.0,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats
+2022-02-06,2933790.0,,,,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",Slovenia,https://covid-19.sledilnik.org/sl/stats

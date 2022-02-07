@@ -3,7 +3,7 @@ import pandas as pd
 from cowidev.grapher.files import Grapheriser, Exploriser
 
 
-NUM_SEQUENCES_TOTAL_THRESHOLD = 30
+NUM_SEQUENCES_TOTAL_THRESHOLD = 100
 
 
 def filter_by_num_sequences(df: pd.DataFrame) -> pd.DataFrame:

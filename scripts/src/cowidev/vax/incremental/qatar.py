@@ -23,6 +23,7 @@ def connect_parse_data(source: str) -> pd.Series:
         time.sleep(5)
 
         total_vaccinations = clean_count(driver.find_element_by_id("counter1").text)
+        total_boosters = clean_count(driver.find_element_by_id("counter4").text)
         # people_vaccinated_share = driver.find_element_by_id("counter4").text
         # assert "One dose" in people_vaccinated_share
         # people_fully_vaccinated_share = driver.find_element_by_id("counter4a").text
@@ -39,6 +40,7 @@ def connect_parse_data(source: str) -> pd.Series:
 
     data = {
         "total_vaccinations": total_vaccinations,
+        "total_boosters": total_boosters,
         # "people_vaccinated": people_vaccinated,
         # "people_fully_vaccinated": people_fully_vaccinated,
         "date": date,
@@ -70,6 +72,7 @@ def main():
         total_vaccinations=data["total_vaccinations"],
         # people_vaccinated=data["people_vaccinated"],
         # people_fully_vaccinated=data["people_fully_vaccinated"],
+        total_boosters=data["total_boosters"],
         date=data["date"],
         source_url=data["source_url"],
         vaccine=data["vaccine"],

@@ -2,7 +2,8 @@ import argparse
 import os
 from difflib import SequenceMatcher
 
-from cowidev.vax.cmd.utils import normalize_country_name, get_logger
+from cowidev.vax.cmd.utils import normalize_country_name
+from cowidev.utils.log import get_logger
 
 
 CHOICES = ["get", "process", "generate", "export", "propose"]
@@ -51,9 +52,10 @@ def _parse_args():
         default="all",
         type=lambda x: [normalize_country_name(ss) for ss in x.split(",")],
         help=(
-            "Run for a specific country. For a list of countries use commas to separate them (only in mode get-data)"
-            "E.g.: peru, norway. \nSpecial keywords: 'all' to run all countries, 'incremental' to run incremental"
-            "updates, 'batch' to run batch updates, 'who' for WHO-sourced countries, 'spc' for SPC-sourced countries. Defaults to all countries."
+            "Run for a specific country. For a list of countries use commas to separate them (only in mode"
+            " get-data)E.g.: peru, norway. \nSpecial keywords: 'all' to run all countries, 'incremental' to run"
+            " incrementalupdates, 'batch' to run batch updates, 'who' for WHO-sourced countries, 'spc' for SPC-sourced"
+            " countries. Defaults to all countries."
         ),
     )
     parser.add_argument(
@@ -82,9 +84,7 @@ def _parse_args():
         default=(
             os.environ.get(
                 "OWID_COVID_VAX_CONFIG_FILE",
-                os.path.join(
-                    os.path.expanduser("~"), ".config", "cowid", "config.yaml"
-                ),
+                os.path.join(os.path.expanduser("~"), ".config", "cowid", "config.yaml"),
             )
         ),
         help=(
@@ -95,9 +95,7 @@ def _parse_args():
     parser.add_argument(
         "--credentials",
         default="vax_dataset_config.json",
-        help=(
-            "Path to credentials file (JSON). If a config file is being used, the value ther will be prioritized."
-        ),
+        help="Path to credentials file (JSON). If a config file is being used, the value ther will be prioritized.",
     )
     parser.add_argument(
         "--checkr",

@@ -16,11 +16,11 @@ python3 ../../scripts/megafile.py
 deactivate
 ​
 # Push to git
-git add automated_sheets/*
-git add automations/*
-git add ../../grapher/*
-git add ../../../public/data/*
-git add source_table.html
-git add grapher_annotations.txt
+git add scripts/testing/automated_sheets/*
+git add src/cowidev/testing/*
+git add grapher/*
+git add ../public/data/*
+git add sripts/testing/source_table.html
+git add scripts/testing/grapher_annotations.txt
 git commit -m 'data(testing+xm): update'
 git push origin master

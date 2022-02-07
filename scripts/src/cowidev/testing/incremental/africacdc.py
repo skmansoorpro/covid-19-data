@@ -23,10 +23,14 @@ ACDC_COUNTRIES = {
         "name": "Chad",
     },
     "Cote d'Ivoire": {"name": "Cote d'Ivoire"},  # Automate
-    "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
+    # "Democratic Republic of the Congo": {"name": "Democratic Republic of Congo"},  # Manual
+    "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC  # Change source to Africa CDC
     "Gabon": {"name": "Gabon"},  # Automate
     "Gambia": {"name": "Gambia"},  # Automate
     "Ghana": {"name": "Ghana"},  # Automate
+    "Kenya": {
+        "name": "Kenya",
+    },
     "Madagascar": {"name": "Madagascar"},  # Automate
     "Mauritania": {
         "name": "Mauritania",
@@ -36,13 +40,10 @@ ACDC_COUNTRIES = {
     "South Sudan": {  # Deprecate R script
         "name": "South Sudan",
     },
-    # "Democratic Republic of the Congo": {"name": "Democratic Republic of Congo"},  # Manual
-    "Kenya": {
-        "name": "Kenya",
+    "Uganda": {  # Automate
+        "name": "Uganda",
     },
-    # "Kenya": {  # Deprecate script + "samples tested -> "tests performed"
-    #     "name": "Kenya",
-    # }
+    "Zimbabwe": {"name": "Zimbabwe"},  # Automate
 }
 country_mapping = {country: metadata["name"] for country, metadata in ACDC_COUNTRIES.items()}
 

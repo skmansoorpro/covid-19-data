@@ -1,151 +1,89 @@
-from multiprocessing.sharedctypes import Value
-import re
-import requests
-import tempfile
-import itertools
-from datetime import timedelta
+import datetime
 
-from bs4 import BeautifulSoup
 import pandas as pd
-import PyPDF2
+import tabula
 
-from cowidev.utils.clean import clean_count, clean_date
-from cowidev.utils.clean.dates import localdatenow
-from cowidev.utils.web.scraping import get_soup
+from cowidev.utils.clean import clean_count
+from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.incremental import increment
-
-
-vaccines_mapping = {
-    "Covishield Vaccine": "Oxford/AstraZeneca",
-    "AstraZeneca Vaccine": "Oxford/AstraZeneca",
-    "Sinopharm Vaccine": "Sinopharm/Beijing",
-    "Sputnik V": "Sputnik V",
-    "Pfizer": "Pfizer/BioNTech",
-    "Moderna": "Moderna",
-}
-
-regex_mapping = {
-    "Covishield Vaccine": r"(Covishield Vaccine) 1st Dose ([\d,]+) 2nd Dose ([\d,]+)",
-    "AstraZeneca Vaccine": r"(AstraZeneca Vaccine) 1st Dose ([\d,]+) 2nd Dose ([\d,]+)",
-    "Sinopharm Vaccine": r"(Sinopharm Vaccine) 1st Dose ([\d,]+) 2nd Dose ([\d,]+)",
-    "Sputnik V": r"(Sputnik V) 1st Dose ([\d,]+) 2nd Dose ([\d,]+)",
-    "Pfizer": r"(Pfizer) 1st Dose ([\d,]+) 2nd Dose ([\d,]+) \d+ 3rd dose ([\d,]+)",
-    "Moderna": r"(Moderna) 1st Dose ([\d,]+) 2nd Dose ([\d,]+)",
-}
 
 
 class SriLanka:
     def __init__(self):
-        self.source_url = "https://www.epid.gov.lk/web/index.php?option=com_content&view=article&id=225&lang=en"
         self.location = "Sri Lanka"
 
     def read(self):
-        # Get landing page
-        # soup = get_soup(self.source_url)
-        # Get path to newest pdf
-        # pdf_path = self._parse_last_pdf_link(soup)
-        pdf_path = self._parse_last_pdf_link()
-        # Parse pdf to data
+        date = (datetime.date.today() - datetime.timedelta(days=2)).strftime("%Y-%m_%d")
+        pdf_path = self._build_link_pdf(date)
         data = self.parse_data(pdf_path)
-        # print(data)
+
+        data["date"] = date.replace("_", "-")
+        data["location"] = self.location
+        data["source_url"] = pdf_path
+        data["vaccine"] = "Oxford/AstraZeneca, Sinopharm/Beijing, Sputnik V, Pfizer/BioNTech, Moderna"
+
         return pd.Series(data=data)
 
-    def parse_data(self, pdf_path: str) -> pd.Series:
-        # Get text from pdf
-        text = self._extract_text_from_pdf(pdf_path)
-        # Get vaccine table from text
-        df_vax = self._parse_vaccines_table_as_df(text)
-        people_vaccinated = df_vax.doses_1.sum()
-        people_fully_vaccinated = df_vax.doses_2.sum()
-        total_boosters = df_vax.doses_3.sum()
-        total_vaccinations = people_vaccinated + people_fully_vaccinated + total_boosters
-        vaccine = ", ".join(df_vax.vaccine.map(vaccines_mapping))
-        # Get date
-        regex = r"Situation Report\s+([\d\.]{10})"
-        date = re.search(regex, text).group(1)
-        date = clean_date(date, "%d.%m.%Y")
-        # Build data series
-        return {
-            "total_vaccinations": total_vaccinations,
-            "people_vaccinated": people_vaccinated,
-            "people_fully_vaccinated": people_fully_vaccinated,
-            "total_boosters": total_boosters,
-            "date": date,
-            "source_url": pdf_path,
-            "vaccine": vaccine,
-            "location": self.location,
+    def _build_link_pdf(self, date):
+        return f"http://www.epid.gov.lk/web/images/pdf/corona_vaccination/covid_vaccination_{date}.pdf"
+
+    def parse_data(self, pdf_path):
+
+        dfs = tabula.read_pdf(pdf_path)
+        df = dfs[0]
+
+        # All calculations below assume a fixed shape of the PDF's table, and a specific order for
+        # the columns and vaccines. If the following tests fail, then the table should be checked
+        # for potential changes.
+        assert df.shape == (19, 10)
+        check_known_columns(
+            df,
+            [
+                "දිය",
+                "ේ ාවිෂීල්ඩඩ් Covishield",
+                "ටයිේයාෆාම් Sinopharm",
+                "ටුට්නිව් - V",
+                "Sputnik - V",
+                "Unnamed: 0",
+                "ෆයිසර්Pfizer",
+                "Unnamed: 1",
+                "Unnamed: 2",
+                "ම ොඩර්ර්ො Moderna",
+            ],
+        )
+
+        values = df.iloc[16].values
+        doses = {
+            "first": {
+                "covishield": clean_count(values[1].split(" ")[0]),
+                "sinopharm": clean_count(values[2].split(" ")[0]),
+                "sputnik": clean_count(values[3]),
+                "pfizer": clean_count(values[5]),
+                "moderna": clean_count(values[9].split(" ")[0]),
+            },
+            "second": {
+                "covishield": clean_count(values[1].split(" ")[1]),
+                "sinopharm": clean_count(values[2].split(" ")[1]),
+                "sputnik": clean_count(values[4]),
+                "pfizer": clean_count(values[6]),
+                "moderna": clean_count(values[9].split(" ")[1]),
+            },
+            "third": {"pfizer": clean_count(values[8])},
         }
 
-    def _parse_last_pdf_link_fix(self):
-        dt = localdatenow("Asia/Colombo", as_datetime=True)
-        for i in range(1, 4):
-            link = self._build_link_pdf(dt, mode=0)
-            if self._is_link_valid(link):
-                return link
-            else:
-                link = self._build_link_pdf(dt, mode=1)
-                if self._is_link_valid(link):
-                    return link
-                else:
-                    dt = dt - timedelta(days=i)
-        raise ValueError("No link could be found!")
+        people_vaccinated = sum(doses["first"].values())
+        people_fully_vaccinated = sum(doses["second"].values())
+        total_boosters = sum(doses["third"].values())
+        total_vaccinations = people_vaccinated + people_fully_vaccinated + total_boosters
 
-    def _is_link_valid(self, link):
-        response = requests.get(link)
-        print(link, response.status_code)
-        if response.status_code == 200:
-            return True
-        return False
-
-    def _build_link_pdf(self, date, mode=0):
-        dt_str = date.strftime("%d-%m_10_%y")
-        if mode == 0:
-            return f"https://www.epid.gov.lk/web/images/pdf/Circulars/Corona_virus/sitrep-sl-en-{dt_str}.pdf"
-        elif mode == 1:
-            return f"https://www.epid.gov.lk/web/images/pdf/corona_virus_report/sitrep-sl-en-{dt_str}.pdf"
-        raise ValueError(f"Invalid `mode` value ({mode}). Must be 0 or 1.")
-
-    def _parse_last_pdf_link(self):
-        soup = get_soup(self.source_url)
-        links = soup.find(class_="rt-article").find_all("a")
-        for link in links:
-            if "sitrep-sl-en" in link["href"]:
-                pdf_path = "https://www.epid.gov.lk" + link["href"]
-                break
-        if not pdf_path:
-            raise ValueError("No link to PDF file was found!")
-        return pdf_path
-
-    def _extract_text_from_pdf(self, pdf_path):
-        with tempfile.NamedTemporaryFile() as tf:
-            with open(tf.name, mode="wb") as f:
-                f.write(requests.get(pdf_path).content)
-            with open(tf.name, mode="rb") as f:
-                reader = PyPDF2.PdfFileReader(f)
-                page = reader.getPage(0)
-                text = page.extractText().replace("\n", "")
-        return text
-
-    def _parse_vaccines_table_as_df(self, text):
-        # Extract doses relevant sentence
-        regex = r"COVID-19 Vaccination (.*) District"  # Country(/Region)? Cumulative Cases"
-        vax_info = re.search(regex, text).group(1).strip().replace("No", "")
-        vax_info = re.sub("\s+", " ", vax_info)
-        # Sentence to DataFrame
-        allresults = []
-        for vaccine_regex in regex_mapping.values():
-            results = re.findall(vaccine_regex, vax_info, re.IGNORECASE)
-            allresults.append(results)
-        flat_ls = list(itertools.chain(*allresults))
-        df = pd.DataFrame(flat_ls, columns=["vaccine", "doses_1", "doses_2", "doses_3"]).replace("-", 0)
-        df = df.replace(to_replace=[None], value=0)
-        df = df.assign(
-            doses_1=df["doses_1"].astype(str).apply(clean_count),
-            doses_2=df["doses_2"].astype(str).apply(clean_count),
-            doses_3=df["doses_3"].astype(str).apply(clean_count),
-            vaccine=df.vaccine.str.strip(),
+        return pd.Series(
+            {
+                "total_vaccinations": total_vaccinations,
+                "people_vaccinated": people_vaccinated,
+                "people_fully_vaccinated": people_fully_vaccinated,
+                "total_boosters": total_boosters,
+            }
         )
-        return df
 
     def export(self):
         data = self.read()
