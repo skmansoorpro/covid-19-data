@@ -8,6 +8,13 @@ config_raw = parse_config(CONFIG_FILE, raise_if_na=False)
 
 
 @dataclass()
+class VaccinationsProcessConfig:
+    skip_complete: list
+    skip_monotonic_check: list
+    skip_anomaly_check: list
+
+
+@dataclass()
 class BaseGetConfig:
     parallel: bool
     njobs: int
@@ -17,6 +24,11 @@ class BaseGetConfig:
 
 @dataclass()
 class TestingGetConfig(BaseGetConfig):
+    pass
+
+
+@dataclass()
+class VaccinationsGetConfig(BaseGetConfig):
     pass
 
 
@@ -37,13 +49,29 @@ class TestingConfig(Base4Config):
             self.get["countries"] = "all"
         if self.get["skip_countries"] is None:
             self.get["skip_countries"] = []
-
         self.get = TestingGetConfig(**self.get)
 
 
 @dataclass()
 class VaccinationsConfig(Base4Config):
-    pass
+    get: VaccinationsGetConfig
+    process: VaccinationsProcessConfig
+
+    def __post_init__(self):
+        # Get
+        if self.get["countries"] is None:
+            self.get["countries"] = "all"
+        if self.get["skip_countries"] is None:
+            self.get["skip_countries"] = []
+        self.get = VaccinationsGetConfig(**self.get)
+        # Process
+        if self.process["skip_complete"] is None:
+            self.process["skip_complete"] = []
+        if self.process["skip_monotonic_check"] is None:
+            self.process["skip_monotonic_check"] = {}
+        if self.process["skip_anomaly_check"] is None:
+            self.process["skip_anomaly_check"] = {}
+        self.process = VaccinationsProcessConfig(**self.process)
 
 
 @dataclass()
