@@ -16,7 +16,7 @@ class Cambodia(CountryTestBase):
         soup = get_soup(url)
         print(soup.select("span:nth-child(1) strong span"))
 
-        count = clean_count(soup.select("span:nth-child(1) strong span")[0].text)
+        count = clean_count(soup.select("p+ div strong:nth-child(1)")[0].text)
 
         date_str = localdatenow("Asia/Phnom_Penh")
 
