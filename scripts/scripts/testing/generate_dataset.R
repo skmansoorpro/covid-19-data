@@ -54,7 +54,7 @@ parse_country <- function(sheet_name) {
     stopifnot(length(is_automated) == 1)
 
     if (is_automated) {
-        filepath <- sprintf("automated_sheets/%s.csv", sheet_name)
+        filepath <- sprintf("../../output/testing/main_data/%s.csv", sheet_name)
         collated <- suppressMessages(read_csv(filepath))
         stopifnot(all(!is.na(collated$Date)))
     } else {
@@ -232,7 +232,7 @@ setnames(grapher, c("date", "country"), c("Year", "Country"))
 
 copy_paste_annotation <- unique(grapher[!is.na(annotation), .(Country, annotation)])
 copy_paste_annotation <- paste(copy_paste_annotation$Country, copy_paste_annotation$annotation, sep = ": ")
-writeLines(copy_paste_annotation, "grapher_annotations.txt")
+writeLines(copy_paste_annotation, "../../output/testing/grapher_annotations.txt")
 
 # Write grapher file
 fwrite(grapher, "../../grapher/COVID testing time series data.csv")

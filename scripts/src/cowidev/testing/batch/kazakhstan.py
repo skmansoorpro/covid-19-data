@@ -32,8 +32,8 @@ SERIES_TYPE = "Cumulative total"  # one of: {'Cumulative total', 'Daily change i
 URL = "https://qap.datanomix.pro/single/?appid=9ad0ce19-79e5-4c5a-9fc0-83f858de0153&sheet=dfd9c555-2dfa-4ce9-8231-5d588004e1ef"
 COMPONENT_ID = "16a9b11c-56fe-4b07-8598-bcb20677924d"
 IMPLICIT_WAIT = 30
-MAX_TRIES = 5
-TIMEOUT = 120
+MAX_TRIES = 1
+TIMEOUT = 30
 
 
 # hardcoded values
@@ -59,6 +59,9 @@ class Kazakhstan(CountryTestBase):
     location = "Kazakhstan"
 
     def export(self) -> None:
+        # Check website is operative
+        #requests.get(url, timeout=30)
+
         i = 0
         df = None
         while df is None and i < MAX_TRIES:
