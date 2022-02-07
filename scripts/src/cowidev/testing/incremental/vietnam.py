@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 from cowidev.utils.web import get_soup
-from cowidev.utils.clean import clean_count, clean_date
+from cowidev.utils.clean import clean_count, extract_clean_date
 from cowidev.testing.utils.incremental import increment
 
 
@@ -13,7 +13,7 @@ class Vietnam:
     units = "people tested"
     source_label = "Ministry of Health of Vietnam"
     # base_url = "https://suckhoedoisong.vn"
-    base_url = "https://suckhoedoisong.vn/y-te/covid-19.htm"
+    base_url = "https://suckhoedoisong.vn/"
     source_url = "https://covid19.gov.vn/ban-tin-covid-19.htm"
     regex = {
         "title": r"Ngày",
@@ -34,7 +34,8 @@ class Vietnam:
         # Extract text from url
         text = self._get_text_from_url(url)
         # Extract date from text
-        date = self._parse_date_from_text(text)
+        soup = get_soup(url)
+        date = self._parse_date_from_text(soup)
         # Extract metrics from text
         count = self._parse_metrics(text)
         record = {
@@ -61,10 +62,10 @@ class Vietnam:
         text = re.sub(r"\s+", " ", text)
         return text
 
-    def _parse_date_from_text(self, text: str) -> str:
+    def _parse_date_from_text(self, soup) -> str:
         """Get date from text."""
-        date = re.search(self.regex["date"], text).group(1)
-        return clean_date(date, "%d-%m-%Y")
+        date_raw = soup.find(class_="publish-date").text
+        return extract_clean_date(date_raw, r"(\d+\-\d+\-20\d+)", "%d-%m-%Y")
 
     def _parse_metrics(self, text: str) -> int:
         """Get metrics from text."""
