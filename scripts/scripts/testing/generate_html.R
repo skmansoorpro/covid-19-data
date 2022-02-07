@@ -75,4 +75,4 @@ for (c in countries) {
 
 }
 
-writeLines(HTML_CODE, "source_table.html")
+writeLines(HTML_CODE, "../../output/testing/source_table.html")

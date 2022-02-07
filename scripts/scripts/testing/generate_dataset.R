@@ -232,7 +232,7 @@ setnames(grapher, c("date", "country"), c("Year", "Country"))
 
 copy_paste_annotation <- unique(grapher[!is.na(annotation), .(Country, annotation)])
 copy_paste_annotation <- paste(copy_paste_annotation$Country, copy_paste_annotation$annotation, sep = ": ")
-writeLines(copy_paste_annotation, "grapher_annotations.txt")
+writeLines(copy_paste_annotation, "../../output/testing/grapher_annotations.txt")
 
 # Write grapher file
 fwrite(grapher, "../../grapher/COVID testing time series data.csv")

@@ -21,16 +21,16 @@ while others require some manual work.
 
 ## 1. Testing pipeline files
 
-The [testing directory](../../scripts/testing) contains the following files:
+The COVID-19 testing pipeline cosists of the following directories and files:
 
 | File name      | Description |
 | ----------- | ----------- |
-| [`testing/main_data/`](../../output/testing/main_data)      | Temporary automated imports are placed here.       |
-| [`automations/`](../../scripts/testing/automations)      | Deprecated.       |
+| [`output/testing/main_data/`](../../output/testing/main_data)      | Temporary automated imports are placed here.       |
+| [`cowidev.testing`](../../src/cowidev/testing/)      | COVID-19 Testing library tools.       |
 | [`input/`](../../scripts/testing/input)      | Input data pipeline configuration.       |
 | [`auto_quick_collect.sh`](../../scripts/testing/auto_quick_collect.sh), [`collect_data.sh`](../../scripts/testing/collect_data.sh)      |  Bash scripts to generate the dataset    |
 | [`attempts.R`](../../scripts/testing/attempts.R),  [`generate_dataset.R`](../../scripts/testing/generate_dataset.R), [`generate_html.R`](../../scripts/testing/generate_html.R), [`replace_audited_metadata.R`](../../scripts/testing/replace_audited_metadata.R), [`run_r_scripts.R`](../../scripts/testing/run_r_scripts.R), [`smoother.R`](../../scripts/testing/smoother.R), [`run_python_scripts.py`](../../scripts/testing/run_python_scripts.py)      | R/Python individual scripts to generate the testing dataset.       |
-| [`grapher_annotations.txt`](../../scripts/testing/grapher_annotations.txt),[`source_table.html`](../../scripts/testing/source_table.html )       | Other output files.       |
+| [`grapher_annotations.txt`](../../output/testing/grapher_annotations.txt), [`source_table.html`](../../output/testing/source_table.html )       | Other output files.       |
 | [`test_update.sh.template`](../../scripts/testing/test_update.sh.template)      | Template to push testing update changes.       |
 
 _*Only the most relevant files have been listed.*_ 
