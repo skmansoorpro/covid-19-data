@@ -13,7 +13,7 @@ class SriLanka:
         self.location = "Sri Lanka"
 
     def read(self):
-        date = (datetime.date.today() - datetime.timedelta(days=1)).strftime("%Y-%m_%d")
+        date = (datetime.date.today() - datetime.timedelta(days=2)).strftime("%Y-%m_%d")
         pdf_path = self._build_link_pdf(date)
         data = self.parse_data(pdf_path)
 
