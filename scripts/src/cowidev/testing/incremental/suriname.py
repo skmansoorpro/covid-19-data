@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pandas as pd
 from cowidev.testing import CountryTestBase
-from cowidev.utils.clean import clean_date
+from cowidev.utils.clean.dates import localdate
 from cowidev.utils.web import get_soup
 
 
@@ -16,18 +16,23 @@ class Suriname(CountryTestBase):
     def read(self) -> pd.DataFrame:
         """Read data from source"""
         body = str(get_soup(self.source_url))
-        date = clean_date(datetime.now())
 
+        # Get count
         count = 0
         if "Totaal Testen" in body:
             count = int(body.split("Totaal Testen")[0].split('data-counter-value="')[-1].split('"')[0])
-
+        # Get negative results
         negative = 0
         if "Totaal negatieve" in body:
             negative = int(body.split("Totaal negatieve")[0].split('data-counter-value="')[-1].split('"')[0])
 
-        positive = count - negative
-        df = pd.DataFrame({"Date": [date], "Daily change in cumulative total": [count], "positive": [positive]})
+        df = pd.DataFrame(
+            {
+                "Date": [localdate("America/Paramaribo")],
+                "Daily change in cumulative total": [count],
+                "positive": [count - negative],
+            }
+        )
         return df
 
     def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -37,29 +42,20 @@ class Suriname(CountryTestBase):
         ).fillna(0)
         return df
 
-    def pipe_merge(self, df: pd.DataFrame) -> pd.DataFrame:
-        df_current = self.load_datafile()
-        df_current = df_current[df_current.Date < df.Date.min()]
-        df = pd.concat([df_current, df]).sort_values("Date")
-        if (
-            df[["Daily change in cumulative total", "positive"]].iloc[-2]
-            == df[["Daily change in cumulative total", "positive"]].iloc[-1]
-        ).all():
-            print("Check duplicate data")
-        return df
-
-    def pipe_positive(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df
-
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for data processing"""
-        return df.pipe(self.pipe_metadata).pipe(self.pipe_merge).pipe(self.pipe_positive).pipe(self.pipe_pr)
+        return (
+            df.pipe(self.pipe_metadata)
+            .pipe(self.pipe_merge_current)
+            .pipe(self.pipe_pr)
+            .drop_duplicates(subset=["Daily change in cumulative total", "positive"], keep="first")
+        )
 
     def export(self):
         """Export data to csv"""
         df = self.read().pipe(self.pipeline)
         # self.export_datafile(df, float_format="%.5f")
-        self.export_datafile(df)
+        self.export_datafile(df, extra_cols=["positive"])
 
 
 def main():
