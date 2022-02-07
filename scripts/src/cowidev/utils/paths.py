@@ -140,3 +140,5 @@ def out_vax(country: str, public=False, age=False, manufacturer=False, proposal=
 CONFIG_FILE_NEW = os.path.join(str(SCRIPTS), "config_new.yaml")
 CONFIG_FILE = os.path.join(str(SCRIPTS), "config.yaml")
 CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "owid")
+
+SECRETS_FILE = os.environ.get("OWID_COVID_SECRETS", None)
