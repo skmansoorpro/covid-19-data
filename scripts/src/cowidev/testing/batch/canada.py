@@ -47,7 +47,7 @@ class Canada(CountryTestBase):
         # self.export_datafile(df_, filename=f"{self.location} - people tested")
         # Tests
         df_ = df.pipe(self.pipeline, "tests performed", "numtests")
-        self.export_datafile(df_, filename=f"{self.location}")
+        self.export_datafile(df_)
 
 
 def main():
