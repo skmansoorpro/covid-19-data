@@ -9,7 +9,6 @@ class Canada(CountryTestBase):
     source_url_ref = "https://health-infobase.canada.ca/src/data/covidLive/covid19-download.csv"
     rename_columns = {
         "numtests": "Cumulative total",
-        "numtested": "Cumulative total",
         "prname": "Country",
         "date": "Date",
     }
@@ -44,11 +43,11 @@ class Canada(CountryTestBase):
     def export(self):
         df = self.read()  # .pipe(self.pipeline_base)
         # People
-        df_ = df.pipe(self.pipeline, "people tested", "numtested")
-        self.export_datafile(df_, filename=f"{self.location} - people tested")
+        # df_ = df.pipe(self.pipeline, "people tested", "numtested")
+        # self.export_datafile(df_, filename=f"{self.location} - people tested")
         # Tests
         df_ = df.pipe(self.pipeline, "tests performed", "numtests")
-        self.export_datafile(df_, filename=f"{self.location} - tests performed")
+        self.export_datafile(df_, filename=f"{self.location}")
 
 
 def main():
