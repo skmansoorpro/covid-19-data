@@ -53,6 +53,7 @@ pipeline:
       countries: 
       njobs: -2
       skip_countries:
+      - Benin #the source is n longer updating
     process:
     generate:
     export:
