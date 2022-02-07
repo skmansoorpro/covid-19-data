@@ -53,6 +53,8 @@ class Zambia(CountryTestBase):
         df = df[df["Cumulative total"] > 0]
         df = df.groupby("Cumulative total", as_index=False).min()
         df = df.groupby("Date", as_index=False).min()
+        # manual fix: drop incorrect data point
+        df = df.drop(index=df[df["Date"] == "2021-10-30"].index.values)
         df = make_monotonic(df)
         return df
 
