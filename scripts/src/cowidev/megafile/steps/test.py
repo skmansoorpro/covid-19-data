@@ -8,7 +8,6 @@ from cowidev.utils.utils import get_project_dir
 INPUT_DIR = os.path.abspath(os.path.join(get_project_dir(), "scripts", "input"))
 DATA_DIR = os.path.abspath(os.path.join(get_project_dir(), "public", "data"))
 data_file = os.path.join(DATA_DIR, "testing", "covid-testing-all-observations.csv")
-data_file_second = os.path.join(INPUT_DIR, "owid", "secondary_testing_series.csv")
 
 
 def get_testing():
@@ -72,11 +71,6 @@ def get_testing():
 
     # Split the original entity into location and testing units
     testing[["location", "tests_units"]] = testing.location.str.split(" - ", expand=True)
-
-    # For locations with >1 series, choose a series
-    to_remove = pd.read_csv(data_file_second)
-    for loc, unit in to_remove.itertuples(index=False, name=None):
-        testing = testing[-((testing["location"] == loc) & (testing["tests_units"] == unit))]
 
     # Check for remaining duplicates of location/date
     duplicates = testing.groupby(["location", "date"]).size().to_frame("n")
