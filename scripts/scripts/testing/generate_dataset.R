@@ -239,7 +239,7 @@ fwrite(grapher, "../../grapher/COVID testing time series data.csv")
 
 # Make public version
 public <- copy(collated)
-public[, c("Country", "Units") := NULL]
+public[, c("Country", "Units", "Population") := NULL]
 public_latest <- merge(public, metadata, all.x = TRUE)
 public_latest[, c("Sheet", "Ready for review", "Collate") := NULL]
 setorder(public_latest, Entity, -Date)
