@@ -3,10 +3,9 @@ pipeline:
   vaccinations:
     get:
       parallel: True
-      countries:
       njobs: -2
+      countries:
       skip_countries:
-        - Andorra
         - Gabon
         - Morocco # Government data doesn't differentiate 1- and 2-dose vaccines so we use WHO instead
         - North Macedonia
@@ -50,8 +49,8 @@ pipeline:
   testing:
     get:
       parallel: True
-      countries: 
       njobs: -2
+      countries: 
       skip_countries:
       - Benin #the source is n longer updating
     process:
