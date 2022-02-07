@@ -16,7 +16,7 @@ python3 ../../scripts/megafile.py
 deactivate
 ​
 # Push to git
-git add scripts/testing/automated_sheets/*
+git add output/testing/main_data/*
 git add src/cowidev/testing/*
 git add grapher/*
 git add ../public/data/*

@@ -25,7 +25,7 @@ The [testing directory](../../scripts/testing) contains the following files:
 
 | File name      | Description |
 | ----------- | ----------- |
-| [`automated_sheets/`](../../scripts/testing/automated_sheets)      | Temporary automated imports are placed here.       |
+| [`testing/main_data/`](../../output/testing/main_data)      | Temporary automated imports are placed here.       |
 | [`automations/`](../../scripts/testing/automations)      | Deprecated.       |
 | [`input/`](../../scripts/testing/input)      | Input data pipeline configuration.       |
 | [`auto_quick_collect.sh`](../../scripts/testing/auto_quick_collect.sh), [`collect_data.sh`](../../scripts/testing/collect_data.sh)      |  Bash scripts to generate the dataset    |
@@ -77,13 +77,13 @@ Create a file `testing_dataset_config.json` with all required parameters:
 
 ### Manual data updates
 For some countries, the process is automated. These countries, while present in our dataset do not under
-[`automated_sheets/`](../../scripts/testing/automated_sheets).
+[`testing/main_data/`](../../output/testing/main_data).
 
 ### Automated process
 
 #### Get the data
 Run the following commands to run the batch and incremental updates. It will then generate individual country files and
-save them in [`automated_sheets/`](../../scripts/testing/automated_sheets).
+save them in [`testing/main_data/`](../../output/testing/main_data).
 
 For python scripts:
 ```bash

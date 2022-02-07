@@ -62,7 +62,7 @@ parse_country <- function(sheet_name) {
     stopifnot(length(is_automated) == 1)
 
     if (is_automated) {
-        filepath <- sprintf("automated_sheets/%s.csv", sheet_name)
+        filepath <- sprintf("../../output/testing/main_data/%s.csv", sheet_name)
         collated <- suppressMessages(read_csv(filepath))
         stopifnot(all(!is.na(collated$Date)))
     } else {
