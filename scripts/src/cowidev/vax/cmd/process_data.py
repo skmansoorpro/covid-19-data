@@ -6,8 +6,7 @@ from pandas.core.base import DataError
 from pandas.errors import ParserError
 from cowidev.utils import paths
 from cowidev.utils.log import get_logger, print_eoe
-from cowidev.cmd.vax.process.utils import process_location
-from cowidev.cmd.vax.process.utils import VaccinationGSheet
+from cowidev.cmd.vax.process.utils import process_location, VaccinationGSheet
 
 
 logger = get_logger()
