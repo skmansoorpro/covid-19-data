@@ -1,7 +1,6 @@
-import os
 import pandas as pd
 
-from cowidev.utils import paths
+from cowidev import PATHS
 from cowidev.utils.clean import clean_date_series
 
 METADATA_BASE = {
@@ -12,7 +11,7 @@ METADATA_BASE = {
 
 
 POPULATION = pd.read_csv(
-    paths.INTERNAL_INPUT_UN_POPULATION_FILE,
+    PATHS.INTERNAL_INPUT_UN_POPULATION_FILE,
     usecols=["entity", "population"],
 )
 EXCLUDED_COUNTRIES = [

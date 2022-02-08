@@ -4,7 +4,7 @@ import pandas as pd
 
 from pandas.core.base import DataError
 from pandas.errors import ParserError
-from cowidev.utils import paths
+from cowidev import PATHS
 from cowidev.utils.log import get_logger, print_eoe
 from cowidev.cmd.vax.process.utils import process_location, VaccinationGSheet
 
@@ -35,7 +35,7 @@ def main_process_data(
     # Get automated-country data
     logger.info("Getting data from output...")
     automated = gsheet.automated_countries
-    filepaths_auto = [paths.out_vax(country) for country in automated]
+    filepaths_auto = [PATHS.out_vax(country) for country in automated]
     df_auto_list = [read_csv(filepath) for filepath in filepaths_auto]
 
     # Concatenate
@@ -43,7 +43,7 @@ def main_process_data(
 
     # Check that no location is present in both manual and automated data
     manual_locations = set([df.location[0] for df in df_manual_list])
-    auto_locations = os.listdir(paths.INTERNAL_OUTPUT_VAX_MAIN_DIR)
+    auto_locations = os.listdir(PATHS.INTERNAL_OUTPUT_VAX_MAIN_DIR)
     auto_locations = set([loc.replace(".csv", "") for loc in auto_locations])
     common_locations = auto_locations.intersection(manual_locations)
     if len(common_locations) > 0:
@@ -66,12 +66,12 @@ def main_process_data(
             df = _process_location(df)
             vax_valid.append(df)
             # Export
-            df.to_csv(paths.out_vax(country, public=True), index=False)
+            df.to_csv(PATHS.out_vax(country, public=True), index=False)
             logger.info(f"{country}: SUCCESS ✅")
         else:
             logger.info(f"{country}: SKIPPED 🚧")
     df = pd.concat(vax_valid).sort_values(by=["location", "date"])
-    df.to_csv(paths.INTERNAL_TMP_VAX_MAIN_FILE, index=False)
-    gsheet.metadata.to_csv(paths.INTERNAL_TMP_VAX_META_FILE, index=False)
+    df.to_csv(PATHS.INTERNAL_TMP_VAX_MAIN_FILE, index=False)
+    gsheet.metadata.to_csv(PATHS.INTERNAL_TMP_VAX_META_FILE, index=False)
     logger.info("Exported ✅")
     print_eoe()

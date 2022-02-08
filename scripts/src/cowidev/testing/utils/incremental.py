@@ -4,7 +4,7 @@ import numbers
 import datetime
 
 import pandas as pd
-from cowidev.utils import paths
+from cowidev import PATHS
 from cowidev.utils.clean.numbers import metrics_to_num_int
 
 
@@ -22,7 +22,7 @@ def increment(
     daily_change=None,
     count=None,
 ):
-    output_path = os.path.join(paths.INTERNAL_OUTPUT_TEST_MAIN_DIR, f"{sheet_name}.csv")
+    output_path = os.path.join(PATHS.INTERNAL_OUTPUT_TEST_MAIN_DIR, f"{sheet_name}.csv")
 
     # Create new df
     df = pd.DataFrame(

@@ -6,13 +6,13 @@ import json
 
 import pandas as pd
 from pandas.api.types import is_string_dtype
-from cowidev.utils import paths
+from cowidev import PATHS
 from cowidev.utils.log import get_logger
 from cowidev.hosp.sources import __all__ as sources
 
 
 sources = [f"cowidev.hosp.sources.{s}" for s in sources]
-POPULATION_FILE = paths.INTERNAL_INPUT_UN_POPULATION_FILE
+POPULATION_FILE = PATHS.INTERNAL_INPUT_UN_POPULATION_FILE
 logger = get_logger()
 
 
@@ -62,19 +62,19 @@ class HospETL:
                     for metadata_ in metadata:
                         df_ = df[df.entity == metadata_["entity"]]
                         df_.to_csv(
-                            os.path.join(paths.INTERNAL_OUTPUT_HOSP_MAIN_DIR, f"{metadata_['entity']}.csv"),
+                            os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_MAIN_DIR, f"{metadata_['entity']}.csv"),
                             index=False,
                         )
                         with open(
-                            os.path.join(paths.INTERNAL_OUTPUT_HOSP_META_DIR, f"{metadata_['entity']}.json"), "w"
+                            os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_META_DIR, f"{metadata_['entity']}.json"), "w"
                         ) as outfile:
                             json.dump(metadata_, outfile)
                 else:
                     df.to_csv(
-                        os.path.join(paths.INTERNAL_OUTPUT_HOSP_MAIN_DIR, f"{metadata['entity']}.csv"), index=False
+                        os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_MAIN_DIR, f"{metadata['entity']}.csv"), index=False
                     )
                     with open(
-                        os.path.join(paths.INTERNAL_OUTPUT_HOSP_META_DIR, f"{metadata['entity']}.json"), "w"
+                        os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_META_DIR, f"{metadata['entity']}.json"), "w"
                     ) as outfile:
                         json.dump(metadata, outfile)
 
@@ -83,15 +83,15 @@ class HospETL:
         logger.info("HOSP - Loading checkpoint data...")
         # Load & build data
         data_paths = [
-            os.path.join(paths.INTERNAL_OUTPUT_HOSP_MAIN_DIR, p)
-            for p in os.listdir(paths.INTERNAL_OUTPUT_HOSP_MAIN_DIR)
+            os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_MAIN_DIR, p)
+            for p in os.listdir(PATHS.INTERNAL_OUTPUT_HOSP_MAIN_DIR)
             if p[-3:] == "csv"
         ]
         df = pd.concat([pd.read_csv(p) for p in data_paths])
         # Load & buildmetadata
         metadata_paths = [
-            os.path.join(paths.INTERNAL_OUTPUT_HOSP_META_DIR, p)
-            for p in os.listdir(paths.INTERNAL_OUTPUT_HOSP_META_DIR)
+            os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_META_DIR, p)
+            for p in os.listdir(PATHS.INTERNAL_OUTPUT_HOSP_META_DIR)
         ]
         metadata = []
         for p in metadata_paths:

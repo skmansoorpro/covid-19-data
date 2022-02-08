@@ -10,7 +10,7 @@ from shutil import copyfile
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
 
-from cowidev.utils import paths
+from cowidev import PATHS
 from cowidev.utils.utils import pd_series_diff_values
 from cowidev.utils.clean import clean_date
 from cowidev.utils.log import get_logger
@@ -686,8 +686,8 @@ class DatasetGenerator:
                 raise ValueError("Format not supported. Currently only csv, json and html are accepted!")
 
     def _cp_locations_files(self):
-        copyfile(paths.INTERNAL_OUTPUT_VAX_META_MANUFACT_FILE, paths.DATA_VAX_META_MANUFACT_FILE)
-        copyfile(paths.INTERNAL_OUTPUT_VAX_META_AGE_FILE, paths.DATA_VAX_META_AGE_FILE)
+        copyfile(PATHS.INTERNAL_OUTPUT_VAX_META_MANUFACT_FILE, PATHS.DATA_VAX_META_MANUFACT_FILE)
+        copyfile(PATHS.INTERNAL_OUTPUT_VAX_META_AGE_FILE, PATHS.DATA_VAX_META_AGE_FILE)
 
     def run(self):
         print("-- Generating dataset... --")
@@ -762,43 +762,42 @@ class DatasetGenerator:
 
 def main_generate_dataset():
     # Select columns
-    # TODO: Paths might better defined in vax.utils.paths.Paths
     inputs = Bucket(
-        project_dir=paths.PROJECT_DIR,
-        vaccinations=paths.INTERNAL_TMP_VAX_MAIN_FILE,
-        metadata=paths.INTERNAL_TMP_VAX_META_FILE,
-        iso=paths.INTERNAL_INPUT_ISO_FILE,
-        population=paths.INTERNAL_INPUT_UN_POPULATION_FILE,
-        population_sub=paths.INTERNAL_INPUT_OWID_POPULATION_SUB_FILE,
-        continent_countries=paths.INTERNAL_INPUT_OWID_CONT_FILE,
-        eu_countries=paths.INTERNAL_INPUT_OWID_EU_FILE,
-        income_groups=paths.INTERNAL_INPUT_WB_INCOME_FILE,
-        income_groups_compl=paths.INTERNAL_INPUT_OWID_INCOME_FILE,
-        manufacturer=os.path.join(paths.INTERNAL_OUTPUT_VAX_MANUFACT_DIR, "*.csv"),
-        age=os.path.join(paths.INTERNAL_OUTPUT_VAX_AGE_DIR, "*.csv"),
+        project_dir=PATHS.PROJECT_DIR,
+        vaccinations=PATHS.INTERNAL_TMP_VAX_MAIN_FILE,
+        metadata=PATHS.INTERNAL_TMP_VAX_META_FILE,
+        iso=PATHS.INTERNAL_INPUT_ISO_FILE,
+        population=PATHS.INTERNAL_INPUT_UN_POPULATION_FILE,
+        population_sub=PATHS.INTERNAL_INPUT_OWID_POPULATION_SUB_FILE,
+        continent_countries=PATHS.INTERNAL_INPUT_OWID_CONT_FILE,
+        eu_countries=PATHS.INTERNAL_INPUT_OWID_EU_FILE,
+        income_groups=PATHS.INTERNAL_INPUT_WB_INCOME_FILE,
+        income_groups_compl=PATHS.INTERNAL_INPUT_OWID_INCOME_FILE,
+        manufacturer=os.path.join(PATHS.INTERNAL_OUTPUT_VAX_MANUFACT_DIR, "*.csv"),
+        age=os.path.join(PATHS.INTERNAL_OUTPUT_VAX_AGE_DIR, "*.csv"),
     )
     outputs = Bucket(
-        locations=paths.DATA_VAX_META_FILE,
-        automated=paths.INTERNAL_OUTPUT_VAX_AUTOM_FILE,
-        vaccinations=paths.DATA_VAX_MAIN_FILE,
-        vaccinations_json=paths.DATA_VAX_MAIN_JSON_FILE,
-        manufacturer=paths.DATA_VAX_MANUFACT_FILE,
-        age=paths.DATA_VAX_AGE_FILE,
-        grapher=os.path.join(paths.INTERNAL_GRAPHER_DIR, "COVID-19 - Vaccinations.csv"),
+        locations=PATHS.DATA_VAX_META_FILE,
+        automated=PATHS.INTERNAL_OUTPUT_VAX_AUTOM_FILE,
+        vaccinations=PATHS.DATA_VAX_MAIN_FILE,
+        vaccinations_json=PATHS.DATA_VAX_MAIN_JSON_FILE,
+        manufacturer=PATHS.DATA_VAX_MANUFACT_FILE,
+        age=PATHS.DATA_VAX_AGE_FILE,
+        grapher=os.path.join(PATHS.INTERNAL_GRAPHER_DIR, "COVID-19 - Vaccinations.csv"),
         grapher_manufacturer=os.path.join(
-            paths.INTERNAL_GRAPHER_DIR,
+            PATHS.INTERNAL_GRAPHER_DIR,
             "COVID-19 - Vaccinations by manufacturer.csv",
         ),
         grapher_age=os.path.join(
-            paths.INTERNAL_GRAPHER_DIR,
+            PATHS.INTERNAL_GRAPHER_DIR,
             "COVID-19 - Vaccinations by age group.csv",
         ),
-        html_table=paths.INTERNAL_OUTPUT_VAX_TABLE_FILE,
+        html_table=PATHS.INTERNAL_OUTPUT_VAX_TABLE_FILE,
     )
     generator = DatasetGenerator(inputs, outputs)
     generator.run()
 
     # Export timestamp
-    timestamp_filename = paths.DATA_TIMESTAMP_VAX_FILE
+    timestamp_filename = PATHS.DATA_TIMESTAMP_VAX_FILE
     with open(timestamp_filename, "w") as timestamp_file:
         timestamp_file.write(datetime.utcnow().replace(microsecond=0).isoformat())
