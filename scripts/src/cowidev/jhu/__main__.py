@@ -5,10 +5,7 @@ import numpy as np
 import pytz
 from datetime import datetime
 from termcolor import colored
-from cowidev.utils.s3 import obj_to_s3
 
-CURRENT_DIR = os.path.dirname(__file__)
-sys.path.append(CURRENT_DIR)
 
 from cowidev.megafile.generate import generate_megafile
 from cowidev.jhu._parser import _parse_args
@@ -30,13 +27,14 @@ from cowidev.jhu.shared import (
 )
 from cowidev.grapher.db.utils.slack_client import send_warning, send_success
 from cowidev.grapher.db.utils.db_imports import import_dataset
-from cowidev.utils import paths
+from cowidev import PATHS
+from cowidev.utils.s3 import obj_to_s3
 
 
-INPUT_PATH = paths.SCRIPTS.INPUT_JHU
-OUTPUT_PATH = paths.DATA.JHU
-TMP_PATH = paths.SCRIPTS.TMP
-LOCATIONS_CSV_PATH = os.path.join(paths.SCRIPTS.INPUT_JHU, "jhu_country_standardized.csv")
+INPUT_PATH = PATHS.INTERNAL_INPUT_JHU_DIR
+OUTPUT_PATH = PATHS.DATA_JHU_DIR
+TMP_PATH = PATHS.INTERNAL_TMP_DIR
+LOCATIONS_CSV_PATH = PATHS.INTERNAL_INPUT_JHU_STD_FILE
 
 ERROR = colored("[Error]", "red")
 WARNING = colored("[Warning]", "yellow")

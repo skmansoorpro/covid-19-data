@@ -1,14 +1,15 @@
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
 import json
 import ntpath
 import os
 import pytz
 import tempfile
+import warnings
 
 from xlsx2csv import Xlsx2csv
 import pandas as pd
 
+from cowidev import PATHS
 from cowidev.utils.web.download import download_file_from_url
 
 
@@ -51,20 +52,14 @@ def series_monotonic(ds):
 
 
 def get_project_dir(err: bool = False):
-    load_dotenv()
-    project_dir = os.environ.get("OWID_COVID_PROJECT_DIR")
-    if project_dir is None:  # err and
-        raise ValueError("Please have ${OWID_COVID_PROJECT_DIR}.")
-    return project_dir
+    warnings.warn("This function is deprecated. Please use cowidev.PATHS", DeprecationWarning)
 
 
 def export_timestamp(timestamp_filename: str, force_directory: str = None):
     if force_directory:
         timestamp_filename = os.path.join(force_directory, timestamp_filename)
     else:
-        timestamp_filename = os.path.join(
-            get_project_dir(), "public", "data", "internal", "timestamp", timestamp_filename
-        )
+        timestamp_filename = os.path.join(PATHS.DATA_TIMESTAMP_DIR, timestamp_filename)
     with open(timestamp_filename, "w") as timestamp_file:
         timestamp_file.write(datetime.utcnow().replace(microsecond=0).isoformat())
 

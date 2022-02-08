@@ -12,7 +12,7 @@ METADATA_BASE = {
 
 
 POPULATION = pd.read_csv(
-    os.path.join(paths.SCRIPTS.INPUT_UN, "population_latest.csv"),
+    paths.INTERNAL_INPUT_UN_POPULATION_FILE,
     usecols=["entity", "population"],
 )
 EXCLUDED_COUNTRIES = [

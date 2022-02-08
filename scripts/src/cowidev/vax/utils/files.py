@@ -72,11 +72,11 @@ def load_data(data_filename: str, file_ext: str = "csv"):
 
 
 def export_metadata_manufacturer(df: pd.DataFrame, source_name: str, source_url: str):
-    export_metadata(df, source_name, source_url, paths.SCRIPTS.OUTPUT_VAX_META_MANUFACT)
+    export_metadata(df, source_name, source_url, paths.INTERNAL_OUTPUT_VAX_META_MANUFACT_FILE)
 
 
 def export_metadata_age(df: pd.DataFrame, source_name: str, source_url: str):
-    export_metadata(df, source_name, source_url, paths.SCRIPTS.OUTPUT_VAX_META_AGE)
+    export_metadata(df, source_name, source_url, paths.INTERNAL_OUTPUT_VAX_META_AGE_FILE)
 
 
 def export_metadata(df: pd.DataFrame, source_name: str, source_url: str, output_path: str):

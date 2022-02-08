@@ -8,10 +8,10 @@ from cowidev.megafile.steps.test import get_testing
 from cowidev.utils import paths
 
 
-POPULATION_CSV_PATH = os.path.join(paths.SCRIPTS.INPUT_UN, "population_latest.csv")
-CONTINENTS_CSV_PATH = os.path.join(paths.SCRIPTS.INPUT_OWID, "continents.csv")
-WB_INCOME_GROUPS_CSV_PATH = os.path.join(paths.SCRIPTS.INPUT_WB, "income_groups.csv")
-EU_COUNTRIES_CSV_PATH = os.path.join(paths.SCRIPTS.INPUT_OWID, "eu_countries.csv")
+POPULATION_CSV_PATH = paths.INTERNAL_INPUT_UN_POPULATION_FILE
+CONTINENTS_CSV_PATH = paths.INTERNAL_INPUT_OWID_CONT_FILE
+WB_INCOME_GROUPS_CSV_PATH = paths.INTERNAL_INPUT_WB_INCOME_FILE
+EU_COUNTRIES_CSV_PATH = paths.INTERNAL_INPUT_OWID_EU_FILE
 
 ZERO_DAY = "2020-01-21"
 zero_day = datetime.strptime(ZERO_DAY, "%Y-%m-%d")

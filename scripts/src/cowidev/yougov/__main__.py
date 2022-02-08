@@ -7,7 +7,7 @@ from tqdm import tqdm
 import numpy as np
 import pandas as pd
 
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 from cowidev.utils.clean.dates import DATE_FORMAT
 
 
@@ -29,7 +29,7 @@ FREQ = "M"
 ZERO_DAY = "2020-01-21"
 
 # File paths
-PROJECT_DIR = get_project_dir()
+PROJECT_DIR = PATHS.PROJECT_DIR
 
 INPUT_PATH = os.path.join(PROJECT_DIR, "scripts", "input", "yougov")
 OUTPUT_PATH = os.path.join(PROJECT_DIR, "scripts", "grapher")

@@ -1,11 +1,9 @@
-import os
-from cowidev.testing.utils.base import CountryTestBase
 
 import pandas as pd
 
 from cowidev.utils import get_soup, clean_count
-from cowidev.utils.utils import get_project_dir
 from cowidev.utils.clean.dates import localdate
+from cowidev.testing.utils.base import CountryTestBase
 
 
 class Nigeria(CountryTestBase):

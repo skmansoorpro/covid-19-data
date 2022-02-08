@@ -6,9 +6,9 @@ from cowidev.hosp._parser import _parse_args
 from cowidev.utils import paths
 
 
-FILE_DS = os.path.join(paths.DATA.HOSPITALIZATIONS, "covid-hospitalizations.csv")
-FILE_LOCATIONS = os.path.join(paths.DATA.HOSPITALIZATIONS, "locations.csv")
-FILE_GRAPHER = os.path.join(paths.SCRIPTS.GRAPHER, "COVID-2019 - Hospital & ICU.csv")
+FILE_DS = paths.DATA_HOSP_MAIN_FILE
+FILE_LOCATIONS = paths.DATA_HOSP_META_FILE
+FILE_GRAPHER = os.path.join(paths.INTERNAL_GRAPHER_DIR, "COVID-2019 - Hospital & ICU.csv")
 
 
 def run_step(args):

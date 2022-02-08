@@ -41,13 +41,12 @@ class CountryTestBase:
     def get_output_path(self, filename=None):
         if filename is None:
             filename = self.location
-        output_path = os.path.join(paths.SCRIPTS.OUTPUT_TEST_MAIN, f"{filename}.csv")
-        # output_path = os.path.join(paths.SCRIPTS, "output", "testing", "main_data", f"{filename}.csv")
+        output_path = os.path.join(paths.INTERNAL_OUTPUT_TEST_MAIN_DIR, f"{filename}.csv")
         return output_path
 
     @property
     def output_path(self):
-        return os.path.join(paths.SCRIPTS.OUTPUT_TEST_MAIN, f"{self.location}.csv")
+        return os.path.join(paths.INTERNAL_OUTPUT_TEST_MAIN_DIR, f"{self.location}.csv")
 
     def _postprocessing(self, df: pd.DataFrame, extra_cols: list):
         df = df.sort_values("Date")
