@@ -57,6 +57,9 @@ class Ecuador(CountryVaxBase):
             raise ValueError(f"Unknown vaccine(s) {vaccines_wrong}")
         return df
 
+    def pipe_manuf_date(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df.assign(date=clean_date_series(df.date, format_input="%d/%m/%Y"))
+
     def pipeline_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
         check_known_columns(
             df,
@@ -75,6 +78,7 @@ class Ecuador(CountryVaxBase):
             df.pipe(self.pipe_manuf_rename_cols)
             .pipe(self.pipe_manuf_aggregate)
             .pipe(self.pipe_manuf_vaccine_checks)
+            .pipe(self.pipe_manuf_date)
             .assign(location=self.location)
             .sort_values(["vaccine", "date"])[["location", "date", "vaccine", "total_vaccinations"]]
         )
