@@ -12,7 +12,7 @@ TESTING_CSV = os.path.join(DATA_DIR, "testing", "covid-testing-all-observations.
 CASES_CSV = os.path.join(DATA_DIR, "jhu", "total_cases.csv")
 DEATHS_CSV = os.path.join(DATA_DIR, "jhu", "total_deaths.csv")
 HOSP_CSV = os.path.join(GRAPHER_DIR, "COVID-2019 - Hospital & ICU.csv")
-REPR_CSV = "https://github.com/crondonm/TrackingR/raw/main/Estimates-Database/database.csv"
+REPR_CSV = "https://github.com/crondonm/TrackingR/raw/main/Estimates-Database/database_7.csv"
 POL_CSV = os.path.join(INPUT_DIR, "bsg", "latest.csv")
 CODEBOOK_CSV = os.path.join(DATA_DIR, "owid-covid-codebook.csv")
 
