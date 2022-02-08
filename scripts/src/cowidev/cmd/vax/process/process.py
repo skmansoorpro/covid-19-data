@@ -83,13 +83,13 @@ def main_process_data(
             df = _process_location(df)
             vax_valid.append(df)
             # Export
-            df.to_csv(paths.out_vax(country, public=True), index=False)
+            df.to_csv(PATHS.out_vax(country, public=True), index=False)
             logger.info(f"{country}: SUCCESS ✅")
         else:
             logger.info(f"{country}: SKIPPED 🚧")
     df = pd.concat(vax_valid).sort_values(by=["location", "date"])
-    df.to_csv(paths.INTERNAL_TMP_VAX_MAIN_FILE, index=False)
-    gsheet.metadata.to_csv(paths.INTERNAL_TMP_VAX_META_FILE, index=False)
+    df.to_csv(PATHS.INTERNAL_TMP_VAX_MAIN_FILE, index=False)
+    gsheet.metadata.to_csv(PATHS.INTERNAL_TMP_VAX_META_FILE, index=False)
     logger.info("Exported ✅")
     print_eoe()
 

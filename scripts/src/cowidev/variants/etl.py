@@ -6,7 +6,7 @@ import pandas as pd
 from cowidev import PATHS
 from cowidev.utils.clean.dates import clean_date, DATE_FORMAT
 from cowidev.utils.web import request_json
-from cowidev.utils import paths
+from cowidev import PATHS
 from cowidev.utils.s3 import obj_to_s3
 
 
@@ -134,7 +134,7 @@ class VariantsETL:
         return total
 
     def pipe_per_capita(self, df: pd.DataFrame) -> pd.DataFrame:
-        df_pop = pd.read_csv(paths.INTERNAL_INPUT_UN_POPULATION_FILE, index_col="entity")
+        df_pop = pd.read_csv(PATHS.INTERNAL_INPUT_UN_POPULATION_FILE, index_col="entity")
         df = df.merge(df_pop["population"], left_on="location", right_index=True)
         df = df.assign(num_sequences_per_1M=(1000000 * df.num_sequences / df.population).round(2)).drop(
             columns=["population"]
