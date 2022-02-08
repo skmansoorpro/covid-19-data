@@ -141,7 +141,7 @@ class YouGov:
         df = df.pipe(_round).pipe(_rename_columns).pipe(_reorder_columns)
         return df, df_comp
 
-    def to_csv(self):
+    def export(self):
         df = self.read()
         df, df_comp = df.pipe(self.pipeline_csv)
 
