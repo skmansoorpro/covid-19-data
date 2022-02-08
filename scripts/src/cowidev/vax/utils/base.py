@@ -29,6 +29,13 @@ COLUMNS_ORDER_AGE = [
     "people_with_booster_per_hundred",
 ]
 
+COLUMNS_ORDER_MANUF = [
+    "location",
+    "date",
+    "vaccine",
+    "total_vaccinations",
+]
+
 METRICS = [
     "total_vaccinations",
     "people_vaccinated",
@@ -107,6 +114,19 @@ class CountryVaxBase:
         df = df[cols]
         return df
 
+    def _postprocessing_manufacturer(self, df):
+        """Minor post processing after all transformations.
+
+        Basically sort by date, ensure correct column order, correct type for metrics.
+        """
+        df = metrics_to_num_int(df, METRICS)
+        df = df.sort_values(["vaccine", "date"])
+        cols = [col for col in COLUMNS_ORDER_MANUF if col in df.columns] + [
+            col for col in df.columns if col not in COLUMNS_ORDER_MANUF
+        ]
+        df = df[cols]
+        return df
+
     def export_datafile(
         self,
         df,
@@ -147,12 +167,13 @@ class CountryVaxBase:
     def _export_datafile_age(self, df, metadata):
         """Export age data."""
         df = self._postprocessing_age(df)
-        self._export_datafile_secondary(df, metadata, self.output_path_age, paths.SCRIPTS.OUTPUT_VAX_META_AGE)
+        self._export_datafile_secondary(df, metadata, self.output_path_age, paths.INTERNAL_OUTPUT_VAX_META_AGE_FILE)
 
     def _export_datafile_manufacturer(self, df, metadata):
         """Export manufacturer data"""
+        df = self._postprocessing_manufacturer(df)
         self._export_datafile_secondary(
-            df, metadata, self.output_path_manufacturer, paths.SCRIPTS.OUTPUT_VAX_META_MANUFACT
+            df, metadata, self.output_path_manufacturer, paths.INTERNAL_OUTPUT_VAX_META_MANUFACT_FILE
         )
 
     def _export_datafile_secondary(self, df, metadata, output_path, output_path_meta):
