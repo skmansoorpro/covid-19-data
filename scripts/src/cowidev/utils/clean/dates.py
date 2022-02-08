@@ -159,7 +159,7 @@ def localdate(
     force_today: bool = False,
     hour_limit: int = None,
     date_format: str = DATE_FORMAT,
-    sum_days: int = None,
+    plus_days: int = None,
     as_datetime: bool = False,
     minus_days: int = 0,
 ):
@@ -173,7 +173,7 @@ def localdate(
         hour_limit (int, optional): If local time hour is lower than this, returned date is previous day.
                                     Defaults to None.
         date_format (str, optional): Format of output datetime. Uses default YYYY-mm-dd.
-        sum_days (int, optional): Number of days to add to local date.
+        plus_days (int, optional): Number of days to add to local date.
         as_datetime (bool, optional): Set to True to return the date as a datetime.
         minus_days (int, optional): Number of days to subtract. Defaults to 0.
     """
@@ -185,8 +185,8 @@ def localdate(
     if not force_today and ((hour_limit is None) or (local_time.hour < hour_limit)):
         local_time = local_time - timedelta(days=1)
     local_time = local_time - timedelta(days=minus_days)
-    if sum_days:
-        local_time += timedelta(days=sum_days)
+    if plus_days:
+        local_time += timedelta(days=plus_days)
     if as_datetime:
         return local_time
     return local_time.strftime(date_format)

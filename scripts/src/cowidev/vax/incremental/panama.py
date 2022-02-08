@@ -7,10 +7,7 @@ from cowidev.vax.utils.incremental import increment, enrich_data
 
 class Panama:
     location: str = "Panama"
-    source_url: str = (
-        "https://services8.arcgis.com/d4orHpY7OSevCg39/arcgis/rest/services/resumen_dashboard_vista/FeatureServer/0/"
-        "query"
-    )
+    source_url: str = "https://services8.arcgis.com/d4orHpY7OSevCg39/arcgis/rest/services/resumen_dashboard_vista/FeatureServer/0/query"
     source_url_ref: str = "https://vacunas.panamasolidario.gob.pa/vacunometro"
     timezone: str = "America/Panama"
 
@@ -30,7 +27,7 @@ class Panama:
 
     def _api_request(self):
         date_low = localdatenow(self.timezone)
-        date_up = localdatenow(self.timezone, sum_days=1)
+        date_up = localdatenow(self.timezone, plus_days=1)
         params = {
             "f": "json",
             "outFields": "*",

@@ -33,9 +33,8 @@ class SriLanka:
         df = dfs[0]
 
         # All calculations below assume a fixed shape of the PDF's table, and a specific order for
-        # the columns and vaccines. If the following tests fail, then the table should be checked
+        # the columns and vaccines. If the following test fails, then the table should be checked
         # for potential changes.
-        assert df.shape == (19, 10)
         check_known_columns(
             df,
             [
@@ -52,21 +51,28 @@ class SriLanka:
             ],
         )
 
-        values = df.iloc[16].values
+        values_idx = df.index[df.iloc[:, 0] == "Cumulative"] - 1
+        values_raw = df.iloc[values_idx].values.flatten()
+        values = []
+        for val in values_raw:
+            if not pd.isnull(val):
+                values += val.split()
+        assert len(values) == 11
+
         doses = {
             "first": {
-                "covishield": clean_count(values[1].split(" ")[0]),
-                "sinopharm": clean_count(values[2].split(" ")[0]),
-                "sputnik": clean_count(values[3]),
-                "pfizer": clean_count(values[5]),
-                "moderna": clean_count(values[9].split(" ")[0]),
-            },
-            "second": {
-                "covishield": clean_count(values[1].split(" ")[1]),
-                "sinopharm": clean_count(values[2].split(" ")[1]),
+                "covishield": clean_count(values[0]),
+                "sinopharm": clean_count(values[2]),
                 "sputnik": clean_count(values[4]),
                 "pfizer": clean_count(values[6]),
-                "moderna": clean_count(values[9].split(" ")[1]),
+                "moderna": clean_count(values[9]),
+            },
+            "second": {
+                "covishield": clean_count(values[1]),
+                "sinopharm": clean_count(values[3]),
+                "sputnik": clean_count(values[5]),
+                "pfizer": clean_count(values[7]),
+                "moderna": clean_count(values[10]),
             },
             "third": {"pfizer": clean_count(values[8])},
         }

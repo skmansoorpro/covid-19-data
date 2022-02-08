@@ -80,11 +80,14 @@ class Kenya:
             metric: clean_count(re.search(regex, pdf_text).group(1)) for metric, regex in self.regex["metrics"].items()
         }
         # Process and get new metrics
-        metrics = metrics | {
-            "people_vaccinated": metrics["people_vaccinated_adults"] + metrics["people_vaccinated_teens"],
-            "people_fully_vaccinated": (
-                metrics["people_fully_vaccinated_adults"] + metrics["people_fully_vaccinated_teens"]
-            ),
+        metrics = {
+            **metrics,
+            **{
+                "people_vaccinated": metrics["people_vaccinated_adults"] + metrics["people_vaccinated_teens"],
+                "people_fully_vaccinated": (
+                    metrics["people_fully_vaccinated_adults"] + metrics["people_fully_vaccinated_teens"]
+                ),
+            },
         }
         return (
             metrics["total_vaccinations"],

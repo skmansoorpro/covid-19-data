@@ -22,7 +22,7 @@ def get_base_dataset():
 
     print("Fetching reproduction rate…")
     reprod = get_reprod(
-        file_url="https://github.com/crondonm/TrackingR/raw/main/Estimates-Database/database.csv",
+        file_url="https://github.com/crondonm/TrackingR/raw/main/Estimates-Database/database_7.csv",
         country_mapping=os.path.join(INPUT_DIR, "reproduction", "reprod_country_standardized.csv"),
     )
 
