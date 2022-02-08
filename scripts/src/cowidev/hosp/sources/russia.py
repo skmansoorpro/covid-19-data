@@ -13,13 +13,6 @@ METADATA = {
 }
 
 
-def merge_with_current_data(df: pd.DataFrame, filepath: str) -> pd.DataFrame:
-    df_current = pd.read_csv(filepath)
-    df_current = df_current[df_current.Date < df.Date.min()]
-    df = pd.concat([df_current, df]).sort_values("Date")
-    return df
-
-
 def main():
 
     soup = get_soup(METADATA["source_url_ref"])
