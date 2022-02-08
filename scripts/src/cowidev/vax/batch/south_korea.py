@@ -143,11 +143,11 @@ class SouthKorea(CountryVaxBase):
         )
 
     def export(self):
-        df = self.read()
+        df_base = self.read()
         # Main data
-        df.pipe(self.pipeline)
+        df = df_base.pipe(self.pipeline)
         # Vaccination by manufacturer
-        df_man = df.pipe(self.pipeline_manufacturer)
+        df_man = df_base.pipe(self.pipeline_manufacturer)
         # Export
         self.export_datafile(
             df,

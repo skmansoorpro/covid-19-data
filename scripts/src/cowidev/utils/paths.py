@@ -3,7 +3,7 @@ import os
 # S3 ####################################
 S3_DIR = "s3://covid-19"
 S3_INTERNAL_DIR = f"{S3_DIR}/internal"
-S3_INTERNAL_VAX_DIR = f"{S3_DIR}/vax"
+S3_INTERNAL_VAX_DIR = f"{S3_INTERNAL_DIR}/vax"
 S3_VAX_ICE_DIR = f"{S3_INTERNAL_VAX_DIR}/ice"
 
 

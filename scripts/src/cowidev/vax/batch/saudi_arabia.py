@@ -71,7 +71,7 @@ class SaudiArabia(CountryVaxBase):
             ]
         ]
 
-    def export(self, df: pd.DataFrame):
+    def export(self):
         df = self.read().pipe(self.pipeline)
         self.export_datafile(df)
 

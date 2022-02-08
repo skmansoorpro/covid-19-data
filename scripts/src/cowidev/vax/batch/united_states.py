@@ -3,7 +3,8 @@ import os
 
 import pandas as pd
 
-from cowidev import PATHS, clean_date_series
+from cowidev import PATHS
+from cowidev.utils import clean_date_series
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import build_vaccine_timeline
 from cowidev.vax.utils.base import CountryVaxBase
@@ -143,7 +144,7 @@ class UnitedStates(CountryVaxBase):
         self.export_datafile(
             df,
             df_manufacturer=df_manufacturer,
-            meta_age={
+            meta_manufacturer={
                 "source_name": "Centers for Disease Control and Prevention",
                 "source_url": "https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data",
             },

@@ -43,7 +43,7 @@ country_codes_url = "+".join(SPC_COUNTRIES.keys())
 
 
 class SPC(CountryVaxBase):
-    llocation = "SPC"
+    location = "SPC"
     source_url = (
         f"https://stats-nsi-stable.pacificdata.org/rest/data/SPC,DF_COVID_VACCINATION,1.0/D.{country_codes_url}.?"
         "startPeriod=2021-02-02&format=jsondata"

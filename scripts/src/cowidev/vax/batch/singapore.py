@@ -1,16 +1,15 @@
 import io
 import os
-from cowidev.vax.utils.base import CountryVaxBase
 import requests
 import tempfile
 import zipfile
 
 import pandas as pd
 
-from cowidev import PATHS, clean_date_series
-from cowidev import PATHS, clean_date_series
+from cowidev.utils import clean_date_series
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import build_vaccine_timeline, make_monotonic
+from cowidev.vax.utils.base import CountryVaxBase
 
 
 class Singapore(CountryVaxBase):
