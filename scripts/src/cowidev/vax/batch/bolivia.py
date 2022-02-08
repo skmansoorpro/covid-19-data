@@ -1,9 +1,10 @@
 import pandas as pd
-from cowidev.utils import paths
+
 from cowidev.vax.utils.utils import build_vaccine_timeline
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Bolivia:
+class Bolivia(CountryVaxBase):
     location: str = "Bolivia"
     source_url: list = {
         "doses_unique": "https://github.com/dquintani/vacunacion/raw/main/datos/unicas_acumulado.csv",
@@ -69,8 +70,7 @@ class Bolivia:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
-
+        self.export_datafile(df)
 
 def main():
     Bolivia().export()

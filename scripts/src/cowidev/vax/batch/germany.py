@@ -1,13 +1,12 @@
 import re
+from cowidev.vax.utils.base import CountryVaxBase
 
 import pandas as pd
 
-from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.utils import build_vaccine_timeline
-from cowidev.utils import paths
 
 
-class Germany:
+class Germany(CountryVaxBase):
     source_url: str = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
     source_url_ref: str = "https://impfdashboard.de/"
     location: str = "Germany"
@@ -125,13 +124,16 @@ class Germany:
 
     def export(self):
         df_base = self.read().pipe(self.pipeline_base)
-        # Export data
+        # Main data
         df = df_base.pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
-        # Export manufacturer data
-        df = df_base.pipe(self.pipeline_manufacturer)
-        df.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(df, "Robert Koch Institut", self.source_url_ref)
+        # Manufacturer data
+        df_man = df_base.pipe(self.pipeline_manufacturer)
+        # Export
+        self.export_datafile(
+            df,
+            df_manufacturer=df_man,
+            meta_manufacturer={"source_name": "Robert Koch Institut", "source_url": self.source_url_ref},
+        )
 
 
 def main():

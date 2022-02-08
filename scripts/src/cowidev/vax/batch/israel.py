@@ -1,16 +1,14 @@
 import datetime
+from cowidev.vax.utils.base import CountryVaxBase
 
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean import clean_date_series
 from cowidev.utils.utils import check_known_columns
 from cowidev.utils.web import request_json
-from cowidev.vax.utils.files import export_metadata_age
 
 
-class Israel:
-
+class Israel(CountryVaxBase):
     location: str = "Israel"
     source_url: str = "https://datadashboardapi.health.gov.il/api/queries/vaccinated"
     source_url_ref: str = "https://datadashboard.health.gov.il/COVID-19/general"
@@ -167,15 +165,17 @@ class Israel:
         return df
 
     def export(self):
-        destination = paths.out_vax(self.location)
-        self.read().pipe(self.pipeline).to_csv(destination, index=False)
-        # Export age data
+        # Main data
+        df = self.read().pipe(self.pipeline)
+        # Age data
         df_age = self.read_age().pipe(self.pipeline_age)
-        df_age.to_csv(paths.out_vax(self.location, age=True), index=False)
-        export_metadata_age(
-            df_age,
-            "Ministry of Health via github.com/dancarmoz/israel_moh_covid_dashboard_data",
-            self.source_url_age,
+        self.export_datafile(
+            df,
+            df_age=df_age,
+            meta_age={
+                "source_name": "Ministry of Health via github.com/dancarmoz/israel_moh_covid_dashboard_data",
+                "source_url": self.source_url_age,
+            },
         )
 
 

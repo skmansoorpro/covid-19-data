@@ -1,13 +1,13 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean import clean_date_series
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.utils import make_monotonic, build_vaccine_timeline
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Ecuador:
+class Ecuador(CountryVaxBase):
     location = "Ecuador"
     source_url_ref = "https://github.com/andrab/ecuacovid"
     source_url = {
@@ -135,14 +135,17 @@ class Ecuador:
     def export(self):
         # Manufacturer
         df_man = self.read_manuf().pipe(self.pipeline_manufacturer)
-        export_metadata_manufacturer(
-            df_man,
-            f"Ministerio de Salud Pública del Ecuador (via {self.source_url_ref})",
-            self.source_url_ref,
-        )
         # Main
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        # Export
+        self.export_datafile(
+            df=df,
+            df_manufacturer=df_man,
+            meta_manufacturer={
+                "source_name": f"Ministerio de Salud Pública del Ecuador (via {self.source_url_ref})",
+                "source_url": self.source_url_ref,
+            },
+        )
 
 
 def main():

@@ -382,4 +382,4 @@ class ECDC:
 
 
 def main():
-    ECDC(iso_path=os.path.join(paths.SCRIPTS.INPUT_ISO, "iso.csv")).export()
+    ECDC(iso_path=os.path.join(paths.INTERNAL_INPUT_ISO_DIR, "iso.csv")).export()

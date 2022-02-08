@@ -107,7 +107,7 @@ class UnitedStates:
             "Administered_Janssen",
         ]
         dfs = []
-        for file in glob(os.path.join(paths.SCRIPTS.INPUT_CDC_VAX, "cdc_data_*.csv")):
+        for file in glob(os.path.join(paths.INTERNAL_INPUT_CDC_VAX_DIR, "cdc_data_*.csv")):
             try:
                 df = pd.read_csv(file)
                 for vc in vaccine_cols:
