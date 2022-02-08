@@ -1,14 +1,14 @@
 import os
 
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 
 from cowidev.vax.us_states.etl import run_etl
 from cowidev.vax.us_states.grapher import run_grapheriser
 from cowidev.vax.us_states._parser import _parse_args
 
 
-FILE_DS = os.path.join(get_project_dir(), "public", "data", "vaccinations", "us_state_vaccinations.csv")
-FILE_GRAPHER = os.path.join(get_project_dir(), "scripts", "grapher", "COVID-19 - United States vaccinations.csv")
+FILE_DS = PATHS.DATA_VAX_US_FILE
+FILE_GRAPHER = os.path.join(PATHS.INTERNAL_GRAPHER_DIR, "COVID-19 - United States vaccinations.csv")
 
 
 def run_step(step: str):

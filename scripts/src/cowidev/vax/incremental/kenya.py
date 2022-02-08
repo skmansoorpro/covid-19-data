@@ -14,7 +14,7 @@ from cowidev.vax.utils.incremental import merge_with_current_data
 class Kenya:
     location = "Kenya"
     source_url = "https://www.health.go.ke"
-    output_file = os.path.join(f"{paths.SCRIPTS.OUTPUT_VAX_MAIN}", f"{location}.csv")
+    output_file = os.path.join(f"{paths.INTERNAL_OUTPUT_VAX_MAIN_DIR}", f"{location}.csv")
     regex = {
         "date": r"date: [a-z]+ ([0-9]+).{0,2},? ([a-z]+),? (202\d)",
         "metrics": {

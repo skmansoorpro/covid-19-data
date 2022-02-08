@@ -5,13 +5,13 @@ from glob import glob
 import requests
 import pandas as pd
 
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 from cowidev.vax.utils.utils import make_monotonic
 
 
 class USStatesETL:
     source_url: str = "https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data"
-    cdc_data_path: str = os.path.join(get_project_dir(), "scripts", "input", "cdc", "vaccinations")
+    cdc_data_path: str = PATHS.INTERNAL_INPUT_CDC_VAX_DIR
 
     def extract(self):
         self._download_data()

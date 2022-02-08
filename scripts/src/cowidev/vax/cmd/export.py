@@ -16,8 +16,7 @@ def main_export(url):
 def main_source_table_html(url):
     # Read html content
     print("-- Reading HTML table... --")
-    path = os.path.join(paths.SCRIPTS.OUTPUT_VAX, "source_table.html")
-    with open(path, "r") as f:
+    with open(paths.INTERNAL_OUTPUT_VAX_TABLE_FILE, "r") as f:
         html = f.read()
     logger.info("Redirecting to owid editing platform...")
     try:

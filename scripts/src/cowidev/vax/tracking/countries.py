@@ -1,12 +1,8 @@
-import os
 from datetime import datetime
 
 import pandas as pd
 from cowidev.vax.tracking.vaccines import vaccines_comparison_with_who
-from cowidev.utils.utils import get_project_dir
-
-
-CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))
+from cowidev import PATHS
 
 
 def get_who_data():
@@ -68,23 +64,11 @@ def country_updates_summary(
     """
     # Get data paths
     if not path_vaccinations:
-        path_vaccinations = os.path.abspath(
-            os.path.join(
-                get_project_dir(),
-                "public",
-                "data",
-                "vaccinations",
-                "vaccinations.csv",
-            )
-        )
+        path_vaccinations = PATHS.DATA_VAX_MAIN_FILE
     if not path_locations:
-        path_locations = os.path.abspath(
-            os.path.join(get_project_dir(), "public", "data", "vaccinations", "locations.csv")
-        )
+        path_locations = PATHS.DATA_VAX_META_FILE
     if not path_automation_state:
-        path_automation_state = os.path.abspath(
-            os.path.join(get_project_dir(), "scripts", "output", "vaccinations", "automation_state.csv")
-        )
+        path_automation_state = PATHS.INTERNAL_OUTPUT_VAX_AUTOM_FILE
     columns_output = [
         "location",
         "last_observation_date",
@@ -252,13 +236,9 @@ def countries_missing(
                                     DataFrame.
     """
     if not path_population:
-        path_population = os.path.abspath(
-            os.path.join(get_project_dir(), "scripts", "input", "un", "population_latest.csv")
-        )
+        path_population = PATHS.INTERNAL_INPUT_UN_POPULATION_FILE
     if not path_locations:
-        path_locations = os.path.abspath(
-            os.path.join(get_project_dir(), "public", "data", "vaccinations", "locations.csv")
-        )
+        path_locations = PATHS.DATA_VAX_META_FILE
     df_loc = pd.read_csv(path_locations, usecols=["location"])
     df_pop = pd.read_csv(path_population)
     df_pop = df_pop[df_pop.iso_code.apply(lambda x: isinstance(x, str) and len(x) == 3)]

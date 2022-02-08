@@ -1,14 +1,11 @@
-import os
-
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from cowidev import PATHS
 from cowidev.utils.web.scraping import get_soup, get_headers
 from cowidev.vax.utils.orgs import WHO_VACCINES
 
-
-CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 VAX_MAPPING = {
     "Bharat Biotech": "Covaxin",
@@ -124,9 +121,7 @@ def vaccines_tracked(path_locations: str = None, location: str = None, as_list: 
         pd.DataFrame: Dataframe with location and vaccines tracked.
     """
     if not path_locations:
-        path_locations = os.path.abspath(
-            os.path.join(CURRENT_DIR, "../../../../../../public/data/vaccinations/locations.csv")
-        )
+        path_locations = PATHS.DATA_VAX_META_FILE
     df = pd.read_csv(path_locations, usecols=["vaccines", "location"])
     df = df.assign(vaccines=df.vaccines.apply(lambda x: set(x.split(", "))))
     if location:
@@ -153,9 +148,7 @@ def vaccines_approved(path_locations: str = None, verbose: bool = False) -> pd.D
     if verbose:
         print("This may take from 2 to 3 minutes...")
     if not path_locations:
-        path_locations = os.path.abspath(
-            os.path.join(CURRENT_DIR, "../../../../../../public/data/vaccinations/locations.csv")
-        )
+        path_locations = PATHS.DATA_VAX_META_FILE
     df = pd.read_csv(path_locations, usecols=["location"])
     client = TrackVaccinesClient()
     y = df.location.apply(lambda x: client.vaccines_approved(x))
