@@ -2,7 +2,6 @@ from cowidev.vax.cmd._config import get_config
 from cowidev.vax.cmd import main_get_data, main_process_data, main_generate_dataset
 from cowidev.vax.cmd.export import main_export
 from cowidev.vax.cmd.twitter import main_propose_data_twitter
-from cowidev.vax.cmd.check_with_r import test_check_with_r
 
 
 def main():
@@ -32,10 +31,7 @@ def main():
             skip_anomaly=cfg.skip_anomaly_check,
         )
     if "generate" in config.mode:
-        if config.check_r:
-            test_check_with_r()
-        else:
-            main_generate_dataset()
+        main_generate_dataset()
     if "export" in config.mode:
         main_export(url=creds.owid_cloud_table_post)
     if "propose" in config.mode:
