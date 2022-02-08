@@ -86,6 +86,7 @@ class HongKong:
         return df.pipe(self.pipe_calculate_metrics).pipe(self.pipe_add_vaccines).pipe(self.pipe_add_metadata)
 
     def pipe_sum_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
+        assert set(df["vaccine"].unique()) == set(self.vaccine_mapping.keys())
         df = df.drop(columns="dose").replace(self.vaccine_mapping).groupby(["date", "vaccine"], as_index=False).sum()
         return df[df.total_vaccinations > 0]
 
