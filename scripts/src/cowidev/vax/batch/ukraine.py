@@ -1,16 +1,14 @@
 import datetime
 
 import pandas as pd
-import numpy as np
 import requests
 
-from cowidev.utils import paths
 from cowidev.utils.clean import clean_date_series
 from cowidev.vax.utils.utils import build_vaccine_timeline
-from cowidev.vax.utils.files import export_metadata_manufacturer
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Ukraine:
+class Ukraine(CountryVaxBase):
     # it is expected to use Novavax vaccine as well in future,
     # if so, this script should be updated
     source_url: str = "https://health-security.rnbo.gov.ua"
@@ -131,21 +129,19 @@ class Ukraine:
     def export(self):
         # Load data
         df = self.read()
-        # Export main
-        df.pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False)
-        # Export manufacturer data
+        # Main data
+        df = df.pipe(self.pipeline)
+        # Manufacturer data
         df_man = df.pipe(self.pipeline_manufacturer)
-        df_man.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(
-            df_man,
-            "National Security and Defense Council of Ukraine",
-            self.source_url,
+        self.export_datafile(
+            df,
+            df_manufacturer=df_man,
+            meta_manufacturer={
+                "source_name": "National Security and Defense Council of Ukraine",
+                "source_url": self.source_url,
+            },
         )
 
 
 def main():
     Ukraine().export()
-
-
-if __name__ == "__main__":
-    main()

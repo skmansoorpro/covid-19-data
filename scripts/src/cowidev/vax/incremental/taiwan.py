@@ -153,7 +153,3 @@ class Taiwan:
 
 def main():
     Taiwan().export()
-
-
-if __name__ == "__main__":
-    main()

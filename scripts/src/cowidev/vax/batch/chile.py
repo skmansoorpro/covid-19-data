@@ -103,7 +103,7 @@ class Chile(CountryVaxBase):
             .sort_values(["location", "date", "vaccine"])
         )
 
-    def to_csv(self):
+    def export(self):
         # Manufacturer
         df_man = self.read(self.source_url_manufacturer).pipe(self.pipeline_manufacturer)
         # Main data
@@ -120,8 +120,4 @@ class Chile(CountryVaxBase):
 
 
 def main():
-    Chile().to_csv()
-
-
-if __name__ == "__main__":
-    main()
+    Chile().export()

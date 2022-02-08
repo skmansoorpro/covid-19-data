@@ -5,16 +5,15 @@ import re
 import pandas as pd
 from pdfminer.high_level import extract_text
 
-from cowidev.utils import clean_count, get_soup, paths
+from cowidev.utils import clean_count, get_soup
 from cowidev.utils.clean import extract_clean_date
 from cowidev.utils.web.download import download_file_from_url
-from cowidev.vax.utils.incremental import merge_with_current_data
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Kenya:
+class Kenya(CountryVaxBase):
     location = "Kenya"
     source_url = "https://www.health.go.ke"
-    output_file = os.path.join(f"{paths.INTERNAL_OUTPUT_VAX_MAIN_DIR}", f"{location}.csv")
     regex = {
         "date": r"date: [a-z]+ ([0-9]+).{0,2},? ([a-z]+),? (202\d)",
         "metrics": {
@@ -107,19 +106,13 @@ class Kenya:
     @property
     def last_update(self) -> str:
         """Get last update date"""
-        return pd.read_csv(self.output_file).date.max()
+        return self.load_datafile().date.max()
 
     def export(self):
         """Export data to csv"""
         df = self.read().pipe(self.pipeline)
-        df = merge_with_current_data(df, self.output_file)
-        df.to_csv(self.output_file, index=False)
+        self.export_datafile(df, attach=True)
 
 
 def main():
     Kenya().export()
-
-
-if __name__ == "__main__":
-
-    main()

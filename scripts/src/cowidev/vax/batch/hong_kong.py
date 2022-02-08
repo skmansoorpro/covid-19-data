@@ -109,7 +109,3 @@ class HongKong(CountryVaxBase):
 
 def main():
     HongKong().export()
-
-
-if __name__ == "__main__":
-    main()

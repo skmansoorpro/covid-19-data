@@ -214,7 +214,7 @@ class Jersey(CountryVaxBase):
             ]
         )
 
-    def to_csv(self):
+    def export(self):
         """Generalized."""
         df_base = self.read()
         # Main data
@@ -228,8 +228,4 @@ class Jersey(CountryVaxBase):
 
 
 def main():
-    Jersey().to_csv()
-
-
-if __name__ == "__main__":
-    main()
+    Jersey().export()

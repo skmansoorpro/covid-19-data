@@ -79,7 +79,3 @@ class Estonia(CountryVaxBase):
 
 def main():
     Estonia().export()
-
-
-if __name__ == "__main__":
-    main()

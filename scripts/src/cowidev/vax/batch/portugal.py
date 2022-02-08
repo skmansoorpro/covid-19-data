@@ -1,12 +1,12 @@
+from cowidev.vax.utils.base import CountryVaxBase
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean import clean_date_series
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import build_vaccine_timeline, make_monotonic
 
 
-class Portugal:
+class Portugal(CountryVaxBase):
     location: str = "Portugal"
     source_url: str = "https://github.com/dssg-pt/covid19pt-data/raw/master/vacinas.csv"
     source_url_ref: str = "https://github.com/dssg-pt/covid19pt-data"
@@ -128,8 +128,8 @@ class Portugal:
         )
 
     def export(self):
-        destination = paths.out_vax(self.location)
-        self.read().pipe(self.pipeline).to_csv(destination, index=False)
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def add_boosters(df: pd.DataFrame) -> pd.DataFrame:
@@ -152,7 +152,3 @@ def add_boosters(df: pd.DataFrame) -> pd.DataFrame:
 
 def main():
     Portugal().export()
-
-
-if __name__ == "__main__":
-    main()

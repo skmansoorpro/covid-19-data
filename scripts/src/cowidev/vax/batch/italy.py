@@ -1,10 +1,8 @@
-from cowidev.vax.utils.base import CountryVaxBase
 import pandas as pd
 from typing import List, Tuple
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.files import export_metadata_manufacturer
+from cowidev.vax.utils.base import CountryVaxBase
 
 
 class Italy(CountryVaxBase):
@@ -174,7 +172,3 @@ class Italy(CountryVaxBase):
 
 def main():
     Italy().export()
-
-
-if __name__ == "__main__":
-    main()

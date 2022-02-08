@@ -113,7 +113,3 @@ class Ireland(CountryVaxBase):
 
 def main():
     Ireland().export()
-
-
-if __name__ == "__main__":
-    main()

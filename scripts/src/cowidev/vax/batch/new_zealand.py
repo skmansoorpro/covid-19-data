@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup
 from cowidev.utils.clean import clean_date_series, clean_date
 from cowidev.utils.web.scraping import get_soup
 from cowidev.utils.web.download import read_xlsx_from_url
-from cowidev.utils import paths
 from cowidev.vax.utils.utils import build_vaccine_timeline
 from cowidev.vax.utils.base import CountryVaxBase
 
@@ -154,12 +153,9 @@ class NewZealand(CountryVaxBase):
         )
 
     def export(self):
-        self.read().pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False)
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def main():
     NewZealand().export()
-
-
-if __name__ == "__main__":
-    main()

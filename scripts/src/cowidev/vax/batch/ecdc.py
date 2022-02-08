@@ -1,13 +1,11 @@
-import os
-
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean.dates import clean_date, localdate
 from cowidev.utils.utils import check_known_columns
 from cowidev.utils.web.download import read_csv_from_url
-from cowidev.vax.utils.files import export_metadata_manufacturer, export_metadata_age
 from cowidev.vax.utils.orgs import ECDC_VACCINES
+from cowidev.vax.utils.base import CountryVaxBase
+from cowidev import PATHS
 
 
 AGE_GROUPS_KNOWN = {
@@ -95,12 +93,15 @@ COLUMNS = {
 }
 
 
-class ECDC:
-    def __init__(self, iso_path: str):
-        self.source_url = "https://opendata.ecdc.europa.eu/covid19/vaccine_tracker/csv/data.csv"
-        self.source_url_ref = "https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea"
-        self.country_mapping = self._load_country_mapping(iso_path)
-        self.vaccine_mapping = {**ECDC_VACCINES, "UNK": "Unknown"}
+class ECDC(CountryVaxBase):
+    location = "ECDC"
+    source_url = "https://opendata.ecdc.europa.eu/covid19/vaccine_tracker/csv/data.csv"
+    source_url_ref = "https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea"
+    vaccine_mapping = {**ECDC_VACCINES, "UNK": "Unknown"}
+
+    @property
+    def country_mapping(self):
+        return self._load_country_mapping(PATHS.INTERNAL_INPUT_ISO_FULL_FILE)
 
     def read(self):
         return read_csv_from_url(self.source_url, timeout=20)
@@ -336,24 +337,14 @@ class ECDC:
         locations = df_age.location.unique()
         for location in locations:
             df_c = df_age[df_age.location == location].pipe(self._filter_age_targetgroup)
-            df_c.to_csv(
-                paths.out_vax(location, age=True),
-                columns=[
-                    "location",
-                    "date",
-                    "age_group_min",
-                    "age_group_max",
-                    "people_vaccinated_per_hundred",
-                    "people_fully_vaccinated_per_hundred",
-                    "people_with_booster_per_hundred",
-                ],
-                index=False,
+            self.export_datafile(
+                df_age=df_c,
+                filename=location,
+                meta_age={
+                    "source_name": "European Centre for Disease Prevention and Control (ECDC)",
+                    "source_url": self.source_url_ref,
+                },
             )
-        export_metadata_age(
-            df=df,
-            source_name="European Centre for Disease Prevention and Control (ECDC)",
-            source_url=self.source_url_ref,
-        )
 
     def export_manufacturer(self, df: pd.DataFrame):
         df_manufacturer = df.pipe(self.pipeline_manufacturer)
@@ -361,16 +352,14 @@ class ECDC:
         locations = df_manufacturer.location.unique()
         for location in locations:
             df_c = df_manufacturer[df_manufacturer.location == location]
-            df_c.to_csv(
-                paths.out_vax(location, manufacturer=True),
-                columns=["location", "date", "vaccine", "total_vaccinations"],
-                index=False,
+            self.export_datafile(
+                df_manufacturer=df_c,
+                filename=location,
+                meta_manufacturer={
+                    "source_name": "European Centre for Disease Prevention and Control (ECDC)",
+                    "source_url": self.source_url_ref,
+                },
             )
-        export_metadata_manufacturer(
-            df=df_manufacturer,
-            source_name="European Centre for Disease Prevention and Control (ECDC)",
-            source_url=self.source_url_ref,
-        )
 
     def export(self):
         # Read data
@@ -382,4 +371,4 @@ class ECDC:
 
 
 def main():
-    ECDC(iso_path=os.path.join(paths.INTERNAL_INPUT_ISO_DIR, "iso.csv")).export()
+    ECDC().export()

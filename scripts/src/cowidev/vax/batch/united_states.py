@@ -3,14 +3,13 @@ import os
 
 import pandas as pd
 
-from cowidev.utils import paths
-from cowidev.utils.clean.dates import clean_date_series
+from cowidev import PATHS, clean_date_series
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.utils import build_vaccine_timeline
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class UnitedStates:
+class UnitedStates(CountryVaxBase):
     def __init__(self):
         self.source_url = "https://data.cdc.gov/api/views/rh2h-3yt2/rows.csv?accessType=DOWNLOAD"
         self.source_url_ref = (
@@ -107,7 +106,7 @@ class UnitedStates:
             "Administered_Janssen",
         ]
         dfs = []
-        for file in glob(os.path.join(paths.INTERNAL_INPUT_CDC_VAX_DIR, "cdc_data_*.csv")):
+        for file in glob(os.path.join(PATHS.INTERNAL_INPUT_CDC_VAX_DIR, "cdc_data_*.csv")):
             try:
                 df = pd.read_csv(file)
                 for vc in vaccine_cols:
@@ -136,20 +135,20 @@ class UnitedStates:
         return df
 
     def export(self):
-        self.read().pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False)
-
+        # Main
+        df = self.read().pipe(self.pipeline)
+        # Manufacturer
         df_manufacturer = self.read_manufacturer()
-        df_manufacturer.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(
-            df_manufacturer,
-            "Centers for Disease Control and Prevention",
-            "https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data",
+        # Export
+        self.export_datafile(
+            df,
+            df_manufacturer=df_manufacturer,
+            meta_age={
+                "source_name": "Centers for Disease Control and Prevention",
+                "source_url": "https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data",
+            },
         )
 
 
 def main():
     UnitedStates().export()
-
-
-if __name__ == "__main__":
-    main()

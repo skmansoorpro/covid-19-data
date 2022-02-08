@@ -1,9 +1,7 @@
 from cowidev.vax.utils.base import CountryVaxBase
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.utils import build_vaccine_timeline
 
 
@@ -160,7 +158,6 @@ class Czechia(CountryVaxBase):
 
         # Manufacturer data
         df_man = base.pipe(breakdown_per_vaccine)
-        export_metadata_manufacturer(df_man, "Ministry of Health", self.source_url)
 
         # Main data
         df = base.pipe(self.pipeline)

@@ -1,8 +1,6 @@
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
 from cowidev.utils.web.download import read_csv_from_url
 from cowidev.vax.utils.base import CountryVaxBase
-from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.utils import build_vaccine_timeline
 
 

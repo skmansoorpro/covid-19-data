@@ -1,13 +1,13 @@
 import json
+from cowidev.vax.utils.base import CountryVaxBase
 import requests
 
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.vax.utils.utils import make_monotonic
 
 
-class Lithuania:
+class Lithuania(CountryVaxBase):
     location: str = "Lithuania"
     source_url_ref: str = "https://experience.arcgis.com/experience/cab84dcfe0464c2a8050a78f817924ca/page/page_3/"
     vaccine_mapping = {
@@ -121,7 +121,7 @@ class Lithuania:
             .pipe(self.pipe_metadata)
             .pipe(make_monotonic, max_removed_rows=20)
         )
-        df.to_csv(paths.out_vax(self.location), index=False)
+        self.export_datafile(df)
 
 
 def main():

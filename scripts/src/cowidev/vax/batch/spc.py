@@ -1,5 +1,6 @@
 from collections import defaultdict
 import copy
+from cowidev.vax.utils.base import CountryVaxBase
 
 import pandas as pd
 
@@ -7,7 +8,7 @@ from cowidev.utils.web import request_json
 from cowidev.vax.utils.orgs import SPC_COUNTRIES
 from cowidev.vax.utils.files import load_data
 from cowidev.vax.utils.utils import make_monotonic
-from cowidev.utils import paths
+from cowidev import PATHS
 
 
 metrics_mapping = {
@@ -38,11 +39,15 @@ vaccines_startdates = {
         ["Oxford/AstraZeneca", None],
     ],
 }
+country_codes_url = "+".join(SPC_COUNTRIES.keys())
 
 
-class SPC:
-    def __init__(self, source_url: str):
-        self.source_url = source_url
+class SPC(CountryVaxBase):
+    llocation = "SPC"
+    source_url = (
+        f"https://stats-nsi-stable.pacificdata.org/rest/data/SPC,DF_COVID_VACCINATION,1.0/D.{country_codes_url}.?"
+        "startPeriod=2021-02-02&format=jsondata"
+    )
 
     def read(self):
         # Get data
@@ -175,21 +180,11 @@ class SPC:
         ]
         return vax_date_mapping
 
-    def to_csv(self):
+    def export(self):
         data = self.read()
         for country, df in data.items():
-            df.to_csv(paths.out_vax(country), index=False)
+            self.export_datafile(df, filename=country)
 
 
 def main():
-    country_codes_url = "+".join(SPC_COUNTRIES.keys())
-    SPC(
-        source_url=(
-            f"https://stats-nsi-stable.pacificdata.org/rest/data/SPC,DF_COVID_VACCINATION,1.0/D.{country_codes_url}.?"
-            "startPeriod=2021-02-02&format=jsondata"
-        ),
-    ).to_csv()
-
-
-if __name__ == "__main__":
-    main()
+    SPC().export()

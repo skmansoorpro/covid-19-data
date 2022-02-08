@@ -2,11 +2,10 @@ import pandas as pd
 
 from cowidev.utils.clean import clean_df_columns_multiindex, clean_date_series
 from cowidev.utils.web.download import read_xlsx_from_url
-from cowidev.vax.utils.files import export_metadata_manufacturer
-from cowidev.utils import paths
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class SouthKorea:
+class SouthKorea(CountryVaxBase):
     def __init__(self):
         self.location = "South Korea"
         self.source_url = "https://ncv.kdca.go.kr/filepath/boardDownload.es?bid=9999&list_no=9999&seq=1"
@@ -146,14 +145,17 @@ class SouthKorea:
     def export(self):
         df = self.read()
         # Main data
-        df.pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False)
+        df.pipe(self.pipeline)
         # Vaccination by manufacturer
         df_man = df.pipe(self.pipeline_manufacturer)
-        df_man.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(
-            df_man,
-            "Korea Centers for Disease Control and Prevention",
-            self.source_url_ref,
+        # Export
+        self.export_datafile(
+            df,
+            df_manufacturer=df_man,
+            meta_manufacturer={
+                "source_name": "Korea Centers for Disease Control and Prevention",
+                "source_url": self.source_url_ref,
+            },
         )
 
 

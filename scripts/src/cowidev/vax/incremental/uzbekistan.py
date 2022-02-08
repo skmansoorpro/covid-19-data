@@ -1,14 +1,13 @@
 from cowidev.utils.web import get_driver
 from cowidev.utils.clean import clean_count, clean_date
-from cowidev.vax.utils.incremental import merge_with_current_data
-from cowidev.utils import paths
+from cowidev.vax.utils.base import CountryVaxBase
 from cowidev.vax.utils.utils import build_vaccine_timeline
 
 import re
 import pandas as pd
 
 
-class Uzbekistan:
+class Uzbekistan(CountryVaxBase):
     location: str = "Uzbekistan"
     source_url: str = "https://coronavirus.uz/uz/lists"
     regex: dict = {
@@ -85,11 +84,9 @@ class Uzbekistan:
         return df.pipe(self.pipe_metadata).pipe(self.pipe_vaccine)
 
     def export(self):
-        output_file = paths.out_vax(self.location)
-        last_update = pd.read_csv(output_file).date.max()
+        last_update = self.load_datafile().date.max()
         df = self.read(last_update).pipe(self.pipeline)
-        df = merge_with_current_data(df, output_file)
-        df.to_csv(output_file, index=False)
+        self.export_datafile(df, attach=True)
 
 
 def main():
