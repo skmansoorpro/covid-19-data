@@ -27,9 +27,9 @@ class Macao:
         dfs = tabula.read_pdf(url)
         df = dfs[0]
         # Checks data
-        cols = ["Unnamed: 0", "Unnamed: 1", "Unnamed: 2", "Unnamed: 3", "其他種類疫苗", "混合種類", "Unnamed: 4"]
-        if df.shape != (30, 7):
-            raise ValueError("New rows or columns added!")
+        cols = ["Unnamed: 0", "Unnamed: 1", "滅活疫苗", "Unnamed: 2", "其他種類疫苗", "Unnamed: 3", "Unnamed: 4"]
+        if df.shape[1] != 7:
+            raise ValueError("New columns added!")
         if not (df.columns == cols).all():
             raise ValueError("Source data columns changed!")
         df = df.set_index("Unnamed: 0")
@@ -47,10 +47,14 @@ class Macao:
         date = self._parse_date(element)
         # Extract table data
         df = self._parse_pdf_table(url)
-        total_vaccinations = clean_count(df.loc["Total de doses administradas", "Unnamed: 4"])
-        people_vaccinated = clean_count(df.loc["N o Pessoas inoculadas com pelo menos uma dose", "Unnamed: 4"])
-        people_only_2_doses = clean_count(df.loc["N.o de pessoas vacinadas com a 2a dose", "Unnamed: 4"])
-        people_only_3_doses = clean_count(df.loc["N.o de pessoas vacinadas com a 3a dose", "Unnamed: 4"])
+        try:
+            total_vaccinations = clean_count(df.loc["Total de doses administradas", "Unnamed: 4"])
+            people_vaccinated = clean_count(df.loc["N o Pessoas inoculadas com pelo menos", "Unnamed: 4"])
+            people_only_2_doses = clean_count(df.loc["N.o de pessoas vacinadas com a 2a dose", "Unnamed: 4"])
+            people_only_3_doses = clean_count(df.loc["N.o de pessoas vacinadas com a 3a dose", "Unnamed: 4"])
+        except Exception as e:
+            print(e)
+            print(df.index)
         data = {
             "total_vaccinations": total_vaccinations,
             "people_vaccinated": people_vaccinated,
