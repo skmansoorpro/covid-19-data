@@ -7,13 +7,19 @@ from cowidev.vax.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_NAME
 
 
 @click.command(name="get", short_help="Step 1: Scrape vaccination data from primary sources.")
-@click.option(
-    "--countries",
-    "-c",
-    default=CONFIG.pipeline.vaccinations.get.countries,
-    # default=[],
-    help="List of countries to skip (comma-separated)",
-    cls=PythonLiteralOption,
+# @click.option(
+#     "--countries",
+#     "-c",
+#     default=CONFIG.pipeline.vaccinations.get.countries,
+#     # default=[],
+#     help="List of countries to skip (comma-separated)",
+#     cls=PythonLiteralOption,
+# )
+@click.argument(
+    "countries",
+    nargs=-1,
+    # help="List of countries to skip (comma-separated)",
+    # default=CONFIG.pipeline.vaccinations.get.countries,
 )
 @click.option(
     "--skip-countries",
@@ -42,9 +48,9 @@ from cowidev.vax.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_NAME
     help="Number of threads to use.",
     show_default=True,
 )
-def click_vax_get(parallel, n_jobs, countries, skip_countries, optimize):
-    """Runs scraping scripts to collect the data from the primary sources. Data is exported to project folder
-    scripts/output/vaccinations/.
+def click_vax_get(countries, parallel, n_jobs, skip_countries, optimize):
+    """Runs scraping scripts to collect the data from the primary sources of COUNTRIES. Data is exported to project
+    folder scripts/output/vaccinations/. By default, all countries are scraped.
 
     By default, the default values for OPTIONS are those specified in the configuration file. The configuration file is
     a YAML file with the pipeline settings. Note that the environment variable `OWID_COVID_CONFIG` must be pointing to
@@ -52,33 +58,25 @@ def click_vax_get(parallel, n_jobs, countries, skip_countries, optimize):
 
     OPTIONS passed via command line will overwrite those from configuration file.
 
-    Example:
-    Run the step using default values, from config.yaml file.
+    Examples:
 
-        cowid vax get
+        Run the step using default values, from config.yaml file: `cowid vax get`
 
-    Example:
-    Run the step only for Australia.
+        Run the step only for Australia: `cowid vax get australia`
 
-        cowid vax get -c australia
+        Run the step for all countries except Australia: `cowid vax get -s australia all`
 
-    Example:
-    Run the step for all countries except Australia.
-
-        cowid vax get -c all -s australia
-
-    Example:
-    Run the step for all incremental processes (can be also done using 'batch').
-
-        cowid vax get -c incremental
+        Run the step for all incremental processes (can be also done using 'batch'): `cowid vax get incremental`
     """
+    if countries == ():
+        countries = CONFIG.pipeline.vaccinations.get.countries
     c2m = Country2Module(
         modules_name=MODULES_NAME,
         modules_name_incremental=MODULES_NAME_INCREMENTAL,
         modules_name_batch=MODULES_NAME_BATCH,
         country_to_module=country_to_module,
     )
-    print(skip_countries)
+    print(countries)
     modules = c2m.parse(countries)
     modules_skip = c2m.parse(skip_countries)
     main_get_data(

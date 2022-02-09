@@ -99,30 +99,28 @@ pipeline:
 ```
 
 ## Pipeline secrets file
-We use the secrets file to update internal flows with the output of the pipeline (fields `vax` and `test`). Without
-these fields, you can still run parts of the pipeline. `google` section is required to access Google Drive and Google
-Sheets. The value of `client_secrets` should point to the JSON file downloaded from Google Cloud Platform that contains your personal Google credentials. 
+We use the secrets file to update internal flows with the output of the pipeline (fields `vax` and `test`). **There is only one mandatory field: `google.clients_secrets`**, which is needed to interact with Google Drive / Google Sheets based sources (more on how to get it [here](#how-can-i-get-the-google-client_secretsjson-file)).
 
 Note that this file is not shared, as it may contain sensitive data.
 
 ```yaml
 # Google configuration (dict)
 google:
-  mail:  # Email (str)
   client_secrets:  # Path to google client_secrets.json file
+  mail:  # Email (str), OPTIONAL
 
-# Vaccination configuration (dict)
+# Vaccination configuration (dict), OPTIONAL
 vax:
   post:  # OWID Vaccination internal post link (str)
   sheet_id:  # OWID Vaccination internal spredsheet ID, where manual imports happen (str)
 
-# Testing configuration (dict)
+# Testing configuration (dict), OPTIONAL
 test:
   post:  # OWID Testing internal post link (str)
   sheet_id:  # OWID Testing internal spredsheet ID, where manual imports happen (str)
   sheet_id_extra:  # OWID Extra Testing internal spredsheet ID, where attempted countries are listed (str)
 
-# Twitter configuration (dict), Optional
+# Twitter configuration (dict), OPTIONAL
 twitter:
   consumer_key:  # Consumer key (str)
   consumer_secret:  # Consumer secret (str)
@@ -133,7 +131,8 @@ twitter:
 
 ## FAQs
 ### How can I get the google `client_secrets.json` file?
-As [`gsheets`](https://gsheets.readthedocs.io/en/stable/#quickstart) documentation puts it:
+The value of `google.client_secrets` should point to the JSON file downloaded from Google Cloud Platform that contains
+your personal Google credentials. To obtain it, you can follow [`gsheets` documentation](https://gsheets.readthedocs.io/en/stable/#quickstart):
 
 > Log into the [Google Developers Console](https://console.developers.google.com/) with the Google account whose
 > spreadsheets you want to access. Create (or select) a project and enable the **Drive API** and **Sheets API** (under

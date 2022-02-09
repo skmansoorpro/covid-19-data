@@ -34,12 +34,24 @@ COVID-19 Testing data pipeline.
 Scrape testing data from primary sources.
 
 ```
+cowid test get [OPTIONS] [COUNTRIES]...
+
+Runs scraping scripts to collect the data from the primary sources of
+COUNTRIES. Data is exported to project folder scripts/output/testing/. By
+default, all countries are scraped.
+
 Options:
 --parallel / --no-parallel  Parallelize process.  [default: parallel]
 --n-jobs INTEGER            Number of threads to use.  [default: -2]
--c, --countries TEXT        List of countries to skip (comma-separated)
 -s, --skip-countries TEXT   List of countries to skip (comma-separated)
 --help                      Show this message and exit.
+```
+
+##### Example
+Scrape data for Australia.
+
+```
+cowid test get australia
 ```
 
 ## Configuration

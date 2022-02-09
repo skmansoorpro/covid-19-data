@@ -46,7 +46,7 @@ class TestingConfig(Base4Config):
 
     def __post_init__(self):
         if self.get["countries"] is None:
-            self.get["countries"] = "all"
+            self.get["countries"] = ["all"]
         if self.get["skip_countries"] is None:
             self.get["skip_countries"] = []
         self.get = TestingGetConfig(**self.get)
@@ -60,7 +60,7 @@ class VaccinationsConfig(Base4Config):
     def __post_init__(self):
         # Get
         if self.get["countries"] is None:
-            self.get["countries"] = "all"
+            self.get["countries"] = ["all"]
         if self.get["skip_countries"] is None:
             self.get["skip_countries"] = []
         self.get = VaccinationsGetConfig(**self.get)
