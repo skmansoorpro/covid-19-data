@@ -6,7 +6,7 @@ from cowidev.utils.params import CONFIG
 from cowidev.vax.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_NAME_INCREMENTAL, country_to_module
 
 
-@click.command(name="get", short_help="Scrape vaccination data from primary sources.")
+@click.command(name="get", short_help="Step 1: Scrape vaccination data from primary sources.")
 @click.option(
     "--countries",
     "-c",

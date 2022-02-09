@@ -15,7 +15,7 @@ from cowidev.utils.params import CONFIG, SECRETS
 logger = get_logger()
 
 
-@click.command(name="process", short_help="Process scraped vaccination data from primary sources.")
+@click.command(name="process", short_help="Step 2: Process scraped vaccination data from primary sources.")
 def click_vax_process():
     """Process data in folder scripts/output/vaccinations/.
 
