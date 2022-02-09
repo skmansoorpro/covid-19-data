@@ -1,3 +1,4 @@
+import collections
 import ast
 from dataclasses import dataclass
 import click
@@ -106,3 +107,15 @@ class Country2Module:
         if countries_wrong:
             raise ValueError(f"Invalid countries: {countries_wrong}. Valid countries are: {countries_valid}")
             # raise ValueError("Invalid country")
+
+
+class OrderedGroup(click.Group):
+    """From https://stackoverflow.com/a/58323807/5056599"""
+
+    def __init__(self, name=None, commands=None, **attrs):
+        super(OrderedGroup, self).__init__(name, commands, **attrs)
+        #: the registered subcommands by their exported names.
+        self.commands = commands or collections.OrderedDict()
+
+    def list_commands(self, ctx):
+        return self.commands
