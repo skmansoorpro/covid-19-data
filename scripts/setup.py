@@ -52,8 +52,6 @@ setup(
         "console_scripts": [
             "cowidev-grapher-db=cowidev.grapher.db.__main__:main",
             "cowid-vax=cowidev.vax.cmd.__main__:main",
-            "cowid-test=cowidev.testing.cmd.__main__:main",
-            "cowid-vax-track=cowidev.vax.tracking.__main__:main",
             "cowid=cowidev.cmd.__main__:cli",
         ]
     },
