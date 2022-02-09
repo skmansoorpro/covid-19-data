@@ -1,4 +1,4 @@
-# Environment
+# Setting up the working environment
 In this document we explain all the necessary steps to correctly set up your environment and work with this project. 
 
 Perhaps you want to set up the environment to help us out, or to learn how we work, or because you want to set up a
@@ -7,8 +7,8 @@ similar workflow. In any case, we really appreciate the time you are taking here
 - [Python](#python)
 - [Install project library](#install-project-library)
 - [Set environment variables](#set-environment-variables)
-- [Pipeline configuration file](#pipeline-configuration-file)
-- [Pipeline secrets file](#pipeline-secrets-file)
+- [Configuration file](#configuration-file)
+- [Secrets file](#secrets-file)
 - [FAQs](#FAQs)
 
 ## Python
@@ -23,10 +23,22 @@ python -m venv venv
 # Activate
 . venv/bin/activate
 ```
+## Download the project
+First thing is to download the project from the official repository:
+
+```bash
+git clone https://github.com/owid/covid-19-data.git
+```
+
+Note that the project is quite big in size, so you may want to use a [shallow clone](https://git-scm.com/docs/git-clone>):
+
+```bash
+git clone --depth 5 https://github.com/owid/covid-19-data.git
+```
 
 ## Install project library
-This project is built around the python library [`cowidev`](../src/cowidev/), which are currently developing to help us
-maintain and improve our _COVID-19 data pipeline_. To install the library, we recommend using `pip` in [editable mode](https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs). For this, you need to be in `scripts/` folder, next to the `setup.py` file:
+This project is built around the python library [`cowidev`](../src/cowidev/), which we are developing to help us
+maintain and improve our COVID-19 data pipeline. To install the library, we recommend using `pip` in [editable mode](https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs). For this, you need to be in `scripts/` folder, next to the `setup.py` file:
 
 ```bash
 cd scripts
@@ -36,11 +48,13 @@ pip install -e .
 ## Set environment variables
 To run the pipeline, you need to create three environment variables: 
 
-- `OWID_COVID_PROJECT_DIR`: Path to the local project directory, e.g. `/Users/username/projects/covid-19-data/`
-- `OWID_COVID_CONFIG`: Path to the data pipeline configuration file (`yaml` format). This file provides the default configuration values for the pipeline. Our team uses [`config.yaml`](../config.yaml), which you can use and adapt to your needs.
-- `OWID_COVID_SECRETS`: Path to the data pipeline secrets file (`yaml` format).
+| Variable | Description |
+|----------|-------------|
+| `OWID_COVID_PROJECT_DIR`        | Path to the local project directory, e.g. `/Users/username/projects/covid-19-data/`           |
+| `OWID_COVID_CONFIG`        | Path to the data pipeline configuration file (`yaml` format). This file provides the default configuration values for the pipeline. Our team uses [`config.yaml`](../config.yaml), which you can use and adapt to your needs.          |
+| `OWID_COVID_SECRETS`        | Path to the data pipeline secrets file (`yaml` format).           |
 
-You can add the environment variables by adding the following lines to your shell config file (e.g. `.bashrc` or `.bash_profile`):
+You need to add these variables to your shell config file (i.e. `.bashrc` or `.bash_profile`), e.g.:
 
 ```
 export OWID_COVID_PROJECT_DIR=/Users/username/projects/covid-19-data
@@ -48,11 +62,12 @@ export OWID_COVID_CONFIG=${OWID_COVID_PROJECT_DIR}/scripts/config.yaml
 export OWID_COVID_SECRETS=${OWID_COVID_PROJECT_DIR}/scripts/secrets.yaml
 ```
 
-Note that this is an example and you are free to choose other paths as long as they point to the respective files.
+Note that this is an example and you are free to choose other paths as long as they point to the correct files. More on
+the `config.yaml` and `secrets.yaml` file below.
 
-## Pipeline configuration file
-The configuration file is required to correctly run the COVID-19 vaccination and testing data pipelines (might be
-extended to other pipelines). Find below a sample with its structure, you can also check [the one we use](../config_new.yaml). 
+## Configuration file
+The configuration file is required to run the COVID-19 vaccination and testing data pipelines (might be
+extended to other pipelines). Find below a sample with its structure, you can also check [the one we use](https://github.com/owid/covid-19-data/blob/master/scripts/config_new.yaml). 
 
 Note that all fields are required, even if left empty.
 
@@ -96,7 +111,7 @@ pipeline:
     export:
 ```
 
-## Pipeline secrets file
+## Secrets file
 We use the secrets file to update internal flows with the output of the pipeline (fields `vax` and `test`). **There is only one mandatory field: `google.clients_secrets`**, which is needed to interact with Google Drive / Google Sheets based sources (more on how to get it [here](#how-can-i-get-the-google-client-secrets-json-file)).
 
 Note that this file is not shared, as it may contain sensitive data.

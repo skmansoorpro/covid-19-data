@@ -3,8 +3,7 @@
 
 # Development
 [![Data](https://img.shields.io/badge/go_to-public_data-purple)](../../../public/data/)
-[![Vaccinations docs](https://img.shields.io/badge/vaccination-docs-0055ff)](docs/vaccinations/README.md)
-[![Testing docs](https://img.shields.io/badge/testing-docs-0055ff)](scripts/testing/README.md)
+[![documentation](https://img.shields.io/badge/development-docs-0055ff)](https://covid.ourworldindata.org/development)
 
 Here you will find all the different scripts and tools that we use to generate [the
 data](https://github.com/owid/covid-19-data/tree/master/public/data). 
@@ -14,16 +13,14 @@ Currently, most of the  pipelines have been integrated into our [`cowidev`](src/
 
 ## Contents
 
-- [Folders](#folders)
-- [Installation](#installation)
+- [Directory overview](#directory-overview)
 - [Getting Started](#getting-started)
-- [Test data](#test-data)
 - [Contribute](#contribute)
 
-## Folders
+## Directory overview
 |Folder|Description                  |
 |------|-----------------------------|
-|[`docs/`](docs)|Development documentation (including installation & usage of `cowidev`).|
+|[`docs/`](docs)|Sphinx documentation source files. Live at https://covid.ourworldindata.org/development|
 |[`grapher/`](grapher)|Internal OWID files to power our [_grapher_](https://ourworldindata.org/owid-grapher) visualizations.|
 |[`input/`](input)|External files used to compute derived metrics, such as X-per capita, and aggregate groups, such as 'Asia', etc.|
 |[`output/`](output)|Temporary files. Only for development purposes. Use it at your own risk.|
@@ -87,7 +84,7 @@ not necessary if you just want to run the scraping process for a country (e.g. f
 kenya`).
 
 
-## Getting started
+## Pipeline overview
 The data pipeline is built from different processes, which are executed separately. To run a process use:
 
 ```
@@ -113,18 +110,7 @@ and `[step]` can be:
 
 
 **NOTE: The `vaccinations` process does not follow this structure. For more info, check the [vaccination process
-overview](scripts/docs/vaccinations/README.md) and the [vaccination data contribution guideline](scripts/docs/vaccinations/CONTRIBUTE.md). Also, testing is not currently available within in the library.**
-
-## Test data
-Currently, the testing data is not included in the library, but in the folder [`scripts/testing/`](scripts/testing).
-
-It resembles very much the architecture of the vaccination pipeline, but differs in some key points. The most noticeable
-difference is that it contains both R and Python code. We currently prefer contributions in Python.
-
-
-_More info:_
-   - [Testing data overview](scripts/testing/README.md)
-   - [Testing data contribution guideline](scripts/testing/CONTRIBUTE.md)
+overview](scripts/docs/vaccinations/README.md) and the [vaccination data contribution guideline](scripts/docs/vaccinations/CONTRIBUTE.md).**
 
 ## Contribute
 We welcome contributions for all of our processes. There are two types of contributions:

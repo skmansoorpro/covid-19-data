@@ -18,6 +18,17 @@ Find below a diagram with the different sub-processes, their approximate update 
 datasets. This diagram only shows the sub-processes relevant for the production of the complete dataset, as there are
 other sub-processes producing data that may appear on our website (Grapher) but that is not present in the complete dataset.
 
+| **Pipeline**              | **Frequency**                | **Module**       | **Steps** | **Output**                                                                      |
+|---------------------------|------------------------------|------------------|-----------|---------------------------------------------------------------------------------|
+| Cases & Deaths (JHU)      | every hour (if new data)     | cowidev.jhu      |           | jhu/                                                                            |
+| Vaccination               | daily at 12:00 UTC           | cowidev.vax      |           | vaccinations.csv,vaccinations-by-manufacturer.csv,vaccinations-by-age-group.csv |
+| Hospitalization & ICU     | daily at 06:00 and 18:00 UTC | cowidev.hosp     |           | covid-hospitalizations.csv                                                      |
+| Testing                   | 3 times per week             | cowidev.testing  |           | covid-testing-all-observations.csv                                              |
+| Policy responses (OxCGRT) | daily                        | cowidev.oxcgrt   |           | latest.csv                                                                      |
+| Variants                  | daily at 20:00 UTC           | cowidev.variants |           | covid-variants.csv, covid-sequencing.csv                                        |
+| Excess mortality          | daily at 06:00 and 18:00 UTC | cowidev.xm       |           | excess_mortality.csv, excess_mortality_economist_estimates.csv                  |
+| Reproduction rate         | daily                        |                  |           |                                                                                 |
+
 <pre>
   ┌──────────────────────────────────────────────────────────┐
   │ Cases & Deaths (JHU)                                     │
@@ -64,15 +75,15 @@ other sub-processes producing data that may appear on our website (Grapher) but 
   │  output:  <a href="hospitalizations/covid-hospitalizations.csv">covid-hospitalizations.csv</a> ──────────────────── ──────────┤
   │                                                          │          │
   └──────────────────────────────────────────────────────────┘          │
-                                                                        │      ┌──────────────────────────────────┐
-  ┌──────────────────────────────────────────────────────────┐          │      │ Megafile                         │
-  │ Testing                                                  │          │      │                                  │
-  │                                                          │          │      │  module: <a href="../../scripts/src/cowidev/megafile/__main__.py">cowidev.megafile</a>        │
-  │  module: <a href="../../scripts/src/cowidev/testing">cowidev.testing</a>                                 │          ├─────►│  update: daily at 6h and 18h UTC │
-  │  update: 3 times per week                                │          │      │                                  │
-  │                                                          │          │      │  output:  <a href="owid-covid-data.csv">owid-covid-data.csv</a>    │
-  │           ┌───┐     ┌────────────────┐                   │          │      │                                  │
-  │  steps:   │<a href="../../scripts/src/cowidev/cmd/testing/get/">get</a>├────►│<a href="../../scripts/scripts/testing/generate_dataset.R">generate_dataset</a>│                   │          │      └──────────────────────────────────┘
+                                                                        │      
+  ┌──────────────────────────────────────────────────────────┐          │      
+  │ Testing                                                  │          │                                      
+  │                                                          │          │      
+  │  module: <a href="../../scripts/src/cowidev/testing">cowidev.testing</a>                                 │          |
+  │  update: 3 times per week                                │          │                                     
+  │                                                          │          │      
+  │           ┌───┐     ┌────────────────┐                   │          │      
+  │  steps:   │<a href="../../scripts/src/cowidev/cmd/testing/get/">get</a>├────►│<a href="../../scripts/scripts/testing/generate_dataset.R">generate_dataset</a>│                   │          │      
   │           └───┘     └────────────────┘                   │          │
   │                                                          │          │
   │  output:  <a href="testing/covid-testing-all-observations.csv">covid-testing-all-observations.csv</a> ──────────── ──────────┤
@@ -128,9 +139,19 @@ other sub-processes producing data that may appear on our website (Grapher) but 
   ┌──────────────────────────────────────────────────────────┐          │
   │ Reproduction rate                                        │          │
   │                                                          │          │
-  │  <a href="https://github.com/crondonm/TrackingR/blob/main/Estimates-Database/database_7.csv">remote file</a> ──────────────────────────────────────────── ──────────┘
-  │                                                          │
-  └──────────────────────────────────────────────────────────┘
+  │  <a href="https://github.com/crondonm/TrackingR/blob/main/Estimates-Database/database_7.csv">remote file</a> ──────────────────────────────────────────── ──────────┘     
+  │                                                          │          │
+  └──────────────────────────────────────────────────────────┘          │
+                                                                        │
+    ┌──────────────────────────────────┐                                │
+    │ Megafile                         │                                │
+    │                                  │                                │
+    │  module: cowidev.megafile        │                                │
+    │  update: daily at 6h and 18h UTC │◄───────────────────────────────┘
+    │                                  │
+    │  output:  <a href="https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv">owid-covid-data.csv</a>    │
+    │                                  │
+    └──────────────────────────────────┘
 </pre>
 
 
