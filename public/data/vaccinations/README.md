@@ -79,7 +79,8 @@ In our data:
 
 * The total number of doses administered (`total_vaccinations`) will be equal to `6` (3 + 2 + 1);
 * The total number of people vaccinated (`people_vaccinated`) will be equal to `3` (Dina, Joel, Tommy);
-* The total number of people fully vaccinated (`people_fully_vaccinated`) will be equal to `2` (Dina, Tommy).
+* The total number of people fully vaccinated (`people_fully_vaccinated`) will be equal to `2` (Dina, Tommy);
+* The total number of boosters administered (`total_boosters`) will be equal to `1` (Dina).
 
 
 ## License
