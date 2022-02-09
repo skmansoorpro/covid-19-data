@@ -1,3 +1,6 @@
+### ⚠️ This document is still being writen
+
+
 # Development
 [![Data](https://img.shields.io/badge/go_to-public_data-purple)](../../../public/data/)
 [![Vaccinations docs](https://img.shields.io/badge/vaccination-docs-0055ff)](docs/vaccinations/README.md)
@@ -26,7 +29,7 @@ Currently, most of the  pipelines have been integrated into our [`cowidev`](src/
 |[`output/`](output)|Temporary files. Only for development purposes. Use it at your own risk.|
 |[`src/cowidev/`](src/cowidev)|`cowidev` library. It contains the code for almost all project's pipelines.|
 |[`scripts`](scripts)|Legacy folder. Contains some parts of the code, such as the COVID-19 testing collection scripts. The code is a mixture of R and Python scripts.|
-|[`config.yaml`](config.yaml)|Data pipeline configuration file. The default values should be working. Currently only contains configuration for vaccination data pipeline.|
+|[`config.yaml`](config.yaml)|Data pipeline configuration file. The default values should be working.|
 
 Our data pipeline exports its outputs to [public/data](../public/data).
 
