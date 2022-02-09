@@ -87,7 +87,12 @@ class Singapore:
         )
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.pipe(self.pipe_rename_columns).pipe(self.pipe_metrics).pipe(self.pipe_metadata).pipe(make_monotonic)
+        return (
+            df.pipe(self.pipe_rename_columns)
+            .pipe(self.pipe_metrics)
+            .pipe(self.pipe_metadata)
+            .pipe(make_monotonic, max_removed_rows=20)
+        )
 
     def export(self):
         df = self.read()
