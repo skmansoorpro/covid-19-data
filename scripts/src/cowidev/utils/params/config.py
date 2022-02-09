@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from pyaml_env import parse_config
 
-from cowidev.utils.paths import CONFIG_FILE_NEW as CONFIG_FILE
+from cowidev.utils.paths import CONFIG_FILE
 
 
 config_raw = parse_config(CONFIG_FILE, raise_if_na=False)
