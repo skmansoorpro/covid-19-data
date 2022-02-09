@@ -11,7 +11,8 @@ this_directory = os.path.abspath(os.path.dirname(__file__))
 
 with open(os.path.join(this_directory, "requirements.txt")) as f:
     requirements = f.readlines()
-
+with open(os.path.join(this_directory, "requirements-docs.txt")) as f:
+    requirements_docs = f.readlines()
 
 setup(
     name="cowidev",
@@ -31,6 +32,7 @@ setup(
     # py_modules=[
     #     os.path.splitext(os.path.basename(path))[0] for path in glob.glob("scripts/*.py")
     # ],
+    url="http://github.com/owid/covid-19-data",
     include_package_data=True,
     zip_safe=False,
     classifiers=[
@@ -55,4 +57,5 @@ setup(
             "cowid=cowidev.cmd.__main__:cli",
         ]
     },
+    extras_require={"docs": requirements_docs},
 )
