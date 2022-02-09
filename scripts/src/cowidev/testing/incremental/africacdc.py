@@ -9,6 +9,7 @@ ACDC_COUNTRIES = {
     "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
         "name": "Malawi",
     },
+    "Benin": {"name": "Benin"},  # Automate
     "Botswana": {"name": "Botswana"},  # Automate
     "Burundi": {  # New
         "name": "Burundi",
