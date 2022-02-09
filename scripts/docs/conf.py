@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = "cowidev"
-copyright = "2022, Lucas Rodés-Guirao"
-author = "Lucas Rodés-Guirao"
+copyright = "2022, Our World in Data"
+author = "Our World in Data"
 
 # The full version, including alpha/beta/rc tags
 release = "0.0.1.dev0"
