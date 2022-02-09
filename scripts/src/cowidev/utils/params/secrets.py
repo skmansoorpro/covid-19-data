@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pyaml_env import parse_config
 
 from cowidev.utils.paths import SECRETS_FILE
@@ -9,8 +9,8 @@ secrets_raw = parse_config(SECRETS_FILE, raise_if_na=False)
 
 @dataclass()
 class GoogleSecrets:
-    mail: str
     client_secrets: str
+    mail: str = None
 
 
 @dataclass()
@@ -28,18 +28,18 @@ class TestingSecrets:
 
 @dataclass()
 class TwitterSecrets:
-    consumer_key: str
-    consumer_secret: str
-    access_secret: str
-    access_token: str
+    consumer_key: str = None
+    consumer_secret: str = None
+    access_secret: str = None
+    access_token: str = None
 
 
 @dataclass()
 class Secrets:
     google: GoogleSecrets
-    vaccinations: VaccinationsSecrets
-    testing: TestingSecrets
-    twitter: TwitterSecrets
+    vaccinations: VaccinationsSecrets = field(default_factory=dict)
+    testing: TestingSecrets = field(default_factory=dict)
+    twitter: TwitterSecrets = field(default_factory=dict)
 
     def __post_init__(self):
         self.google = GoogleSecrets(**self.google)
