@@ -1,29 +1,34 @@
+import os
 from dataclasses import dataclass, field
+
 from pyaml_env import parse_config
 
 from cowidev.utils.paths import SECRETS_FILE
 
 
-secrets_raw = parse_config(SECRETS_FILE, raise_if_na=False)
+if os.path.isfile(SECRETS_FILE):
+    secrets_raw = parse_config(SECRETS_FILE, raise_if_na=False)
+else:
+    secrets_raw = {}
 
 
 @dataclass()
 class GoogleSecrets:
-    client_secrets: str
+    client_secrets: str = ""
     mail: str = None
 
 
 @dataclass()
 class VaccinationsSecrets:
-    post: str
-    sheet_id: str
+    post: str = None
+    sheet_id: str = None
 
 
 @dataclass()
 class TestingSecrets:
-    post: str
-    sheet_id: str
-    sheet_id_attempted: str
+    post: str = None
+    sheet_id: str = None
+    sheet_id_attempted: str = None
 
 
 @dataclass()
@@ -36,7 +41,7 @@ class TwitterSecrets:
 
 @dataclass()
 class Secrets:
-    google: GoogleSecrets
+    google: GoogleSecrets = field(default_factory=dict)
     vaccinations: VaccinationsSecrets = field(default_factory=dict)
     testing: TestingSecrets = field(default_factory=dict)
     twitter: TwitterSecrets = field(default_factory=dict)

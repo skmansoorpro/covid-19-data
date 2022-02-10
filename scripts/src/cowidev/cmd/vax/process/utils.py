@@ -72,7 +72,10 @@ class VaccinationGSheet:
     _api = GSheetApi()
     sheet_id = SECRETS.vaccinations.sheet_id
     sheets = _api.sheets
-    sheet = _api.get_sheet(sheet_id)
+
+    @property
+    def sheet(self):
+        return self._api.get_sheet(self.sheet_id)
 
     @classmethod
     def from_json(cls, path: str):
