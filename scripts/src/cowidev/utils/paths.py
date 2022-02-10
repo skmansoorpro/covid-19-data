@@ -91,6 +91,9 @@ INTERNAL_OUTPUT_TEST_MAIN_DIR = os.path.join(INTERNAL_OUTPUT_TEST_DIR, "main_dat
 INTERNAL_OUTPUT_HOSP_DIR = os.path.join(INTERNAL_OUTPUT_DIR, "hospitalizations")
 INTERNAL_OUTPUT_HOSP_MAIN_DIR = os.path.join(INTERNAL_OUTPUT_HOSP_DIR, "main_data")
 INTERNAL_OUTPUT_HOSP_META_DIR = os.path.join(INTERNAL_OUTPUT_HOSP_DIR, "metadata")
+### Output variants
+INTERNAL_OUTPUT_VARIANTS_FILE = "s3://covid-19/internal/variants/covid-variants.csv"
+INTERNAL_OUTPUT_VARIANTS_SEQ_FILE = "s3://covid-19/internal/variants/covid-sequencing.csv"
 
 ## Input
 INTERNAL_INPUT_DIR = os.path.join(INTERNAL_DIR, "input")
