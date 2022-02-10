@@ -1,7 +1,6 @@
 import click
 
 from cowidev.cmd.commons.utils import OrderedGroup
-from cowidev.utils.params import CONFIG
 from cowidev.hosp.etl import run_etl
 from cowidev.hosp.grapher import run_db_updater, run_grapheriser
 
