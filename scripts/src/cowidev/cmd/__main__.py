@@ -1,12 +1,32 @@
 import click
+
+from cowidev.utils.params import CONFIG
+from cowidev.cmd.commons.utils import OrderedGroup
 from cowidev.cmd.testing import click_test
 from cowidev.cmd.vax import click_vax
+from cowidev.cmd.hosp import click_hosp
 
 
-@click.group(name="cowid")
-def cli():
+@click.group(name="cowid", cls=OrderedGroup)
+@click.option(
+    "--parallel/--no-parallel",
+    default=CONFIG.execution.parallel,
+    help="Parallelize process.",
+    show_default=True,
+)
+@click.option(
+    "--n-jobs",
+    default=CONFIG.execution.njobs,
+    type=int,
+    help="Number of threads to use.",
+    show_default=True,
+)
+@click.pass_context
+def cli(ctx, parallel, n_jobs):
     """COVID-19 Data pipeline tool by Our World in Data."""
-    pass
+    ctx.ensure_object(dict)
+    ctx.obj["parallel"] = parallel
+    ctx.obj["n_jobs"] = n_jobs
 
 
 # def recursive_help(cmd, parent=None):
@@ -26,6 +46,7 @@ def cli():
 
 cli.add_command(click_test)
 cli.add_command(click_vax)
+cli.add_command(click_hosp)
 
 
 if __name__ == "__main__":
