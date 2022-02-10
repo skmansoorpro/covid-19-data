@@ -13,14 +13,6 @@ def click_hosp(ctx):
 
 
 @click.command(name="generate", short_help="Step 1: Get and generate hospitalization dataset.")
-# @click.option(
-#     "--countries",
-#     "-c",
-#     default=CONFIG.pipeline.vaccinations.get.countries,
-#     # default=[],
-#     help="List of countries to skip (comma-separated)",
-#     cls=PythonLiteralOption,
-# )
 @click.pass_context
 def click_hosp_generate(ctx):
     """Runs scraping scripts to collect the data from the primary sources, transforms it and exports the result to
