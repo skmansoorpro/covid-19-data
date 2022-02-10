@@ -1,4 +1,3 @@
-import os
 from datetime import timedelta, datetime
 
 import pandas as pd
@@ -296,15 +295,15 @@ class VariantsETL:
     def pipe_out(self, df: pd.DataFrame) -> pd.DataFrame:
         return df[self.columns_out].sort_values(["location", "date"])  #  + ["perc_sequences_raw"]
 
-    def run(self, output_path: str, output_path_sequencing: str):
+    def run(self):
         data = self.extract()
         df = self.transform(data)
-        self.load(df, output_path)
+        self.load(df, PATHS.INTERNAL_OUTPUT_VARIANTS_FILE)
         # Sequencing
         df_seq = self.transform_seq(df)
-        self.load(df_seq, output_path_sequencing)
+        self.load(df_seq, PATHS.INTERNAL_OUTPUT_VARIANTS_SEQ_FILE)
 
 
-def run_etl(output_path: str, output_path_seq: str):
+def run_etl():
     etl = VariantsETL()
-    etl.run(output_path, output_path_seq)
+    etl.run()

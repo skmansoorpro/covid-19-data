@@ -18,15 +18,15 @@ FILE_EXPLORER = os.path.join(PATHS.DATA_INTERNAL_DIR, "megafile--variants.json")
 
 def run_step(step: str):
     if step == "etl":
-        run_etl(FILE_DS, FILE_SEQ_DS)
+        run_etl()
     elif step == "grapher-file":
         # Filter by num_seq
-        run_grapheriser(FILE_DS, FILE_GRAPHER, FILE_SEQ_DS, FILE_SEQ_GRAPHER)
+        run_grapheriser()
     elif step == "explorer-file":
         # Filter by num_seq
-        run_explorerizer(FILE_DS, FILE_EXPLORER)
+        run_explorerizer()
     elif step == "grapher-db":
-        run_db_updater(FILE_GRAPHER)
+        run_db_updater()
 
 
 if __name__ == "__main__":
