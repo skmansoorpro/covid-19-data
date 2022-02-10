@@ -68,15 +68,10 @@ class Ukraine:
         total_df = main_df.join(booster_df.set_index("date"), on=["date"])
 
         for col in ["total", "moderna", "astrazeneca", "pfizer", "jnj", "sinovac"]:
-            total_df[f"booster_dose_{col}"] = (
-                total_df[f"third_dose_{col}"] +
-                total_df[f"additional_dose_{col}"]
-            )
+            total_df[f"booster_dose_{col}"] = total_df[f"third_dose_{col}"] + total_df[f"additional_dose_{col}"]
 
             total_df[f"all_doses_{col}"] = (
-                total_df[f"first_dose_{col}"] +
-                total_df[f"second_dose_{col}"] +
-                total_df[f"booster_dose_{col}"]
+                total_df[f"first_dose_{col}"] + total_df[f"second_dose_{col}"] + total_df[f"booster_dose_{col}"]
             )
 
         total_df = total_df.assign(location=self.location, source_url=self.source_url)
@@ -100,11 +95,12 @@ class Ukraine:
         return df
 
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
-        df["total_vaccinations"] = df["second_dose_total"] + df["first_dose_total"] + df["booster_dose_total"]
-        df["people_fully_vaccinated"] = df["second_dose_total"] + df["first_dose_jnj"]
-        df.rename(columns={"first_dose_total": "people_vaccinated"}, inplace=True)
-        df.rename(columns={"booster_dose_total": "total_boosters"}, inplace=True)
-        return df
+        return df.assign(
+            total_vaccinations=df["second_dose_total"] + df["first_dose_total"] + df["booster_dose_total"],
+            people_vaccinated=df["first_dose_total"],
+            people_fully_vaccinated=df["second_dose_total"] + df["first_dose_jnj"],
+            total_boosters=df["booster_dose_total"],
+        )
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
@@ -119,7 +115,7 @@ class Ukraine:
                     "total_vaccinations",
                     "people_vaccinated",
                     "people_fully_vaccinated",
-                    "total_boosters"
+                    "total_boosters",
                 ]
             ]
             .sort_values(["date"])
