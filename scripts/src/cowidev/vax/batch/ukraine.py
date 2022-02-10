@@ -56,15 +56,14 @@ class Ukraine:
         return df
 
     def read(self):
+        # Read doses
         first_dose_df = self._load_dose_data(dose_param="1", colname="first_dose")
         second_dose_df = self._load_dose_data(dose_param="2", colname="second_dose")
-
         additional_dose_df = self._load_dose_data(dose_param="A", colname="additional_dose")
         booster_dose_df = self._load_dose_data(dose_param="3", colname="third_dose")
-
+        # Build df
         booster_df = booster_dose_df.join(additional_dose_df.set_index("date"), on=["date"])
         main_df = first_dose_df.join(second_dose_df.set_index("date"), on=["date"])
-
         total_df = main_df.join(booster_df.set_index("date"), on=["date"])
 
         for col in ["total", "moderna", "astrazeneca", "pfizer", "jnj", "sinovac"]:
@@ -133,7 +132,7 @@ class Ukraine:
 
         vac_dfs = []
         for vaccine, col in zip(vaccine_name, column_name):
-            vac_df = df[["location", "date", col]]
+            vac_df = df[["location", "date", col]].copy()
             vac_df["vaccine"] = vaccine
             vac_df.rename(columns={col: "total_vaccinations"}, inplace=True)
             vac_df = vac_df[vac_df["total_vaccinations"] > 0]
