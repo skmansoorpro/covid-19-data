@@ -102,7 +102,7 @@ def _series_to_float(ds):
 def metrics_to_num_int(df, metrics):
     for metric in metrics:
         if metric in df.columns:  # and any(df[metric].isnull()):
-            df[metric] = _series_to_int64(df[metric])
+            df.assign(metric=_series_to_int64(df[metric]))
     return df
 
 
