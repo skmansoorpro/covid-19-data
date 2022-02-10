@@ -5,6 +5,7 @@ from cowidev.cmd.commons.utils import OrderedGroup
 from cowidev.cmd.testing import click_test
 from cowidev.cmd.vax import click_vax
 from cowidev.cmd.hosp import click_hosp
+from cowidev.cmd.jhu import click_jhu
 
 
 @click.group(name="cowid", cls=OrderedGroup)
@@ -47,6 +48,7 @@ def cli(ctx, parallel, n_jobs):
 cli.add_command(click_test)
 cli.add_command(click_vax)
 cli.add_command(click_hosp)
+cli.add_command(click_jhu)
 
 
 if __name__ == "__main__":
