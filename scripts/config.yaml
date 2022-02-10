@@ -11,6 +11,7 @@ pipeline:
         - North Macedonia
         - South Africa
         - africacdc
+        - Austria
         # - Faeroe Islands
     process:
       skip_complete:

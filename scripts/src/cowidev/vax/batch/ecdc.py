@@ -6,6 +6,7 @@ from cowidev.utils.web.download import read_csv_from_url
 from cowidev.vax.utils.orgs import ECDC_VACCINES
 from cowidev.vax.utils.base import CountryVaxBase
 from cowidev import PATHS
+from cowidev.vax.utils.utils import build_vaccine_timeline
 
 
 AGE_GROUPS_KNOWN = {
@@ -55,6 +56,8 @@ AGE_GROUPS_UNDERAGE = {AGE_GROUP_UNDERAGE_LEVELS["lvl0"]} | AGE_GROUP_UNDERAGE_L
 
 AGE_GROUPS_RELEVANT = AGE_GROUPS_UNDERAGE | AGE_GROUPS_MUST_HAVE
 
+
+LOCATIONS_MAIN_INCLUDED = ["Austria"]
 
 LOCATIONS_AGE_EXCLUDED = [
     "Switzerland",
@@ -139,9 +142,32 @@ class ECDC(CountryVaxBase):
         df.loc[mask, "people_fully_vaccinated"] = df.loc[mask, "people_fully_vaccinated"] + df.loc[mask, "FirstDose"]
         return df.loc[df.Region.isin(self.country_mapping.keys())]
 
-    def pipe_group(self, df: pd.DataFrame, group_field: str, group_field_renamed: str) -> pd.DataFrame:
+    def _vaccine_timeseries(self, df: pd.DataFrame):
+        """Get Series with the vaccine timeseries for all countries.
+
+        Format:
+            location -> {vaccine_1: start_date_1, vaccine_2: start_date_2, ...}
+        """
+        x = df[df.Vaccine.isin(ECDC_VACCINES)]
+        x = x.assign(Vaccine=x.transform({"Vaccine": lambda x: ECDC_VACCINES[x]}))
+        x = x[x["total_vaccinations"].fillna(0) > 1]
+        vaccine_timeseries = (
+            x.groupby(["location", "Vaccine"], as_index=False)
+            .date.min()
+            .groupby("location")
+            .apply(lambda x: x.set_index("Vaccine")["date"].to_dict())
+        )
+        return vaccine_timeseries
+
+    def pipe_group(self, df: pd.DataFrame, group_field: str = None, group_field_renamed: str = None) -> pd.DataFrame:
+        if group_field is None:
+            cols_group = ["date", "location"]
+            cols_rename = {}
+        else:
+            cols_group = ["date", "location", group_field]
+            cols_rename = {group_field: group_field_renamed}
         return (
-            df.groupby(["date", "location", group_field], as_index=False)[
+            df.groupby(cols_group, as_index=False)[
                 [
                     "total_vaccinations",
                     "people_vaccinated",
@@ -151,35 +177,81 @@ class ECDC(CountryVaxBase):
                 ]
             ]
             .sum()
-            .rename(columns={group_field: group_field_renamed})
+            .rename(columns=cols_rename)
         )
 
-    def pipe_cumsum(self, df: pd.DataFrame, group_field_renamed: str) -> pd.DataFrame:
+    def pipe_cumsum(self, df: pd.DataFrame, group_field_renamed: str = None) -> pd.DataFrame:
+        if group_field_renamed is None:
+            cols_group = ["location"]
+        else:
+            cols_group = ["location", group_field_renamed]
         return df.assign(
-            total_vaccinations=df.groupby(["location", group_field_renamed])["total_vaccinations"].cumsum(),
-            people_vaccinated=df.groupby(["location", group_field_renamed])["people_vaccinated"].cumsum(),
-            people_fully_vaccinated=df.groupby(["location", group_field_renamed])["people_fully_vaccinated"].cumsum(),
-            people_with_booster=df.groupby(["location", group_field_renamed])["people_with_booster"].cumsum(),
-            UnknownDose=df.groupby(["location", group_field_renamed])["UnknownDose"].cumsum(),
+            total_vaccinations=df.groupby(cols_group)["total_vaccinations"].cumsum(),
+            people_vaccinated=df.groupby(cols_group)["people_vaccinated"].cumsum(),
+            people_fully_vaccinated=df.groupby(cols_group)["people_fully_vaccinated"].cumsum(),
+            people_with_booster=df.groupby(cols_group)["people_with_booster"].cumsum(),
+            UnknownDose=df.groupby(cols_group)["UnknownDose"].cumsum(),
         )
 
-    def pipeline_common(self, df: pd.DataFrame, group_field: str, group_field_renamed: str) -> pd.DataFrame:
+    def pipeline_common(
+        self, df: pd.DataFrame, group_field: str = None, group_field_renamed: str = None
+    ) -> pd.DataFrame:
+        cols = [
+            "date",
+            "location",
+            "total_vaccinations",
+            "people_vaccinated",
+            "people_fully_vaccinated",
+            "people_with_booster",
+            "UnknownDose",
+        ]
+        if group_field_renamed is not None:
+            cols = cols + [group_field_renamed]
+
         return (
-            df.pipe(self.pipe_group, group_field, group_field_renamed)[
-                [
-                    "date",
-                    "location",
-                    group_field_renamed,
-                    "total_vaccinations",
-                    "people_vaccinated",
-                    "people_fully_vaccinated",
-                    "people_with_booster",
-                    "UnknownDose",
-                ]
-            ]
+            df.pipe(self.pipe_group, group_field, group_field_renamed)[cols]
             .sort_values("date")
             .pipe(self.pipe_cumsum, group_field_renamed)
         )
+
+    def pipe_filter_locations(self, df: pd.DataFrame):
+        """Filters countries to be excluded and those with a high number of"""
+        return df[df.location.isin(LOCATIONS_MAIN_INCLUDED)]
+
+    def pipe_vaccine(self, df: pd.DataFrame, vax_timeline):
+        dfs = []
+        locations = df.location.unique()
+        for location in locations:
+            df_c = df[df.location == location]
+            df_c = build_vaccine_timeline(df_c, vax_timeline[location])
+            dfs.append(df_c)
+        return pd.concat(dfs, ignore_index=True)
+
+    def pipeline(self, df: pd.DataFrame):
+        vax_timeline = self._vaccine_timeseries(df)
+        df = (
+            df.loc[df.TargetGroup == "ALL"]
+            .pipe(self.pipeline_common)
+            .pipe(self.pipe_filter_locations)
+            .pipe(self.pipe_vaccine, vax_timeline)
+            .assign(source_url=self.source_url_ref)
+        )
+        # Boosters (people -> doses)
+        df = df.assign(total_boosters=df.people_with_booster)
+        return df[
+            [
+                "location",
+                "date",
+                "vaccine",
+                "source_url",
+                "total_vaccinations",
+                "people_vaccinated",
+                "people_fully_vaccinated",
+                "total_boosters",
+            ]
+        ]
+
+        return df
 
     def pipe_rename_vaccines(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.assign(vaccine=df.vaccine.replace(self.vaccine_mapping))
@@ -361,9 +433,19 @@ class ECDC(CountryVaxBase):
                 },
             )
 
+    def export_main(self, df: pd.DataFrame):
+        df = df.pipe(self.pipeline)
+        # Export
+        locations = df.location.unique()
+        for location in locations:
+            df_c = df[df.location == location]
+            self.export_datafile(df_c)
+
     def export(self):
         # Read data
         df = self.read().pipe(self.pipe_base)
+        # Main
+        self.export_main(df)
         # Age
         self.export_age(df)
         # Manufacturer
