@@ -9,7 +9,8 @@ from cowidev.cmd.vax.track import click_vax_track
 
 
 @click.group(name="vax", chain=True, cls=OrderedGroup)
-def click_vax():
+@click.pass_context
+def click_vax(ctx):
     """COVID-19 Vaccination data pipeline."""
     pass
 

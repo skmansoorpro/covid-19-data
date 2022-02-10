@@ -28,20 +28,8 @@ from cowidev.testing.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_
     help="List of countries to skip (comma-separated).",
     cls=PythonLiteralOption,
 )
-@click.option(
-    "--parallel/--no-parallel",
-    default=CONFIG.pipeline.testing.get.parallel,
-    help="Parallelize process.",
-    show_default=True,
-)
-@click.option(
-    "--n-jobs",
-    default=CONFIG.pipeline.testing.get.njobs,
-    type=int,
-    help="Number of threads to use.",
-    show_default=True,
-)
-def click_test_get(parallel, n_jobs, countries, skip_countries):
+@click.pass_context
+def click_test_get(ctx, countries, skip_countries):
     """Runs scraping scripts to collect the data from the primary sources of COUNTRIES. Data is exported to project
     folder scripts/output/testing/. By default, all countries are scraped.
 
@@ -71,8 +59,8 @@ def click_test_get(parallel, n_jobs, countries, skip_countries):
     modules = c2m.parse(countries)
     modules_skip = c2m.parse(skip_countries)
     main_get_data(
-        parallel=parallel,
-        n_jobs=n_jobs,
+        parallel=ctx.obj["parallel"],
+        n_jobs=ctx.obj["n_jobs"],
         modules=modules,
         modules_skip=modules_skip,
         log_header="TEST",

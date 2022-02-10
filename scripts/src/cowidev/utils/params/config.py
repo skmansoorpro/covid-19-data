@@ -16,8 +16,6 @@ class VaccinationsProcessConfig:
 
 @dataclass()
 class BaseGetConfig:
-    parallel: bool
-    njobs: int
     countries: list
     skip_countries: list
 
@@ -85,11 +83,19 @@ class PipelineConfig:
 
 
 @dataclass()
+class ExecutionConfig:
+    parallel: bool
+    njobs: int
+
+
+@dataclass()
 class Config:
     pipeline: PipelineConfig
+    execution: ExecutionConfig
 
     def __post_init__(self):
         self.pipeline = PipelineConfig(**self.pipeline)
+        self.execution = ExecutionConfig(**self.execution)
 
 
 # config_raw["global_"] = config_raw.pop("global")

@@ -1,9 +1,11 @@
+execution:
+  parallel: True
+  njobs: -2
+
 pipeline:
 
   vaccinations:
     get:
-      parallel: True
-      njobs: -2
       countries:
       skip_countries:
         - Gabon
@@ -49,8 +51,6 @@ pipeline:
 
   testing:
     get:
-      parallel: True
-      njobs: -2
       countries: 
       skip_countries:
         - Benin #the source is n longer updating

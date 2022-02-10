@@ -35,20 +35,8 @@ from cowidev.vax.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_NAME
     help="Optimize processes based on older logging times.",
     show_default=True,
 )
-@click.option(
-    "--parallel/--no-parallel",
-    default=CONFIG.pipeline.vaccinations.get.parallel,
-    help="Parallelize process.",
-    show_default=True,
-)
-@click.option(
-    "--n-jobs",
-    default=CONFIG.pipeline.vaccinations.get.njobs,
-    type=int,
-    help="Number of threads to use.",
-    show_default=True,
-)
-def click_vax_get(countries, parallel, n_jobs, skip_countries, optimize):
+@click.pass_context
+def click_vax_get(ctx, countries, skip_countries, optimize):
     """Runs scraping scripts to collect the data from the primary sources of COUNTRIES. Data is exported to project
     folder scripts/output/vaccinations/. By default, all countries are scraped.
 
@@ -80,8 +68,8 @@ def click_vax_get(countries, parallel, n_jobs, skip_countries, optimize):
     modules = c2m.parse(countries)
     modules_skip = c2m.parse(skip_countries)
     main_get_data(
-        parallel=parallel,
-        n_jobs=n_jobs,
+        parallel=ctx.obj["parallel"],
+        n_jobs=ctx.obj["n_jobs"],
         modules=modules,
         modules_skip=modules_skip,
         log_header="VAX",
