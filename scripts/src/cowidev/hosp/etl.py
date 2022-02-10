@@ -1,18 +1,19 @@
 import os
 import time
 import importlib
-from joblib import Parallel, delayed
 import json
 
+from joblib import Parallel, delayed
 import pandas as pd
 from pandas.api.types import is_string_dtype
+
 from cowidev import PATHS
 from cowidev.utils.log import get_logger
 from cowidev.hosp.sources import __all__ as sources
 
 
 sources = [f"cowidev.hosp.sources.{s}" for s in sources]
-POPULATION_FILE = PATHS.INTERNAL_INPUT_UN_POPULATION_FILE
+
 logger = get_logger()
 
 
@@ -177,7 +178,7 @@ class HospETL:
     def pipe_metadata(self, df):
         print("Adding ISO & population…")
         shape_og = df.shape
-        population = pd.read_csv(POPULATION_FILE, usecols=["entity", "iso_code", "population"])
+        population = pd.read_csv(PATHS.INTERNAL_INPUT_UN_POPULATION_FILE, usecols=["entity", "iso_code", "population"])
         df = df.merge(population, on="entity")
         if shape_og[0] != df.shape[0]:
             raise ValueError(f"Dimension 0 after merge is different: {shape_og[0]} --> {df.shape[0]}")
@@ -229,14 +230,14 @@ class HospETL:
         # Export data
         df.to_csv(output_path, index=False)
 
-    def run(self, output_path: str, locations_path: str, parallel: bool, n_jobs: int):
+    def run(self, parallel: bool, n_jobs: int):
         df, df_meta = self.extract(parallel, n_jobs)
         df = self.transform(df)
-        df_meta = self.transform_meta(df_meta, df, locations_path)
-        self.load(df, output_path)
-        self.load(df_meta, locations_path)
+        df_meta = self.transform_meta(df_meta, df, PATHS.DATA_HOSP_META_FILE)
+        self.load(df, PATHS.DATA_HOSP_MAIN_FILE)
+        self.load(df_meta, PATHS.DATA_HOSP_META_FILE)
 
 
-def run_etl(output_path: str, locations_path: str, monothread: bool, n_jobs: int):
+def run_etl(parallel: bool, n_jobs: int):
     etl = HospETL()
-    etl.run(output_path, locations_path, not monothread, n_jobs)
+    etl.run(parallel, n_jobs)
