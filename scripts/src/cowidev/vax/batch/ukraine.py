@@ -1,7 +1,6 @@
 import datetime
 
 import pandas as pd
-import numpy as np
 import requests
 
 from cowidev.utils import paths
@@ -57,12 +56,22 @@ class Ukraine:
         return df
 
     def read(self):
+        # Read doses
         first_dose_df = self._load_dose_data(dose_param="1", colname="first_dose")
         second_dose_df = self._load_dose_data(dose_param="2", colname="second_dose")
-        total_df = first_dose_df.join(second_dose_df.set_index("date"), on=["date"])
+        additional_dose_df = self._load_dose_data(dose_param="A", colname="additional_dose")
+        booster_dose_df = self._load_dose_data(dose_param="3", colname="third_dose")
+        # Build df
+        booster_df = booster_dose_df.join(additional_dose_df.set_index("date"), on=["date"])
+        main_df = first_dose_df.join(second_dose_df.set_index("date"), on=["date"])
+        total_df = main_df.join(booster_df.set_index("date"), on=["date"])
 
         for col in ["total", "moderna", "astrazeneca", "pfizer", "jnj", "sinovac"]:
-            total_df[f"all_doses_{col}"] = total_df[f"first_dose_{col}"] + total_df[f"second_dose_{col}"]
+            total_df[f"booster_dose_{col}"] = total_df[f"third_dose_{col}"] + total_df[f"additional_dose_{col}"]
+
+            total_df[f"all_doses_{col}"] = (
+                total_df[f"first_dose_{col}"] + total_df[f"second_dose_{col}"] + total_df[f"booster_dose_{col}"]
+            )
 
         total_df = total_df.assign(location=self.location, source_url=self.source_url)
         return total_df
@@ -85,10 +94,12 @@ class Ukraine:
         return df
 
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
-        df["total_vaccinations"] = df["second_dose_total"] + df["first_dose_total"]
-        df["people_fully_vaccinated"] = df["second_dose_total"] + df["first_dose_jnj"]
-        df.rename(columns={"first_dose_total": "people_vaccinated"}, inplace=True)
-        return df
+        return df.assign(
+            total_vaccinations=df["second_dose_total"] + df["first_dose_total"] + df["booster_dose_total"],
+            people_vaccinated=df["first_dose_total"],
+            people_fully_vaccinated=df["second_dose_total"] + df["first_dose_jnj"],
+            total_boosters=df["booster_dose_total"],
+        )
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
@@ -103,6 +114,7 @@ class Ukraine:
                     "total_vaccinations",
                     "people_vaccinated",
                     "people_fully_vaccinated",
+                    "total_boosters",
                 ]
             ]
             .sort_values(["date"])
@@ -120,7 +132,7 @@ class Ukraine:
 
         vac_dfs = []
         for vaccine, col in zip(vaccine_name, column_name):
-            vac_df = df[["location", "date", col]]
+            vac_df = df[["location", "date", col]].copy()
             vac_df["vaccine"] = vaccine
             vac_df.rename(columns={col: "total_vaccinations"}, inplace=True)
             vac_df = vac_df[vac_df["total_vaccinations"] > 0]
