@@ -6,6 +6,10 @@ from cowidev.cmd.testing import click_test
 from cowidev.cmd.vax import click_vax
 from cowidev.cmd.hosp import click_hosp
 from cowidev.cmd.jhu import click_jhu
+from cowidev.cmd.xm import click_xm
+from cowidev.cmd.gmobility import click_gm
+from cowidev.cmd.variants import click_variants
+from cowidev.megafile.generate import generate_megafile
 
 
 @click.group(name="cowid", cls=OrderedGroup)
@@ -30,25 +34,20 @@ def cli(ctx, parallel, n_jobs):
     ctx.obj["n_jobs"] = n_jobs
 
 
-# def recursive_help(cmd, parent=None):
-#     """From https://stackoverflow.com/a/58018765/5056599"""
-#     ctx = click.core.Context(cmd, info_name=cmd.name, parent=parent)
-#     print(cmd.get_help(ctx))
-#     print()
-#     commands = getattr(cmd, "commands", {})
-#     for sub in commands.values():
-#         recursive_help(sub, ctx)
-
-
-# @cli.command()
-# def dumphelp():
-#     recursive_help(cli)
+@click.command(name="megafile")
+def cli_export():
+    """Generate megafile"""
+    generate_megafile()
 
 
 cli.add_command(click_test)
 cli.add_command(click_vax)
 cli.add_command(click_hosp)
 cli.add_command(click_jhu)
+cli.add_command(click_variants)
+cli.add_command(click_xm)
+cli.add_command(click_gm)
+cli.add_command(cli_export)
 
 
 if __name__ == "__main__":
