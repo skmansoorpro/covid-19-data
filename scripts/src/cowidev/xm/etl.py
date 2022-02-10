@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 import pandas as pd
 
+from cowidev import PATHS
 from cowidev.utils.utils import export_timestamp
 from cowidev.utils.clean import clean_date
 
@@ -51,12 +52,12 @@ class XMortalityETL:
         df.to_csv(output_path, index=False)
         export_timestamp(self.timestamp_filename)
 
-    def run(self, output_path: str):
+    def run(self):
         df = self.extract()
         df = self.transform(df)
-        self.load(df, output_path)
+        self.load(df, PATHS.DATA_XM_MAIN_FILE)
 
 
-def run_etl(output_path: str):
+def run_etl():
     etl = XMortalityETL()
-    etl.run(output_path)
+    etl.run()

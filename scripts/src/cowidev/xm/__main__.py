@@ -12,7 +12,7 @@ FILE_EXPLORER = os.path.join(PATHS.DATA_INTERNAL_DIR, "megafile--excess-mortalit
 
 def run_step(step: str):
     if step == "etl":
-        run_etl(FILE_DS)
+        run_etl()
     elif step == "explorer-file":
         run_explorerizer(FILE_DS, FILE_EXPLORER)
 
