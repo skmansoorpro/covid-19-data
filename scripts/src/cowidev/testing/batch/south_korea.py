@@ -28,7 +28,14 @@ class SouthKorea(CountryTestBase):
     def _read_new(self):
         df = pd.read_csv(
             "https://docs.google.com/spreadsheets/d/10c9jNi8VnV0YYCfV_7AZrzBY5l18dOFHEJMIJsP4THI/export?format=csv&gid=512078862",
-            usecols=["Date", "선별진료소(통합)", "의심신고 검사자 수", "임시선별검사소 검사건수", "수도권 임시선별검사소 검사건수", "비수도권 임시선별검사소"],
+            usecols=[
+                "Date",
+                "선별진료소(통합)",
+                "의심신고 검사자 수",
+                "임시선별검사소 검사건수",
+                "수도권 임시선별검사소 검사건수",
+                "비수도권 임시선별검사소",
+            ],
         )
         df = df.assign(Date=clean_date_series(df["Date"], "%Y-%m-%d"))
         # 2021-04-21 < data < 2021-10-25; 'Number of testing at temporary screening stations' (임시선별검사소 검사건수) = 'Number of inspections by temporary screening and inspection centers in the metropolitan area'
