@@ -34,11 +34,10 @@ The population estimates we use to calculate per-capita metrics are based on the
 * `daily_vaccinations_per_million`: `daily_vaccinations` per 1,000,000 people in the total population of the country.
 * `people_vaccinated`: total number of people who received at least one vaccine dose. If a person receives the first dose of a 2-dose vaccine, this metric goes up by 1. If they receive the second dose, the metric stays the same.
 * `people_vaccinated_per_hundred`: `people_vaccinated` per 100 people in the total population of the country.
-* `people_fully_vaccinated`: total number of people who received all doses prescribed by the vaccination protocol. If a person receives the first dose of a 2-dose vaccine, this metric stays the same. If they receive the second dose, the metric goes up by 1.
+* `people_fully_vaccinated`: total number of people who received all doses prescribed by the initial vaccination protocol. If a person receives the first dose of a 2-dose vaccine, this metric stays the same. If they receive the second dose, the metric goes up by 1.
 * `people_fully_vaccinated_per_hundred`: `people_fully_vaccinated` per 100 people in the total population of the country.
-* `total_boosters`: total number of COVID-19 vaccination booster doses administered (doses
-  administered beyond the number prescribed by the vaccination protocol)
-* `total_boosters_per_hundred`: Total number of COVID-19 vaccination booster doses administered per 100 people in the total population.
+* `total_boosters`: total number of COVID-19 vaccination booster doses administered (doses administered beyond the number prescribed by the initial vaccination protocol)
+* `total_boosters_per_hundred`: `total_boosters` per 100 people in the total population of the country.
 
 Note: for `people_vaccinated` and `people_fully_vaccinated` we are dependent on the necessary data being made available, so we may not be able to make these metrics available for some countries.
 
@@ -57,13 +56,13 @@ Stored in [`us_state_vaccinations.csv`](us_state_vaccinations.csv). State-by-sta
 * `daily_vaccinations_per_million`: `daily_vaccinations` per 1,000,000 people in the total population of the state.
 * `people_vaccinated`: total number of people who received at least one vaccine dose. If a person receives the first dose of a 2-dose vaccine, this metric goes up by 1. If they receive the second dose, the metric stays the same.
 * `people_vaccinated_per_hundred`: `people_vaccinated` per 100 people in the total population of the state.
-* `people_fully_vaccinated`: total number of people who received all doses prescribed by the vaccination protocol. If a person receives the first dose of a 2-dose vaccine, this metric stays the same. If they receive the second dose, the metric goes up by 1.
+* `people_fully_vaccinated`: total number of people who received all doses prescribed by the initial vaccination protocol. If a person receives the first dose of a 2-dose vaccine, this metric stays the same. If they receive the second dose, the metric goes up by 1.
 * `people_fully_vaccinated_per_hundred`: `people_fully_vaccinated` per 100 people in the total population of the state.
 * `total_distributed`: cumulative counts of COVID-19 vaccine doses recorded as shipped in CDC's Vaccine Tracking System.
 * `total_distributed_per_hundred`: cumulative counts of COVID-19 vaccine doses recorded as shipped in CDC's Vaccine Tracking System per 100 people in the total population of the state.
 * `share_doses_used`: share of vaccination doses administered among those recorded as shipped in CDC's Vaccine Tracking System.
-* `total_boosters`: total number of COVID-19 vaccination booster doses administered (doses administered beyond the number prescribed by the vaccination protocol)
-* `total_boosters_per_hundred`: Total number of COVID-19 vaccination booster doses administered per 100 people in the total population.
+* `total_boosters`: total number of COVID-19 vaccination booster doses administered (doses administered beyond the number prescribed by the initial vaccination protocol)
+* `total_boosters_per_hundred`: `total_boosters` per 100 people in the total population.
 
 
 ## An example of how we calculate our metrics
@@ -79,7 +78,7 @@ In our data:
 
 * The total number of doses administered (`total_vaccinations`) will be equal to `6` (3 + 2 + 1);
 * The total number of people vaccinated (`people_vaccinated`) will be equal to `3` (Dina, Joel, Tommy);
-* The total number of people fully vaccinated (`people_fully_vaccinated`) will be equal to `2` (Dina, Tommy);
+* The total number of people with a complete initial protocol (`people_fully_vaccinated`) will be equal to `2` (Dina, Tommy);
 * The total number of boosters administered (`total_boosters`) will be equal to `1` (Dina).
 
 
