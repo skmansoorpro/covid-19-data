@@ -111,6 +111,10 @@ class TrinidadTobago:
             ]
         ]
 
+    def pipe_data_correction(self, df: pd.DataFrame) -> pd.DataFrame:
+        # Row with typo in number of boosters
+        return df[df.date != "2022-02-07"]
+
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
             df.pipe(self.pipe_date)
@@ -122,6 +126,7 @@ class TrinidadTobago:
             .pipe(self.pipe_legacy)
             .pipe(self.pipe_filter_dp)
             .pipe(self.pipe_out_columns)
+            .pipe(self.pipe_data_correction)
             .pipe(make_monotonic)
         )
 
