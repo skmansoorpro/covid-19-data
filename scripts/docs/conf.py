@@ -13,8 +13,24 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import os
 
-
+# Needed for Read The Docs documentation setup
+ENV_VARS = {
+    "OWID_COVID_PROJECT_DIR": {
+        "current": os.environ.get("OWID_COVID_PROJECT_DIR"),
+        "fallback": (project_dir := os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))),
+    },
+    "OWID_COVID_PROJECT_DIR": {
+        "current": os.environ.get("OWID_COVID_CONFIG"),
+        "fallback": os.path.join(project_dir, "scripts", "config.yaml"),
+    },
+}
+for var_name, var_values in ENV_VARS.items():
+    if var_values["current"] is None:
+        print(f"Setting env variable {var_name}")
+        os.environ[var_name] = var_values["fallback"]
+print("----------------------------------------")
 # -- Project information -----------------------------------------------------
 
 project = "cowidev"
