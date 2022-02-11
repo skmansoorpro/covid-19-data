@@ -82,7 +82,9 @@ class UnitedKingdom:
     def to_csv(self):
         df = self.read().pipe(self.pipeline)
         for location in set(df.location):
-            df.pipe(self._filter_location, location).pipe(make_monotonic).to_csv(paths.out_vax(location), index=False)
+            df.pipe(self._filter_location, location).pipe(make_monotonic, max_removed_rows=20).to_csv(
+                paths.out_vax(location), index=False
+            )
 
 
 def main():
