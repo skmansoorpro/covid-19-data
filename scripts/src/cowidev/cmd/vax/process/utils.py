@@ -71,7 +71,13 @@ def process_location(df: pd.DataFrame, monotonic_check_skip: list = [], anomaly_
 class VaccinationGSheet:
     _api = GSheetApi()
     sheet_id = SECRETS.vaccinations.sheet_id
-    sheets = _api.sheets
+    __sheets = None
+
+    @property
+    def sheets(self):
+        if self.__sheets is None:
+            self.__sheets = self._api.sheets
+        return self.__sheets
 
     @property
     def sheet(self):

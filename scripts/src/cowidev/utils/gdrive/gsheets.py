@@ -16,7 +16,7 @@ class GSheetApi:
     @property
     def sheets(self):
         if self.__sheets is None:
-            Sheets.from_files(self.clients_secrets, self.credentials, no_webserver=True)
+            self.__sheets = Sheets.from_files(self.clients_secrets, self.credentials, no_webserver=True)
         return self.__sheets
 
     def _init_config_folder(self, credentials):
