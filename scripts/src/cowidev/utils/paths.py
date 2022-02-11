@@ -130,7 +130,7 @@ INTERNAL_TMP_VAX_META_FILE = os.path.join(INTERNAL_DIR, "metadata.preliminary.cs
 # CONFIG ################################
 CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "owid")
 """Where temporary files are stored."""
-SECRETS_FILE = os.environ.get("OWID_COVID_SECRETS", None)
+SECRETS_FILE = os.environ.get("OWID_COVID_SECRETS", "")
 """YAML with secrets, links and credentials. Not shared publicly. Obtained from env var $OWID_COVID_SECRETS."""
 CONFIG_FILE = os.environ.get("OWID_COVID_CONFIG", None)
 """YAML with pipeline & execution configuration. Obtained from env var $OWID_COVID_CONFIG."""
