@@ -17,7 +17,7 @@ class Azerbaijan:
         "title": r"Vaksinasiya",
         "date": r"(\d{2}\.\d{2}\.20\d{2})",
         "total": r"ümumi sayı (\d+) Gün",
-        "doses": r"vaksinlərin sayı (\d+) (\d+) “Buster” doza vaksinlərin sayı (\d+)",
+        "doses": r"vaksinlərin sayı (\d+) (\d+) (\d+) 1\-ci",
     }
 
     def read(self) -> pd.Series:
