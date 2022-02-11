@@ -37,7 +37,7 @@ git clone --depth 5 https://github.com/owid/covid-19-data.git
 ```
 
 ## Install project library
-This project is built around the python library [`cowidev`](../src/cowidev/), which we are developing to help us
+This project is built around the python library `cowidev`, which we are developing to help us
 maintain and improve our COVID-19 data pipeline. To install the library, we recommend using `pip` in [editable mode](https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs). For this, you need to be in `scripts/` folder, next to the `setup.py` file:
 
 ```bash
@@ -51,7 +51,7 @@ To run the pipeline, you need to create three environment variables:
 | Variable | Description |
 |----------|-------------|
 | `OWID_COVID_PROJECT_DIR`        | Path to the local project directory, e.g. `/Users/username/projects/covid-19-data/`           |
-| `OWID_COVID_CONFIG`        | Path to the data pipeline configuration file (`yaml` format). This file provides the default configuration values for the pipeline. Our team uses [`config.yaml`](../config.yaml), which you can use and adapt to your needs.          |
+| `OWID_COVID_CONFIG`        | Path to the data pipeline configuration file (`yaml` format). This file provides the default configuration values for the pipeline. Our team uses [`config.yaml`](https://github.com/owid/covid-19-data/blob/master/scripts/config.yaml), which you can use and adapt to your needs.          |
 | `OWID_COVID_SECRETS`        | Path to the data pipeline secrets file (`yaml` format).           |
 
 You need to add these variables to your shell config file (i.e. `.bashrc` or `.bash_profile`), e.g.:
@@ -67,20 +67,21 @@ the `config.yaml` and `secrets.yaml` file below.
 
 ## Configuration file
 The configuration file is required to run the COVID-19 vaccination and testing data pipelines (might be
-extended to other pipelines). Find below a sample with its structure, you can also check [the one we use](https://github.com/owid/covid-19-data/blob/master/scripts/config_new.yaml). 
+extended to other pipelines). Find below a sample with its structure, you can also check [the one we use](https://github.com/owid/covid-19-data/blob/master/scripts/config.yaml). 
 
 Note that all fields are required, even if left empty.
 
 ```yaml
-pipeline:
+execution:
+  parallel:  # Use parallelization (bool)
+  njobs:  # Number of threads when parallel=True (int)
 
+pipeline:
   # Vaccination data pipeline
   vaccinations:
     # Get step
     get:
-      parallel:  # Use parallelization (bool)
       countries:  # Countries to collect data for (list)
-      njobs:  # Number of threads when parallel=True (int)
       skip_countries:  # Countries to skip data collection for (list)
     # Process step
     process:
@@ -99,9 +100,7 @@ pipeline:
   testing:
     # Get step
     get:
-      parallel:  # Use parallelization (bool)
       countries:  # Countries to collect data for (list)
-      njobs:  # Number of threads when parallel=True (int)
       skip_countries:  # Countries to skip data collection for (list)
     # Process step
     process:
@@ -112,7 +111,9 @@ pipeline:
 ```
 
 ## Secrets file
-We use the secrets file to update internal flows with the output of the pipeline (fields `vax` and `test`). **There is only one mandatory field: `google.clients_secrets`**, which is needed to interact with Google Drive / Google Sheets based sources (more on how to get it [here](#how-can-i-get-the-google-client-secrets-json-file)).
+We use the secrets file to update internal flows with the output of the pipeline (fields `vax` and `test`). While there
+are many fields, **contributors may only need set one field: `google.clients_secrets`**, which is needed to interact with Google Drive /
+Google Sheets based sources (more on how to get it [here](#how-can-i-get-the-google-client-secrets-json-file)).
 
 Note that this file is not shared, as it may contain sensitive data.
 
@@ -142,7 +143,6 @@ twitter:
 ```
 
 
-## FAQs
 ### How can I get the google `client_secrets.json` file?
 The value of `google.client_secrets` should point to the JSON file downloaded from Google Cloud Platform that contains
 your personal Google credentials. To obtain it, you can follow [`gsheets` documentation](https://gsheets.readthedocs.io/en/stable/#quickstart):
@@ -157,5 +157,5 @@ your personal Google credentials. To obtain it, you can follow [`gsheets` docume
 We recommend saving the downloaded file in a safe directory, with a simplified name, e.g.
 `~/.config/owid/clients_secrets.json`.
 
-### More questions?
+## Questions?
 Raise an [issue](https://github.com/owid/covid-19-data/issues), we are happy to help!
