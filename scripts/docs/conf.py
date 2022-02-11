@@ -33,9 +33,9 @@ for var_name, var_values in ENV_VARS.items():
 print("----------------------------------------")
 # -- Project information -----------------------------------------------------
 
-project = "cowidev"
-copyright = "2022, Our World in Data"
 author = "Our World in Data"
+project = f"COVID-19 dataset by {author}"
+copyright = "2022, Our World in Data"
 
 # The full version, including alpha/beta/rc tags
 release = "0.0.1.dev0"
@@ -49,6 +49,10 @@ release = "0.0.1.dev0"
 extensions = [
     "sphinx_click",
     "myst_parser",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
     # "m2r2",
 ]
 
@@ -73,3 +77,14 @@ html_theme = "furo"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+
+
+autodoc_default_options = {
+    "members": True,
+    # The ones below should be optional but work nicely together with
+    # example_package/autodoctest/doc/source/_templates/autosummary/class.rst
+    # and other defaults in sphinx-autodoc.
+    "show-inheritance": True,
+    "inherited-members": True,
+    "no-special-members": True,
+}
