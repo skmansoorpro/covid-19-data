@@ -15,13 +15,19 @@ class Netherlands(CountryTestBase):
     def read(self) -> pd.DataFrame:
         data = request_json(self.source_url)
         df = pd.DataFrame.from_records(
-            data, columns=["Date_of_statistics", "Tested_with_result", "Security_region_name"]
+            data, columns=["Date_of_statistics", "Tested_with_result", "Security_region_name", "Tested_positive"]
         )
         df = df.groupby("Date_of_statistics").sum().reset_index()
         return df
 
+    def pipe_positive_rate(self, df: pd.DataFrame):
+        df["Positive rate"] = (
+            (df["Tested_positive"].rolling(7).mean()).div((df["Tested_with_result"].rolling(7).mean())).round(3)
+        )
+        return df
+
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.pipe(self.pipe_rename_columns).pipe(self.pipe_metadata)
+        return df.pipe(self.pipe_positive_rate).pipe(self.pipe_rename_columns).pipe(self.pipe_metadata)
 
     def export(self):
         df = self.read().pipe(self.pipeline)
