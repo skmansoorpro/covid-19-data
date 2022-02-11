@@ -21,7 +21,7 @@ ENV_VARS = {
         "current": os.environ.get("OWID_COVID_PROJECT_DIR"),
         "fallback": (project_dir := os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))),
     },
-    "OWID_COVID_PROJECT_DIR": {
+    "OWID_COVID_CONFIG": {
         "current": os.environ.get("OWID_COVID_CONFIG"),
         "fallback": os.path.join(project_dir, "scripts", "config.yaml"),
     },
