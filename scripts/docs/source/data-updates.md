@@ -20,7 +20,7 @@ other sub-processes producing data that may appear on our website (Grapher) but 
 
 | **Pipeline**              | **Frequency**                | **Module**       | **Steps** | **Output**                                                                      |
 |---------------------------|------------------------------|------------------|-----------|---------------------------------------------------------------------------------|
-| Cases & Deaths (JHU)      | every hour (if new data)     | cowidev.jhu      |           | jhu/                                                                            |
+| Cases & Deaths (JHU)      | every hour (if new data)     | cowidev.jhu      |  1         | jhu/                                                                            |
 | Vaccination               | daily at 12:00 UTC           | cowidev.vax      |           | vaccinations.csv,vaccinations-by-manufacturer.csv,vaccinations-by-age-group.csv |
 | Hospitalization & ICU     | daily at 06:00 and 18:00 UTC | cowidev.hosp     |           | covid-hospitalizations.csv                                                      |
 | Testing                   | 3 times per week             | cowidev.testing  |           | covid-testing-all-observations.csv                                              |
@@ -28,6 +28,8 @@ other sub-processes producing data that may appear on our website (Grapher) but 
 | Variants                  | daily at 20:00 UTC           | cowidev.variants |           | covid-variants.csv, covid-sequencing.csv                                        |
 | Excess mortality          | daily at 06:00 and 18:00 UTC | cowidev.xm       |           | excess_mortality.csv, excess_mortality_economist_estimates.csv                  |
 | Reproduction rate         | daily                        |                  |           |                                                                                 |
+
+
 
 <pre>
   ┌──────────────────────────────────────────────────────────┐

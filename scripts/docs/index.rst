@@ -1,4 +1,4 @@
-cowidev
+Covid-19
 ===================================
 **cowidev** is a python package developed at `Our World in Data <https://ourworldindata.org>`_ to maintain and produce
 `our global COVID-19 dataset <https://ourworldindata.org/coronavirus>`_. It contains several tools for all the COVID
@@ -17,6 +17,7 @@ pipeline management tool.
 .. toctree::
    :maxdepth: 1
 
+   The data <readme_link>
    Setting up the working environment <source/work-env>
    How do we update the dataset <source/data-updates>
    cowid API <source/cowid-api>
