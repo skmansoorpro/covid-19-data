@@ -1,87 +1,49 @@
-from datetime import datetime
-
 import pandas as pd
 from cowidev.testing import CountryTestBase
-from cowidev.utils.web import request_json
-from cowidev.utils.web.download import read_csv_from_url
-
-
-dtype = {
-    "FECHA_CORTE": "string",
-    "UUID": "float64",
-    "FECHA_MUESTRA": "float64",
-    "Edad": "float64",
-    "Sexo": "category",
-    "Institucion": "category",
-    "UBIGEO_PACIENTE": "float64",
-    "DEPARTAMENTO_PACIENTE": "category",
-    "PROVINCIA_PACIENTE": "category",
-    "DISTRITO_PACIENTE": "category",
-    "DEPARTAMENTO_MUESTRA": "category",
-    "PROVINCIA_MUESTRA": "category",
-    "DISTRITO_MUESTRA": "category",
-    "TIPO_MUESTRA": "category",
-    "RESULTADO": "category",
-}
 
 
 class Peru(CountryTestBase):
-    location = "Peru"
-    units = "tests performed"
-    source_label = "National Institute of Health"
-    source_url = "https://datos.ins.gob.pe/api/3/action/package_show?id=dataset-de-pruebas-moleculares-del-instituto-nacional-de-salud-ins"
-    source_url_ref = (
+    location: str = "Peru"
+    units: str = "tests performed"
+    source_label: str = "National Institute of Health"
+    notes: str = "Ministerio de Salud via https://github.com/jmcastagnetto/covid-19-peru-data"
+    source_url: str = (
+        "https://raw.githubusercontent.com/jmcastagnetto/covid-19-peru-data/main/datos/covid-19-peru-data.csv"
+    )
+    source_url_ref: str = (
         "https://datos.ins.gob.pe/dataset/dataset-de-pruebas-moleculares-del-instituto-nacional-de-salud-ins"
     )
+    rename_columns: dict = {"date": "Date", "confirmed": "positive", "total_tests": "Cumulative total"}
+
+    # To avoid removing previous data obtained from source_url_ref
+    date_start: str = "2021-06-01"
 
     def read(self) -> pd.DataFrame:
-        json_dict = request_json(self.source_url, verify=False)
-        resources = json_dict["result"]["resources"]
-        last_modified = max(datetime.fromisoformat(node["last_modified"]) for node in resources)
-        test_url = [obj["url"] for obj in resources if datetime.fromisoformat(obj["last_modified"]) == last_modified][
-            0
-        ]
-        df = read_csv_from_url(test_url, delimiter="|", verify=False, compression="zip", dtype=dtype)
+        """Read data from source"""
+        df = pd.read_csv(self.source_url)
         return df
 
-    @staticmethod
-    def pipe_normalize(df: pd.DataFrame) -> pd.DataFrame:
-        df = df.dropna()
-        df = df.rename(columns={"FECHA_MUESTRA": "Date", "RESULTADO": "Result"})
-        df = df[["Date", "Result"]]
-        df = df[df["Date"] >= 20200101]
-        df["Date"] = pd.to_datetime(df["Date"], format="%Y%m%d")
-
-        df["positive"] = df["Result"].str.contains("POS").astype(int)
-        df["negative"] = df["Result"].str.contains("NEG").astype(int)
-
-        df = df[["Date", "positive", "negative"]]
-
-        df = df.groupby(["Date"], as_index=False).sum()
+    def pipe_filter(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Filter data"""
+        df = df[df["region"].isna()]
+        df = df[df["Date"] >= self.date_start]
         return df
 
-    @staticmethod
-    def pipe_metrics(df: pd.DataFrame) -> pd.DataFrame:
-        df["Daily change in cumulative total"] = df["positive"] + df["negative"]
-        df["Daily change in cumulative total"] = df["Daily change in cumulative total"].astype(int)
-
-        df = df[df["Daily change in cumulative total"] != 0]
-
-        df["Positive rate"] = (
-            df["positive"].rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()
-        ).round(3)
-
-        df["Positive rate"] = df["Positive rate"].fillna(0)
-
-        df = df[["Date", "Daily change in cumulative total", "Positive rate"]]
-        return df
+    def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Calculate positive rate"""
+        df = df.sort_values("Date")
+        cases_over_period = df["positive"].diff().rolling(7).sum()
+        tests_over_period = df["Cumulative total"].diff().rolling(7).sum()
+        return df.assign(**{"Positive rate": (cases_over_period / tests_over_period).round(3)}).fillna(0)
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.pipe(self.pipe_normalize).pipe(self.pipe_metrics).pipe(self.pipe_metadata)
+        """Pipeline for data"""
+        return df.pipe(self.pipe_rename_columns).pipe(self.pipe_filter).pipe(self.pipe_pr).pipe(self.pipe_metadata)
 
     def export(self):
+        """Export data to CSV"""
         df = self.read().pipe(self.pipeline)
-        self.export_datafile(df)
+        self.export_datafile(df, attach=True)
 
 
 def main():
