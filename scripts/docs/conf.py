@@ -79,12 +79,32 @@ html_theme = "furo"
 html_static_path = ["_static"]
 
 
-autodoc_default_options = {
-    "members": True,
-    # The ones below should be optional but work nicely together with
-    # example_package/autodoctest/doc/source/_templates/autosummary/class.rst
-    # and other defaults in sphinx-autodoc.
-    "show-inheritance": True,
-    "inherited-members": True,
-    "no-special-members": True,
+# autodoc_default_options = {
+#     "members": True,
+#     # The ones below should be optional but work nicely together with
+#     # example_package/autodoctest/doc/source/_templates/autosummary/class.rst
+#     # and other defaults in sphinx-autodoc.
+#     "show-inheritance": True,
+#     "inherited-members": True,
+#     "no-special-members": False,
+# }
+autodoc_default_flags = [
+    "members",
+    "undoc-members",
+    "private-members",
+    "special-members",
+    "inherited-members",
+    "show-inheritance",
+]
+
+html_context = {
+    "display_github": True,  # Integrate GitHub
+    "github_user": "owid",  # Username
+    "github_repo": "covid-19-data",  # Repo name
+    "github_version": "master",  # Version
+    "conf_py_path": "/scripts/docs/",  # Path in the checkout to the docs root
 }
+
+myst_enable_extensions = [
+    "colon_fence",
+]
