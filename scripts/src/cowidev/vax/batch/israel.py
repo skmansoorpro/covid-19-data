@@ -17,6 +17,7 @@ class Israel:
     source_url_age: str = (
         "https://github.com/dancarmoz/israel_moh_covid_dashboard_data/raw/master/vaccinated_by_age.csv"
     )
+    source_url_age_old = "https://github.com/dancarmoz/israel_moh_covid_dashboard_data/raw/master/old_files/vaccinated_by_age_2022_01_25.csv"
 
     def read(self) -> pd.DataFrame:
         data = request_json(self.source_url)
@@ -45,7 +46,9 @@ class Israel:
         return df
 
     def read_age(self):
-        return pd.read_csv(self.source_url_age)
+        df = pd.read_csv(self.source_url_age)
+        df_old = pd.read_csv(self.source_url_age_old)
+        return pd.concat([df, df_old], ignore_index=True)
 
     def pipe_rename_columns(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.rename(
@@ -135,7 +138,7 @@ class Israel:
             date=clean_date_series(df.Date, "%Y-%m-%dT%H:%M:%S.%fZ"),
         )
         # Keep last entry for each date
-        df = df.sort_values("Date")
+        df = df.sort_values("date")
         df = df.drop_duplicates(subset=["date", "variable", "age_group_min", "age_group_max"], keep="last")
         df = df.drop(columns="Date")
         # Pivot and fix column names
