@@ -17,7 +17,7 @@ class Azerbaijan:
         "title": r"Vaksinasiya",
         "date": r"(\d{2}\.\d{2}\.20\d{2})",
         "total": r"ümumi sayı (\d+) Gün",
-        "doses": r"vaksinlərin sayı (\d+) (\d+) (\d+) 1\-ci",
+        "doses": r"vaksinlərin sayı (\d+) (\d+) (“Buster” doza vaksinlərin sayı )?(\d+)",
     }
 
     def read(self) -> pd.Series:
@@ -74,7 +74,7 @@ class Azerbaijan:
         total_vaccinations = re.search(self.regex["total"], text).group(1)
         people_vaccinated = re.search(self.regex["doses"], text).group(1)
         people_fully_vaccinated = re.search(self.regex["doses"], text).group(2)
-        total_boosters = re.search(self.regex["doses"], text).group(3)
+        total_boosters = re.search(self.regex["doses"], text).group(4)
         return (
             clean_count(total_vaccinations),
             clean_count(people_vaccinated),
