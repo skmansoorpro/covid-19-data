@@ -1,8 +1,8 @@
 # Setting up the working environment
-In this document we explain all the necessary steps to correctly set up your environment and work with this project. 
+This document explains all the necessary steps to set up your environment and work with this project correctly. 
 
 Perhaps you want to set up the environment to help us out, or to learn how we work, or because you want to set up a
-similar workflow. In any case, we really appreciate the time you are taking here 😀.
+similar workflow. In any case, we appreciate the time you are taking here 😀.
 
 - [Python](#python)
 - [Install project library](#install-project-library)
@@ -12,7 +12,7 @@ similar workflow. In any case, we really appreciate the time you are taking here
 - [FAQs](#FAQs)
 
 ## Python
-This project uses Python for most of its processes. The code has been tested in Python 3.9 and 3.10. We recommend
+This project uses Python for most of its processes. We have tested the code in Python 3.9 and 3.10. We recommend
 creating a [virtual environment](https://docs.python.org/3/library/venv.html) and installing all dependencies there.
 Something like:
 
@@ -30,7 +30,7 @@ First thing is to download the project from the official repository:
 git clone https://github.com/owid/covid-19-data.git
 ```
 
-Note that the project is quite big in size, so you may want to use a [shallow clone](https://git-scm.com/docs/git-clone>):
+Note that the project is quite significant in size, so you may want to use a [shallow clone](https://git-scm.com/docs/git-clone>):
 
 ```bash
 git clone --depth 5 https://github.com/owid/covid-19-data.git
@@ -38,7 +38,7 @@ git clone --depth 5 https://github.com/owid/covid-19-data.git
 
 ## Install project library
 This project is built around the python library `cowidev`, which we are developing to help us
-maintain and improve our COVID-19 data pipeline. To install the library, we recommend using `pip` in [editable mode](https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs). For this, you need to be in `scripts/` folder, next to the `setup.py` file:
+maintain and improve our COVID-19 data pipeline. We recommend using `pip` in [editable mode](https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs). For this, you need to be in `scripts/` folder, next to the `setup.py` file:
 
 ```bash
 cd scripts
@@ -67,7 +67,7 @@ the `config.yaml` and `secrets.yaml` file below.
 
 ## Configuration file
 The configuration file is required to run the COVID-19 vaccination and testing data pipelines (might be
-extended to other pipelines). Find below a sample with its structure, you can also check [the one we use](https://github.com/owid/covid-19-data/blob/master/scripts/config.yaml). 
+extended to other pipelines). Please find below a sample with its structure. You can also check [the one we use](https://github.com/owid/covid-19-data/blob/master/scripts/config.yaml). 
 
 Note that all fields are required, even if left empty.
 
@@ -111,7 +111,7 @@ pipeline:
 ```
 
 ## Secrets file
-We use the secrets file to update internal flows with the output of the pipeline (fields `vax` and `test`). While there
+We use the secrets file to update internal flows with the pipeline's output (fields `vax` and `test`). While there
 are many fields, **contributors may only need set one field: `google.clients_secrets`**, which is needed to interact with Google Drive /
 Google Sheets based sources (more on how to get it [here](#how-can-i-get-the-google-client-secrets-json-file)).
 
