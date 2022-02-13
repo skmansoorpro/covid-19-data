@@ -1,65 +1,72 @@
-import time
+import json
+from bs4 import BeautifulSoup
 
 import pandas as pd
 
-from cowidev.utils.clean import clean_count, extract_clean_date
-from cowidev.utils.web.scraping import get_driver
-from cowidev.vax.utils.incremental import enrich_data, increment
+from cowidev.utils import clean_date, clean_count, get_soup
+from cowidev.vax.utils.incremental import increment, enrich_data
 
 
 class Philippines:
-    def __init__(self) -> None:
-        self.location = "Philippines"
-        self.source_url = "https://e.infogram.com/_/yFVE69R1WlSdqY3aCsBF"
-        self.source_url_ref = (
-            "https://news.abs-cbn.com/spotlight/multimedia/infographic/03/23/21/philippines-covid-19-vaccine-tracker"
-        )
+    location: str = "Philippines"
+    source_url: str = "https://e.infogram.com/_/yFVE69R1WlSdqY3aCsBF"
+    source_url_ref: str = (
+        "https://news.abs-cbn.com/spotlight/multimedia/infographic/03/23/21/philippines-covid-19-vaccine-tracker"
+    )
+    metric_entities: dict = {
+        "total_vaccinations": "4b9e949e-2990-4349-aa85-5aff8501068a",
+        "people_vaccinated": "25d75a0a-cb56-4824-aed4-4410f395577a",
+        "people_fully_vaccinated": "68999d30-7787-4c3f-ba20-c8647ca21548",
+        "total_boosters": "db3b7f4f-ee01-4a15-b050-f6b05a547c2e",
+    }
+    date_entity: str = "01ff1d02-e027-4eee-9de1-5e19f7fdd5e8"
 
     def read(self) -> pd.Series:
-        return pd.Series(data=self._parse_data())
+        """Reada data from source"""
+        soup = get_soup(self.source_url)
+        json_data = self._get_json_data(soup)
+        data = self._parse_data(json_data)
+        return pd.Series(data)
 
-    def _parse_data(self) -> dict:
-        with get_driver() as driver:
-            driver.get(self.source_url)
-            time.sleep(2)
-            spans = [span for span in driver.find_elements_by_tag_name("span") if span.get_attribute("data-text")]
-            # Date
-            date = extract_clean_date(
-                spans[6].text.replace("Sept", "Sep"),
-                "\(as of ([a-zA-Z]+)\.\s?(\d{1,2}), (20\d{2})\)",
-                "%b %d %Y",
-                lang="en",
-            )
-            # Metrics
-            total_vaccinations = clean_count(spans[8].text)
-            people_fully_vaccinated = clean_count(spans[15].text)
-            total_boosters = clean_count(spans[18].text)
-        if total_vaccinations < people_fully_vaccinated:
-            raise ValueError(
-                "Check values for:\n"
-                f"total_vaccinations\t\t{total_vaccinations}\npeople_fully_vaccinated\t\t{people_fully_vaccinated}"
-            )
-        if total_vaccinations < total_boosters:
-            raise ValueError(
-                f"Check values for:\ntotal_vaccinations\t\t{total_vaccinations}\ntotal_boosters\t\t{total_boosters}"
-            )
-        if people_fully_vaccinated < total_boosters:
-            raise ValueError(
-                "Check values for:\n"
-                f"people_fully_vaccinated\t\t{people_fully_vaccinated}\ntotal_boosters\t\t{total_boosters}"
-            )
-        return {
-            "total_vaccinations": total_vaccinations,
-            # "people_vaccinated": people_vaccinated,
-            "people_fully_vaccinated": people_fully_vaccinated,
-            "total_boosters": total_boosters,
-            "date": date,
-        }
+    def _parse_data(self, json_data: dict) -> dict:
+        """Parses data from JSON"""
+        data = {**self._parse_metrics(json_data), "date": self._parse_date(json_data)}
+        return data
+
+    def _get_json_data(self, soup: BeautifulSoup) -> dict:
+        """Gets JSON from Soup"""
+        for script in soup.find_all("script"):
+            if "infographicData" in str(script):
+                json_data = str(script).replace("<script>window.infographicData=", "").replace(";</script>", "")
+                json_data = json.loads(json_data)
+                break
+        return json_data
+
+    def _parse_metrics(self, json_data: dict) -> dict:
+        """Parses metrics from JSON"""
+        data = {}
+        for metric, entity in self.metric_entities.items():
+            value = json_data["elements"]["content"]["content"]["entities"][entity]["props"]["content"]["blocks"][0][
+                "text"
+            ]
+            value = clean_count(value)
+            data[metric] = value
+        return data
+
+    def _parse_date(self, json_data: dict) -> str:
+        """Parses date from JSON"""
+        value = json_data["elements"]["content"]["content"]["entities"][self.date_entity]["props"]["content"][
+            "blocks"
+        ][0]["text"]
+        date = clean_date(value.lower(), "as of %b. %d, %Y")
+        return date
 
     def pipe_location(self, ds: pd.Series) -> pd.Series:
+        """Pipes location"""
         return enrich_data(ds, "location", self.location)
 
     def pipe_vaccine(self, ds: pd.Series) -> pd.Series:
+        """Pipes vaccine names"""
         return enrich_data(
             ds,
             "vaccine",
@@ -67,6 +74,7 @@ class Philippines:
         )
 
     def pipe_source(self, ds: pd.Series) -> pd.Series:
+        """Pipes source url"""
         return enrich_data(
             ds,
             "source_url",
@@ -74,21 +82,27 @@ class Philippines:
         )
 
     def pipeline(self, ds: pd.Series) -> pd.Series:
+        """Pipeline for data"""
         return ds.pipe(self.pipe_location).pipe(self.pipe_vaccine).pipe(self.pipe_source)
 
     def export(self):
+        """Exports data to CSV"""
         data = self.read().pipe(self.pipeline)
         increment(
             location=data["location"],
             total_vaccinations=data["total_vaccinations"],
-            # people_vaccinated=data["people_vaccinated"],
+            people_vaccinated=data["people_vaccinated"],
             people_fully_vaccinated=data["people_fully_vaccinated"],
             total_boosters=data["total_boosters"],
             date=data["date"],
             source_url=data["source_url"],
             vaccine=data["vaccine"],
         )
+        
 
 
 def main():
     Philippines().export()
+
+if __name__ == "__main__":
+    main()
