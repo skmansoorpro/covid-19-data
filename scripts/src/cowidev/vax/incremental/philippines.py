@@ -15,7 +15,7 @@ class Philippines:
     )
     metric_entities: dict = {
         "total_vaccinations": "4b9e949e-2990-4349-aa85-5aff8501068a",
-        "people_vaccinated": "25d75a0a-cb56-4824-aed4-4410f395577a",
+        #"people_vaccinated": "25d75a0a-cb56-4824-aed4-4410f395577a",
         "people_fully_vaccinated": "68999d30-7787-4c3f-ba20-c8647ca21548",
         "total_boosters": "db3b7f4f-ee01-4a15-b050-f6b05a547c2e",
     }
@@ -91,7 +91,7 @@ class Philippines:
         increment(
             location=data["location"],
             total_vaccinations=data["total_vaccinations"],
-            people_vaccinated=data["people_vaccinated"],
+            #people_vaccinated=data["people_vaccinated"],
             people_fully_vaccinated=data["people_fully_vaccinated"],
             total_boosters=data["total_boosters"],
             date=data["date"],
