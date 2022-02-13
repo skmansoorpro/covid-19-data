@@ -1,11 +1,9 @@
 import re
 
-from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
+from bs4 import BeautifulSoup, element
 import pandas as pd
 
-from cowidev.utils.web import get_driver
-from cowidev.utils.clean import clean_count, clean_date
+from cowidev.utils import clean_count, clean_date, get_soup
 from cowidev.testing.utils.incremental import increment
 
 
@@ -22,19 +20,14 @@ class Laos:
 
     def read(self) -> pd.Series:
         """Reads data from source."""
-        with get_driver() as driver:
-            driver.get(self._source_url)
-            data = self._parse_data(driver)
-
+        soup = get_soup(self._source_url)
+        data = self._parse_data(soup)
         return pd.Series(data)
 
-    def _parse_data(self, driver: WebDriver) -> dict:
+    def _parse_data(self, soup: BeautifulSoup) -> dict:
         """Gets data from the source page."""
         # Extract the relevant element
-        elem = self._get_relevant_element(driver)
-        if not elem:
-            raise TypeError("Website Structure Changed, please update the script")
-
+        elem = self._get_relevant_element(soup)
         # Extract the text from the element
         text = self._get_text_from_element(elem)
         # Extract the metrics
@@ -48,12 +41,14 @@ class Laos:
         }
         return record
 
-    def _get_relevant_element(self, driver: WebDriver) -> WebElement:
-        """Gets element from the driver."""
-        elem = driver.find_element_by_id("aa-blog-archive")
+    def _get_relevant_element(self, soup: BeautifulSoup) -> element.Tag:
+        """Gets element from the soup."""
+        elem = soup.find("section", {"id": "aa-blog-archive"})
+        if not elem:
+            raise TypeError("Website Structure Changed, please update the script")
         return elem
 
-    def _get_text_from_element(self, elem: WebElement) -> str:
+    def _get_text_from_element(self, elem: element.Tag) -> str:
         """Gets text from element."""
         return elem.text.replace("\n", " ").replace(",", "")
 
