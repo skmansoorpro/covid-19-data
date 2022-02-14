@@ -230,7 +230,7 @@ class ECDC(CountryVaxBase):
     def pipeline(self, df: pd.DataFrame):
         vax_timeline = self._vaccine_timeseries(df)
         df = (
-            df.loc[df.TargetGroup == "ALL"]
+            df.loc[df.TargetGroup.isin(["ALL", "Age<18"])]
             .pipe(self.pipeline_common)
             .pipe(self.pipe_filter_locations)
             .pipe(self.pipe_vaccine, vax_timeline)
@@ -279,7 +279,7 @@ class ECDC(CountryVaxBase):
     def pipeline_manufacturer(self, df: pd.DataFrame):
         group_field_renamed = "vaccine"
         return (
-            df.loc[df.TargetGroup == "ALL"]
+            df.loc[df.TargetGroup.isin(["ALL", "Age<18"])]
             .pipe(self.pipeline_common, "Vaccine", group_field_renamed)
             .pipe(self.pipe_rename_vaccines)
             .pipe(self.pipe_manufacturer_filter_locations)
