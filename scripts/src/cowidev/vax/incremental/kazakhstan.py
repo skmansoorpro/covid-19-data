@@ -12,11 +12,13 @@ def read(source: str) -> pd.Series:
     with webdriver.Chrome(options=op) as driver:
         driver.get(source)
         people_vaccinated, people_fully_vaccinated = parse_vaccinations(driver)
+        total_boosters = parse_boosters(driver)
         date = parse_date(driver)
     return pd.Series(
         {
             "people_vaccinated": people_vaccinated,
             "people_fully_vaccinated": people_fully_vaccinated,
+            "total_boosters": total_boosters,
             "date": date,
         }
     )
@@ -26,6 +28,13 @@ def parse_vaccinations(driver: webdriver.Chrome) -> tuple:
     people_vaccinated = clean_count(driver.find_element_by_id("vaccinated_1").text)
     people_fully_vaccinated = clean_count(driver.find_element_by_id("vaccinated_2").text)
     return people_vaccinated, people_fully_vaccinated
+
+
+def parse_boosters(driver: webdriver.Chrome) -> tuple:
+    elems = driver.find_elements_by_class_name("number_revac_info")
+    elem = [e for e in elems if "Всего" in e.find_element_by_xpath("..").text][0]
+    total_boosters = clean_count(elem.text)
+    return total_boosters
 
 
 def parse_date(driver: webdriver.Chrome) -> str:
@@ -43,7 +52,7 @@ def enrich_vaccine(ds: pd.Series):
 
 
 def add_totals(ds: pd.Series):
-    total_vaccintations = ds["people_vaccinated"] + ds["people_fully_vaccinated"]
+    total_vaccintations = ds["people_vaccinated"] + ds["people_fully_vaccinated"] + +ds["total_boosters"]
     return enrich_data(ds, "total_vaccinations", total_vaccintations)
 
 
@@ -59,6 +68,7 @@ def main():
         total_vaccinations=data["total_vaccinations"],
         people_vaccinated=data["people_vaccinated"],
         people_fully_vaccinated=data["people_fully_vaccinated"],
+        total_boosters=data["total_boosters"],
         date=data["date"],
         source_url=source,
         vaccine=data["vaccine"],
