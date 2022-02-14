@@ -25,8 +25,7 @@ class Peru(CountryTestBase):
 
     def pipe_filter(self, df: pd.DataFrame) -> pd.DataFrame:
         """Filter data"""
-        df = df[df["region"].isna()]
-        df = df[df["Date"] >= self.date_start]
+        df = df[(df["region"].isna()) & (df["Date"] >= self.date_start)]
         return df
 
     def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
