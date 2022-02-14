@@ -125,15 +125,15 @@ google:
   mail:  # Email (str), OPTIONAL
 
 # Vaccination configuration (dict), OPTIONAL
-vax:
+vaccinations:
   post:  # OWID Vaccination internal post link (str)
   sheet_id:  # OWID Vaccination internal spredsheet ID, where manual imports happen (str)
 
 # Testing configuration (dict), OPTIONAL
-test:
+testing:
   post:  # OWID Testing internal post link (str)
   sheet_id:  # OWID Testing internal spredsheet ID, where manual imports happen (str)
-  sheet_id_extra:  # OWID Extra Testing internal spredsheet ID, where attempted countries are listed (str)
+  sheet_id_attempted:  # OWID Extra Testing internal spredsheet ID, where attempted countries are listed (str)
 
 # Twitter configuration (dict), OPTIONAL
 twitter:
