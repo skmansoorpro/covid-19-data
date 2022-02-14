@@ -23,12 +23,12 @@ tasks.
 | [Testing](#testing)                   | 3 times per week             | Collection, transformation, presentation |
 | [Hospitalization & ICU](#hospitalization-icu)     | daily at 06:00 and 18:00 UTC | Collection, transformation, presentation |
 | [Cases & Deaths (JHU)](#cases-deaths-jhu)      | every hour (if new data)     | Transformation, presentation             |
-| [Excess mortality](#excess-mortality)          | daily at 06:00 and 18:00 UTC | Transformation, presentation             |
+| [Excess mortality](#excess-mortality)          | weekly | Transformation, presentation             |
 | [Variants](#variants)                  | daily at 20:00 UTC           | Transformation, presentation             |
 | [Reproduction rate](#reproduction-rate)         | daily                        | Presentation                             |
 | [Policy responses (OxCGRT)](#policy-responses-oxcgrt) | daily                        | Transformation, presentation             |
 
-You can find all the automation details [in this file](https://github.com/owid/covid-19-data/blob/master/scripts/scripts/autoupdate.sh)
+You can find all the automation details [in this file](https://github.com/owid/covid-19-data/blob/master/scripts/scripts/autoupdate.sh).
 
 ### Vaccinations
 The vaccination pipeline is probably the most complete one, where we scrape and extract data for each country in the
@@ -54,11 +54,11 @@ cowid vax export
 
 ```{seealso}
 
-[Intermediate datasets](https://github.com/owid/covid-19-data/owid/blob/master/public/data/vaccinations/), including per-country files.
+[Intermediate dataset](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/), including per-country files and data technical details.
 ```
 
 ### Testing
-The pipeline is executed manually, by [@camapel](https://github.com/camapel) on Mondays and Fridays.
+We scrape and process data for multiple countries, similarly to the vaccinations pipeline. The pipeline is executed manually, by [@camapel](https://github.com/camapel) on Mondays and Fridays.
 
 :::{warning}
 The testing pipeline is [under refactoring](https://github.com/owid/covid-19-data/discussions/2099).
@@ -71,8 +71,11 @@ The testing pipeline is [under refactoring](https://github.com/owid/covid-19-dat
 cowid testing get
 ```
 
-
+```{seealso}
+[Intermediate datasets](https://github.com/owid/covid-19-data/tree/master/public/data/testing)
+```
 ### Hospitalization & ICU
+We scrape and process the data similarly as to what we do for testing and vaccinations. The pipeline is run daily.
 
 #### Execution steps
 
@@ -87,9 +90,15 @@ cowid hosp grapher-io
 cowid hosp grapher-db
 ```
 
+```{seealso}
+
+[Intermediate dataset and data technical details](https://github.com/owid/covid-19-data/tree/master/public/data/hospitalizations).
+```
 
 ### Cases & Deaths (JHU)
-
+We source cases and death figures from the [COVID-19 Data Repository by the Center for Systems Science and Engineering
+(CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19). We transform some of the variables and
+re-publish the dataset.
 #### Execution steps
 
 ```
@@ -103,7 +112,15 @@ cowid jhu generate
 cowid jhu grapher-db
 ```
 
+
+```{seealso}
+
+[Intermediate dataset](https://github.com/owid/covid-19-data/tree/master/public/data/jhu).
+```
+
 ### Excess Mortality
+The pipeline is manually executed once a week. The reported all-cause mortality data is from the [Human Mortality Database](https://www.mortality.org/) (HMD) Short-term Mortality Fluctuations project and the [World Mortality Dataset](https://github.com/akarlinsky/world_mortality) (WMD). Both sources are updated weekly. We also present estimates of excess deaths globally that are [published by _The Economist_](https://github.com/TheEconomist/covid-19-the-economist-global-excess-deaths-model).
+
 
 #### Execution steps
 
@@ -112,8 +129,13 @@ cowid jhu grapher-db
 cowid xm generate
 ```
 
-### Variants
+```{seealso}
 
+[Intermediate dataset and data technical details](https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality).
+```
+
+### Variants
+We run this pipeline daily. 
 #### Execution steps
 
 ```
@@ -124,9 +146,18 @@ cowid variants generate
 cowid variants grapher-io
 ```
 
+```{note}
+The data on variants and sequencing is indeed no longer available to download.
+It is published by GISAID under a license that doesn't allow us to redistribute it.
+Please visit [the data publisher's website](https://www.gisaid.org/) for more details. You may want to register an account there if you're really interested in using this data.
+```
 ### Reproduction rate
-TODO
+We source the data from [crondonm/TrackingR/](https://github.com/crondonm/TrackingR/).
 
+```{seealso}
+[_Tracking R of COVID-19 A New Real-Time Estimation Using the Kalman Filter_](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0244474), by Francisco Arroyo, Francisco Bullano, Simas Kucinskas, and Carlos Rondón-Moreno
+
+```
 ### Policy responses (OxCGRT)
 
 :::{warning}

@@ -9,7 +9,7 @@ similar workflow. In any case, we appreciate the time you are taking here 😀.
 - [Set environment variables](#set-environment-variables)
 - [Configuration file](#configuration-file)
 - [Secrets file](#secrets-file)
-- [FAQs](#FAQs)
+- [Questions?](#questions)
 
 ## Python
 This project uses Python for most of its processes. We have tested the code in Python 3.9 and 3.10. We recommend
@@ -24,7 +24,7 @@ python -m venv venv
 . venv/bin/activate
 ```
 ## Download the project
-First thing is to download the project from the official repository:
+First thing is to download the project. If you just want to run the code, clone it from the official repository:
 
 ```bash
 git clone https://github.com/owid/covid-19-data.git
@@ -36,6 +36,7 @@ Note that the project is quite significant in size, so you may want to use a [sh
 git clone --depth 5 https://github.com/owid/covid-19-data.git
 ```
 
+If you want to **contribute** consider [forking the repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo) instead.
 ## Install project library
 This project is built around the python library `cowidev`, which we are developing to help us
 maintain and improve our COVID-19 data pipeline. We recommend using `pip` in [editable mode](https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs). For this, you need to be in `scripts/` folder, next to the `setup.py` file:
