@@ -9,7 +9,7 @@ from cowidev.utils.gdrive.credentials import CLIENT_SECRETS_PATH, CREDENTIALS_PA
 class GSheetApi:
     def __init__(self, clients_secrets=CLIENT_SECRETS_PATH, credentials=CREDENTIALS_PATH) -> None:
         self.clients_secrets = clients_secrets
-        self.credentials = clients_secrets
+        self.credentials = credentials
         self._init_config_folder(credentials=credentials)
         self.__sheets = None
 

@@ -71,6 +71,7 @@ def process_location(df: pd.DataFrame, monotonic_check_skip: list = [], anomaly_
 class VaccinationGSheet:
     _api = GSheetApi()
     sheet_id = SECRETS.vaccinations.sheet_id
+    __sheet = None
     __sheets = None
 
     @property
@@ -81,7 +82,9 @@ class VaccinationGSheet:
 
     @property
     def sheet(self):
-        return self._api.get_sheet(self.sheet_id)
+        if self.__sheet is None:
+            self.__sheet = self._api.get_sheet(self.sheet_id)
+        return self.__sheet
 
     @classmethod
     def from_json(cls, path: str):
