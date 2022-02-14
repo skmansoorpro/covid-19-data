@@ -6,8 +6,6 @@ from cowidev.testing.utils import make_monotonic
 from cowidev.testing import CountryTestBase
 
 
-
-
 class Rwanda(CountryTestBase):
     location: str = "Rwanda"
     units: str = "samples tested"
@@ -15,7 +13,7 @@ class Rwanda(CountryTestBase):
     source_url: str = "https://gis.rbc.gov.rw/server/rest/services/Hosted/service_b580a3db9319449e82045881f1667b01/FeatureServer/0/query"
     source_url_ref: str = "https://rbc.gov.rw/index.php?id=707"
     rename_columns: dict = {
-        #"attributes.sample_tested": "Daily change in cumulative total",
+        # "attributes.sample_tested": "Daily change in cumulative total",
         "attributes.cumulative_test": "Cumulative total",
         "attributes.created_date": "Date",
     }
@@ -55,12 +53,8 @@ class Rwanda(CountryTestBase):
     def export(self):
         """Exports data to csv"""
         df = self.read().pipe(self.pipeline)
-        self.export_datafile(df,attach=True)
+        self.export_datafile(df, attach=True)
 
 
 def main():
     Rwanda().export()
-
-
-if __name__ == "__main__":
-    main()
