@@ -1,39 +1,60 @@
-import os
-from cowidev.testing.utils.base import CountryTestBase
+from bs4 import BeautifulSoup, element
 import pandas as pd
 
 from cowidev.utils import get_soup, clean_count
 from cowidev.utils.clean.dates import localdate
+from cowidev.testing import CountryTestBase
 
 
 class Azerbaijan(CountryTestBase):
-    location = "Azerbaijan"
+    location: str = "Azerbaijan"
+    units: str = "tests performed"
+    source_label: str = "Cabinet of Ministers of Azerbaijan"
+    source_url: str = "https://koronavirusinfo.az/az/page/statistika/azerbaycanda-cari-veziyyet"
+    source_url_ref: str = "https://koronavirusinfo.az/az/page/statistika/azerbaycanda-cari-veziyyet"
+
+    def read(self) -> pd.DataFrame:
+        """Read data from source"""
+        soup = get_soup(self.source_url)
+        df = self._parse_data(soup)
+        return df
+
+    def _parse_data(self, soup: BeautifulSoup) -> pd.DataFrame:
+        """Parse data from soup"""
+        # Get the element
+        elem = soup.find(text="Müayinə aparılıb").parent
+        if not elem:
+            raise ValueError("Element not found, please update the script")
+        # Get the metrics
+        count = self._parse_metrics(elem)
+        df = pd.DataFrame(
+            {
+                "Date": [localdate("Asia/Baku")],
+                "Cumulative total": [count],
+            }
+        )
+        return df
+
+    def _parse_metrics(self, elem: element.Tag) -> int:
+        """Parse metrics from element"""
+        count = clean_count(elem.find_previous_sibling("strong").text)
+        return count
+
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Pipeline for data processing"""
+        return (
+            df.pipe(self.pipe_metadata)
+            .pipe(self.pipe_merge_current)
+            .drop_duplicates(subset=["Cumulative total"], keep="first")
+        )
 
     def export(self):
-        data = pd.read_csv(self.output_path).sort_values(by="Date", ascending=False)
-
-        source_url = "https://koronavirusinfo.az/az/page/statistika/azerbaycanda-cari-veziyyet"
-
-        soup = get_soup(source_url)
-
-        element = soup.find_all("div", class_="gray_little_statistic")[5].find("strong")
-        cumulative_total = clean_count(element.text)
-
-        if cumulative_total > data["Cumulative total"].max():
-            new = pd.DataFrame(
-                {
-                    "Cumulative total": cumulative_total,
-                    "Date": [localdate("Asia/Baku")],
-                    "Country": self.location,
-                    "Units": "tests performed",
-                    "Source URL": source_url,
-                    "Source label": "Cabinet of Ministers of Azerbaijan",
-                }
-            )
-
-            df = pd.concat([new, data], sort=False)
-            self.export_datafile(df)
+        """Export data to csv"""
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def main():
     Azerbaijan().export()
+if __name__ == "__main__":
+    main()
