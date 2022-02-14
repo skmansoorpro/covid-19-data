@@ -56,5 +56,3 @@ class Azerbaijan(CountryTestBase):
 
 def main():
     Azerbaijan().export()
-if __name__ == "__main__":
-    main()
