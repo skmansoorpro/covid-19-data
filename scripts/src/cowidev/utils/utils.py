@@ -51,10 +51,6 @@ def series_monotonic(ds):
     return ds[(diff >= 0) | (diff.isna())]
 
 
-def get_project_dir(err: bool = False):
-    warnings.warn("This function is deprecated. Please use cowidev.PATHS", DeprecationWarning)
-
-
 def export_timestamp(timestamp_filename: str, force_directory: str = None):
     if force_directory:
         timestamp_filename = os.path.join(force_directory, timestamp_filename)
