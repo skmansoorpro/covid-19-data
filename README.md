@@ -4,7 +4,7 @@
 [![documentation](https://img.shields.io/badge/go_to-dev_docs-0055ff)](https://covid-docs.ourworldindata.org)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-**Find our data on COVID-19 and its documentation in [`public/data`](public/data)!**
+**📢 Find our data on COVID-19 and its documentation in [`public/data`](public/data)!**
 
 ---
 
@@ -17,8 +17,8 @@ The project contains two independent directories:
   contributing to the project or better understanding our internal technical processes.
 
 ### Documentation
-If you are interested in the final dataset file, please refer to [this document](public/data/README.md). If you want to
-lear more about our processes, refer to our [technical documentation](covid-docs.ourworldindata.org).
+If you are interested in the final dataset file, refer to [this document](public/data/README.md). If you want to
+learn more about our processes, refer to our [technical documentation](covid-docs.ourworldindata.org).
 
 ### Contribute
 Thanks for considering contributing to this project! A good place to start is our [contribution
