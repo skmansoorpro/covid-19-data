@@ -4,12 +4,10 @@ Hi! Thank you so much for wanting to contribute :).
 This is a work-in-progress document, so if you have questions you can [submit and
 issue](https://github.com/owid/covid-19-data/issues/new). Also, bear in mind that all the development activity, including
 open discussions occur on Github, so make sure to check the latest [issues](https://github.com/owid/covid-19-data/issues) and [dicussions](https://github.com/owid/covid-19-data/discussions). 
-## Pre requisites
+## Pre-requisites
 First thing that you need to do is [forking the
-repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo) [owid/covid-19-data](https://github.com/owid/covid-19-data). Next, you need to install our library and
-all dependencies.
-For the latter, make sure to follow our [guideline](environment). Without a proper working environment you will not be
-able to run the scripts and test your changes.
+repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo) [owid/covid-19-data](https://github.com/owid/covid-19-data). Next, you need to [install our library and
+all dependencies](environment). Note that without the proper working environment you will not be able to run the scripts and test your changes.
 
 ## Contributing
 Our pipeline is complex and is built from several processes. Feel free to familiarize yourself with these [in our
@@ -24,3 +22,6 @@ We have created domain-specific guidelines for these, so it is easier for you to
 
 - [Contribute to vaccinations](contribute-vax)
 - [Contribute to testing](contribute-test)
+
+## Questions?
+Raise an [issue](https://github.com/owid/covid-19-data/issues), we are happy to help!
