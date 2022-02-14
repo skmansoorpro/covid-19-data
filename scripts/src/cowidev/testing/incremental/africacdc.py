@@ -26,7 +26,8 @@ ACDC_COUNTRIES = {
     "Cote d'Ivoire": {"name": "Cote d'Ivoire"},  # Automate
     "Djibouti": {"name": "Djibouti"},  # Automate
     # "Democratic Republic of the Congo": {"name": "Democratic Republic of Congo"},  # Manual
-    "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC  # Change source to Africa CDC
+    "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
+    "Equatorial Guinea": {"name": "Equatorial Guinea"},  # Change source to Africa CDC
     "Gabon": {"name": "Gabon"},  # Automate
     "Gambia": {"name": "Gambia"},  # Automate
     "Ghana": {"name": "Ghana"},  # Automate
