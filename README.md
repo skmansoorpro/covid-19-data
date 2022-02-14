@@ -18,7 +18,7 @@ The project contains two independent directories:
 
 ### Documentation
 If you are interested in the final dataset file, refer to [this document](public/data/README.md). If you want to
-learn more about our processes, refer to our [technical documentation](covid-docs.ourworldindata.org).
+learn more about our processes, refer to our [technical documentation](https://covid-docs.ourworldindata.org).
 
 ### Contribute
 Thanks for considering contributing to this project! A good place to start is our [contribution
