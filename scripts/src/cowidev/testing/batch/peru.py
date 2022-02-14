@@ -16,7 +16,7 @@ class Peru(CountryTestBase):
     rename_columns: dict = {"date": "Date", "confirmed": "positive", "total_tests": "Cumulative total"}
 
     # To avoid removing previous data obtained from source_url_ref
-    date_start: str = "2021-06-01"
+    date_start: str = "2020-04-08"
 
     def read(self) -> pd.DataFrame:
         """Read data from source"""
