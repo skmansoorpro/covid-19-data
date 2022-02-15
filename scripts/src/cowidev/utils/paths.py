@@ -1,5 +1,7 @@
 import os
 
+from cowidev.utils.exceptions import ConfigFileError, SecretsFileError
+
 # S3 ####################################
 S3_DIR = "s3://covid-19"
 S3_INTERNAL_DIR = f"{S3_DIR}/internal"
@@ -130,11 +132,18 @@ INTERNAL_TMP_VAX_META_FILE = os.path.join(INTERNAL_DIR, "metadata.preliminary.cs
 # CONFIG ################################
 CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "owid")
 """Where temporary files are stored."""
-SECRETS_FILE = os.environ.get("OWID_COVID_SECRETS", "")
+SECRETS_FILE = os.environ.get("OWID_COVID_SECRETS")
 """YAML with secrets, links and credentials. Not shared publicly. Obtained from env var $OWID_COVID_SECRETS."""
-CONFIG_FILE = os.environ.get("OWID_COVID_CONFIG", None)
+if SECRETS_FILE is None:
+    raise SecretsFileError(
+        "Environment variable 'OWID_COVID_SECRETS' not set up. Please set it to the path of your secrets file."
+    )
+CONFIG_FILE = os.environ.get("OWID_COVID_CONFIG")
 """YAML with pipeline & execution configuration. Obtained from env var $OWID_COVID_CONFIG."""
-
+if CONFIG_FILE is None:
+    raise ConfigFileError(
+        "Environment variable 'OWID_COVID_CONFIG' not set up. Please set it to the path of your configuration file."
+    )
 ########################################################################################################################
 
 
