@@ -1,8 +1,7 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.files import export_metadata_manufacturer
+from cowidev.vax.utils.base import CountryVaxBase
 
 
 vaccine_mapping = {
@@ -13,7 +12,7 @@ vaccine_mapping = {
 }
 
 
-class Chile:
+class Chile(CountryVaxBase):
     def __init__(self):
         self.location = "Chile"
         # Alternative: https://github.com/MinCiencia/Datos-COVID19/tree/master/output/producto83
@@ -104,24 +103,21 @@ class Chile:
             .sort_values(["location", "date", "vaccine"])
         )
 
-    def to_csv(self):
+    def export(self):
         # Manufacturer
         df_man = self.read(self.source_url_manufacturer).pipe(self.pipeline_manufacturer)
-        df_man.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(
-            df_man,
-            "Ministry of Health, via Ministry of Science GitHub repository",
-            self.source_url_ref,
-        )
-
         # Main data
         df = self.read(self.source_url_vaccinations).pipe(self.pipeline_vaccinations)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        # Export
+        self.export_datafile(
+            df=df,
+            df_manufacturer=df_man,
+            meta_manufacturer={
+                "source_name": "Ministry of Health, via Ministry of Science GitHub repository",
+                "source_url": self.source_url_ref,
+            },
+        )
 
 
 def main():
-    Chile().to_csv()
-
-
-if __name__ == "__main__":
-    main()
+    Chile().export()

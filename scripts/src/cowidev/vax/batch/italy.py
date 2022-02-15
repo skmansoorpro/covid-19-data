@@ -1,12 +1,11 @@
 import pandas as pd
 from typing import List, Tuple
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.files import export_metadata_manufacturer
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Italy:
+class Italy(CountryVaxBase):
     source_url: str = "https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.csv"
     location: str = "Italy"
     columns: list = [
@@ -153,21 +152,23 @@ class Italy:
     def pipeline_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.pipe(self.get_total_vaccinations_by_manufacturer).pipe(self.enrich_location)
 
-    def to_csv(self) -> None:
-        vaccine_data = self.read().pipe(self.pipeline_base)
-
-        self.vax_date_mapping = self.vaccine_start_dates(vaccine_data)
-
-        vaccine_data.pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False)
-
-        df_man = vaccine_data.pipe(self.pipeline_manufacturer)
-        df_man.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(df_man, "Extraordinary commissioner for the Covid-19 emergency", self.source_url)
+    def export(self) -> None:
+        df_base = self.read().pipe(self.pipeline_base)
+        self.vax_date_mapping = self.vaccine_start_dates(df_base)
+        # Main
+        df = df_base.pipe(self.pipeline)
+        # Manufacturer
+        df_man = df_base.pipe(self.pipeline_manufacturer)
+        # Export
+        self.export_datafile(
+            df,
+            df_manufacturer=df_man,
+            meta_manufacturer={
+                "source_name": "Extraordinary commissioner for the Covid-19 emergency",
+                "source_url": self.source_url,
+            },
+        )
 
 
 def main():
-    Italy().to_csv()
-
-
-if __name__ == "__main__":
-    main()
+    Italy().export()

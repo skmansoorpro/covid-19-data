@@ -60,7 +60,3 @@ class FaeroeIslands:
 
 def main():
     FaeroeIslands().export()
-
-
-if __name__ == "__main__":
-    main()

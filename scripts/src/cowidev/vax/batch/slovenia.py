@@ -1,9 +1,11 @@
 import requests
 import pandas as pd
-from cowidev.utils import paths, clean_date
+
+from cowidev.utils import clean_date
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Slovenia:
+class Slovenia(CountryVaxBase):
     location = "Slovenia"
     source_url = "https://api.sledilnik.org/api/vaccinations"
     source_url_ref = "https://covid-19.sledilnik.org/sl/stats"
@@ -47,12 +49,8 @@ class Slovenia:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        self.export_datafile(df)
 
 
 def main():
     Slovenia().export()
-
-
-if __name__ == "__main__":
-    main()

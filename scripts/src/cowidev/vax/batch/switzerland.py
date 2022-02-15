@@ -2,14 +2,15 @@ from datetime import datetime
 
 import pandas as pd
 
-from cowidev.vax.utils.files import export_metadata_age, export_metadata_manufacturer
 from cowidev.utils.web import request_json, get_soup
 from cowidev.utils.clean import clean_date_series
 from cowidev.vax.utils.checks import validate_vaccines
-from cowidev.utils import paths
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Switzerland:
+class Switzerland(CountryVaxBase):
+    location = "Switzerland"
+
     def __init__(self):
         self.source_url = "https://opendata.swiss/en/dataset/covid-19-schweiz"
 
@@ -221,25 +222,22 @@ class Switzerland:
 
         # Main data
         for location in locations:
-            df.pipe(self.pipeline, location).to_csv(paths.out_vax(location), index=False)
+            df_c = df.pipe(self.pipeline, location)
+            self.export_datafile(df_c, filename=location)
 
         # Manufacturer
         df_manuf = df_manuf.pipe(self.pipeline_manufacturer)
-        df_manuf.to_csv(paths.out_vax("Switzerland", manufacturer=True), index=False)
-        export_metadata_manufacturer(
-            df_manuf,
-            "Federal Office of Public Health",
-            self.source_url,
+        self.export_datafile(
+            df_manufacturer=df_manuf,
+            meta_manufacturer={"source_name": "Federal Office of Public Health", "source_url": self.source_url},
         )
 
         # Age
         for location in locations:
             df_age_ = df_age.pipe(self.pipeline_age, location)
-            df_age_.to_csv(paths.out_vax(location, age=True), index=False)
-            export_metadata_age(
-                df_age_,
-                "Federal Office of Public Health",
-                self.source_url,
+            self.export_datafile(
+                df_age=df_age_,
+                meta_age={"source_name": "Federal Office of Public Health", "source_url": self.source_url},
             )
 
 

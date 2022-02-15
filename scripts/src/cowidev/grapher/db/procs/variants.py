@@ -1,6 +1,4 @@
-import os
 from cowidev.grapher.db.base import GrapherBaseUpdater
-from cowidev.utils import paths
 
 
 class GrapherVariantsUpdater(GrapherBaseUpdater):

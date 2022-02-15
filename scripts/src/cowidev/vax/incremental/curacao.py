@@ -52,7 +52,3 @@ class Curacao:
 
 def main():
     Curacao().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -107,7 +107,3 @@ class Vietnam:
 
 def main():
     Vietnam().export()
-
-
-if __name__ == "__main__":
-    main()

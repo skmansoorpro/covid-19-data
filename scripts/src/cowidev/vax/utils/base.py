@@ -1,8 +1,9 @@
+import os
 import pandas as pd
 
-from cowidev.utils import paths
+from cowidev import PATHS
 from cowidev.utils.s3 import S3, obj_from_s3
-from cowidev.utils.utils import make_monotonic
+from cowidev.utils.utils import make_monotonic as mkm
 from cowidev.utils.clean.dates import localdate
 from cowidev.utils.clean.numbers import metrics_to_num_int, metrics_to_num_float
 from cowidev.vax.utils.files import export_metadata
@@ -29,6 +30,13 @@ COLUMNS_ORDER_AGE = [
     "people_with_booster_per_hundred",
 ]
 
+COLUMNS_ORDER_MANUF = [
+    "location",
+    "date",
+    "vaccine",
+    "total_vaccinations",
+]
+
 METRICS = [
     "total_vaccinations",
     "people_vaccinated",
@@ -49,7 +57,7 @@ class CountryVaxBase:
 
     def from_ice(self):
         """Loads single CSV `location.csv` from S3 as DataFrame."""
-        path = f"{paths.S3.VAX_ICE}/{self.location}.csv"
+        path = f"{PATHS.S3_VAX_ICE_DIR}/{self.location}.csv"
         _check_last_update(path, self.location)
         df = obj_from_s3(path)
         return df
@@ -57,23 +65,37 @@ class CountryVaxBase:
     @property
     def output_path(self):
         """Country output file."""
-        return paths.out_vax(self.location)
+        return os.path.join(PATHS.INTERNAL_OUTPUT_VAX_MAIN_DIR, f"{self.location}.csv")
 
     @property
     def output_path_age(self):
         """Country output file for age-group data."""
-        return paths.out_vax(self.location, age=True)
+        return os.path.join(PATHS.INTERNAL_OUTPUT_VAX_AGE_DIR, f"{self.location}.csv")
 
     @property
     def output_path_manufacturer(self):
         """Country output file for manufacturer data."""
-        return paths.out_vax(self.location, manufacturer=True)
+        return os.path.join(PATHS.INTERNAL_OUTPUT_VAX_MANUFACT_DIR, f"{self.location}.csv")
+
+    def get_output_path(self, filename=None, age=False, manufacturer=False):
+        if age:
+            if filename is None:
+                return self.output_path_age
+            return os.path.join(PATHS.INTERNAL_OUTPUT_VAX_AGE_DIR, f"{filename}.csv")
+        elif manufacturer:
+            if filename is None:
+                return self.output_path_manufacturer
+            return os.path.join(PATHS.INTERNAL_OUTPUT_VAX_MANUFACT_DIR, f"{filename}.csv")
+        else:
+            if filename is None:
+                return self.output_path
+            return os.path.join(PATHS.INTERNAL_OUTPUT_VAX_MAIN_DIR, f"{filename}.csv")
 
     def load_datafile(self, **kwargs):
         return pd.read_csv(self.output_path, **kwargs)
 
     def make_monotonic(self, df, max_removed_rows=10, strict=False):
-        return make_monotonic(
+        return mkm(
             df=df,
             column_date="date",
             column_metrics=["total_vaccinations", "people_vaccinated", "people_fully_vaccinated"],
@@ -101,19 +123,29 @@ class CountryVaxBase:
         """
         df = metrics_to_num_float(df, METRICS)
         df = df.sort_values(["date", "age_group_min", "age_group_max"])
-        cols = [col for col in COLUMNS_ORDER_AGE if col in df.columns] + [
-            col for col in df.columns if col not in COLUMNS_ORDER_AGE
-        ]
+        cols = [col for col in COLUMNS_ORDER_AGE if col in df.columns]
+        df = df[cols]
+        return df
+
+    def _postprocessing_manufacturer(self, df):
+        """Minor post processing after all transformations.
+
+        Basically sort by date, ensure correct column order, correct type for metrics.
+        """
+        df = metrics_to_num_int(df, METRICS)
+        df = df.sort_values(["vaccine", "date"])
+        cols = [col for col in COLUMNS_ORDER_MANUF if col in df.columns]
         df = df[cols]
         return df
 
     def export_datafile(
         self,
-        df,
+        df=None,
         df_age=None,
         df_manufacturer=None,
         meta_age=None,
         meta_manufacturer=None,
+        filename=None,
         attach=False,
         reset_index=False,
         **kwargs,
@@ -126,34 +158,38 @@ class CountryVaxBase:
             df_manufacturer (pd.DataFrame, optional): Country data by manufacturer. Defaults to None.
             meta_age (dict, optional): Country metadata by age. Defaults to None.
             meta_manufacturer (dict, optional): Country metadata by manufacturer. Defaults to None.
+            filename (str, optional): Name of output file. If None, defaults to country name.
             attach (bool, optional): Set to True to attach to already existing data. Defaults to False.
             reset_index (bool, optional): Brin index back as a column. Defaults to False.
         """
-        self._export_datafile_main(df, attach=attach, reset_index=reset_index, **kwargs)
+        if df is not None:
+            self._export_datafile_main(df, filename=filename, attach=attach, reset_index=reset_index, **kwargs)
         if df_age is not None:
-            self._export_datafile_age(df_age, meta_age)
+            self._export_datafile_age(df_age, meta_age, filename=filename)
         if df_manufacturer is not None:
-            self._export_datafile_manufacturer(df_manufacturer, meta_manufacturer)
+            self._export_datafile_manufacturer(df_manufacturer, meta_manufacturer, filename=filename)
 
-    def _export_datafile_main(self, df, attach=False, reset_index=False, **kwargs):
+    def _export_datafile_main(self, df, filename, attach=False, reset_index=False, **kwargs):
         """Export main data."""
+        filename = self.get_output_path(filename)
         if attach:
-            df = merge_with_current_data(df, self.output_path)
+            df = merge_with_current_data(df, filename)
         df = self._postprocessing(df)
         if reset_index:
             df = df.reset_index(drop=True)
-        df.to_csv(self.output_path, index=False, **kwargs)
+        df.to_csv(filename, index=False, **kwargs)
 
-    def _export_datafile_age(self, df, metadata):
+    def _export_datafile_age(self, df, metadata, filename):
         """Export age data."""
+        filename = self.get_output_path(filename, age=True)
         df = self._postprocessing_age(df)
-        self._export_datafile_secondary(df, metadata, self.output_path_age, paths.SCRIPTS.OUTPUT_VAX_META_AGE)
+        self._export_datafile_secondary(df, metadata, filename, PATHS.INTERNAL_OUTPUT_VAX_META_AGE_FILE)
 
-    def _export_datafile_manufacturer(self, df, metadata):
+    def _export_datafile_manufacturer(self, df, metadata, filename):
         """Export manufacturer data"""
-        self._export_datafile_secondary(
-            df, metadata, self.output_path_manufacturer, paths.SCRIPTS.OUTPUT_VAX_META_MANUFACT
-        )
+        filename = self.get_output_path(filename, manufacturer=True)
+        df = self._postprocessing_manufacturer(df)
+        self._export_datafile_secondary(df, metadata, filename, PATHS.INTERNAL_OUTPUT_VAX_META_MANUFACT_FILE)
 
     def _export_datafile_secondary(self, df, metadata, output_path, output_path_meta):
         """Export secondary data."""
@@ -189,6 +225,10 @@ class CountryVaxBase:
     def pipe_rename_columns(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.rename(columns=self.rename_columns)
 
+    def force_monotonic(self):
+        df = pd.read_csv(self.output_path).pipe(self.make_monotonic)
+        self.export_datafile(df)
+
 
 def _check_last_update(path, country):
     metadata = S3().get_metadata(path)
@@ -202,7 +242,10 @@ def _check_last_update(path, country):
 
 
 def merge_with_current_data(df: pd.DataFrame, filepath: str) -> pd.DataFrame:
-    df_current = pd.read_csv(filepath)
-    df_current = df_current[df_current.Date < df.Date.min()]
-    df = pd.concat([df_current, df]).sort_values("Date")
+    if os.path.isfile(filepath):
+        # Load
+        df_current = pd.read_csv(filepath)
+        # Merge
+        df_current = df_current[~df_current.date.isin(df.date)]
+        df = pd.concat([df, df_current]).sort_values(by="date")
     return df

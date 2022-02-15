@@ -5,11 +5,10 @@ import pandas as pd
 
 from cowidev.utils.clean import clean_count, clean_string, extract_clean_date
 from cowidev.utils.web.scraping import get_soup
-from cowidev.vax.utils.incremental import merge_with_current_data
-from cowidev.utils import paths
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Hungary:
+class Hungary(CountryVaxBase):
     def __init__(self):
         self.source_url = "https://koronavirus.gov.hu"
         self.location = "Hungary"
@@ -17,8 +16,7 @@ class Hungary:
         self.regex = {
             "title": r"\d+ [millió]+ \d+ [ezer]+ a beoltott, [\d\s]+ az új fertőzött",
             "metrics": (
-                r"A beoltottak száma ([\d\s]+) fő, közülük ([\d\s]+) fő már a második, ([\d\s]+) fő pedig már a"
-                r" megerősítő harmadik oltását is felvette."
+                r"A beoltottak száma ([\d\s]+) fő, közülük ([\d\s]+) fő a második, ([\d\s]+) fő már harmadik oltását is felvette"
             ),
         }
 
@@ -131,19 +129,13 @@ class Hungary:
 
     def export(self):
         """Generalized."""
-        output_file = paths.out_vax(self.location)
-        last_update = pd.read_csv(output_file).date.max()
+        last_update = self.load_datafile().date.max()
         df = self.read(last_update)
         if not df.empty and "people_vaccinated" in df.columns:
             df = df.pipe(self.pipeline)
-            df = merge_with_current_data(df, output_file)
             df = df.pipe(self.pipe_drop_duplicates)
-            df.to_csv(output_file, index=False)
+            self.export_datafile(df, attach=True)
 
 
 def main():
     Hungary().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -3,7 +3,8 @@ from cowidev.cmd.testing.get import click_test_get
 
 
 @click.group(name="test", chain=True)
-def click_test():
+@click.pass_context
+def click_test(ctx):
     """COVID-19 Testing data pipeline."""
     pass
 
