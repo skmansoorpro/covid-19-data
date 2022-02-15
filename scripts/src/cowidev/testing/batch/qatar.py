@@ -21,6 +21,7 @@ class Qatar(CountryTestBase):
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:86.0) Gecko/20100101 Firefox/86.0",
         "Accept": "application/json; odata=verbose",
     }
+    date_start = "2021-10-28"
 
     def read(self) -> pd.DataFrame:
         """Reads data from source."""
@@ -32,6 +33,11 @@ class Qatar(CountryTestBase):
         """Cleans date column"""
         return df.assign(Date=clean_date_series(df["Date"], "%Y-%m-%dT%H:%M:%SZ"))
 
+    def pipe_filter(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Filter data"""
+        df = df[(df["Date"] >= self.date_start)]
+        return df
+
     def pipe_metrics(self, df: pd.DataFrame):
         """Pipes metrics"""
         return df.assign(
@@ -40,18 +46,13 @@ class Qatar(CountryTestBase):
             }
         )
 
-    def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Calculates positive rate"""
-        pr = df.positive.rolling(7).sum().div(df["Cumulative total"].diff().rolling(7).sum()).round(3)
-        return df.assign(**{"Positive rate": pr}).fillna(0)
-
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """pipeline for data"""
         return (
             df.pipe(self.pipe_rename_columns)
             .pipe(self.pipe_date)
+            .pipe(self.pipe_filter)
             .pipe(self.pipe_metrics)
-            .pipe(self.pipe_pr)
             .pipe(self.pipe_metadata)
             .pipe(make_monotonic)
             .sort_values("Date")
@@ -61,7 +62,7 @@ class Qatar(CountryTestBase):
     def export(self):
         """Exports data to csv"""
         df = self.read().pipe(self.pipeline)
-        self.export_datafile(df)
+        self.export_datafile(df, attach=True)
 
 
 def main():
