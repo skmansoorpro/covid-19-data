@@ -36,7 +36,7 @@ def cli(ctx, parallel, n_jobs):
 
 @click.command(name="megafile")
 def cli_export():
-    """Generate megafile"""
+    """COVID-19 data integration pipeline (former megafile)"""
     generate_megafile()
 
 
