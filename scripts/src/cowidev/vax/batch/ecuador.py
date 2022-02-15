@@ -1,13 +1,12 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean import clean_date_series
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.utils import make_monotonic, build_vaccine_timeline
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Ecuador:
+class Ecuador(CountryVaxBase):
     location = "Ecuador"
     source_url_ref = "https://github.com/andrab/ecuacovid"
     source_url = {
@@ -57,6 +56,9 @@ class Ecuador:
             raise ValueError(f"Unknown vaccine(s) {vaccines_wrong}")
         return df
 
+    def pipe_manuf_date(self, df: pd.DataFrame) -> pd.DataFrame:
+        return df.assign(date=clean_date_series(df.date, format_input="%d/%m/%Y"))
+
     def pipeline_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
         check_known_columns(
             df,
@@ -75,6 +77,7 @@ class Ecuador:
             df.pipe(self.pipe_manuf_rename_cols)
             .pipe(self.pipe_manuf_aggregate)
             .pipe(self.pipe_manuf_vaccine_checks)
+            .pipe(self.pipe_manuf_date)
             .assign(location=self.location)
             .sort_values(["vaccine", "date"])[["location", "date", "vaccine", "total_vaccinations"]]
         )
@@ -135,19 +138,18 @@ class Ecuador:
     def export(self):
         # Manufacturer
         df_man = self.read_manuf().pipe(self.pipeline_manufacturer)
-        export_metadata_manufacturer(
-            df_man,
-            f"Ministerio de Salud Pública del Ecuador (via {self.source_url_ref})",
-            self.source_url_ref,
-        )
         # Main
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        # Export
+        self.export_datafile(
+            df=df,
+            df_manufacturer=df_man,
+            meta_manufacturer={
+                "source_name": f"Ministerio de Salud Pública del Ecuador (via {self.source_url_ref})",
+                "source_url": self.source_url_ref,
+            },
+        )
 
 
 def main():
     Ecuador().export()
-
-
-if __name__ == "__main__":
-    main()

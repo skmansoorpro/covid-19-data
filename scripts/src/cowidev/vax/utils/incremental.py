@@ -5,7 +5,7 @@ import numbers
 
 import pandas as pd
 import requests
-from cowidev.utils import paths
+from cowidev import PATHS
 
 
 GH_LINK = "https://github.com/owid/covid-19-data/raw/master/public/data/vaccinations/country_data"
@@ -39,7 +39,7 @@ def increment(
         total_boosters=total_boosters,
     )
     _from_gh_to_scripts(location)
-    filepath_automated = paths.out_vax(location)
+    filepath_automated = PATHS.out_vax(location)
     # Update file in output/
     if os.path.isfile(filepath_automated):
         df = _increment(
@@ -80,12 +80,12 @@ def increment(
         df[col] = df[col].astype("Int64").fillna(pd.NA)
 
     df = df[["location", "date", "vaccine", "source_url"] + col_ints_have]
-    df.to_csv(paths.out_vax(location), index=False)
+    df.to_csv(PATHS.out_vax(location), index=False)
     # print(f"NEW: {total_vaccinations} doses on {date}")
 
 
 def _from_gh_to_scripts(location):
-    filepath_automated = paths.out_vax(location)
+    filepath_automated = PATHS.out_vax(location)
     filepath_public = f"{GH_LINK}/{location}.csv".replace(" ", "%20")
     # Move from public to output folder
     if not os.path.isfile(filepath_automated) and requests.get(filepath_public).ok:

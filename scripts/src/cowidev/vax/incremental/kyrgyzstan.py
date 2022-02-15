@@ -59,7 +59,3 @@ class Kyrgyzstan:
 
 def main():
     Kyrgyzstan().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -1,13 +1,12 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean.dates import localdate
-from cowidev.vax.utils.files import export_metadata_age
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import build_vaccine_timeline
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Peru:
+class Peru(CountryVaxBase):
     location = "Peru"
     source_url = "https://github.com/jmcastagnetto/covid-19-peru-vacunas/raw/main/datos/vacunas_covid_resumen.csv"
     source_url_age = (
@@ -137,22 +136,23 @@ class Peru:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
         # Age data
         df_age = self.read_age().pipe(self.pipeline_age)
-        df_age.to_csv(paths.out_vax(self.location, age=True), index=False)
-        export_metadata_age(
-            df_age,
-            "Ministerio de Salud via https://github.com/jmcastagnetto/covid-19-peru-vacunas",
-            self.source_url_ref,
-        )
         # Manufacturer data
         df_manuf = self.read_manufacturer().pipe(self.pipeline_manufacturer)
-        df_manuf.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_age(
-            df_manuf,
-            "Ministerio de Salud via https://github.com/jmcastagnetto/covid-19-peru-vacunas",
-            self.source_url_ref,
+        # Export
+        self.export_datafile(
+            df=df,
+            df_age=df_age,
+            df_manufacturer=df_manuf,
+            meta_age={
+                "source_name": "Ministerio de Salud via https://github.com/jmcastagnetto/covid-19-peru-vacunas",
+                "source_url": self.source_url_ref,
+            },
+            meta_manufacturer={
+                "source_name": "Ministerio de Salud via https://github.com/jmcastagnetto/covid-19-peru-vacunas",
+                "source_url": self.source_url_ref,
+            },
         )
 
 

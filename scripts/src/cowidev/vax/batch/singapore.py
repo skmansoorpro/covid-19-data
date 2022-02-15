@@ -6,13 +6,13 @@ import zipfile
 
 import pandas as pd
 
-from cowidev.utils import paths, clean_date_series
-from cowidev.utils import paths, clean_date_series
+from cowidev.utils import clean_date_series
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import build_vaccine_timeline, make_monotonic
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Singapore:
+class Singapore(CountryVaxBase):
     def __init__(self):
         self.location = "Singapore"
         self.source_url = "https://storage.data.gov.sg/covid-19-vaccination/covid-19-vaccination.zip"
@@ -95,8 +95,8 @@ class Singapore:
         )
 
     def export(self):
-        df = self.read()
-        df.pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False)
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def main():
