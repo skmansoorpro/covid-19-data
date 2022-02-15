@@ -3,13 +3,12 @@ import requests
 
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.utils import build_vaccine_timeline
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class HongKong:
+class HongKong(CountryVaxBase):
     location: str = "Hong Kong"
     source_url: str = " https://www.fhb.gov.hk/download/opendata/COVID19/vaccination-rates-over-time-by-age.csv"
     source_url_ref: str = "https://data.gov.hk/en-data/dataset/hk-fhb-fhbcovid19-vaccination-rates-over-time-by-age"
@@ -97,20 +96,16 @@ class HongKong:
         df_base = self.read().pipe(self.pipeline_base)
 
         # Main data
-        destination = paths.out_vax(self.location)
         df = df_base.pipe(self.pipeline_vax)
-        df.to_csv(destination, index=False)
-
         # Manufacturer
-        destination = paths.out_vax(self.location, manufacturer=True)
-        df_manuf = df_base.pipe(self.pipeline_manufacturer)
-        df_manuf.to_csv(destination, index=False)
-        export_metadata_manufacturer(df_manuf, "Food and Health Bureau", self.source_url_ref)
+        df_man = df_base.pipe(self.pipeline_manufacturer)
+        # Export
+        self.export_datafile(
+            df,
+            df_manufacturer=df_man,
+            meta_manufacturer={"source_name": "Food and Health Bureau", "source_url": self.source_url_ref},
+        )
 
 
 def main():
     HongKong().export()
-
-
-if __name__ == "__main__":
-    main()

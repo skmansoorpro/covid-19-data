@@ -2,12 +2,12 @@ import os
 from datetime import date
 
 import pandas as pd
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 
 
-INPUT_DIR = os.path.abspath(os.path.join(get_project_dir(), "scripts", "input"))
-DATA_DIR = os.path.abspath(os.path.join(get_project_dir(), "public", "data"))
-data_file = os.path.join(DATA_DIR, "testing", "covid-testing-all-observations.csv")
+INPUT_DIR = PATHS.INTERNAL_INPUT_DIR
+DATA_DIR = PATHS.DATA_DIR
+data_file = PATHS.DATA_TEST_MAIN_FILE
 
 
 def get_testing():

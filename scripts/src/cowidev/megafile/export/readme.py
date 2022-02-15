@@ -1,20 +1,18 @@
 import os
 import pandas as pd
 
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 
 
-INPUT_DIR = os.path.join(get_project_dir(), "scripts", "input")
-GRAPHER_DIR = os.path.join(get_project_dir(), "scripts", "grapher")
-DATA_DIR = os.path.join(get_project_dir(), "public", "data")
-VACCINATIONS_CSV = os.path.join(DATA_DIR, "vaccinations", "vaccinations.csv")
-TESTING_CSV = os.path.join(DATA_DIR, "testing", "covid-testing-all-observations.csv")
-CASES_CSV = os.path.join(DATA_DIR, "jhu", "total_cases.csv")
-DEATHS_CSV = os.path.join(DATA_DIR, "jhu", "total_deaths.csv")
-HOSP_CSV = os.path.join(GRAPHER_DIR, "COVID-2019 - Hospital & ICU.csv")
+INPUT_DIR = PATHS.INTERNAL_INPUT_DIR
+VACCINATIONS_CSV = PATHS.DATA_VAX_MAIN_FILE
+TESTING_CSV = PATHS.DATA_TEST_MAIN_FILE
+CASES_CSV = PATHS.DATA_JHU_CASES_FILE
+DEATHS_CSV = PATHS.DATA_JHU_DEATHS_FILE
+HOSP_CSV = os.path.join(PATHS.INTERNAL_GRAPHER_DIR, "COVID-2019 - Hospital & ICU.csv")
 REPR_CSV = "https://github.com/crondonm/TrackingR/raw/main/Estimates-Database/database_7.csv"
-POL_CSV = os.path.join(INPUT_DIR, "bsg", "latest.csv")
-CODEBOOK_CSV = os.path.join(DATA_DIR, "owid-covid-codebook.csv")
+POL_CSV = PATHS.INTERNAL_INPUT_BSG_FILE
+CODEBOOK_CSV = PATHS.DATA_CODEBOOK_FILE
 
 
 def get_excluded_locations():

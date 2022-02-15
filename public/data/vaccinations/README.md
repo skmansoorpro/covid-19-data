@@ -7,7 +7,7 @@ For more general information on our COVID-19 data, see our main README file in [
 
 ### Country metadata
 
-Stored in [`locations.csv`](locations.csv)
+Stored in [`locations.csv`](./locations.csv)
 
 * `location`: name of the country (or region within a country).
 * `iso_code`: ISO 3166-1 alpha-3 – three-letter country codes.

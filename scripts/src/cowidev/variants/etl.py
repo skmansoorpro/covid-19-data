@@ -1,12 +1,11 @@
-import os
 from datetime import timedelta, datetime
 
 import pandas as pd
 
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 from cowidev.utils.clean.dates import clean_date, DATE_FORMAT
 from cowidev.utils.web import request_json
-from cowidev.utils import paths
+from cowidev import PATHS
 from cowidev.utils.s3 import obj_to_s3
 
 
@@ -134,7 +133,7 @@ class VariantsETL:
         return total
 
     def pipe_per_capita(self, df: pd.DataFrame) -> pd.DataFrame:
-        df_pop = pd.read_csv(os.path.join(paths.SCRIPTS.INPUT_UN, "population_latest.csv"), index_col="entity")
+        df_pop = pd.read_csv(PATHS.INTERNAL_INPUT_UN_POPULATION_FILE, index_col="entity")
         df = df.merge(df_pop["population"], left_on="location", right_index=True)
         df = df.assign(num_sequences_per_1M=(1000000 * df.num_sequences / df.population).round(2)).drop(
             columns=["population"]
@@ -216,8 +215,7 @@ class VariantsETL:
 
     def pipe_filter_locations(self, df: pd.DataFrame) -> pd.DataFrame:
         # Filter locations
-        populations_path = os.path.join(get_project_dir(), "scripts", "input", "un", "population_latest.csv")
-        dfc = pd.read_csv(populations_path)
+        dfc = pd.read_csv(PATHS.INTERNAL_INPUT_UN_POPULATION_FILE)
         df = df[df.location.isin(dfc.entity.unique())]
         return df
 
@@ -297,15 +295,15 @@ class VariantsETL:
     def pipe_out(self, df: pd.DataFrame) -> pd.DataFrame:
         return df[self.columns_out].sort_values(["location", "date"])  #  + ["perc_sequences_raw"]
 
-    def run(self, output_path: str, output_path_sequencing: str):
+    def run(self):
         data = self.extract()
         df = self.transform(data)
-        self.load(df, output_path)
+        self.load(df, PATHS.INTERNAL_OUTPUT_VARIANTS_FILE)
         # Sequencing
         df_seq = self.transform_seq(df)
-        self.load(df_seq, output_path_sequencing)
+        self.load(df_seq, PATHS.INTERNAL_OUTPUT_VARIANTS_SEQ_FILE)
 
 
-def run_etl(output_path: str, output_path_seq: str):
+def run_etl():
     etl = VariantsETL()
-    etl.run(output_path, output_path_seq)
+    etl.run()

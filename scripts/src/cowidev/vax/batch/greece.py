@@ -2,17 +2,16 @@ import requests
 
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean import clean_date_series
 from cowidev.utils.utils import check_known_columns
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Greece:
-    def __init__(self, source_url: str, source_url_ref: str, location: str, token: str):
-        self.source_url = source_url
-        self.source_url_ref = source_url_ref
-        self.location = location
-        self.token = token
+class Greece(CountryVaxBase):
+    location = "Greece"
+    source_url = "https://www.data.gov.gr/api/v1/query/mdg_emvolio?date_from=2020-12-28"
+    source_url_ref = "https://www.data.gov.gr/datasets/mdg_emvolio/"
+    token = "b1ef5949bebace574a0d7e58b5cdf4018353121e"
 
     def read(self) -> pd.DataFrame:
         data = requests.get(self.source_url, headers={"Authorization": f"Token {self.token}"}).json()
@@ -77,17 +76,8 @@ class Greece:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        self.export_datafile(df)
 
 
 def main():
-    Greece(
-        source_url="https://www.data.gov.gr/api/v1/query/mdg_emvolio?date_from=2020-12-28",
-        source_url_ref="https://www.data.gov.gr/datasets/mdg_emvolio/",
-        location="Greece",
-        token="b1ef5949bebace574a0d7e58b5cdf4018353121e",
-    ).export()
-
-
-if __name__ == "__main__":
-    main()
+    Greece().export()
