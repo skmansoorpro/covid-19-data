@@ -1,14 +1,13 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
 from cowidev.utils.web import request_json
 from cowidev.vax.utils.checks import VACCINES_ONE_DOSE
-from cowidev.vax.utils.files import export_metadata_manufacturer
+from cowidev.vax.utils.base import CountryVaxBase
 from cowidev.vax.utils.utils import make_monotonic, build_vaccine_timeline, add_latest_who_values
 
 
-class Romania:
+class Romania(CountryVaxBase):
     source_url: str = "https://d35p9e4fm9h3wo.cloudfront.net/latestData.json"
     source_url_ref: str = "https://datelazi.ro/"
     location: str = "Romania"
@@ -141,24 +140,20 @@ class Romania:
 
     def export(self):
         df_base = self.read().pipe(self.pipeline_base)
-
         # Main vaccination data
         df = df_base.copy().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
-
         # Manufacturer data
-        df = df_base.copy().pipe(self.pipeline_manufacturer)
-        df.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(
+        df_man = df_base.copy().pipe(self.pipeline_manufacturer)
+        # Export
+        self.export_datafile(
             df,
-            "Government of Romania via datelazi.ro",
-            self.source_url,
+            df_manufacturer=df_man,
+            meta_manufacturer={
+                "source_name": "Government of Romania via datelazi.ro",
+                "source_url": self.source_url,
+            },
         )
 
 
 def main():
     Romania().export()
-
-
-if __name__ == "__main__":
-    main()

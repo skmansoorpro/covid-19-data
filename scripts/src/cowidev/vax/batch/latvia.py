@@ -1,8 +1,6 @@
 import pandas as pd
 
-from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.base import CountryVaxBase
-from cowidev.utils import paths
 from cowidev.utils.log import get_logger
 
 logger = get_logger()
@@ -169,21 +167,16 @@ class Latvia(CountryVaxBase):
         df_base = df.pipe(self.pipe_base)
 
         # Main data
-        df_base.pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False)
-
+        df = df_base.pipe(self.pipeline)
         # Manufacturer data
         df_man = df_base.pipe(self.pipeline_manufacturer)
-        df_man.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(
-            df_man,
-            "National Health Service",
-            self.source_page,
+        # Export
+        self.export_datafile(
+            df,
+            df_manufacturer=df_man,
+            meta_manufacturer={"source_name": "National Health Service", "source_url": self.source_page},
         )
 
 
 def main():
     Latvia().export()
-
-
-if __name__ == "__main__":
-    main()

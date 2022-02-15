@@ -73,7 +73,3 @@ def main():
         source_url=source,
         vaccine=data["vaccine"],
     )
-
-
-if __name__ == "__main__":
-    main()

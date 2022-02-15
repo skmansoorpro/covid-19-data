@@ -1,29 +1,28 @@
+from cowidev.vax.utils.base import CountryVaxBase
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import build_vaccine_timeline
 
 
-class Malaysia:
-    def __init__(self) -> None:
-        self.location = "Malaysia"
-        self.source_url = "https://github.com/MoH-Malaysia/covid19-public/raw/main/vaccination/vax_malaysia.csv"
-        self.source_url_ref = "https://github.com/MoH-Malaysia/covid19-public"
+class Malaysia(CountryVaxBase):
+    location = "Malaysia"
+    source_url = "https://github.com/MoH-Malaysia/covid19-public/raw/main/vaccination/vax_malaysia.csv"
+    source_url_ref = "https://github.com/MoH-Malaysia/covid19-public"
 
-        # Dec 29, 2021 / Given the very low proportion of CanSino vaccines used in the country
-        # we infer than "pending" doses are very likely to be 2-dose protocols, and therefore use
-        # them as such in the calculations.
-        self._vax_2d = [
-            "pfizer",
-            "astra",
-            "sinovac",
-            "sinopharm",
-            "pending",
-        ]
-        self._vax_1d = [
-            "cansino",
-        ]
+    # Dec 29, 2021 / Given the very low proportion of CanSino vaccines used in the country
+    # we infer than "pending" doses are very likely to be 2-dose protocols, and therefore use
+    # them as such in the calculations.
+    _vax_2d = [
+        "pfizer",
+        "astra",
+        "sinovac",
+        "sinopharm",
+        "pending",
+    ]
+    _vax_1d = [
+        "cansino",
+    ]
 
     def read(self) -> pd.DataFrame:
         df = pd.read_csv(self.source_url)
@@ -161,7 +160,7 @@ class Malaysia:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        self.export_datafile(df)
 
 
 def main():

@@ -150,7 +150,7 @@ def _load_modules_order(modules_name):
     # machine = details["id"]
     # if machine in df.machine:
     #     df = df[df.machine == machine]
-    # df = pd.read_csv(os.path.join(paths.SCRIPTS.OUTPUT_VAX_LOG, "get-data.csv"))
+    # df = pd.read_csv(os.path.join(PATHS.INTERNAL_OUTPUT_VAX_LOG_DIR, "get-data.csv"))
     module_order_all = (
         df.sort_values("date")
         .drop_duplicates(subset=["module"], keep="last")
