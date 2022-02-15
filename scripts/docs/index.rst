@@ -34,7 +34,7 @@ Contents
    :maxdepth: 2
 
    Dataset <dataset>
-   Working environment <environment>
+   Development environment <environment>
    Data pipeline <data-pipeline>
    cowidev <cowidev/index>
    Contribute <contribute>
