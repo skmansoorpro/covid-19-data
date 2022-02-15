@@ -4,3 +4,7 @@ class ConfigFileError(Exception):
 
 class SecretsFileError(Exception):
     pass
+
+
+class EnvironmentError(Exception):
+    pass

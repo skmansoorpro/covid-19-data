@@ -2,9 +2,12 @@ from dataclasses import dataclass
 from pyaml_env import parse_config
 
 from cowidev.utils.paths import CONFIG_FILE
+from cowidev.utils.exceptions import ConfigFileError
 
 
 config_raw = parse_config(CONFIG_FILE, raise_if_na=False)
+if config_raw is None:
+    raise ConfigFileError(f"Empty configuration file! Check content from {CONFIG_FILE}.")
 
 
 @dataclass()
@@ -99,4 +102,12 @@ class Config:
 
 
 # config_raw["global_"] = config_raw.pop("global")
-CONFIG = Config(**config_raw)
+try:
+    CONFIG = Config(**config_raw)
+except TypeError as e:
+    err_msg = (
+        f"The format of the configuration file is not correct! Please check file {CONFIG_FILE} that it contains all"
+        " required fields. Original raised error was: "
+        + str(e)
+    )
+    raise ConfigFileError(err_msg)
