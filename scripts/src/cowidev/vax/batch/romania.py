@@ -5,7 +5,7 @@ from cowidev.utils.utils import check_known_columns
 from cowidev.utils.web import request_json
 from cowidev.vax.utils.checks import VACCINES_ONE_DOSE
 from cowidev.vax.utils.files import export_metadata_manufacturer
-from cowidev.vax.utils.utils import make_monotonic, build_vaccine_timeline
+from cowidev.vax.utils.utils import make_monotonic, build_vaccine_timeline, add_latest_who_values
 
 
 class Romania:
@@ -119,32 +119,12 @@ class Romania:
     def pipe_vaccines(self, df: pd.DataFrame) -> pd.DataFrame:
         return build_vaccine_timeline(df, self.vaccine_timeline)
 
-    def pipe_add_latest_who(self, df: pd.DataFrame) -> pd.DataFrame:
-        who = pd.read_csv(
-            "https://covid19.who.int/who-data/vaccination-data.csv",
-            usecols=["COUNTRY", "DATA_SOURCE", "DATE_UPDATED", "PERSONS_VACCINATED_1PLUS_DOSE"],
-        )
-
-        who = who[(who.COUNTRY == "Romania") & (who.DATA_SOURCE == "REPORTING")]
-        if len(who) == 0:
-            return df
-
-        last_who_report_date = who.DATE_UPDATED.values[0]
-        df = df[
-            -((df.date > last_who_report_date) & (df.people_vaccinated < who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]))
-        ]
-        df.loc[df.date == last_who_report_date, "total_vaccinations"] = pd.NA
-        df.loc[df.date == last_who_report_date, "people_vaccinated"] = who.PERSONS_VACCINATED_1PLUS_DOSE.values[0]
-        df.loc[df.date == last_who_report_date, "people_fully_vaccinated"] = pd.NA
-        df.loc[df.date == last_who_report_date, "source_url"] = "https://covid19.who.int/"
-        return df
-
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
             df.pipe(self.pipe_metrics)
             .pipe(self.pipe_source)
             .pipe(self.pipe_vaccines)
-            .pipe(self.pipe_add_latest_who)
+            .pipe(add_latest_who_values, "Romania", ["people_vaccinated"])
             .pipe(make_monotonic)
         )
 

@@ -2,7 +2,7 @@ import pandas as pd
 
 from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.utils import make_monotonic
+from cowidev.vax.utils.utils import add_latest_who_values
 
 
 def read(source: str) -> pd.DataFrame:
@@ -35,26 +35,12 @@ def rename_columns(df: pd.DataFrame) -> pd.DataFrame:
 def correct_time_series(df: pd.DataFrame) -> pd.DataFrame:
     """
     Since 2021-04-14 Luxembourg is using J&J, therefore dose2 == people_fully_vaccinated no longer
-    works. As a temporary fix while they report the necessary data, we're inserting one PDF report
-    to avoid showing an old value for people_fully_vaccinated in dashboard that re-use our latest
-    totals without showing how old they are.
+    works. As a temporary fix while they report the necessary data, we're inserting the latest value
+    reported to the WHO.
     The publisher was contacted on 2021-O9-21 https://twitter.com/redouad/status/1439992459166158857
     """
     df.loc[df.date >= "2021-04-14", "people_fully_vaccinated"] = pd.NA
-    fix = pd.DataFrame(
-        {
-            "date": [pd.to_datetime("2021-11-29")],
-            "people_vaccinated": pd.NA,
-            "people_fully_vaccinated": 429705,
-            "total_boosters": pd.NA,
-            "total_vaccinations": pd.NA,
-            "source_url": [
-                "https://download.data.public.lu/resources/covid-19-rapports-journaliers/20211130-172453/coronavirus-rapport-journalier-30112021.pdf"
-            ],
-        }
-    )
-    df = pd.concat([df, fix]).drop_duplicates(subset="date", keep="last")
-    df = make_monotonic(df)
+    df = add_latest_who_values(df, "Luxembourg", ["people_fully_vaccinated"])
     return df
 
 
@@ -94,7 +80,7 @@ def pipeline(df: pd.DataFrame, source: str) -> pd.DataFrame:
 
 
 def main():
-    source_file = "https://data.public.lu/en/datasets/r/0699455e-03fd-497b-9898-776c6dc786e8"
+    source_file = "https://data.public.lu/en/datasets/r/2635e6af-bd22-4e62-8525-48fd3cb063e6"
     source_page = "https://data.public.lu/en/datasets/donnees-covid19/#_"
     destination = paths.out_vax("Luxembourg")
     read(source_file).pipe(pipeline, source_page).to_csv(destination, index=False)
