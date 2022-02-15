@@ -1,13 +1,13 @@
-from cowidev.vax.utils.base import CountryVaxBase
 import pandas as pd
 
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.utils import make_monotonic
+from cowidev.vax.utils.utils import add_latest_who_values
+from cowidev.vax.utils.base import CountryVaxBase
 
 
 class Luxembourg(CountryVaxBase):
     location = "Luxembourg"
-    source_url = "https://data.public.lu/en/datasets/r/0699455e-03fd-497b-9898-776c6dc786e8"
+    source_url = "https://data.public.lu/en/datasets/r/2635e6af-bd22-4e62-8525-48fd3cb063e6"
     source_url_ref = "https://data.public.lu/en/datasets/donnees-covid19/#_"
 
     def read(self) -> pd.DataFrame:
@@ -44,20 +44,7 @@ class Luxembourg(CountryVaxBase):
         The publisher was contacted on 2021-O9-21 https://twitter.com/redouad/status/1439992459166158857
         """
         df.loc[df.date >= "2021-04-14", "people_fully_vaccinated"] = pd.NA
-        fix = pd.DataFrame(
-            {
-                "date": [pd.to_datetime("2021-11-29")],
-                "people_vaccinated": pd.NA,
-                "people_fully_vaccinated": 429705,
-                "total_boosters": pd.NA,
-                "total_vaccinations": pd.NA,
-                "source_url": [
-                    "https://download.data.public.lu/resources/covid-19-rapports-journaliers/20211130-172453/coronavirus-rapport-journalier-30112021.pdf"
-                ],
-            }
-        )
-        df = pd.concat([df, fix]).drop_duplicates(subset="date", keep="last")
-        df = make_monotonic(df)
+        df = add_latest_who_values(df, "Luxembourg", ["people_fully_vaccinated"])
         return df
 
     def pipe_running_totals(self, df: pd.DataFrame) -> pd.DataFrame:

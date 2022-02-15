@@ -16,8 +16,7 @@ class Hungary(CountryVaxBase):
         self.regex = {
             "title": r"\d+ [millió]+ \d+ [ezer]+ a beoltott, [\d\s]+ az új fertőzött",
             "metrics": (
-                r"A beoltottak száma ([\d\s]+) fő, közülük ([\d\s]+) fő már a második, ([\d\s]+) fő pedig már a"
-                r" megerősítő harmadik oltását is felvette."
+                r"A beoltottak száma ([\d\s]+) fő, közülük ([\d\s]+) fő a második, ([\d\s]+) fő már harmadik oltását is felvette"
             ),
         }
 
