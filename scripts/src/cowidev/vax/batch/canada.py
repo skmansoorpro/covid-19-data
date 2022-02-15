@@ -1,12 +1,12 @@
 import pandas as pd
 
 from cowidev.utils.web import request_json
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import make_monotonic
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Canada:
+class Canada(CountryVaxBase):
     location: str = "Canada"
     source_url: str = "https://api.covid19tracker.ca/reports"
     source_url_ref: str = "https://covid19tracker.ca/vaccinationtracker.html"
@@ -97,8 +97,8 @@ class Canada:
         return df
 
     def export(self):
-        destination = paths.out_vax(self.location)
-        self.read().pipe(self.pipeline).to_csv(destination, index=False)
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def main():

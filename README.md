@@ -1,22 +1,25 @@
 # COVID-19 Dataset by _Our World in Data_ 
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://ourworldindata.org/coronavirus)
-[![Data](https://img.shields.io/badge/public-data-purple)](public/data/)
+[![Data](https://img.shields.io/badge/go_to-data-purple)](public/data/)
+[![documentation](https://img.shields.io/badge/go_to-dev_docs-0055ff)](https://covid-docs.ourworldindata.org)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-## Find our data on COVID-19 and its documentation in [`public/data`](public/data).
-
-
-### Documentation
-
-- [Data: complete COVID-19 dataset](public/data/README.md)
-- [Data: COVID-19 vaccinations](public/data/vaccinations/README.md)
-- [Data: excess mortality](public/data/excess_mortality/README.md)
-- [Development: general](scripts/README.md)
-- [Development: vaccinations](scripts/docs/vaccinations/README.md)
-- [Development: vaccinations (contribution guidelines)](scripts/docs/vaccinations/CONTRIBUTE.md)
-- [Development: testing](scripts/docs/testing/README.md)
-- [Development: testing (contribution guidelines)](scripts/docs/testing/CONTRIBUTE.md)
+**📢 Find our data on COVID-19 and its documentation in [`public/data`](public/data)!**
 
 ---
 
-**📢 Some files are being deprecated on GitHub, but are still available via our stable URLs. Please check [#2082](https://github.com/owid/covid-19-data/discussions/2082)**
+### Project structure
+The project contains two independent directories:
+
+- [`public/data`](public/data): Contains the final datasets. This is for people interested in consuming the data and
+  understanding all the caveats about it and its metrics.
+- [`scripts`](scripts): Contains all the code and intermediate files to produce the final dataset. This is for people interested in
+  contributing to the project or better understanding our internal technical processes.
+
+### Documentation
+If you are interested in the final dataset file, refer to [this document](public/data/README.md). If you want to
+learn more about our processes, refer to our [technical documentation](https://covid-docs.ourworldindata.org).
+
+### Contribute
+Thanks for considering contributing to this project! A good place to start is our [contribution
+guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html).

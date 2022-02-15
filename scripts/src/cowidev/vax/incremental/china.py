@@ -1,15 +1,14 @@
-import re
 import time
+import re
 
 import pandas as pd
 
 from cowidev.utils.clean import clean_count, extract_clean_date
 from cowidev.utils.web.scraping import get_driver
-from cowidev.vax.utils.incremental import merge_with_current_data
-from cowidev.utils import paths
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class China:
+class China(CountryVaxBase):
     location: str = "China"
     source_url: str = "http://www.nhc.gov.cn/xcs/yqjzqk/list_gzbd.shtml"
     regex: dict = {
@@ -55,14 +54,12 @@ class China:
         return df.pipe(self.pipe_metadata).pipe(self.pipe_vaccine)
 
     def export(self):
-        output_file = paths.out_vax(self.location)
-        last_update = pd.read_csv(output_file).date.max()
+        last_update = self.load_datafile().date.max()
         df = self.read(last_update)
         if not df.empty:
             df = df.pipe(self.pipeline)
             # print(df.tail())
-            df = merge_with_current_data(df, output_file)
-            df.to_csv(output_file, index=False)
+            self.export_datafile(df, attach=True)
 
 
 def main():

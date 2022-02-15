@@ -54,7 +54,7 @@ class EquatorialGuinea:
     def pipeline(self, ds: pd.Series) -> pd.Series:
         return ds.pipe(self.pipe_location).pipe(self.pipe_vaccine).pipe(self.pipe_source)
 
-    def to_csv(self):
+    def export(self):
         data = self.read().pipe(self.pipeline)
         increment(
             location=data["location"],
@@ -68,8 +68,4 @@ class EquatorialGuinea:
 
 
 def main():
-    EquatorialGuinea().to_csv()
-
-
-if __name__ == "__main__":
-    main()
+    EquatorialGuinea().export()

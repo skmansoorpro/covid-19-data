@@ -103,7 +103,7 @@ class Australia(CountryVaxBase):
             ]
         )
 
-    def to_csv(self):
+    def export(self):
         # Main
         df = self.read().pipe(self.pipeline)
         # Age
@@ -116,4 +116,4 @@ class Australia(CountryVaxBase):
 
 
 def main():
-    Australia().to_csv()
+    Australia().export()

@@ -82,7 +82,3 @@ class Bahrain:
 
 def main():
     Bahrain().export()
-
-
-if __name__ == "__main__":
-    main()
