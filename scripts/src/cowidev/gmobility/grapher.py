@@ -84,7 +84,7 @@ def run_grapheriser():
     os.remove(FILE_DS)
 
 
-def run_db_updater(input_path):
+def run_db_updater():
     dataset_name = get_filename(FILE_GRAPHER)
     GrapherBaseUpdater(
         dataset_name=dataset_name,
