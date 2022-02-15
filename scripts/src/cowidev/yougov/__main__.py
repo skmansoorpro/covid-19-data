@@ -461,7 +461,7 @@ def _reorder_columns(df):
 
 
 def main():
-    YouGov(output_path=OUTPUT_PATH, debug=DEBUG).to_csv()
+    YouGov(output_path=OUTPUT_PATH, debug=DEBUG).export()
 
 
 if __name__ == "__main__":
