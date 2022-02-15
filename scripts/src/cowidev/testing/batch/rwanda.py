@@ -17,6 +17,9 @@ class Rwanda(CountryTestBase):
         "attributes.cumulative_test": "Cumulative total",
         "attributes.created_date": "Date",
     }
+
+    date_start: str = "2021-11-08"
+
     params: dict = {
         "f": "json",
         "where": "1=1",
@@ -39,11 +42,17 @@ class Rwanda(CountryTestBase):
         """Cleans date column"""
         return df.assign(Date=clean_date_series(df["Date"], unit="ms"))
 
+    def pipe_filter(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Filter data"""
+        df = df[(df["Date"] >= self.date_start)]
+        return df
+
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """pipeline for data"""
         return (
             df.pipe(self.pipe_rename_columns)
             .pipe(self.pipe_date)
+            .pipe(self.pipe_filter)
             .pipe(self.pipe_metadata)
             .pipe(make_monotonic)
             .sort_values("Date")
