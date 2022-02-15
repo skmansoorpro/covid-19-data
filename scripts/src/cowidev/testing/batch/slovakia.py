@@ -48,7 +48,7 @@ class Slovakia(CountryTestBase):
     def export(self):
         """Export data to CSV"""
         df = self.read().pipe(self.pipeline)
-        self.export_datafile(df, attach=True)
+        self.export_datafile(df)
 
 
 def main():
