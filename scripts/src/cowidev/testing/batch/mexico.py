@@ -44,7 +44,7 @@ class Mexico(CountryTestBase):
         return df.assign(
             **{
                 "Positive rate": (
-                    df.positive.rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum().round(3)
+                    (df.positive.rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()).round(3)
                 )
             }
         )
