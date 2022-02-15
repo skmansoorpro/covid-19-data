@@ -66,3 +66,52 @@ def build_vaccine_timeline(df: pd.DataFrame, vaccine_timeline: dict) -> pd.DataF
 
     df["vaccine"] = df.date.apply(_build_vaccine_row, vaccine_timeline=vaccine_timeline)
     return df
+
+
+def add_latest_who_values(df: pd.DataFrame, who_location_name: str, metrics: list):
+    """
+    Inserts the latest data available from the WHO vaccination dataset into the existing dataframe.
+    metrics: list of metrics to be used from the WHO dataset. Other metrics that aren't listed
+    will be automatically set to pd.NA for this specific row.
+    """
+    assert isinstance(metrics, list), "The `metrics` argument in add_latest_who_values should be a list!"
+
+    df["date"] = df.date.astype(str)
+    df = df.sort_values("date")
+
+    who = pd.read_csv(
+        "https://covid19.who.int/who-data/vaccination-data.csv",
+        usecols=[
+            "COUNTRY",
+            "DATA_SOURCE",
+            "DATE_UPDATED",
+            "TOTAL_VACCINATIONS",
+            "PERSONS_VACCINATED_1PLUS_DOSE",
+            "PERSONS_FULLY_VACCINATED",
+        ],
+    )
+
+    who = who[(who.COUNTRY == who_location_name) & (who.DATA_SOURCE == "REPORTING")]
+    if len(who) == 0:
+        raise Exception(f"No row of type REPORTING was found in the WHO dataset for location '{who_location_name}'")
+
+    last_who_report_date = who.DATE_UPDATED.values[0]
+
+    who_row = df[df.date >= last_who_report_date].head(1).copy()
+    original_rows = df[df.date != last_who_report_date].copy()
+
+    who_row["date"] = last_who_report_date
+    who_row["total_vaccinations"] = who.TOTAL_VACCINATIONS.values[0] if "total_vaccinations" in metrics else pd.NA
+    who_row["people_vaccinated"] = (
+        who.PERSONS_VACCINATED_1PLUS_DOSE.values[0] if "people_vaccinated" in metrics else pd.NA
+    )
+    who_row["people_fully_vaccinated"] = (
+        who.PERSONS_FULLY_VACCINATED.values[0] if "people_fully_vaccinated" in metrics else pd.NA
+    )
+    if "total_boosters" in who_row.columns:
+        who_row["total_boosters"] = pd.NA
+    who_row["source_url"] = "https://covid19.who.int/"
+
+    df = pd.concat([original_rows, who_row], ignore_index=True).sort_values("date")
+
+    return df

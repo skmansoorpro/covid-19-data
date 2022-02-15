@@ -93,7 +93,3 @@ class Albania:
 
 def main():
     Albania().export()
-
-
-if __name__ == "__main__":
-    main()

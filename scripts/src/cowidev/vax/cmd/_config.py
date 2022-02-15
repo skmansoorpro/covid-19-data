@@ -43,14 +43,12 @@ class ConfigParams(object):
         mode,
         display,
         credentials_file,
-        check_r=False,
     ):
         self._parallel = parallel
         self._njobs = njobs
         self._countries = countries
         self.mode = mode
         self.display = display
-        self.check_r = check_r
         # Config file
         self.config_file = config_file
         self._config = self._load_yaml()
@@ -72,7 +70,6 @@ class ConfigParams(object):
             mode=mode,
             display=args.show_config,
             credentials_file=args.credentials,
-            check_r=args.checkr,
         )
 
     @property

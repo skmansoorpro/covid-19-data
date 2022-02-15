@@ -55,7 +55,7 @@ class Cuba:
     def pipeline(self, df: pd.Series) -> pd.Series:
         return df.pipe(self.pipe_vaccine)
 
-    def to_csv(self):
+    def export(self):
         data = self.read().pipe(self.pipeline)
         increment(
             location=self.location,
@@ -70,4 +70,4 @@ class Cuba:
 
 
 def main():
-    Cuba().to_csv()
+    Cuba().export()

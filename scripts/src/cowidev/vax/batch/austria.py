@@ -1,11 +1,11 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
 from cowidev.utils.web.download import read_csv_from_url
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Austria:
+class Austria(CountryVaxBase):
     location: str = "Austria"
     source_url: str = "https://info.gesundheitsministerium.gv.at/data/COVID19_vaccination_doses_timeline.csv"
     source_url_ref: str = "https://info.gesundheitsministerium.gv.at/opendata/"
@@ -106,8 +106,8 @@ class Austria:
         )
 
     def export(self):
-        destination = paths.out_vax(self.location)
-        self.read().pipe(self.pipeline).to_csv(destination, index=False)
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df=df)
 
 
 def main():

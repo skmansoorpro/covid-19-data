@@ -1,12 +1,12 @@
+from cowidev.vax.utils.base import CountryVaxBase
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean import clean_date_series
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import make_monotonic
 
 
-class Malta:
+class Malta(CountryVaxBase):
     location: str = "Malta"
     source_url: str = (
         "https://github.com/COVID19-Malta/COVID19-Cases/raw/master/COVID-19%20Malta%20-%20Vaccination%20Data.csv"
@@ -96,8 +96,7 @@ class Malta:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        destination = paths.out_vax(self.location)
-        df.to_csv(destination, index=False)
+        self.export_datafile(df)
 
 
 def main():
