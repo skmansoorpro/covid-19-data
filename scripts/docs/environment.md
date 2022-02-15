@@ -1,4 +1,4 @@
-# Setting up the working environment
+# Setting up the development environment
 This document explains all the necessary steps to set up your environment and work with this project correctly. 
 
 Perhaps you want to set up the environment to help us out, or to learn how we work, or because you want to set up a
@@ -33,7 +33,7 @@ git clone https://github.com/owid/covid-19-data.git
 Note that the project is quite significant in size, so you may want to use a [shallow clone](https://git-scm.com/docs/git-clone>):
 
 ```bash
-git clone --depth 5 https://github.com/owid/covid-19-data.git
+git clone --depth 1 --no-single-branch https://github.com/owid/covid-19-data.git
 ```
 
 If you want to **contribute** consider [forking the repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo) instead.
@@ -46,16 +46,20 @@ cd scripts
 pip install -e .
 ```
 
+If the installation went well, running `cowid` in your terminal will execute but raise an `EnvironmentError` error.
+
 ## Set environment variables
-To run the pipeline, you need to create three environment variables: 
+To run the pipeline, you need to create three environment variables: `OWID_COVID_PROJECT_DIR`, `OWID_COVID_CONFIG` and
+`OWID_COVID_SECRETS`. The last two variables point to files that we will create in the following sections.
+
 
 | Variable | Description |
 |----------|-------------|
 | `OWID_COVID_PROJECT_DIR`        | Path to the local project directory, e.g. `/Users/username/projects/covid-19-data/`           |
-| `OWID_COVID_CONFIG`        | Path to the data pipeline configuration file (`yaml` format). This file provides the default configuration values for the pipeline. Our team uses [`config.yaml`](https://github.com/owid/covid-19-data/blob/master/scripts/config.yaml), which you can use and adapt to your needs.          |
-| `OWID_COVID_SECRETS`        | Path to the data pipeline secrets file (`yaml` format).           |
+| `OWID_COVID_CONFIG`        | Path to the data pipeline [configuration file](#configuration-file). This file provides the default configuration values for the pipeline. Our team uses [`config.yaml`](https://github.com/owid/covid-19-data/blob/master/scripts/config.yaml), which you can use and adapt to your needs.         |
+| `OWID_COVID_SECRETS`        | Path to the data pipeline [secrets file](#secrets-file).          |
 
-You need to add these variables to your shell config file (i.e. `.bashrc` or `.bash_profile`), e.g.:
+You need to add these variables to your shell config file (i.e. `.bashrc`, `.bash_profile` or `.zshrc`), e.g.:
 
 ```
 export OWID_COVID_PROJECT_DIR=/Users/username/projects/covid-19-data
@@ -157,6 +161,33 @@ your personal Google credentials. To obtain it, you can follow [`gsheets` docume
 
 We recommend saving the downloaded file in a safe directory, with a simplified name, e.g.
 `~/.config/owid/clients_secrets.json`.
+
+## Verify installation
+Once you have installed the library, configured the configuration and secrets files accordingly along with the
+environment variables you should be able to run:
+
+
+```
+~ cowid --help
+Usage: cowid [OPTIONS] COMMAND [ARGS]...
+
+  COVID-19 Data pipeline tool by Our World in Data.
+
+Options:
+  --parallel / --no-parallel  Parallelize process.  [default: parallel]
+  --n-jobs INTEGER            Number of threads to use.  [default: -2]
+  --help                      Show this message and exit.
+
+Commands:
+  test       COVID-19 Testing data pipeline.
+  vax        COVID-19 Vaccination data pipeline.
+  hosp       COVID-19 Hospitalization data pipeline.
+  jhu        COVID-19 Cases/Deaths data pipeline.
+  variants   COVID-19 Variants data pipeline.
+  xm         COVID-19 Excess Mortality data pipeline.
+  gmobility  Google Mobility data pipeline.
+  megafile   COVID-19 data integration pipeline (former megafile)
+```
 
 ## Questions?
 Raise an [issue](https://github.com/owid/covid-19-data/issues), we are happy to help!
