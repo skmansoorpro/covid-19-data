@@ -1,68 +1,53 @@
-"""Constructs daily time series of COVID-19 testing data for Norway.
-Dashboard: https://www.fhi.no/en/id/infectious-diseases/coronavirus/daily-reports/daily-reports-COVID19/
-"""
-import re
-import json
-import requests
 import pandas as pd
-from cowidev.testing import CountryTestBase
 
-COUNTRY = "Norway"
-UNITS = "people tested"
-TESTING_TYPE = "PCR only"
-SOURCE_LABEL = "Norwegian Institute of Public Health"
-SOURCE_URL = "https://www.fhi.no/en/id/infectious-diseases/coronavirus/daily-reports/daily-reports-COVID19"
-DATA_URL = "https://www.fhi.no/api/chartdata/api/90789"
+from cowidev.utils.web import request_json
+from cowidev.utils.clean import clean_date_series, clean_count
+from cowidev.testing import CountryTestBase
 
 
 class Norway(CountryTestBase):
-    location = "Norway"
+    location: str = "Norway"
+    units: str = "people tested"
+    source_label: str = "Norwegian Institute of Public Health"
+    source_url: str = "https://www.fhi.no/api/chartdata/api/90789"
+    source_url_ref: str = (
+        "https://www.fhi.no/en/id/infectious-diseases/coronavirus/daily-reports/daily-reports-COVID19"
+    )
 
-    def export(self) -> None:
-        df = get_data()
-        df.sort_values("Date", inplace=True)
-        df["Country"] = COUNTRY
-        df["Units"] = UNITS
-        df["Source URL"] = SOURCE_URL
-        df["Source label"] = SOURCE_LABEL
-        df["Notes"] = ""
-        sanity_checks(df)
-        df = df[
-            [
-                "Country",
-                "Units",
-                "Date",
-                "Daily change in cumulative total",
-                "Source URL",
-                "Source label",
-                "Notes",
-            ]
-        ]
+    def read(self) -> pd.DataFrame:
+        """Reads data from source."""
+        data = request_json(self.source_url)
+        df = pd.DataFrame(data[1:], columns=data[0])
+        return df
+
+    def pipe_date(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Cleans date column"""
+        return df.assign(Date=clean_date_series(df["Date"], "%Y-%m-%d"))
+
+    def pipe_metrics(self, df: pd.DataFrame):
+        """Pipes metrics"""
+        return df.assign(
+            **{"Daily change in cumulative total": df.Negative.apply(clean_count) + df.Positive.apply(clean_count)}
+        )
+
+    def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Pipes pr"""
+        return df.assign(**{"Positive rate": df.Percent.div(100).round(3)})
+
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        """pipeline for data"""
+        return (
+            df.pipe(self.pipe_date)
+            .pipe(self.pipe_metrics)
+            .pipe(self.pipe_pr)
+            .pipe(self.pipe_metadata)
+            .sort_values("Date")
+        )
+
+    def export(self):
+        """Exports data to csv"""
+        df = self.read().pipe(self.pipeline)
         self.export_datafile(df)
-        return None
-
-
-def get_data() -> pd.DataFrame:
-    res = requests.get(DATA_URL)
-    assert res.ok
-    json_data = json.loads(res.text)
-    df = pd.DataFrame(json_data[1:], columns=json_data[0])
-    df["Negative"] = df["Negative"].astype(int)
-    df["Positive"] = df["Positive"].astype(int)
-    df["Daily change in cumulative total"] = df["Negative"] + df["Positive"]
-    df = df[df["Daily change in cumulative total"] != 0]
-    return df
-
-
-def sanity_checks(df: pd.DataFrame) -> None:
-    """checks that there are no obvious errors in the scraped data."""
-    # checks that the cumulative number of tests on date t is always greater than the figure for t-1:
-    df_cp = df.copy()
-    df_cp["Cumulative total"] = df_cp["Daily change in cumulative total"].cumsum()
-    assert (
-        df_cp["Cumulative total"].iloc[1:] >= df_cp["Cumulative total"].shift(1).iloc[1:]
-    ).all(), "On one or more dates, `Cumulative total` is greater on date t-1."
-    return None
 
 
 def main():

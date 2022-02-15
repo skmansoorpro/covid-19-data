@@ -1,10 +1,8 @@
 import re
-import os
 from cowidev.testing.utils.base import CountryTestBase
 
 import pandas as pd
 
-from cowidev.utils.utils import get_project_dir
 from cowidev.utils.web import get_soup
 from cowidev.utils.clean import clean_count, clean_date
 

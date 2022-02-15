@@ -1,10 +1,10 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Belgium:
+class Belgium(CountryVaxBase):
     def __init__(self) -> None:
         self.location = "Belgium"
         self.source_url = "https://epistat.sciensano.be/Data/COVID19BE_VACC.csv"
@@ -85,7 +85,8 @@ class Belgium:
         )
 
     def export(self):
-        (self.read().pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False))
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def main():

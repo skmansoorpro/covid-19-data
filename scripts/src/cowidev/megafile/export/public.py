@@ -3,11 +3,12 @@ from datetime import date, timedelta
 
 import pandas as pd
 
+from cowidev import PATHS
 from cowidev.utils.s3 import S3, obj_to_s3
-from cowidev.utils.utils import get_project_dir, dict_to_compact_json
+from cowidev.utils.utils import dict_to_compact_json
 
 
-DATA_DIR = os.path.abspath(os.path.join(get_project_dir(), "public", "data"))
+DATA_DIR = PATHS.DATA_DIR
 
 
 def create_dataset(df, macro_variables):

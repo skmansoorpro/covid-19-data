@@ -6,10 +6,10 @@ import pandas as pd
 from cowidev.utils.clean.dates import localdate
 from cowidev.vax.utils.incremental import enrich_data, increment
 from cowidev.vax.utils.utils import make_monotonic
-from cowidev.utils import paths
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class IsleOfMan:
+class IsleOfMan(CountryVaxBase):
     location: str = "Isle of Man"
     source_url: str = (
         "https://wabi-west-europe-b-primary-api.analysis.windows.net/public/reports/querydata?synchronous=true"
@@ -99,15 +99,10 @@ class IsleOfMan:
             .pipe(self.pipe_source)
         )
 
-    def force_monotonic(self):
-        pd.read_csv(paths.out_vax(self.location)).pipe(make_monotonic).to_csv(
-            paths.out_vax(self.location), index=False
-        )
-
     def export(self):
         data = self.read().pipe(self.pipeline)
         increment(
-            location=data["location"],
+            location=self.location,
             total_vaccinations=data["total_vaccinations"],
             people_vaccinated=data["people_vaccinated"],
             people_fully_vaccinated=data["people_fully_vaccinated"],
@@ -121,7 +116,3 @@ class IsleOfMan:
 
 def main():
     IsleOfMan().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -5,10 +5,10 @@ import pandas as pd
 
 from cowidev.utils.clean import clean_count, clean_date
 from cowidev.vax.utils.utils import make_monotonic
-from cowidev.utils import paths
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Sweden(object):
+class Sweden(CountryVaxBase):
     def __init__(self):
         """Constructor."""
         self.source_url_daily = (
@@ -219,10 +219,9 @@ class Sweden(object):
 
     def export(self):
         """Generalized."""
-        output_path = paths.out_vax(self.location)
         df = self.read().pipe(self.pipeline)
-        df = self.merge_with_current_booster_data(output_path, df)
-        df.to_csv(output_path, index=False)
+        df = self.merge_with_current_booster_data(self.output_path, df)
+        self.export_datafile(df)
 
 
 def main():

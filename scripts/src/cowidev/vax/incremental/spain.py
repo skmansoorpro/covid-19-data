@@ -1,16 +1,14 @@
 import re
 from datetime import datetime, timedelta
 from urllib.error import HTTPError
-from cowidev.utils.clean.dates import clean_date_series
 
 import pandas as pd
 
-from cowidev.utils.clean import clean_date
-from cowidev.vax.utils.incremental import merge_with_current_data
-from cowidev.utils import paths, clean_count
+from cowidev.utils import clean_count, clean_date_series, clean_date
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Spain:
+class Spain(CountryVaxBase):
     location = "Spain"
     vaccine_mapping = {
         "Pfizer": "Pfizer/BioNTech",
@@ -113,18 +111,12 @@ class Spain:
         return df.pipe(self.pipe_location)
 
     def export(self):
-        output_file = paths.out_vax(self.location)
-        last_update = pd.read_csv(output_file).date.astype(str).max()
+        last_update = self.load_datafile().date.astype(str).max()
         df = self.read(last_update)
         if df is not None:
             df = df.pipe(self.pipeline)
-            df = merge_with_current_data(df, output_file)
-            df.to_csv(output_file, index=False)
+            self.export_datafile(df, attach=True)
 
 
 def main():
     Spain().export()
-
-
-if __name__ == "__main__":
-    main()

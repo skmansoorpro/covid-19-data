@@ -1,9 +1,14 @@
+import os
 import pandas as pd
 
+from cowidev import PATHS
 from cowidev.grapher.files import Grapheriser, Exploriser
 
 
 NUM_SEQUENCES_TOTAL_THRESHOLD = 100
+FILE_GRAPHER = os.path.join(PATHS.INTERNAL_GRAPHER_DIR, "COVID-19 - Variants.csv")
+FILE_SEQ_GRAPHER = os.path.join(PATHS.INTERNAL_GRAPHER_DIR, "COVID-19 - Sequencing.csv")
+FILE_EXPLORER = os.path.join(PATHS.DATA_INTERNAL_DIR, "megafile--variants.json")
 
 
 def filter_by_num_sequences(df: pd.DataFrame) -> pd.DataFrame:
@@ -19,7 +24,7 @@ def filter_by_num_sequences(df: pd.DataFrame) -> pd.DataFrame:
     return df[~msk]
 
 
-def run_grapheriser(input_path: str, output_path: str, input_path_seq: str, output_path_seq: str):
+def run_grapheriser():
     # Variants
     Grapheriser(
         pivot_column="variant",
@@ -27,19 +32,19 @@ def run_grapheriser(input_path: str, output_path: str, input_path_seq: str, outp
         fillna_0=True,
         function_input=filter_by_num_sequences,
         suffixes=["", "_percentage"],
-    ).run(input_path, output_path)
+    ).run(PATHS.INTERNAL_OUTPUT_VARIANTS_FILE, FILE_GRAPHER)
     # Sequencing
     Grapheriser(
         fillna_0=True,
-    ).run(input_path_seq, output_path_seq)
+    ).run(PATHS.INTERNAL_OUTPUT_VARIANTS_SEQ_FILE, FILE_SEQ_GRAPHER)
 
 
-def run_explorerizer(input_path: str, output_path: str):
+def run_explorerizer():
     Exploriser(
         pivot_column="variant",
         pivot_values="perc_sequences",
         function_input=filter_by_num_sequences,
-    ).run(input_path, output_path)
+    ).run(PATHS.INTERNAL_OUTPUT_VARIANTS_FILE, FILE_EXPLORER)
 
 
 def run_db_updater(input_path: str):

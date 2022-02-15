@@ -65,7 +65,3 @@ def main():
         source_url=data["source_url"],
         vaccine=data["vaccine"],
     )
-
-
-if __name__ == "__main__":
-    main()
