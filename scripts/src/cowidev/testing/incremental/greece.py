@@ -68,7 +68,3 @@ class Greece(CountryTestBase):
 
 def main():
     Greece().export()
-
-
-if __name__ == "__main__":
-    main()
