@@ -236,15 +236,6 @@ cowidev.testing.incremental.new\_zealand
    :show-inheritance:
    :private-members:
 
-cowidev.testing.incremental.nigeria
------------------------------------
-
-.. automodule:: cowidev.testing.incremental.nigeria
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :private-members:
-
 cowidev.testing.incremental.north\_macedonia
 --------------------------------------------
 

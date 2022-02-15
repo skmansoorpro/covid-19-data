@@ -335,6 +335,15 @@ cowidev.vax.incremental.kyrgyzstan
    :show-inheritance:
    :private-members:
 
+cowidev.vax.incremental.laos
+----------------------------
+
+.. automodule:: cowidev.vax.incremental.laos
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
 cowidev.vax.incremental.lebanon
 -------------------------------
 

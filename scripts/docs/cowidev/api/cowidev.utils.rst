@@ -21,6 +21,15 @@ cowidev.utils.annotations
    :show-inheritance:
    :private-members:
 
+cowidev.utils.exceptions
+------------------------
+
+.. automodule:: cowidev.utils.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
 cowidev.utils.io
 ----------------
 

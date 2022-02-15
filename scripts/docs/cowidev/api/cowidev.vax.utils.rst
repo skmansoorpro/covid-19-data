@@ -45,15 +45,6 @@ cowidev.vax.utils.incremental
    :show-inheritance:
    :private-members:
 
-cowidev.vax.utils.paths
------------------------
-
-.. automodule:: cowidev.vax.utils.paths
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :private-members:
-
 cowidev.vax.utils.utils
 -----------------------
 
