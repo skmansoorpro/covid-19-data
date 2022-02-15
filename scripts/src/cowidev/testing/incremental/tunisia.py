@@ -69,7 +69,3 @@ class Tunisia(CountryTestBase):
 
 def main():
     Tunisia().export()
-
-
-if __name__ == "__main__":
-    main()
