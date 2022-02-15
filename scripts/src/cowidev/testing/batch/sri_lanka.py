@@ -34,13 +34,15 @@ class SriLanka(CountryTestBase):
 
     def pipe_metrics(self, df: pd.DataFrame):
         """Pipes metrics"""
-        return df.assign(
+        df = df.assign(
             **{
                 "Daily change in cumulative total": (
                     df["antigen_count"].apply(clean_count) + df["pcr_count"].apply(clean_count)
                 ),
             }
         )
+        df = df[df["Daily change in cumulative total"] > 0]
+        return df
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """pipeline for data"""
