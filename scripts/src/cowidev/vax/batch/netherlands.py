@@ -1,12 +1,12 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.clean.dates import week_to_date
 from cowidev.vax.utils.utils import build_vaccine_timeline
 from cowidev.vax.utils.checks import VACCINES_ONE_DOSE
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Netherlands:
+class Netherlands(CountryVaxBase):
     source_url: str = (
         "https://github.com/mzelst/covid-19/raw/master/data-rivm/vaccines-ecdc/vaccines_administered_nl.csv"
     )
@@ -104,12 +104,8 @@ class Netherlands:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        self.export_datafile(df)
 
 
 def main():
     Netherlands().export()
-
-
-if __name__ == "__main__":
-    main()

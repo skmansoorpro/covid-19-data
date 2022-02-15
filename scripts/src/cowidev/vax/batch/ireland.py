@@ -1,12 +1,13 @@
+from cowidev.vax.utils.base import CountryVaxBase
 import pandas as pd
 
 from cowidev.utils.web import request_json
 from cowidev.vax.utils.files import load_query
 from cowidev.vax.utils.utils import build_vaccine_timeline
-from cowidev.utils import paths, clean_date_series
+from cowidev.utils import clean_date_series
 
 
-class Ireland:
+class Ireland(CountryVaxBase):
     location = "Ireland"
     source_url_ref = "https://covid19ireland-geohive.hub.arcgis.com/"
     source_url = {
@@ -107,13 +108,8 @@ class Ireland:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        destination = paths.out_vax("Ireland")
-        df.to_csv(destination, index=False)
+        self.export_datafile(df)
 
 
 def main():
     Ireland().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -1,6 +1,6 @@
 import os
 
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 from cowidev.megafile.steps.cgrt import get_cgrt
 from cowidev.megafile.steps.hosp import get_hosp
 from cowidev.megafile.steps.jhu import get_jhu
@@ -10,15 +10,15 @@ from cowidev.megafile.steps.variants import get_variants
 from cowidev.megafile.steps.vax import get_vax
 
 
-INPUT_DIR = os.path.abspath(os.path.join(get_project_dir(), "scripts", "input"))
-GRAPHER_DIR = os.path.abspath(os.path.join(get_project_dir(), "scripts", "grapher"))
-DATA_DIR = os.path.abspath(os.path.join(get_project_dir(), "public", "data"))
+INPUT_DIR = PATHS.INTERNAL_INPUT_DIR
+GRAPHER_DIR = PATHS.INTERNAL_GRAPHER_DIR
+DATA_DIR = PATHS.DATA_DIR
 
 
 def get_base_dataset():
     """Get owid datasets from: jhu, reproduction rate, hospitalizations, testing ,vaccinations, CGRT."""
     print("Fetching JHU dataset…")
-    jhu = get_jhu(jhu_dir=os.path.join(get_project_dir(), "public", "data", "jhu"))
+    jhu = get_jhu(jhu_dir=PATHS.DATA_JHU_DIR)
 
     print("Fetching reproduction rate…")
     reprod = get_reprod(

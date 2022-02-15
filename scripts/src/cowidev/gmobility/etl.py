@@ -1,5 +1,9 @@
+import os
+
 import pandas as pd
 from cowidev.gmobility.dtypes import dtype
+
+FILE_DS = os.path.join("/tmp", "google-mobility.csv")
 
 
 class GMobilityETL:
@@ -13,15 +17,15 @@ class GMobilityETL:
             dtype=dtype,
         )
 
-    def load(self, df: pd.DataFrame, output_path: str) -> None:
+    def load(self, df: pd.DataFrame) -> None:
         # Export data
-        df.to_csv(output_path, index=False)
+        df.to_csv(FILE_DS, index=False)
 
-    def run(self, output_path: str):
+    def run(self):
         df = self.extract()
-        self.load(df, output_path)
+        self.load(df)
 
 
-def run_etl(output_path: str):
+def run_etl():
     etl = GMobilityETL()
-    etl.run(output_path)
+    etl.run()

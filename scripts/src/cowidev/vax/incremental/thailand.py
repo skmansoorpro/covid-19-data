@@ -1,11 +1,11 @@
 import pandas as pd
 from tableauscraper import TableauScraper as TS
 
-from cowidev.utils import paths, clean_date_series
-from cowidev.vax.utils.incremental import merge_with_current_data
+from cowidev.utils import clean_date_series
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Thailand:
+class Thailand(CountryVaxBase):
     location = "Thailand"
     source_url = "https://public.tableau.com/views/SATCOVIDDashboard/1-dash-tiles-w"
     source_url_ref = "https://ddc.moph.go.th/covid19-dashboard/"
@@ -54,14 +54,9 @@ class Thailand:
     def export(self):
         """Export data to CSV"""
         df = self.read()
-        merge_with_current_data(df.pipe(self.pipeline), paths.out_vax(self.location)).to_csv(
-            paths.out_vax(self.location), index=False
-        )
+        df = df.pipe(self.pipeline)
+        self.export_datafile(df, attach=True)
 
 
 def main():
     Thailand().export()
-
-
-if __name__ == "__main__":
-    main()

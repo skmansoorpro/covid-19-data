@@ -1,11 +1,11 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import build_vaccine_timeline
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Estonia:
+class Estonia(CountryVaxBase):
     location: str = "Estonia"
     source_url: str = "https://opendata.digilugu.ee/covid19/vaccination/v3/opendata_covid19_vaccination_total.csv"
     source_url_ref: str = "https://opendata.digilugu.ee"
@@ -85,13 +85,9 @@ class Estonia:
         return df.pipe(self.pipe_location).pipe(self.pipe_vaccine_name).pipe(self.pipe_source)
 
     def export(self):
-        destination = paths.out_vax(self.location)
-        self.read().pipe(self.pipeline).to_csv(destination, index=False)
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def main():
     Estonia().export()
-
-
-if __name__ == "__main__":
-    main()

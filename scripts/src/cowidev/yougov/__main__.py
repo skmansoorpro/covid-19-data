@@ -7,7 +7,7 @@ from tqdm import tqdm
 import numpy as np
 import pandas as pd
 
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 from cowidev.utils.clean.dates import DATE_FORMAT
 
 
@@ -29,7 +29,7 @@ FREQ = "M"
 ZERO_DAY = "2020-01-21"
 
 # File paths
-PROJECT_DIR = get_project_dir()
+PROJECT_DIR = PATHS.PROJECT_DIR
 
 INPUT_PATH = os.path.join(PROJECT_DIR, "scripts", "input", "yougov")
 OUTPUT_PATH = os.path.join(PROJECT_DIR, "scripts", "grapher")
@@ -141,7 +141,7 @@ class YouGov:
         df = df.pipe(_round).pipe(_rename_columns).pipe(_reorder_columns)
         return df, df_comp
 
-    def to_csv(self):
+    def export(self):
         df = self.read()
         df, df_comp = df.pipe(self.pipeline_csv)
 
@@ -461,7 +461,7 @@ def _reorder_columns(df):
 
 
 def main():
-    YouGov(output_path=OUTPUT_PATH, debug=DEBUG).to_csv()
+    YouGov(output_path=OUTPUT_PATH, debug=DEBUG).export()
 
 
 if __name__ == "__main__":

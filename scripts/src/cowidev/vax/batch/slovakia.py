@@ -1,16 +1,15 @@
 from datetime import datetime, timedelta
+from cowidev.vax.utils.base import CountryVaxBase
 
 import epiweeks
 import pandas as pd
 
-from cowidev.utils import clean_date, paths
-from cowidev.utils.clean.dates import localdatenow
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.checks import VACCINES_ONE_DOSE
 from cowidev.vax.utils.utils import build_vaccine_timeline
 
 
-class Slovakia:
+class Slovakia(CountryVaxBase):
     location = "Slovakia"
     source_url = (
         "https://github.com/Institut-Zdravotnych-Analyz/covid19-data/raw/main/Vaccination/"
@@ -128,12 +127,8 @@ class Slovakia:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        self.export_datafile(df)
 
 
 def main():
     Slovakia().export()
-
-
-if __name__ == "__main__":
-    main()

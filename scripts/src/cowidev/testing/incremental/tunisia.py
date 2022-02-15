@@ -7,7 +7,6 @@ import pandas as pd
 from cowidev.utils import get_soup, clean_count, clean_date
 from cowidev.testing import CountryTestBase
 
-
 class Tunisia(CountryTestBase):
     location: str = "Tunisia"
     units: str = "people tested"
