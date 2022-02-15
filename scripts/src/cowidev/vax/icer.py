@@ -1,11 +1,11 @@
 from cowidev.utils.log import get_logger
 from cowidev.utils.s3 import obj_to_s3
-from cowidev.utils import paths
+from cowidev import PATHS
 
 from cowidev.vax.batch.latvia import Latvia
 
 
-PATH_ICE = paths.S3.VAX_ICE
+PATH_ICE = PATHS.S3_VAX_ICE_DIR
 logger = get_logger()
 
 countries = [Latvia()]

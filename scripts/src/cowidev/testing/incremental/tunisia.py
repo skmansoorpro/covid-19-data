@@ -1,11 +1,9 @@
-import os
 import json
-from cowidev.testing.utils.base import CountryTestBase
 
 import pandas as pd
 
-from cowidev.utils.utils import get_project_dir
 from cowidev.utils import get_soup, clean_date
+from cowidev.testing.utils.base import CountryTestBase
 
 
 class Tunisia(CountryTestBase):

@@ -3,7 +3,8 @@ from datetime import date
 
 import pandas as pd
 
-from cowidev.utils.utils import get_project_dir, export_timestamp
+from cowidev.utils.utils import export_timestamp
+from cowidev import PATHS
 from cowidev.megafile.steps import (
     get_base_dataset,
     add_macro_variables,
@@ -18,12 +19,12 @@ from cowidev.megafile.export import (
 )
 
 
-INPUT_DIR = os.path.abspath(os.path.join(get_project_dir(), "scripts", "input"))
-DATA_DIR = os.path.abspath(os.path.join(get_project_dir(), "public", "data"))
-DATA_VAX_COUNTRIES_DIR = os.path.abspath(os.path.join(DATA_DIR, "vaccinations", "country_data"))
-ANNOTATIONS_PATH = os.path.abspath(os.path.join(get_project_dir(), "scripts", "scripts", "annotations_internal.yaml"))
-README_TMP = os.path.join(get_project_dir(), "scripts", "scripts", "README.md.template")
-README_FILE = os.path.join(DATA_DIR, "README.md")
+INPUT_DIR = PATHS.INTERNAL_INPUT_DIR
+DATA_DIR = PATHS.DATA_DIR
+DATA_VAX_COUNTRIES_DIR = PATHS.DATA_VAX_COUNTRY_DIR
+ANNOTATIONS_PATH = PATHS.INTERNAL_INPUT_OWID_ANNOTATIONS_FILE
+README_TMP = PATHS.INTERNAL_INPUT_OWID_READ_FILE
+README_FILE = PATHS.DATA_READ_FILE
 
 
 def generate_megafile():
@@ -39,7 +40,7 @@ def generate_megafile():
 
     # Add ISO codes
     print("Adding ISO codes…")
-    iso_codes = pd.read_csv(os.path.join(INPUT_DIR, "iso", "iso3166_1_alpha_3_codes.csv"))
+    iso_codes = pd.read_csv(PATHS.INTERNAL_INPUT_ISO_FILE)
 
     missing_iso = set(all_covid.location).difference(set(iso_codes.location))
     if len(missing_iso) > 0:
@@ -51,7 +52,7 @@ def generate_megafile():
     # Add continents
     print("Adding continents…")
     continents = pd.read_csv(
-        os.path.join(INPUT_DIR, "owid", "continents.csv"),
+        PATHS.INTERNAL_INPUT_OWID_CONT_FILE,
         names=["_1", "iso_code", "_2", "continent"],
         usecols=["iso_code", "continent"],
         header=0,
@@ -133,13 +134,12 @@ def generate_megafile():
     create_dataset(all_covid, macro_variables)
 
     # Store the last updated time
-    dir = os.path.join(get_project_dir(), "public", "data")
-    export_timestamp("owid-covid-data-last-updated-timestamp.txt", force_directory=dir)  # @deprecate
+    export_timestamp(PATHS.DATA_TIMESTAMP_OLD_FILE, force_directory=PATHS.DATA_DIR)  # @deprecate
 
     print("Generating public/data/README.md")
     generate_readme(readme_template=README_TMP, readme_output=README_FILE)
 
     # Export timestamp
-    export_timestamp("owid-covid-data-last-updated-timestamp-root.txt")
+    export_timestamp(PATHS.DATA_TIMESTAMP_ROOT_FILE)
 
     print("All done!")

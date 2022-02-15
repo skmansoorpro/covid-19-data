@@ -1,11 +1,11 @@
 import pandas as pd
 
 from cowidev.utils.web import request_json
-from cowidev.utils import paths
 from cowidev.vax.utils.utils import build_vaccine_timeline
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Zimbabwe:
+class Zimbabwe(CountryVaxBase):
     source_url: str = "https://www.arcgis.com/home/webmap/viewer.html?url=https://services9.arcgis.com/DnERH4rcjw7NU6lv/ArcGIS/rest/services/Vaccine_Distribution_Program/FeatureServer&source=sd"
     location: str = "Zimbabwe"
     columns_rename: dict = {
@@ -65,12 +65,8 @@ class Zimbabwe:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        self.export_datafile(df)
 
 
 def main():
     Zimbabwe().export()
-
-
-if __name__ == "__main__":
-    main()

@@ -1,8 +1,7 @@
+from cowidev.vax.utils.base import CountryVaxBase
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.files import export_metadata_manufacturer
 from cowidev.vax.utils.utils import build_vaccine_timeline
 
 
@@ -140,30 +139,34 @@ def enrich_cumulated_sums(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-def global_pipeline(df: pd.DataFrame) -> pd.DataFrame:
-    return (
-        df.pipe(aggregate_by_date_vaccine)
-        .pipe(infer_one_dose_vaccines)
-        .pipe(aggregate_by_date)
-        .pipe(format_date)
-        .pipe(enrich_cumulated_sums)
-        .pipe(enrich_metadata)
-    )
+class Czechia(CountryVaxBase):
+    location = "Czechia"
+    source_url = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.csv"
+
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        return (
+            df.pipe(aggregate_by_date_vaccine)
+            .pipe(infer_one_dose_vaccines)
+            .pipe(aggregate_by_date)
+            .pipe(format_date)
+            .pipe(enrich_cumulated_sums)
+            .pipe(enrich_metadata)
+        )
+
+    def export(self):
+        base = read(self.source_url).pipe(base_pipeline)
+
+        # Manufacturer data
+        df_man = base.pipe(breakdown_per_vaccine)
+
+        # Main data
+        df = base.pipe(self.pipeline)
+        self.export_datafile(
+            df=df,
+            df_manufacturer=df_man,
+            meta_manufacturer={"source_name": "Ministry of Health", "source_url": self.source_url},
+        )
 
 
 def main():
-    source = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.csv"
-
-    base = read(source).pipe(base_pipeline)
-
-    # Manufacturer data
-    df_man = base.pipe(breakdown_per_vaccine)
-    df_man.to_csv(paths.out_vax("Czechia", manufacturer=True), index=False)
-    export_metadata_manufacturer(df_man, "Ministry of Health", source)
-
-    # Main data
-    base.pipe(global_pipeline).to_csv(paths.out_vax("Czechia"), index=False)
-
-
-if __name__ == "__main__":
-    main()
+    Czechia().export()
