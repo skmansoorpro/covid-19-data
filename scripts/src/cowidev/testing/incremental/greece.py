@@ -1,43 +1,69 @@
 import re
-from cowidev.testing.utils.base import CountryTestBase
 
+from bs4 import BeautifulSoup, element
 import pandas as pd
 
-from cowidev.utils import get_soup, clean_count
+from cowidev.utils import get_soup, clean_count, clean_date
+from cowidev.testing import CountryTestBase
 
 
 class Greece(CountryTestBase):
-    location = "Greece"
+    location: str = "Greece"
+    units: str = "samples tested"
+    source_label: str = "National Organization of Public Health"
+    source_url: str = "https://covid19.gov.gr/"
+    source_url_ref: str = "https://covid19.gov.gr/"
+    regex: dict = {
+        "date": r"elementor-element-5b9d061",
+        "element": r"elementor-element-9df72a6",
+    }
 
-    def export(self):
+    def read(self) -> pd.DataFrame:
+        """Read data from source"""
+        soup = get_soup(self.source_url)
+        df = self._parse_data(soup)
+        return df
 
-        data = pd.read_csv(self.output_path)
+    def _parse_data(self, soup: BeautifulSoup) -> pd.DataFrame:
+        """Parse data from soup"""
+        # Get the element
+        elem = soup.find(class_=self.regex["element"])
+        if not elem:
+            raise ValueError("Element not found, please update the script")
+        # Get the metrics
+        count = self._parse_metrics(elem)
+        # Get the date from soup
+        date = self._parse_date(soup)
+        df = pd.DataFrame(
+            {
+                "Date": [date],
+                "Cumulative total": [count],
+            }
+        )
+        return df
 
-        url = "https://covid19.gov.gr/"
-        soup = get_soup(url)
+    def _parse_metrics(self, elem: element.Tag) -> int:
+        """Parse metrics from element"""
+        count = elem.text
+        return clean_count(re.sub(r"\D", "", count))
 
-        count = clean_count(
-            soup.select(".elementor-element-9df72a6 .elementor-size-default")[0].text.replace("ΣΥΝΟΛΟ: ", "")
+    def _parse_date(self, soup: BeautifulSoup) -> str:
+        """Parse date from soup"""
+        date = soup.find(class_=self.regex["date"]).text
+        return clean_date(re.sub(r"\D", "", date), "%d%m%Y")
+
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Pipeline for data processing"""
+        return (
+            df.pipe(self.pipe_metadata)
+            .pipe(self.pipe_merge_current)
+            .drop_duplicates(subset=["Cumulative total"], keep="first")
         )
 
-        date_str = re.search(r"Τελευταία ενημέρωση\: ([\d/]{,10})", soup.text).group(1)
-        date_str = str(pd.to_datetime(date_str, dayfirst=True).date())
-
-        if count > data["Cumulative total"].max() and date_str > data["Date"].max():
-
-            new = pd.DataFrame(
-                {
-                    "Country": self.location,
-                    "Date": [date_str],
-                    "Cumulative total": count,
-                    "Source URL": url,
-                    "Source label": "National Organization of Public Health",
-                    "Units": "samples tested",
-                }
-            )
-
-            df = pd.concat([new, data], sort=False).sort_values("Date")
-            self.export_datafile(df)
+    def export(self):
+        """Export data to csv"""
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def main():
