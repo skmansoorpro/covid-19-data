@@ -120,17 +120,16 @@ class Ukraine(CountryVaxBase):
         )
 
     def pipeline_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
-        vaccine_name = ["Oxford/AstraZeneca", "Sinovac", "Pfizer/BioNTech", "Johnson&Johnson", "Moderna"]
-        column_name = [
-            "all_doses_astrazeneca",
-            "all_doses_sinovac",
-            "all_doses_pfizer",
-            "all_doses_jnj",
-            "all_doses_moderna",
-        ]
+        vaccine_columns = {
+            "Oxford/AstraZeneca": "all_doses_astrazeneca",
+            "Sinovac": "all_doses_sinovac",
+            "Pfizer/BioNTech": "all_doses_pfizer",
+            "Johnson&Johnson": "all_doses_jnj",
+            "Moderna": "all_doses_moderna",
+        }
 
         vac_dfs = []
-        for vaccine, col in zip(vaccine_name, column_name):
+        for vaccine, col in vaccine_columns.items():
             vac_df = df[["location", "date", col]].copy()
             vac_df["vaccine"] = vaccine
             vac_df.rename(columns={col: "total_vaccinations"}, inplace=True)
@@ -141,11 +140,11 @@ class Ukraine(CountryVaxBase):
 
     def export(self):
         # Load data
-        df = self.read()
+        df_base = self.read()
         # Main data
-        df = df.pipe(self.pipeline)
+        df = df_base.pipe(self.pipeline)
         # Manufacturer data
-        df_man = df.pipe(self.pipeline_manufacturer)
+        df_man = df_base.pipe(self.pipeline_manufacturer)
         self.export_datafile(
             df,
             df_manufacturer=df_man,
