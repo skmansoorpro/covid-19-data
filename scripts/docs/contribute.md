@@ -1,7 +1,7 @@
 # Contribute
 Hi! Thank you so much for wanting to contribute :).
 
-This is a work-in-progress document, so if you have questions you can [submit and
+This is a work-in-progress document, so if you have questions you can [submit an
 issue](https://github.com/owid/covid-19-data/issues/new). Also, bear in mind that all the development activity, including
 open discussions occur on Github, so make sure to check the latest [issues](https://github.com/owid/covid-19-data/issues) and [dicussions](https://github.com/owid/covid-19-data/discussions). 
 ## Pre-requisites
