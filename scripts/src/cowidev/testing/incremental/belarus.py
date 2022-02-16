@@ -1,57 +1,69 @@
 import re
-from cowidev.testing.utils.base import CountryTestBase
 
+from bs4 import BeautifulSoup, element
 import pandas as pd
 
-from cowidev.utils.web import get_soup
-from cowidev.utils.clean import clean_count, clean_date
+from cowidev.utils import get_soup, clean_count, clean_date
+from cowidev.testing import CountryTestBase
 
 
 class Belarus(CountryTestBase):
-    location = "Belarus"
+    location: str = "Belarus"
+    units: str = "tests performed"
+    source_label: str = "Ministry of health"
+    source_url: str = "https://stopcovid.belta.by/"
+    source_url_ref: str = "https://stopcovid.belta.by/"
+    regex: dict = {
+        "date": r"\d{1,2}\.\d{1,2}\.\d{4}г.",
+        "element": r"ПРОВЕДЕНО ТЕСТОВ",
+    }
+
+    def read(self) -> pd.DataFrame:
+        """Read data from source"""
+        soup = get_soup(self.source_url)
+        df = self._parse_data(soup)
+        return df
+
+    def _parse_data(self, soup: BeautifulSoup) -> pd.DataFrame:
+        """Parse data from soup"""
+        # Get the element
+        elem = soup.find(text=self.regex["element"]).parent
+        if not elem:
+            raise ValueError("Element not found, please update the script")
+        # Get the metrics
+        count = self._parse_metrics(elem)
+        # Get the date from soup
+        date = self._parse_date(soup)
+        df = pd.DataFrame(
+            {
+                "Date": [date],
+                "Cumulative total": [count],
+            }
+        )
+        return df
+
+    def _parse_metrics(self, elem: element.Tag) -> int:
+        """Parse metrics from element"""
+        count = clean_count(elem.find_previous_sibling("div", class_="t192__title").text.replace(" ", ""))
+        return count
+
+    def _parse_date(self, soup: BeautifulSoup) -> str:
+        """Parse date from soup"""
+        date = soup.find(text=re.compile(self.regex["date"]))
+        return clean_date(date, "%d.%m.%Yг.")
+
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Pipeline for data processing"""
+        return (
+            df.pipe(self.pipe_metadata)
+            .pipe(self.pipe_merge_current)
+            .drop_duplicates(subset=["Cumulative total"], keep="first")
+        )
 
     def export(self):
-        data = pd.read_csv(self.output_path)
-
-        # get and parse daily updates page
-        general_url = "https://www.belarus.by/en/press-center/press-release/?page=1"
-
-        # Get an ssl.SSLCertVerificationError error without verify=False
-        soup = get_soup(general_url, verify=False)
-
-        news_tags = soup.select(".news_text a[href]")
-        for news_tag in news_tags:
-
-            url = f"https://www.belarus.by{news_tag.get('href')}"
-            soup_page = get_soup(url, verify=False)
-            text_page = soup_page.find(class_="ic").text
-            match_text = re.search(r"Belarus (has )?performed [\d,]+ tests", text_page)
-
-            # Go to next URL if unable to match the pattern
-            if match_text is not None:
-
-                cumulative_total = clean_count(re.search(r"[\d,]+", match_text.group(0)).group(0))
-
-                date_raw = soup_page.find(class_="pages_header_inner").text
-                date = clean_date(date_raw, "%d %b %Y")
-
-                if cumulative_total > data["Cumulative total"].max() and date > data["Date"].max():
-                    # create and append new row
-                    new = pd.DataFrame(
-                        {
-                            "Date": [date],
-                            "Country": self.location,
-                            "Units": "tests performed",
-                            "Source URL": url,
-                            "Source label": "Government of Belarus",
-                            "Notes": pd.NA,
-                            "Cumulative total": cumulative_total,
-                        }
-                    )
-
-                    df = pd.concat([data, new], sort=False)
-                    self.export_datafile(df)
-                break
+        """Export data to csv"""
+        df = self.read().pipe(self.pipeline)
+        self.export_datafile(df)
 
 
 def main():
