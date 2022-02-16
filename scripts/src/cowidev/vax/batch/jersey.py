@@ -185,9 +185,9 @@ class Jersey(CountryVaxBase):
         return df
 
     def pipe_age_filter(self, df: pd.DataFrame) -> pd.DataFrame:
-        df.loc[(df.date == "2021-08-29"), "people_fully_vaccinated_per_hundred"] = pd.NA
-        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "18"), "people_vaccinated_per_hundred"] = pd.NA
-        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "40"), "people_vaccinated_per_hundred"] = pd.NA
+        df.loc[(df.date == "2021-08-29"), "people_fully_vaccinated_per_hundred"] = None
+        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "18"), "people_vaccinated_per_hundred"] = None
+        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "40"), "people_vaccinated_per_hundred"] = None
         return df
         # df.pipe(make_monotonic, "date", ["people_vaccinated_per_hundred", "people_fully_vaccinated_per_hundred"])
 
