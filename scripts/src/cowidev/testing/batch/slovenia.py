@@ -34,12 +34,22 @@ class Slovenia(CountryTestBase):
 
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipes metrics"""
-        return df.assign(
+        pcr_only = df.assign(
+            **{
+                "positive": df.positive_pcr.fillna(0),
+                "Daily change in cumulative total": df.pcr.fillna(0),
+            }
+        ).truncate(after=df[df["Date"] == "2022-01-31"].index[0])
+
+        pcr_and_antigen = df.assign(
             **{
                 "positive": df.positive_pcr.fillna(0) + df.positive_ag.fillna(0),
                 "Daily change in cumulative total": df.pcr.fillna(0) + df.ag.fillna(0),
             }
-        )
+        ).truncate(before=df[df["Date"] == "2022-02-01"].index[0])
+
+        df = pd.concat([pcr_only, pcr_and_antigen])
+        return df
 
     def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
         """Calculate positive rate"""
