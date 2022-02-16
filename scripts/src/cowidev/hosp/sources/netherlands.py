@@ -40,6 +40,8 @@ def main() -> pd.DataFrame:
 
     df["entity"] = METADATA["entity"]
 
+    df = df.drop_duplicates(["date", "indicator"], keep=False)
+
     return df, METADATA
 
 
