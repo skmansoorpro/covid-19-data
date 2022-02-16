@@ -160,7 +160,7 @@ your personal Google credentials. To obtain it, you can follow [`gsheets` docume
 > the list of your **OAuth 2.0 client IDs** click **Download JSON** for the Client ID you just created.
 
 We recommend saving the downloaded file in a safe directory, with a simplified name, e.g.
-`~/.config/owid/clients_secrets.json`.
+`~/.config/owid/client_secrets.json`.
 
 ## Verify installation
 Once you have installed the library, configured the configuration and secrets files accordingly along with the
