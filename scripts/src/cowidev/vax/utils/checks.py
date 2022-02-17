@@ -4,6 +4,8 @@ from itertools import chain
 import pandas as pd
 
 
+METRICS = ["total_vaccinations", "people_vaccinated", "people_fully_vaccinated", "total_boosters"]
+
 VACCINES_ACCEPTED = [
     "Abdala",
     "CanSino",
