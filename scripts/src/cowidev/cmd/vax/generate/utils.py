@@ -559,6 +559,12 @@ class DatasetGenerator:
         )
 
     def pipe_age_pivot(self, df: pd.DataFrame) -> pd.DataFrame:
+
+        duplicates = df[df.duplicated(subset=["date", "location", "age_group"])]
+        if len(duplicates) > 0:
+            print(duplicates)
+            raise Exception("There are duplicate combinations of location-age-age_group in the age dataset!")
+
         df = df.pivot(
             index=["location", "date"],
             columns="age_group",
@@ -573,7 +579,9 @@ class DatasetGenerator:
             df.people_with_booster_per_hundred.columns
         )
         if columns_wrong_1.any() or columns_wrong_2.any():
-            raise ValueError(f"There is missmatch between age groups in people vaccinated and people fully vaccinated")
+            raise ValueError(
+                f"There is a mismatch between age groups in people vaccinated and people fully vaccinated"
+            )
         return df
 
     def pipe_age_partly(self, df: pd.DataFrame) -> pd.DataFrame:
