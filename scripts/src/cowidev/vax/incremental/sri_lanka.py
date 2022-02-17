@@ -42,13 +42,13 @@ class SriLanka:
                 "දිය",
                 "ේ ාවිෂීල්ඩඩ් Covishield",
                 "ටයිේයාෆාම් Sinopharm",
-                "ස්පුට්නිව් - VSputnik - V",
+                "ටුට්නිව් - V",
+                "Sputnik - V",
                 "Unnamed: 0",
+                "ෆයිසර්Pfizer",
                 "Unnamed: 1",
-                "ෆයිටර්Pfizer",
                 "Unnamed: 2",
-                "Unnamed: 3",
-                "ේමාසර්යා Moderna",
+                "ම ොඩර්ර්ො Moderna",
             ],
         )
 
