@@ -10,6 +10,7 @@ VACCINES_ACCEPTED = [
     "Covaxin",
     "COVIran Barekat",
     "EpiVacCorona",
+    "FAKHRAVAC",
     "IMBCAMS/Inactivated",
     "Johnson&Johnson",
     "LV-SMENP",
@@ -23,6 +24,7 @@ VACCINES_ACCEPTED = [
     "Sinopharm/Wuhan",
     "Sinovac",
     "Soberana02",
+    "SpikoGen",
     "Sputnik Light",
     "Sputnik V",
     "Turkovac",
@@ -39,6 +41,7 @@ VACCINES_ONE_DOSE = [
 VACCINES_THREE_DOSES = [
     "ZF2001",
     "Abdala",
+    "Razi Cov Pars", # 3rd dose (intranasal spray) not reported in Iran as a 3rd dose
     "Soberana02",
     "ZyCoV-D",
 ]
