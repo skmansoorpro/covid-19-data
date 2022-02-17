@@ -563,7 +563,7 @@ class DatasetGenerator:
         duplicates = df[df.duplicated(subset=["date", "location", "age_group"])]
         if len(duplicates) > 0:
             print(duplicates)
-            raise Exception("There are duplicate combinations of location-age-age_group in the age dataset!")
+            raise Exception("There are duplicate combinations of location-date-age_group in the age dataset!")
 
         df = df.pivot(
             index=["location", "date"],
