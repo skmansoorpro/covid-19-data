@@ -1,371 +1,374 @@
-date,people_vaccinated,people_fully_vaccinated,total_boosters,vaccine,total_vaccinations,location,source_url
-2021-02-08,5.0,2.0,0.0,Sinopharm/Beijing,7.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-09,3754.0,5.0,0.0,Sinopharm/Beijing,3759.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-10,20338.0,22.0,0.0,Sinopharm/Beijing,20360.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-11,54456.0,24.0,0.0,Sinopharm/Beijing,54480.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-12,86830.0,24.0,0.0,Sinopharm/Beijing,86854.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-13,105697.0,25.0,1.0,Sinopharm/Beijing,105723.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-14,110981.0,25.0,1.0,Sinopharm/Beijing,111007.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-15,122456.0,25.0,1.0,Sinopharm/Beijing,122482.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-16,129958.0,26.0,1.0,Sinopharm/Beijing,129985.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-17,133903.0,26.0,1.0,Sinopharm/Beijing,133930.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-18,141306.0,27.0,1.0,Sinopharm/Beijing,141334.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-19,171826.0,27.0,1.0,Sinopharm/Beijing,171854.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-20,197943.0,27.0,1.0,Sinopharm/Beijing,197971.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-21,202498.0,27.0,1.0,Sinopharm/Beijing,202526.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-22,232959.0,35.0,1.0,Sinopharm/Beijing,232995.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-23,260211.0,36.0,1.0,Sinopharm/Beijing,260248.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-24,283099.0,40.0,1.0,Sinopharm/Beijing,283140.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-25,298897.0,42.0,1.0,Sinopharm/Beijing,298940.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-26,314533.0,46.0,1.0,Sinopharm/Beijing,314580.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-27,321301.0,46.0,1.0,Sinopharm/Beijing,321348.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-02-28,322297.0,46.0,1.0,Sinopharm/Beijing,322344.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-01,331578.0,51.0,1.0,Sinopharm/Beijing,331630.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-02,338686.0,2191.0,1.0,Sinopharm/Beijing,340878.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-03,345060.0,14248.0,1.0,Sinopharm/Beijing,359309.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-04,348831.0,43485.0,1.0,"Pfizer/BioNTech, Sinopharm/Beijing",392317.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-05,353452.0,75815.0,2.0,"Pfizer/BioNTech, Sinopharm/Beijing",429269.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-06,356475.0,92823.0,2.0,"Pfizer/BioNTech, Sinopharm/Beijing",449300.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-07,356615.0,95295.0,2.0,"Pfizer/BioNTech, Sinopharm/Beijing",451912.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-08,374583.0,107982.0,2.0,"Pfizer/BioNTech, Sinopharm/Beijing",482567.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-09,394193.0,115500.0,3.0,"Pfizer/BioNTech, Sinopharm/Beijing",509696.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-10,407106.0,120575.0,3.0,"Pfizer/BioNTech, Sinopharm/Beijing",527684.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-11,415652.0,126480.0,3.0,"Pfizer/BioNTech, Sinopharm/Beijing",542135.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-12,424399.0,144221.0,3.0,"Pfizer/BioNTech, Sinopharm/Beijing",568623.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-13,430584.0,173663.0,3.0,"Pfizer/BioNTech, Sinopharm/Beijing",604250.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-14,431294.0,176379.0,3.0,"Pfizer/BioNTech, Sinopharm/Beijing",607676.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-15,449423.0,206189.0,3.0,"Pfizer/BioNTech, Sinopharm/Beijing",655615.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-16,472081.0,231129.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",703214.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-17,494493.0,255578.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",750075.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-18,520704.0,272194.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",792902.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-19,546378.0,288024.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",834406.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-20,564543.0,294413.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",858960.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-21,565229.0,295442.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",860675.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-22,573924.0,304199.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",878127.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-23,589563.0,313494.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",903061.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-24,604245.0,320885.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",925134.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-25,617199.0,325690.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",942893.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-26,633829.0,330452.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",964285.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-27,645125.0,333552.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",978681.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-28,647219.0,333753.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",980976.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-29,652120.0,346244.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",998368.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-30,656769.0,368194.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",1024967.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-03-31,664388.0,385774.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",1050166.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-01,666817.0,390075.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",1056896.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-02,667957.0,392878.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",1060839.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-03,670663.0,399076.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",1069743.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-04,670940.0,400396.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",1071340.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-05,677087.0,410734.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",1087825.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-06,688847.0,429392.0,4.0,"Pfizer/BioNTech, Sinopharm/Beijing",1118243.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-07,702716.0,446399.0,5.0,"Pfizer/BioNTech, Sinopharm/Beijing",1149120.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-08,719712.0,475205.0,5.0,"Pfizer/BioNTech, Sinopharm/Beijing",1194922.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-09,736344.0,493622.0,5.0,"Pfizer/BioNTech, Sinopharm/Beijing",1229971.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-10,740529.0,502399.0,5.0,"Pfizer/BioNTech, Sinopharm/Beijing",1242933.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-11,740553.0,502477.0,5.0,"Pfizer/BioNTech, Sinopharm/Beijing",1243035.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-12,741456.0,515715.0,7.0,"Pfizer/BioNTech, Sinopharm/Beijing",1257178.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-13,743339.0,535841.0,7.0,"Pfizer/BioNTech, Sinopharm/Beijing",1279187.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-14,746065.0,556525.0,7.0,"Pfizer/BioNTech, Sinopharm/Beijing",1302597.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-15,747905.0,578073.0,7.0,"Pfizer/BioNTech, Sinopharm/Beijing",1325985.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-16,767595.0,599946.0,7.0,"Pfizer/BioNTech, Sinopharm/Beijing",1367548.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-17,797235.0,614548.0,7.0,"Pfizer/BioNTech, Sinopharm/Beijing",1411790.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-18,825168.0,617721.0,7.0,"Pfizer/BioNTech, Sinopharm/Beijing",1442896.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-19,832132.0,621739.0,7.0,"Pfizer/BioNTech, Sinopharm/Beijing",1453878.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-20,843401.0,626886.0,7.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1470294.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-21,853230.0,637131.0,7.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1490368.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-22,861450.0,639655.0,7.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1501112.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-23,887856.0,642246.0,7.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1530109.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-24,915537.0,644711.0,7.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1560255.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-25,931095.0,644837.0,7.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1575939.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-26,946460.0,649346.0,7.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1595813.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-27,966170.0,660173.0,9.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1626352.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-28,1005696.0,672014.0,10.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1677720.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-29,1050434.0,684898.0,12.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1735344.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-04-30,1131689.0,703174.0,12.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1834875.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-01,1194842.0,706171.0,12.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1901025.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-02,1242784.0,707248.0,12.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",1950044.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-03,1302048.0,712290.0,12.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2014350.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-04,1324923.0,713803.0,12.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2038738.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-05,1345397.0,718364.0,12.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2063773.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-06,1384636.0,720426.0,13.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2105075.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-07,1418153.0,735250.0,14.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2153417.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-08,1479270.0,757990.0,14.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2237274.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-09,1512524.0,783440.0,14.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2295978.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-10,1560026.0,792472.0,14.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2352512.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-11,1602815.0,805035.0,14.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2407864.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-12,1660456.0,816424.0,14.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2476894.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-13,1733885.0,824854.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2558754.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-14,1821882.0,845799.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2667696.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-15,1874873.0,867805.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2742693.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-16,1898511.0,882343.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2780869.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-17,1949651.0,890662.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2840328.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-18,2009200.0,900561.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2909776.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-19,2069565.0,920926.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",2990506.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-20,2139886.0,937357.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",3077258.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-21,2249001.0,991011.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",3240027.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-22,2328413.0,1043305.0,15.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",3371733.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-23,2373749.0,1086189.0,16.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",3459954.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-24,2443328.0,1138475.0,17.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",3581820.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-25,2521134.0,1162120.0,17.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",3683271.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-26,2604373.0,1174902.0,18.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",3779293.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-27,2694747.0,1201975.0,18.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",3896740.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-28,2819430.0,1229809.0,19.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4049258.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-29,2894711.0,1285946.0,19.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4180676.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-30,2928591.0,1317505.0,19.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4246115.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-05-31,2997573.0,1360879.0,19.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4358471.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-01,3073349.0,1398899.0,20.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4472268.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-02,3151682.0,1435303.0,21.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4587006.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-03,3190450.0,1462175.0,21.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4652646.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-04,3206613.0,1483750.0,21.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4690384.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-05,3214177.0,1497457.0,21.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4711655.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-06,3216030.0,1497762.0,21.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4713813.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-07,3224001.0,1521178.0,21.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4745200.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-08,3325523.0,1637922.0,23.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",4963468.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-09,3440645.0,1730228.0,25.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",5170898.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-10,3565277.0,1836871.0,25.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",5402173.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-11,3656135.0,1972158.0,26.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",5628319.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-12,3731711.0,2061356.0,28.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",5793095.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-13,3769057.0,2108357.0,29.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",5877443.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-14,3805481.0,2187011.0,31.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",5992523.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-15,3847649.0,2276506.0,33.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",6124188.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-16,3885874.0,2353602.0,33.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",6239509.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-17,3926526.0,2454252.0,33.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",6380811.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-18,3962272.0,2593575.0,36.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",6555883.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-19,3984960.0,2685579.0,39.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",6670578.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-20,3991211.0,2712760.0,41.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",6704012.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-21,4035543.0,2781539.0,42.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",6817124.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-22,4082592.0,2876534.0,42.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",6959168.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-23,4123849.0,2964288.0,43.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7088180.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-24,4168137.0,3006392.0,43.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7174572.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-25,4260895.0,3041323.0,43.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7302261.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-26,4330482.0,3054255.0,43.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7384780.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-27,4377887.0,3058229.0,45.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7436161.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-28,4420467.0,3072228.0,46.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7492741.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-29,4451748.0,3142074.0,48.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7593870.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-06-30,4535839.0,3240797.0,51.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7776687.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-01,4636131.0,3342555.0,53.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",7978739.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-02,4752774.0,3434036.0,56.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",8186866.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-03,4877470.0,3507297.0,57.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",8384824.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-04,4977718.0,3542759.0,57.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",8520534.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-05,5129094.0,3579808.0,57.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",8708959.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-06,5301420.0,3621713.0,59.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",8923192.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-07,5439179.0,3656336.0,61.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",9095576.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-08,5554951.0,3700062.0,63.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",9255076.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-09,5678169.0,3741357.0,63.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",9419589.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-10,5920003.0,3768507.0,68.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",9688578.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-11,6090237.0,3779521.0,75.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",9869833.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-12,6175087.0,3802403.0,75.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",9977565.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-13,6261970.0,3827987.0,77.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",10090034.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-14,6381564.0,3858187.0,78.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",10239829.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-15,6523989.0,3916413.0,78.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",10440480.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-16,6657578.0,4011706.0,80.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",10669364.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-17,6885445.0,4093318.0,84.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",10978847.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-18,7017339.0,4140346.0,85.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",11157770.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-19,7075111.0,4181247.0,86.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",11256444.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-20,7146814.0,4213176.0,87.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",11360077.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-21,7233666.0,4286013.0,87.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",11519766.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-22,7344301.0,4369873.0,91.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",11714265.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-23,7491869.0,4470913.0,94.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",11962876.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-24,7768322.0,4582909.0,96.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",12351327.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-25,7975298.0,4684199.0,99.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",12659596.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-26,8027904.0,4709737.0,99.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",12737740.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-27,8068877.0,4924113.0,103.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",12993093.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-28,8082989.0,5026136.0,105.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",13109230.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-29,8098685.0,5075735.0,107.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",13174527.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-30,8136275.0,5204444.0,111.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",13340830.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-07-31,8195495.0,5421468.0,117.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",13617080.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-01,8248266.0,5578219.0,120.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",13826605.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-02,8289198.0,5686577.0,121.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",13975896.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-03,8327560.0,5788326.0,123.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",14116009.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-04,8376963.0,5900884.0,125.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",14277972.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-05,8428303.0,6022466.0,125.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",14450894.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-06,8584264.0,6152032.0,128.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",14736424.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-07,8874576.0,6358877.0,131.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",15233584.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-08,9096796.0,6499428.0,135.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",15596359.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-09,9150352.0,6551862.0,135.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",15702349.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-10,9210998.0,6615650.0,136.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",15826784.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-11,9253050.0,6693691.0,137.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",15946878.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-12,9290922.0,6773928.0,138.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",16064988.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-13,9325480.0,6857392.0,139.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",16183011.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-14,9365466.0,7052284.0,144.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",16417894.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-15,9386622.0,7228243.0,147.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",16615012.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-16,9419376.0,7275915.0,151.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",16695442.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-17,9456942.0,7339433.0,154.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",16796529.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-18,9491693.0,7394303.0,156.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",16886152.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-19,9535064.0,7453176.0,158.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",16988398.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-20,9616947.0,7522496.0,159.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",17139602.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-21,9803619.0,7652878.0,161.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",17456658.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-22,9955621.0,7732872.0,167.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",17688660.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-23,9990522.0,7779097.0,169.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",17769788.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-24,10028343.0,7818661.0,169.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",17847173.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-25,10081885.0,7856717.0,171.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",17938773.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-26,10152534.0,7893090.0,175.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",18045799.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-27,10207662.0,8011732.0,181.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",18219575.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-28,10438626.0,8244030.0,188.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",18682844.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-29,10618053.0,8473109.0,195.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",19091357.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-30,10625901.0,8483258.0,196.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",19109355.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-08-31,10696981.0,8532334.0,199.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",19229514.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-01,10772938.0,8603538.0,201.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",19376677.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-02,10899727.0,8662405.0,203.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",19562335.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-03,11045902.0,8730858.0,206.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",19776966.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-04,11335830.0,8806309.0,211.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",20142350.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-05,11573700.0,8839905.0,218.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",20413823.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-06,11684979.0,8870067.0,220.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",20555266.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-07,11860073.0,8908509.0,221.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",20768803.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-08,12159248.0,8962931.0,224.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",21122403.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-09,12458181.0,9013760.0,231.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",21472172.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-10,12796969.0,9089243.0,238.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",21886450.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-11,13280237.0,9208635.0,248.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",22489120.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-12,13647076.0,9332753.0,254.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",22980083.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-13,13818257.0,9372045.0,257.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",23190559.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-14,14079257.0,9412992.0,263.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",23492512.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-15,14278872.0,9466729.0,268.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",23745869.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-16,14541833.0,9541173.0,274.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",24083280.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-17,14795766.0,9594802.0,282.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",24390850.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-18,15127371.0,9754057.0,294.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",24881722.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-19,15315073.0,9870503.0,301.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",25185877.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-20,15400505.0,9916619.0,313.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",25317437.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-21,15519222.0,9998858.0,322.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",25518402.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-22,15624231.0,10069910.0,323.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",25694464.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-23,15718603.0,10145294.0,332.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",25864229.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-24,15820202.0,10240922.0,336.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",26061460.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-25,15979440.0,10493644.0,340.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",26473424.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-26,16103604.0,10697236.0,347.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",26801187.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-27,16201519.0,10805813.0,353.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",27007685.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-28,16311433.0,10934729.0,357.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",27246519.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-29,16414553.0,11143110.0,376.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",27558039.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-09-30,16510412.0,11361827.0,393.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",27872632.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-01,16598964.0,11560551.0,411.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",28159926.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-02,16776442.0,11959308.0,467.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",28736217.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-03,16929047.0,12290784.0,487.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",29220318.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-04,17002592.0,12482836.0,501.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",29485929.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-05,17077026.0,12704606.0,521.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",29782153.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-06,17152050.0,12910894.0,534.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",30063478.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-07,17222218.0,13111600.0,542.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",30334360.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-08,17279957.0,13264245.0,575.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",30544777.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-09,17374888.0,13546114.0,592.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",30921594.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-10,17439593.0,13723273.0,610.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",31163476.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-11,17503154.0,13839524.0,621.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",31343299.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-12,17618602.0,13964910.0,678.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",31584190.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-13,17728561.0,14083189.0,689.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",31812439.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-14,17835365.0,14201797.0,710.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",32037872.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-15,17945673.0,14313076.0,21140.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",32279889.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-16,18123184.0,14459175.0,46384.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",32628743.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-17,18280127.0,14579988.0,57300.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",32917415.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-18,18372416.0,14666508.0,84210.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",33123134.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-19,18448812.0,14769818.0,110002.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",33328632.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-20,18506379.0,14867719.0,135490.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",33509588.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-21,18563605.0,14960556.0,152300.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",33676461.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-22,18612308.0,15048964.0,167830.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",33829102.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-23,18719194.0,15194768.0,175134.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",34089096.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-24,18793604.0,15320822.0,177334.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",34291760.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-25,18833961.0,15396901.0,184310.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",34415172.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-26,18871882.0,15471050.0,190579.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",34533511.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-27,18909457.0,15541303.0,196369.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",34647129.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-28,18954235.0,15612986.0,207676.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",34774897.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-29,19001917.0,15679565.0,222848.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",34904330.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-30,19210634.0,15765795.0,237152.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",35213581.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-10-31,19387148.0,15835209.0,246175.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",35468532.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-01,19461674.0,15859631.0,250491.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",35571796.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-02,19553248.0,15896229.0,257221.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",35706698.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-03,19662198.0,15946468.0,266906.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",35875572.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-04,19833559.0,16007411.0,276759.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",36117729.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-05,20058348.0,16066759.0,285719.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",36410826.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-06,20371538.0,16168637.0,294700.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",36834875.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-07,20584412.0,16262997.0,300763.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",37148172.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-08,20706258.0,16337160.0,308278.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",37351696.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-09,20817595.0,16434288.0,318957.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",37570840.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-10,20926544.0,16516370.0,335569.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",37778483.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-11,21020523.0,16595978.0,354703.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",37971204.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-12,21106243.0,16664406.0,368988.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",38139637.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-13,21219801.0,16781865.0,380405.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",38382071.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-14,21318619.0,16886220.0,392298.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",38597137.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-15,21404059.0,16959112.0,401817.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",38764988.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-16,21510017.0,17030738.0,412643.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",38953398.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-17,21613800.0,17101144.0,422583.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",39137527.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-18,21717535.0,17167350.0,432829.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",39317714.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-19,21821631.0,17230014.0,443745.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",39495390.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-20,21951866.0,17391134.0,455157.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",39798157.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-21,22061261.0,17557264.0,469330.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",40087855.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-22,22143919.0,17647317.0,486268.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",40277504.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-23,22227258.0,17747428.0,504321.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",40479007.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-24,22302709.0,17843566.0,525635.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",40671910.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-25,22375786.0,17978312.0,547248.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",40901346.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-26,22444372.0,18138801.0,608404.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",41191577.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-27,22528155.0,18383225.0,712702.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",41624082.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-28,22601065.0,18574876.0,800836.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",41976777.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-29,22657521.0,18693192.0,896125.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",42246838.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-11-30,22709733.0,18800817.0,998082.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",42508632.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-01,22764188.0,18898804.0,1099833.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",42762825.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-02,22827660.0,18996939.0,1209250.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",43033849.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-03,22892101.0,19092939.0,1313524.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",43298564.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-04,22970355.0,19222574.0,1425554.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",43618483.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-05,23033738.0,19330221.0,1500396.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",43864355.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-06,23091837.0,19416456.0,1576435.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",44084728.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-07,23149314.0,19509219.0,1651161.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",44309694.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-08,23194131.0,19580649.0,1699714.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",44474494.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-09,23260744.0,19686551.0,1773054.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",44720349.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-10,23371234.0,19830120.0,1852627.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",45053981.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-11,23507889.0,20011506.0,1931175.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",45450570.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-12,23611747.0,20163002.0,1989333.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",45764082.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-13,23724177.0,20288345.0,2051554.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",46064076.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-14,23835608.0,20428274.0,2114484.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",46378366.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-15,23936851.0,20556828.0,2172253.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",46665932.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-16,24011637.0,20662306.0,2223895.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",46897838.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-17,24085153.0,20765289.0,2275644.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",47126086.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-18,24151988.0,20870122.0,2327041.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",47349151.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-19,24197488.0,20956753.0,2369810.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",47524051.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-20,24251012.0,21037106.0,2495221.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",47783339.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-21,24299551.0,21115300.0,2739250.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",48154101.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-22,24340086.0,21187005.0,2955593.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",48482684.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-23,24372664.0,21248022.0,3098351.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",48719037.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-24,24384565.0,21270360.0,3142080.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",48797005.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-25,24387741.0,21275687.0,3166895.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",48830323.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-26,24403554.0,21316415.0,3294624.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",49014593.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-27,24437526.0,21391167.0,3496208.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",49324901.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-28,24473349.0,21468956.0,3705592.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",49647897.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-29,24506754.0,21536469.0,3883181.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",49926404.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-30,24535855.0,21595280.0,4009124.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",50140259.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2021-12-31,24545664.0,21619755.0,4043423.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",50208842.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-01,24547421.0,21623601.0,4057358.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",50228380.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-02,24555778.0,21652319.0,4132927.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",50341024.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-03,24581288.0,21722369.0,4281343.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",50585000.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-04,24607587.0,21797934.0,4449660.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",50855181.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-05,24637554.0,21875116.0,4656497.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",51169167.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-06,24666632.0,21948991.0,4870872.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",51486495.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-07,24694863.0,22022401.0,5087372.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",51804636.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-08,24720083.0,22090454.0,5325041.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",52135578.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-09,24736481.0,22134784.0,5464882.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",52336147.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-10,24764034.0,22201777.0,5645300.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",52611111.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-11,24788455.0,22261683.0,5818944.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",52869082.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-12,24812387.0,22318961.0,5979249.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",53110597.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-13,24835024.0,22372496.0,6148360.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",53355880.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-14,24855869.0,22419773.0,6308120.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",53583762.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-15,24873236.0,22456219.0,6476084.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",53805539.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-16,24884078.0,22480978.0,6570779.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",53935835.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-17,24903617.0,22522041.0,6692136.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",54117794.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-18,24919543.0,22558433.0,6806065.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",54284041.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-19,24935716.0,22594060.0,6916072.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",54445848.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-20,24950699.0,22626917.0,7012058.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",54589674.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-21,24964483.0,22657052.0,7105915.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",54727450.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-22,24977299.0,22681072.0,7211569.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",54869940.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-23,24987082.0,22700348.0,7291279.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",54978709.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-24,25000835.0,22728432.0,7374515.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",55103782.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-25,25013401.0,22754941.0,7456365.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",55224707.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-26,25025121.0,22781971.0,7533578.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",55340670.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-27,25036762.0,22808033.0,7609759.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",55454554.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-28,25047510.0,22832387.0,7683006.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",55562903.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-29,25057804.0,22854816.0,7770643.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",55683263.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-30,25065537.0,22870791.0,7841253.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",55777581.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-01-31,25076711.0,22894749.0,7919616.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",55891076.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-01,25087686.0,22917440.0,8002468.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56007594.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-02,25098606.0,22940365.0,8081283.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56120254.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-03,25109562.0,22962870.0,8158361.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56230793.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-04,25120483.0,22985289.0,8237206.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56342978.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-05,25130862.0,23005940.0,8327266.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56464068.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-06,25137575.0,23019455.0,8382131.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56539161.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-07,25148571.0,23040633.0,8449596.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56638800.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-08,25159153.0,23060174.0,8519501.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56738828.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-09,25168719.0,23078279.0,8589110.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56836108.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-10,25177453.0,23095025.0,8652373.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56924851.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-11,25184080.0,23107460.0,8703370.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",56994910.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
-2022-02-12,25186678.0,23112771.0,8734944.0,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",57034393.0,Peru,https://www.datosabiertos.gob.pe/dataset/vacunacion
+location,date,vaccine,source_url,total_vaccinations,people_vaccinated,people_fully_vaccinated,total_boosters
+Peru,2021-02-08,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,7,5,2,0
+Peru,2021-02-09,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,3759,3754,5,0
+Peru,2021-02-10,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,20360,20338,22,0
+Peru,2021-02-11,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,54480,54456,24,0
+Peru,2021-02-12,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,86855,86831,24,0
+Peru,2021-02-13,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,105725,105699,25,1
+Peru,2021-02-14,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,111009,110983,25,1
+Peru,2021-02-15,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,122484,122458,25,1
+Peru,2021-02-16,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,129987,129960,26,1
+Peru,2021-02-17,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,133932,133905,26,1
+Peru,2021-02-18,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,141336,141308,27,1
+Peru,2021-02-19,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,171856,171828,27,1
+Peru,2021-02-20,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,197973,197945,27,1
+Peru,2021-02-21,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,202528,202500,27,1
+Peru,2021-02-22,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,232997,232961,35,1
+Peru,2021-02-23,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,260250,260213,36,1
+Peru,2021-02-24,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,283142,283101,40,1
+Peru,2021-02-25,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,298942,298899,42,1
+Peru,2021-02-26,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,314582,314535,46,1
+Peru,2021-02-27,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,321351,321304,46,1
+Peru,2021-02-28,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,322347,322300,46,1
+Peru,2021-03-01,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,331633,331581,51,1
+Peru,2021-03-02,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,340881,338689,2191,1
+Peru,2021-03-03,Sinopharm/Beijing,https://www.datosabiertos.gob.pe/dataset/vacunacion,359313,345064,14248,1
+Peru,2021-03-04,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,392321,348835,43485,1
+Peru,2021-03-05,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,429274,353456,75816,2
+Peru,2021-03-06,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,449305,356479,92824,2
+Peru,2021-03-07,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,451917,356619,95296,2
+Peru,2021-03-08,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,482573,374587,107984,2
+Peru,2021-03-09,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,509702,394197,115502,3
+Peru,2021-03-10,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,527691,407111,120577,3
+Peru,2021-03-11,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,542142,415657,126482,3
+Peru,2021-03-12,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,568631,424404,144224,3
+Peru,2021-03-13,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,604259,430589,173667,3
+Peru,2021-03-14,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,607685,431299,176383,3
+Peru,2021-03-15,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,655624,449428,206193,3
+Peru,2021-03-16,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,703223,472086,231133,4
+Peru,2021-03-17,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,750084,494499,255581,4
+Peru,2021-03-18,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,792911,520710,272197,4
+Peru,2021-03-19,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,834415,546384,288027,4
+Peru,2021-03-20,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,858969,564549,294416,4
+Peru,2021-03-21,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,860684,565235,295445,4
+Peru,2021-03-22,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,878136,573930,304202,4
+Peru,2021-03-23,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,903070,589569,313497,4
+Peru,2021-03-24,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,925143,604251,320888,4
+Peru,2021-03-25,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,942902,617205,325693,4
+Peru,2021-03-26,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,964294,633835,330455,4
+Peru,2021-03-27,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,978690,645131,333555,4
+Peru,2021-03-28,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,980985,647225,333756,4
+Peru,2021-03-29,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,998379,652127,346248,4
+Peru,2021-03-30,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1024979,656776,368199,4
+Peru,2021-03-31,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1050179,664395,385780,4
+Peru,2021-04-01,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1056909,666824,390081,4
+Peru,2021-04-02,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1060852,667964,392884,4
+Peru,2021-04-03,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1069756,670670,399082,4
+Peru,2021-04-04,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1071353,670947,400402,4
+Peru,2021-04-05,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1087838,677094,410740,4
+Peru,2021-04-06,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1118257,688855,429398,4
+Peru,2021-04-07,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1149133,702723,446405,5
+Peru,2021-04-08,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1194935,719719,475211,5
+Peru,2021-04-09,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1229986,736352,493629,5
+Peru,2021-04-10,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1242948,740537,502406,5
+Peru,2021-04-11,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1243049,740560,502484,5
+Peru,2021-04-12,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1257192,741463,515722,7
+Peru,2021-04-13,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1279201,743346,535848,7
+Peru,2021-04-14,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1302611,746072,556532,7
+Peru,2021-04-15,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1325999,747912,578080,7
+Peru,2021-04-16,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1367562,767602,599953,7
+Peru,2021-04-17,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1411804,797242,614555,7
+Peru,2021-04-18,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1442911,825176,617728,7
+Peru,2021-04-19,"Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1453893,832140,621746,7
+Peru,2021-04-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1470310,843409,626894,7
+Peru,2021-04-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1490384,853238,637139,7
+Peru,2021-04-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1501128,861458,639663,7
+Peru,2021-04-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1530125,887864,642254,7
+Peru,2021-04-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1560272,915546,644719,7
+Peru,2021-04-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1575956,931104,644845,7
+Peru,2021-04-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1595830,946469,649354,7
+Peru,2021-04-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1626368,966178,660181,9
+Peru,2021-04-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1677735,1005704,672021,10
+Peru,2021-04-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1735363,1050442,684909,12
+Peru,2021-04-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1834899,1131701,703186,12
+Peru,2021-05-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1901045,1194850,706183,12
+Peru,2021-05-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,1950063,1242791,707260,12
+Peru,2021-05-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2014370,1302056,712302,12
+Peru,2021-05-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2038759,1324932,713815,12
+Peru,2021-05-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2063796,1345407,718377,12
+Peru,2021-05-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2105099,1384647,720439,13
+Peru,2021-05-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2153442,1418164,735264,14
+Peru,2021-05-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2237300,1479281,758005,14
+Peru,2021-05-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2296004,1512535,783455,14
+Peru,2021-05-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2352539,1560038,792487,14
+Peru,2021-05-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2407892,1602827,805051,14
+Peru,2021-05-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2476923,1660469,816440,14
+Peru,2021-05-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2558785,1733900,824870,15
+Peru,2021-05-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2667726,1821897,845814,15
+Peru,2021-05-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2742722,1874887,867820,15
+Peru,2021-05-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2780898,1898525,882358,15
+Peru,2021-05-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2840360,1949667,890678,15
+Peru,2021-05-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2909811,2009217,900579,15
+Peru,2021-05-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,2990542,2069583,920944,15
+Peru,2021-05-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,3077294,2139904,937375,15
+Peru,2021-05-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,3240074,2249023,991036,15
+Peru,2021-05-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,3371781,2328435,1043331,15
+Peru,2021-05-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,3460003,2373770,1086217,16
+Peru,2021-05-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,3581871,2443351,1138503,17
+Peru,2021-05-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,3683323,2521157,1162149,17
+Peru,2021-05-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,3779346,2604397,1174931,18
+Peru,2021-05-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,3896796,2694772,1202006,18
+Peru,2021-05-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4049316,2819456,1229841,19
+Peru,2021-05-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4180737,2894740,1285978,19
+Peru,2021-05-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4246177,2928620,1317538,19
+Peru,2021-05-31,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4358536,2997603,1360914,19
+Peru,2021-06-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4472336,3073382,1398934,20
+Peru,2021-06-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4587083,3151715,1435347,21
+Peru,2021-06-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4652727,3190486,1462220,21
+Peru,2021-06-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4690467,3206651,1483795,21
+Peru,2021-06-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4711740,3214215,1497504,21
+Peru,2021-06-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4713897,3216068,1497808,21
+Peru,2021-06-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4745370,3224043,1521306,21
+Peru,2021-06-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,4963661,3325579,1638059,23
+Peru,2021-06-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,5171096,3440705,1730366,25
+Peru,2021-06-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,5402388,3565349,1837014,25
+Peru,2021-06-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,5628543,3656212,1972305,26
+Peru,2021-06-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,5793323,3731790,2061505,28
+Peru,2021-06-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,5877677,3769140,2108508,29
+Peru,2021-06-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,5992762,3805564,2187167,31
+Peru,2021-06-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,6124428,3847731,2276664,33
+Peru,2021-06-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,6239756,3885957,2353766,33
+Peru,2021-06-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,6381060,3926611,2454416,33
+Peru,2021-06-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,6556135,3962356,2593743,36
+Peru,2021-06-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,6670834,3985045,2685750,39
+Peru,2021-06-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,6704268,3991296,2712931,41
+Peru,2021-06-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,6817384,4035631,2781711,42
+Peru,2021-06-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,6959432,4082679,2876711,42
+Peru,2021-06-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7088447,4123936,2964468,43
+Peru,2021-06-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7174840,4168225,3006572,43
+Peru,2021-06-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7302533,4260987,3041503,43
+Peru,2021-06-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7385055,4330577,3054435,43
+Peru,2021-06-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7436437,4377983,3058409,45
+Peru,2021-06-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7493017,4420562,3072409,46
+Peru,2021-06-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7594153,4451837,3142268,48
+Peru,2021-06-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7776979,4535927,3241001,51
+Peru,2021-07-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,7979034,4636220,3342761,53
+Peru,2021-07-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,8187175,4752864,3434255,56
+Peru,2021-07-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,8385148,4877567,3507524,57
+Peru,2021-07-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,8520868,4977822,3542989,57
+Peru,2021-07-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,8709298,5129199,3580042,57
+Peru,2021-07-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,8923536,5301529,3621948,59
+Peru,2021-07-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,9095933,5439295,3656577,61
+Peru,2021-07-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,9255440,5555069,3700308,63
+Peru,2021-07-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,9419958,5678291,3741604,63
+Peru,2021-07-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,9688964,5920135,3768761,68
+Peru,2021-07-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,9870234,6090382,3779778,74
+Peru,2021-07-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,9977968,6175233,3802661,74
+Peru,2021-07-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,10090440,6262117,3828247,76
+Peru,2021-07-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,10240240,6381713,3858450,77
+Peru,2021-07-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,10440898,6524140,3916681,77
+Peru,2021-07-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,10669787,6657732,4011976,79
+Peru,2021-07-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,10979280,6885607,4093590,83
+Peru,2021-07-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,11158210,7017507,4140619,84
+Peru,2021-07-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,11256886,7075279,4181522,85
+Peru,2021-07-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,11360521,7146981,4213454,86
+Peru,2021-07-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,11520215,7233836,4286293,86
+Peru,2021-07-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,11714722,7344472,4370160,90
+Peru,2021-07-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,11963347,7492040,4471214,93
+Peru,2021-07-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,12351816,7768497,4583224,95
+Peru,2021-07-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,12660100,7975481,4684521,98
+Peru,2021-07-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,12738246,8028089,4710059,98
+Peru,2021-07-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,12993630,8069065,4924463,102
+Peru,2021-07-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,13109776,8083179,5026493,104
+Peru,2021-07-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,13175081,8098877,5076098,106
+Peru,2021-07-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,13341407,8136467,5204830,110
+Peru,2021-07-31,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,13617679,8195687,5421876,116
+Peru,2021-08-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,13827230,8248461,5578648,121
+Peru,2021-08-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,13976536,8289394,5687020,122
+Peru,2021-08-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,14116654,8327757,5788773,124
+Peru,2021-08-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,14278625,8377164,5901335,126
+Peru,2021-08-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,14451555,8428505,6022924,126
+Peru,2021-08-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,14737106,8584475,6152502,129
+Peru,2021-08-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,15234284,8874793,6359359,132
+Peru,2021-08-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,15597094,9097027,6499931,136
+Peru,2021-08-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,15703085,9150579,6552370,136
+Peru,2021-08-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,15827529,9211231,6616161,137
+Peru,2021-08-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,15947636,9253284,6694214,138
+Peru,2021-08-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,16065762,9291158,6774465,139
+Peru,2021-08-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,16183789,9325718,6857931,140
+Peru,2021-08-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,16418697,9365704,7052848,145
+Peru,2021-08-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,16615824,9386855,7228821,148
+Peru,2021-08-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,16696260,9419609,7276499,152
+Peru,2021-08-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,16797348,9457173,7340020,155
+Peru,2021-08-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,16886973,9491924,7394892,157
+Peru,2021-08-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,16989225,9535298,7453768,159
+Peru,2021-08-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,17140449,9617196,7523093,160
+Peru,2021-08-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,17457527,9803882,7653482,163
+Peru,2021-08-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,17689539,9955885,7733485,169
+Peru,2021-08-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,17770672,9990787,7779714,171
+Peru,2021-08-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,17848068,10028608,7819287,173
+Peru,2021-08-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,17939674,10082152,7857347,175
+Peru,2021-08-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,18046706,10152804,7893723,179
+Peru,2021-08-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,18220495,10207934,8012376,185
+Peru,2021-08-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,18683792,10438902,8244698,192
+Peru,2021-08-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,19092336,10618339,8473798,199
+Peru,2021-08-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,19110332,10626188,8483944,200
+Peru,2021-08-31,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,19230512,10697273,8533036,203
+Peru,2021-09-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,19377928,10773480,8604243,205
+Peru,2021-09-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,19563691,10900365,8663119,207
+Peru,2021-09-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,19778373,11046581,8731581,211
+Peru,2021-09-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,20143777,11336525,8807036,216
+Peru,2021-09-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,20415276,11574415,8840638,223
+Peru,2021-09-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,20556725,11685696,8870804,225
+Peru,2021-09-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,20770281,11860807,8909248,226
+Peru,2021-09-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,21123904,12159998,8963677,229
+Peru,2021-09-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,21473703,12458955,9014512,236
+Peru,2021-09-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,21888018,12797772,9090003,243
+Peru,2021-09-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,22490726,13281062,9209411,253
+Peru,2021-09-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,22981736,13647918,9333559,259
+Peru,2021-09-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,23192221,13819102,9372857,262
+Peru,2021-09-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,23494201,14080113,9413820,268
+Peru,2021-09-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,23747562,14279731,9467558,273
+Peru,2021-09-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,24084991,14542694,9542018,279
+Peru,2021-09-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,24392584,14796641,9595654,289
+Peru,2021-09-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,24883480,15128254,9754925,301
+Peru,2021-09-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,25187662,15315954,9871400,308
+Peru,2021-09-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,25319237,15401390,9917527,320
+Peru,2021-09-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,25520219,15520110,9999779,330
+Peru,2021-09-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,25696489,15625129,10071029,331
+Peru,2021-09-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,25866286,15719501,10146445,340
+Peru,2021-09-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,26063621,15821110,10242167,344
+Peru,2021-09-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,26475702,15980357,10494997,348
+Peru,2021-09-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,26803518,16104523,10698640,355
+Peru,2021-09-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,27010024,16202442,10807221,361
+Peru,2021-09-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,27248877,16312358,10936154,365
+Peru,2021-09-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,27560451,16415487,11144580,384
+Peru,2021-09-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,27875092,16511345,11363346,401
+Peru,2021-10-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,28162478,16599958,11562101,419
+Peru,2021-10-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,28738839,16777462,11960902,475
+Peru,2021-10-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,29223031,16930113,12292423,495
+Peru,2021-10-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,29488670,17003660,12484501,509
+Peru,2021-10-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,29784912,17078091,12706292,529
+Peru,2021-10-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,30066264,17153109,12912613,542
+Peru,2021-10-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,30337179,17223286,13113343,550
+Peru,2021-10-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,30547641,17281035,13266023,583
+Peru,2021-10-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,30924516,17375966,13547950,600
+Peru,2021-10-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,31166452,17440677,13725157,618
+Peru,2021-10-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,31346295,17504245,13841419,631
+Peru,2021-10-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,31587491,17619780,13967023,688
+Peru,2021-10-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,31815760,17729744,14085317,699
+Peru,2021-10-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,32041207,17836547,14203939,721
+Peru,2021-10-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,32283245,17946859,14315235,21151
+Peru,2021-10-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,32632132,18124375,14461361,46396
+Peru,2021-10-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,32920825,18281323,14582190,57312
+Peru,2021-10-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,33126558,18373612,14668724,84222
+Peru,2021-10-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,33332064,18450006,14772043,110015
+Peru,2021-10-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,33513031,18507568,14869958,135505
+Peru,2021-10-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,33679912,18564794,14962803,152315
+Peru,2021-10-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,33832603,18613501,15051256,167846
+Peru,2021-10-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,34092658,18720393,15197114,175151
+Peru,2021-10-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,34295392,18794799,15323241,177352
+Peru,2021-10-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,34418810,18835155,15399327,184328
+Peru,2021-10-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,34537164,18873077,15473490,190597
+Peru,2021-10-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,34650793,18910651,15543756,196386
+Peru,2021-10-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,34778581,18955431,15615457,207693
+Peru,2021-10-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,34908032,19003114,15682053,222865
+Peru,2021-10-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,35217320,19211834,15768317,237169
+Peru,2021-10-31,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,35472294,19388348,15837754,246192
+Peru,2021-11-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,35575564,19462876,15862180,250508
+Peru,2021-11-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,35710487,19554442,15898807,257238
+Peru,2021-11-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,35879375,19663398,15949054,266923
+Peru,2021-11-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,36121546,19834762,16010007,276777
+Peru,2021-11-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,36414654,20059557,16069359,285738
+Peru,2021-11-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,36838610,20372634,16171257,294719
+Peru,2021-11-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,37151918,20585502,16265633,300783
+Peru,2021-11-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,37355457,20707357,16339801,308299
+Peru,2021-11-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,37574623,20818694,16436950,318979
+Peru,2021-11-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,37782281,20927643,16519048,335590
+Peru,2021-11-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,37975017,21021622,16598670,354725
+Peru,2021-11-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,38143458,21107337,16667111,369010
+Peru,2021-11-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,38386006,21220898,16784680,380428
+Peru,2021-11-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,38601099,21319720,16889057,392322
+Peru,2021-11-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,38768960,21405163,16961956,401841
+Peru,2021-11-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,38957387,21511129,17033585,412673
+Peru,2021-11-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,39141523,21614912,17103998,422613
+Peru,2021-11-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,39321716,21718657,17170200,432859
+Peru,2021-11-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,39499399,21822751,17232867,443781
+Peru,2021-11-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,39802205,21952988,17394024,455193
+Peru,2021-11-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,40091873,22062386,17560120,469367
+Peru,2021-11-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,40281538,22145054,17650177,486307
+Peru,2021-11-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,40483045,22228394,17750290,504361
+Peru,2021-11-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,40675977,22303848,17846454,525675
+Peru,2021-11-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,40905417,22376926,17981201,547290
+Peru,2021-11-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,41195663,22445518,18141698,608447
+Peru,2021-11-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,41628057,22529304,18386005,712748
+Peru,2021-11-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,41980752,22602215,18577655,800882
+Peru,2021-11-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,42250834,22658672,18695984,896178
+Peru,2021-11-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,42512652,22710882,18803619,998151
+Peru,2021-12-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,42766878,22765356,18901618,1099904
+Peru,2021-12-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,43037929,22828844,18999746,1209339
+Peru,2021-12-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,43302657,22893290,19095744,1313623
+Peru,2021-12-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,43622611,22971557,19225390,1425664
+Peru,2021-12-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,43868495,23034946,19333041,1500508
+Peru,2021-12-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,44088863,23093030,19419285,1576548
+Peru,2021-12-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,44313839,23150510,19512049,1651280
+Peru,2021-12-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,44478650,23195328,19583484,1699838
+Peru,2021-12-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,44724523,23261952,19689389,1773182
+Peru,2021-12-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,45058244,23372450,19832976,1852818
+Peru,2021-12-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,45454871,23509117,20014379,1931375
+Peru,2021-12-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,45768428,23612991,20165898,1989539
+Peru,2021-12-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,46068479,23725452,20291264,2051763
+Peru,2021-12-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,46382827,23836902,20431207,2114718
+Peru,2021-12-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,46670446,23938152,20559802,2172492
+Peru,2021-12-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,46902406,24012957,20665308,2224141
+Peru,2021-12-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,47130777,24086507,20768377,2275893
+Peru,2021-12-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,47353877,24153361,20873225,2327291
+Peru,2021-12-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,47528810,24198884,20959855,2370071
+Peru,2021-12-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,47788224,24252430,21040230,2495564
+Peru,2021-12-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,48159061,24300982,21118447,2739632
+Peru,2021-12-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,48487686,24341534,21190160,2955992
+Peru,2021-12-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,48724188,24374112,21251186,3098890
+Peru,2021-12-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,48802176,24386015,21273532,3142629
+Peru,2021-12-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,48835500,24389191,21278863,3167446
+Peru,2021-12-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,49019797,24405005,21319611,3295181
+Peru,2021-12-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,49330100,24438979,21394343,3496778
+Peru,2021-12-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,49653123,24474805,21472144,3706174
+Peru,2021-12-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,49931706,24508213,21539669,3883824
+Peru,2021-12-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,50145617,24537320,21598487,4009810
+Peru,2021-12-31,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,50214286,24547131,21622968,4044187
+Peru,2022-01-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,50233824,24548890,21626815,4058119
+Peru,2022-01-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,50346489,24557253,21655541,4133695
+Peru,2022-01-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,50590538,24582771,21725608,4282159
+Peru,2022-01-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,50860798,24609087,21801202,4450509
+Peru,2022-01-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,51174875,24639065,21878399,4657411
+Peru,2022-01-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,51492247,24668148,21952281,4871818
+Peru,2022-01-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,51810438,24696388,22025704,5088346
+Peru,2022-01-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,52141417,24721619,22093762,5326036
+Peru,2022-01-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,52342042,24738026,22138118,5465898
+Peru,2022-01-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,52617119,24765603,22205117,5646399
+Peru,2022-01-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,52875144,24790036,22265038,5820070
+Peru,2022-01-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,53116754,24813987,22322363,5980404
+Peru,2022-01-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,53362179,24836659,22375915,6149605
+Peru,2022-01-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,53590773,24857707,22423265,6309801
+Peru,2022-01-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,53812736,24875099,22459742,6477895
+Peru,2022-01-16,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,53943139,24885984,22484540,6572615
+Peru,2022-01-17,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,54125269,24905572,22525650,6694047
+Peru,2022-01-18,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,54291611,24921552,22562047,6808012
+Peru,2022-01-19,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,54453595,24937778,22597713,6918104
+Peru,2022-01-20,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,54597495,24952780,22630581,7014134
+Peru,2022-01-21,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,54735695,24966599,22660734,7108362
+Peru,2022-01-22,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,54878523,24979449,22684793,7214281
+Peru,2022-01-23,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,54987375,24989246,22704090,7294039
+Peru,2022-01-24,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,55112669,25003055,22732200,7377414
+Peru,2022-01-25,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,55234000,25015660,22758789,7459551
+Peru,2022-01-26,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,55350363,25027458,22785867,7537038
+Peru,2022-01-27,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,55464610,25039127,22812000,7613483
+Peru,2022-01-28,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,55573283,25049918,22836409,7686956
+Peru,2022-01-29,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,55694193,25060387,22858901,7774905
+Peru,2022-01-30,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,55788797,25068213,22874968,7845616
+Peru,2022-01-31,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,55903091,25079476,22899051,7924564
+Peru,2022-02-01,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56020785,25090549,22921943,8008293
+Peru,2022-02-02,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56134954,25101683,22945164,8088107
+Peru,2022-02-03,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56247414,25112841,22968055,8166518
+Peru,2022-02-04,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56362288,25123984,22990912,8247392
+Peru,2022-02-05,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56485865,25134555,23011960,8339350
+Peru,2022-02-06,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56562683,25141384,23025674,8395625
+Peru,2022-02-07,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56666539,25152907,23047763,8465869
+Peru,2022-02-08,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56771680,25164051,23068358,8539271
+Peru,2022-02-09,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56875373,25174365,23087660,8613348
+Peru,2022-02-10,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,56973507,25184066,23106013,8683428
+Peru,2022-02-11,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,57067026,25193603,23123261,8750162
+Peru,2022-02-12,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,57150275,25200452,23136698,8813125
+Peru,2022-02-13,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,57208072,25205061,23145661,8857350
+Peru,2022-02-14,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,57265534,25210914,23156729,8897891
+Peru,2022-02-15,"Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",https://www.datosabiertos.gob.pe/dataset/vacunacion,57307077,25214266,23163230,8929581

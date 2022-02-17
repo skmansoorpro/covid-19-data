@@ -81,7 +81,3 @@ class Macao:
 
 def main():
     Macao().export()
-
-
-if __name__ == "__main__":
-    main()

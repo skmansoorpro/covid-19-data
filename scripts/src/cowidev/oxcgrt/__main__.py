@@ -1,19 +1,14 @@
 import os
 
-from cowidev.utils.utils import get_project_dir
+from cowidev import PATHS
 from .etl import run_etl
 from .grapher import run_grapheriser, run_db_updater
 from ._parser import _parse_args
 
 
-project_dir = get_project_dir()
-FILE_DS = os.path.join(project_dir, "scripts", "input", "bsg", "latest.csv")
-FILE_GRAPHER = os.path.join(
-    project_dir, "scripts", "grapher", "COVID Government Response (OxBSG).csv"
-)
-FILE_COUNTRY_STD = os.path.join(
-    project_dir, "scripts", "input", "bsg", "bsg_country_standardised.csv"
-)
+FILE_DS = os.path.join(PATHS.INTERNAL_INPUT_BSG_DIR, "latest.csv")
+FILE_GRAPHER = os.path.join(PATHS.INTERNAL_GRAPHER_DIR, "COVID Government Response (OxBSG).csv")
+FILE_COUNTRY_STD = os.path.join(PATHS.INTERNAL_INPUT_BSG_DIR, "bsg_country_standardised.csv")
 
 
 def run_step(step: str):

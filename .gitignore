@@ -63,3 +63,7 @@ scripts/scripts/testing/auto_quick_collect.sh
 
 # secrets
 secrets.yaml
+
+# docs
+scripts/docs/_build/
+scripts/docs/cowidev/api/

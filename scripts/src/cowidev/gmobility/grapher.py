@@ -2,6 +2,7 @@ import os
 from datetime import datetime
 import pandas as pd
 
+from cowidev import PATHS
 from cowidev.grapher.db.base import GrapherBaseUpdater
 from cowidev.utils.utils import time_str_grapher, get_filename
 from cowidev.utils.clean.dates import DATE_FORMAT
@@ -9,16 +10,18 @@ from cowidev.gmobility.dtypes import dtype
 
 ZERO_DAY = "2020-01-01"
 zero_day = datetime.strptime(ZERO_DAY, DATE_FORMAT)
+FILE_DS = os.path.join("/tmp", "google-mobility.csv")
+FILE_GRAPHER = os.path.join(PATHS.INTERNAL_GRAPHER_DIR, "Google Mobility Trends (2020).csv")
+FILE_COUNTRY_STD = PATHS.INTERNAL_INPUT_GMOB_STD_FILE
 
 
-def run_grapheriser(input_path: str, input_path_country_std: str, output_path: str):
-    mobility = pd.read_csv(input_path, dtype=dtype)
-
+def run_grapheriser():
+    mobility = pd.read_csv(FILE_DS, dtype=dtype)
     # Convert date column to days since zero_day
     mobility["date"] = pd.to_datetime(mobility["date"], format="%Y/%m/%d").map(lambda date: (date - zero_day).days)
 
     # Standardise country names to OWID country names
-    country_mapping = pd.read_csv(input_path_country_std)
+    country_mapping = pd.read_csv(FILE_COUNTRY_STD)
     mobility = country_mapping.merge(mobility, on="country_region")
 
     # Remove subnational data, keeping only country figures
@@ -76,13 +79,13 @@ def run_grapheriser(input_path: str, input_path_country_std: str, output_path: s
     )
 
     # Save to files
-    country_mobility.to_csv(output_path, index=False)
+    country_mobility.to_csv(FILE_GRAPHER, index=False)
 
-    os.remove(input_path)
+    os.remove(FILE_DS)
 
 
-def run_db_updater(input_path: str):
-    dataset_name = get_filename(input_path)
+def run_db_updater():
+    dataset_name = get_filename(FILE_GRAPHER)
     GrapherBaseUpdater(
         dataset_name=dataset_name,
         source_name=f"Google COVID-19 Community Mobility Trends – Last updated {time_str_grapher()} (London time)",

@@ -3,13 +3,12 @@ import datetime
 import pandas as pd
 import requests
 
-from cowidev.utils import paths
 from cowidev.utils.clean import clean_date_series
 from cowidev.vax.utils.utils import build_vaccine_timeline
-from cowidev.vax.utils.files import export_metadata_manufacturer
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Ukraine:
+class Ukraine(CountryVaxBase):
     # it is expected to use Novavax vaccine as well in future,
     # if so, this script should be updated
     source_url: str = "https://health-security.rnbo.gov.ua"
@@ -121,17 +120,16 @@ class Ukraine:
         )
 
     def pipeline_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
-        vaccine_name = ["Oxford/AstraZeneca", "Sinovac", "Pfizer/BioNTech", "Johnson&Johnson", "Moderna"]
-        column_name = [
-            "all_doses_astrazeneca",
-            "all_doses_sinovac",
-            "all_doses_pfizer",
-            "all_doses_jnj",
-            "all_doses_moderna",
-        ]
+        vaccine_columns = {
+            "Oxford/AstraZeneca": "all_doses_astrazeneca",
+            "Sinovac": "all_doses_sinovac",
+            "Pfizer/BioNTech": "all_doses_pfizer",
+            "Johnson&Johnson": "all_doses_jnj",
+            "Moderna": "all_doses_moderna",
+        }
 
         vac_dfs = []
-        for vaccine, col in zip(vaccine_name, column_name):
+        for vaccine, col in vaccine_columns.items():
             vac_df = df[["location", "date", col]].copy()
             vac_df["vaccine"] = vaccine
             vac_df.rename(columns={col: "total_vaccinations"}, inplace=True)
@@ -142,22 +140,20 @@ class Ukraine:
 
     def export(self):
         # Load data
-        df = self.read()
-        # Export main
-        df.pipe(self.pipeline).to_csv(paths.out_vax(self.location), index=False)
-        # Export manufacturer data
-        df_man = df.pipe(self.pipeline_manufacturer)
-        df_man.to_csv(paths.out_vax(self.location, manufacturer=True), index=False)
-        export_metadata_manufacturer(
-            df_man,
-            "National Security and Defense Council of Ukraine",
-            self.source_url,
+        df_base = self.read()
+        # Main data
+        df = df_base.pipe(self.pipeline)
+        # Manufacturer data
+        df_man = df_base.pipe(self.pipeline_manufacturer)
+        self.export_datafile(
+            df,
+            df_manufacturer=df_man,
+            meta_manufacturer={
+                "source_name": "National Security and Defense Council of Ukraine",
+                "source_url": self.source_url,
+            },
         )
 
 
 def main():
     Ukraine().export()
-
-
-if __name__ == "__main__":
-    main()

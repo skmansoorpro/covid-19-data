@@ -29,6 +29,7 @@ class SriLanka:
 
     def parse_data(self, pdf_path):
 
+        print(pdf_path)
         dfs = tabula.read_pdf(pdf_path)
         df = dfs[0]
 
@@ -41,13 +42,13 @@ class SriLanka:
                 "දිය",
                 "ේ ාවිෂීල්ඩඩ් Covishield",
                 "ටයිේයාෆාම් Sinopharm",
-                "ටුට්නිව් - V",
-                "Sputnik - V",
+                "ස්පුට්නිව් - VSputnik - V",
                 "Unnamed: 0",
-                "ෆයිසර්Pfizer",
                 "Unnamed: 1",
+                "ෆයිටර්Pfizer",
                 "Unnamed: 2",
-                "ම ොඩර්ර්ො Moderna",
+                "Unnamed: 3",
+                "ේමාසර්යා Moderna",
             ],
         )
 
@@ -107,7 +108,3 @@ class SriLanka:
 
 def main():
     SriLanka().export()
-
-
-if __name__ == "__main__":
-    main()

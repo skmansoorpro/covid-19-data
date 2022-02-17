@@ -1,10 +1,10 @@
 import pandas as pd
 
-from cowidev.utils import paths
 from cowidev.utils.utils import check_known_columns
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Norway:
+class Norway(CountryVaxBase):
     def __init__(self) -> None:
         self.location = "Norway"
         self.source_url = "https://raw.githubusercontent.com/folkehelseinstituttet/surveillance_data/master/covid19/data_covid19_sysvak_by_time_location_latest.csv"
@@ -92,7 +92,7 @@ class Norway:
 
     def export(self):
         df = self.read().pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
+        self.export_datafile(df)
 
 
 def main():

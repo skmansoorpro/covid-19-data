@@ -1,65 +1,85 @@
-import datetime
-import requests
-import json
 import pandas as pd
 
 from cowidev.testing import CountryTestBase
+from cowidev.utils import clean_date
+from cowidev.utils.web import request_json
 
 
 class Slovenia(CountryTestBase):
     location: str = "Slovenia"
+    units: str = "tests performed"
+    source_label: str = "National Institute of Public Health"
+    notes: str = "National Institute of Public Health via Sledilnik"
+    source_url: str = "https://api.sledilnik.org/api/lab-tests"
+    source_url_ref: str = "https://covid-19.sledilnik.org/en/data"
+    rename_columns: dict = {
+        "total.performed.today": "pcr",
+        "data.hagt.performed.today": "ag",
+        "total.positive.today": "positive_pcr",
+        "data.hagt.positive.today": "positive_ag",
+    }
 
-    def export(self):
+    def read(self) -> pd.DataFrame:
+        """Read data from source"""
+        df = pd.json_normalize(request_json(self.source_url))
+        return df
 
-        url = "https://api.sledilnik.org/api/lab-tests"
-        data = json.loads(requests.get(url).content)
+    def pipe_date(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Pipes Date"""
+        return df.assign(
+            Date=df.apply(
+                lambda x: clean_date("{0} {1} {2}".format(x["year"], x["month"], x["day"]), "%Y.0 %m.0 %d.0"), axis=1
+            ),
+        )
 
-        dates = []
-        pcr = []
-        ag = []
-        positive_pcr = []
-        positive_ag = []
+    def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Pipes metrics"""
+        pcr_only = df.assign(
+            **{
+                "positive": df.positive_pcr.fillna(0),
+                "Daily change in cumulative total": df.pcr.fillna(0),
+            }
+        ).truncate(after=df[df["Date"] == "2022-01-31"].index[0])
 
-        for elem in data:
-            dates.append(datetime.date(elem["year"], elem["month"], elem["day"]))
-            pcr.append(elem["total"]["performed"]["today"])
-            ag.append(elem["data"]["hagt"]["performed"].get("today"))
-            positive_pcr.append(elem["total"].get("positive").get("today"))
-            positive_ag.append(elem["data"]["hagt"]["positive"].get("today"))
+        pcr_and_antigen = df.assign(
+            **{
+                "positive": df.positive_pcr.fillna(0) + df.positive_ag.fillna(0),
+                "Daily change in cumulative total": df.pcr.fillna(0) + df.ag.fillna(0),
+            }
+        ).truncate(before=df[df["Date"] == "2022-02-01"].index[0])
 
-        df = pd.DataFrame(
-            {
-                "Date": dates,
-                "pcr": pcr,
-                "ag": ag,
-                "positive_pcr": positive_pcr,
-                "positive_ag": positive_ag,
+        df = pd.concat([pcr_only, pcr_and_antigen])
+        return df
+
+    def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Calculate positive rate"""
+        return df.assign(
+            **{
+                "Positive rate": df.positive.rolling(7)
+                .sum()
+                .div(df["Daily change in cumulative total"].rolling(7).sum())
+                .round(3)
             }
         )
-        df = df.fillna(0).sort_values("Date")
 
-        # In February 2021, the government started using PCR to confirm all antigen tests.
-        # For all intents and purposes Slovenia's case definition is therefore now PCR only,
-        # even if some people (and we don't know how many) are getting screened and found via antigen
-        # before they are confirmed with PCR. It makes sense to stick to PCR only for the
-        # positivity rate — which is what the government has done in its own communication.
-        df["Daily change in cumulative total"] = df.pcr
-        df["cases"] = df.positive_pcr
+    def pipe_filter(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Filter data"""
+        return df[df["Daily change in cumulative total"] > 0]
 
-        df["Positive rate"] = (
-            df["cases"].rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()
-        ).round(3)
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Pipeline for data"""
+        return (
+            df.pipe(self.pipe_rename_columns)
+            .pipe(self.pipe_date)
+            .pipe(self.pipe_metrics)
+            .pipe(self.pipe_pr)
+            .pipe(self.pipe_filter)
+            .pipe(self.pipe_metadata)
+        )
 
-        df = df[["Date", "Daily change in cumulative total", "Positive rate"]]
-
-        df.loc[:, "Source URL"] = "https://covid-19.sledilnik.org/en/data"
-        df.loc[:, "Source label"] = "National Institute of Public Health, via Sledilnik"
-        df.loc[:, "Country"] = "Slovenia"
-        df.loc[:, "Units"] = "tests performed"
-        df.loc[:, "Notes"] = pd.NA
-
-        df = df[df["Daily change in cumulative total"] != 0]
-
+    def export(self):
+        """Export data to CSV"""
+        df = self.read().pipe(self.pipeline)
         self.export_datafile(df)
 
 

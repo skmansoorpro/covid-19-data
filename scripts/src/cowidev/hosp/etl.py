@@ -1,19 +1,19 @@
 import os
 import time
 import importlib
-from joblib import Parallel, delayed
 import json
 
+from joblib import Parallel, delayed
 import pandas as pd
 from pandas.api.types import is_string_dtype
-from cowidev.utils import paths
+
+from cowidev import PATHS
 from cowidev.utils.log import get_logger
 from cowidev.hosp.sources import __all__ as sources
 
 
 sources = [f"cowidev.hosp.sources.{s}" for s in sources]
-OUTPUT_TMP_PATH = os.path.join(paths.SCRIPTS.OUTPUT_HOSP_MAIN, "population_latest.csv")
-POPULATION_FILE = os.path.join(paths.SCRIPTS.INPUT_UN, "population_latest.csv")
+
 logger = get_logger()
 
 
@@ -63,16 +63,19 @@ class HospETL:
                     for metadata_ in metadata:
                         df_ = df[df.entity == metadata_["entity"]]
                         df_.to_csv(
-                            os.path.join(paths.SCRIPTS.OUTPUT_HOSP_MAIN, f"{metadata_['entity']}.csv"), index=False
+                            os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_MAIN_DIR, f"{metadata_['entity']}.csv"),
+                            index=False,
                         )
                         with open(
-                            os.path.join(paths.SCRIPTS.OUTPUT_HOSP_META, f"{metadata_['entity']}.json"), "w"
+                            os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_META_DIR, f"{metadata_['entity']}.json"), "w"
                         ) as outfile:
                             json.dump(metadata_, outfile)
                 else:
-                    df.to_csv(os.path.join(paths.SCRIPTS.OUTPUT_HOSP_MAIN, f"{metadata['entity']}.csv"), index=False)
+                    df.to_csv(
+                        os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_MAIN_DIR, f"{metadata['entity']}.csv"), index=False
+                    )
                     with open(
-                        os.path.join(paths.SCRIPTS.OUTPUT_HOSP_META, f"{metadata['entity']}.json"), "w"
+                        os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_META_DIR, f"{metadata['entity']}.json"), "w"
                     ) as outfile:
                         json.dump(metadata, outfile)
 
@@ -81,14 +84,15 @@ class HospETL:
         logger.info("HOSP - Loading checkpoint data...")
         # Load & build data
         data_paths = [
-            os.path.join(paths.SCRIPTS.OUTPUT_HOSP_MAIN, p)
-            for p in os.listdir(paths.SCRIPTS.OUTPUT_HOSP_MAIN)
+            os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_MAIN_DIR, p)
+            for p in os.listdir(PATHS.INTERNAL_OUTPUT_HOSP_MAIN_DIR)
             if p[-3:] == "csv"
         ]
         df = pd.concat([pd.read_csv(p) for p in data_paths])
         # Load & buildmetadata
         metadata_paths = [
-            os.path.join(paths.SCRIPTS.OUTPUT_HOSP_META, p) for p in os.listdir(paths.SCRIPTS.OUTPUT_HOSP_META)
+            os.path.join(PATHS.INTERNAL_OUTPUT_HOSP_META_DIR, p)
+            for p in os.listdir(PATHS.INTERNAL_OUTPUT_HOSP_META_DIR)
         ]
         metadata = []
         for p in metadata_paths:
@@ -97,9 +101,12 @@ class HospETL:
         df_meta = self._build_metadata(metadata)
         # Process output
         df = df.dropna(subset=["value"])
-        assert all(
-            df.groupby(["entity", "date", "indicator"]).size().reset_index()[0] == 1
-        ), "Some entity-date-indicator combinations are present more than once!"
+
+        duplicates = df[df.duplicated(subset=["date", "entity", "indicator"])]
+        if len(duplicates) > 0:
+            print(duplicates)
+            raise Exception("Some entity-date-indicator combinations are present more than once!")
+
         return df, df_meta
 
     def _build_metadata(self, metadata):
@@ -174,7 +181,7 @@ class HospETL:
     def pipe_metadata(self, df):
         print("Adding ISO & population…")
         shape_og = df.shape
-        population = pd.read_csv(POPULATION_FILE, usecols=["entity", "iso_code", "population"])
+        population = pd.read_csv(PATHS.INTERNAL_INPUT_UN_POPULATION_FILE, usecols=["entity", "iso_code", "population"])
         df = df.merge(population, on="entity")
         if shape_og[0] != df.shape[0]:
             raise ValueError(f"Dimension 0 after merge is different: {shape_og[0]} --> {df.shape[0]}")
@@ -226,14 +233,14 @@ class HospETL:
         # Export data
         df.to_csv(output_path, index=False)
 
-    def run(self, output_path: str, locations_path: str, parallel: bool, n_jobs: int):
+    def run(self, parallel: bool, n_jobs: int):
         df, df_meta = self.extract(parallel, n_jobs)
         df = self.transform(df)
-        df_meta = self.transform_meta(df_meta, df, locations_path)
-        self.load(df, output_path)
-        self.load(df_meta, locations_path)
+        df_meta = self.transform_meta(df_meta, df, PATHS.DATA_HOSP_META_FILE)
+        self.load(df, PATHS.DATA_HOSP_MAIN_FILE)
+        self.load(df_meta, PATHS.DATA_HOSP_META_FILE)
 
 
-def run_etl(output_path: str, locations_path: str, monothread: bool, n_jobs: int):
+def run_etl(parallel: bool, n_jobs: int):
     etl = HospETL()
-    etl.run(output_path, locations_path, not monothread, n_jobs)
+    etl.run(parallel, n_jobs)

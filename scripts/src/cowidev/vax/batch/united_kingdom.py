@@ -4,13 +4,12 @@ import pandas as pd
 from uk_covid19 import Cov19API
 
 from cowidev.vax.utils.utils import make_monotonic
-from cowidev.utils import paths
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class UnitedKingdom:
-    def __init__(self) -> None:
-        self.location = "United Kingdom"
-        self.source_url = "https://coronavirus.data.gov.uk/details/vaccinations"
+class UnitedKingdom(CountryVaxBase):
+    location = "United Kingdom"
+    source_url = "https://coronavirus.data.gov.uk/details/vaccinations"
 
     def read(self):
         dfs = [
@@ -79,14 +78,13 @@ class UnitedKingdom:
     def _filter_location(self, df: pd.DataFrame, location: str) -> pd.DataFrame:
         return df[df.location == location].assign(location=location)
 
-    def to_csv(self):
-        df = self.read().pipe(self.pipeline)
-        for location in set(df.location):
-            df.pipe(self._filter_location, location).pipe(make_monotonic, max_removed_rows=20).to_csv(
-                paths.out_vax(location), index=False
-            )
+    def export(self):
+        df_base = self.read().pipe(self.pipeline)
+        for location in set(df_base.location):
+            df = df_base.pipe(self._filter_location, location).pipe(make_monotonic, max_removed_rows=20)
+            self.export_datafile(df, filename=location)
 
 
 def main():
     locale.setlocale(locale.LC_ALL, "en_GB")
-    UnitedKingdom().to_csv()
+    UnitedKingdom().export()

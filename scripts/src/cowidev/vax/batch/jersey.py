@@ -4,12 +4,10 @@ import re
 
 import pandas as pd
 
-from cowidev.vax.utils.files import export_metadata_age
-from cowidev.utils import paths
-from cowidev.utils.utils import make_monotonic
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class Jersey:
+class Jersey(CountryVaxBase):
     def __init__(self):
         """Constructor.
 
@@ -187,9 +185,9 @@ class Jersey:
         return df
 
     def pipe_age_filter(self, df: pd.DataFrame) -> pd.DataFrame:
-        df.loc[(df.date == "2021-08-29"), "people_fully_vaccinated_per_hundred"] = pd.NA
-        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "18"), "people_vaccinated_per_hundred"] = pd.NA
-        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "40"), "people_vaccinated_per_hundred"] = pd.NA
+        df.loc[(df.date == "2021-08-29"), "people_fully_vaccinated_per_hundred"] = None
+        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "18"), "people_vaccinated_per_hundred"] = None
+        df.loc[(df.date == "2021-09-05") & (df.age_group_min == "40"), "people_vaccinated_per_hundred"] = None
         return df
         # df.pipe(make_monotonic, "date", ["people_vaccinated_per_hundred", "people_fully_vaccinated_per_hundred"])
 
@@ -216,21 +214,18 @@ class Jersey:
             ]
         )
 
-    def to_csv(self):
+    def export(self):
         """Generalized."""
         df_base = self.read()
         # Main data
         df = df_base.pipe(self.pipeline)
-        df.to_csv(paths.out_vax(self.location), index=False)
         # Age data
         df_age = df_base.pipe(self.pipeline_age)
-        df_age.to_csv(paths.out_vax(self.location, age=True), index=False)
-        export_metadata_age(df_age, "Government of Jersey", self.source_url)
+        # Export
+        self.export_datafile(
+            df, df_age=df_age, meta_age={"source_name": "Government of Jersey", "source_url": self.source_url}
+        )
 
 
 def main():
-    Jersey().to_csv()
-
-
-if __name__ == "__main__":
-    main()
+    Jersey().export()
