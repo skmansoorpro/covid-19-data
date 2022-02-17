@@ -111,3 +111,9 @@ html_context = {
 myst_enable_extensions = [
     "colon_fence",
 ]
+
+
+## API docs
+from sphinx.ext.apidoc import main
+
+main(["-f", "-t", "apidoc-templates", "-P", "-o", "cowidev/api", "../src/cowidev/"])

@@ -238,6 +238,7 @@ class Switzerland(CountryVaxBase):
             self.export_datafile(
                 df_age=df_age_,
                 meta_age={"source_name": "Federal Office of Public Health", "source_url": self.source_url},
+                filename=location,
             )
 
 

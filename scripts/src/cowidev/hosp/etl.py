@@ -101,9 +101,12 @@ class HospETL:
         df_meta = self._build_metadata(metadata)
         # Process output
         df = df.dropna(subset=["value"])
-        assert all(
-            df.groupby(["entity", "date", "indicator"]).size().reset_index()[0] == 1
-        ), "Some entity-date-indicator combinations are present more than once!"
+
+        duplicates = df[df.duplicated(subset=["date", "entity", "indicator"])]
+        if len(duplicates) > 0:
+            print(duplicates)
+            raise Exception("Some entity-date-indicator combinations are present more than once!")
+
         return df, df_meta
 
     def _build_metadata(self, metadata):
