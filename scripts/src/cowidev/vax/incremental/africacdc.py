@@ -57,7 +57,7 @@ class AfricaCDC:
     def pipe_filter_countries(self, df: pd.DataFrame, countries: dict) -> pd.DataFrame:
         """Get rows from selected countries."""
         df = df[df.location.isin(countries.keys())]
-        df.assign(location=df.location.replace(countries))
+        df = df.assign(location=df.location.replace(countries))
         return df
 
     def pipe_one_dose_correction(self, df: pd.DataFrame) -> pd.DataFrame:
