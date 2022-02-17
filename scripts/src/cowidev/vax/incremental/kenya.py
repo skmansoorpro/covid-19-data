@@ -19,9 +19,9 @@ class Kenya(CountryVaxBase):
         "metrics": {
             "total_vaccinations": r"total doses administered ([\d,]+)",
             "people_vaccinated_adults": r"proportion of adults fully vaccinated ([\d,]+)",
-            "people_vaccinated_teens": r"partially vaccinated teenage population\( 15-17yrs\) ([\d,]+)",
+            "people_vaccinated_teens": r"partially vaccinated teenage population\( 15-below 18yrs\) ([\d,]+)",
             "people_fully_vaccinated_adults": r"proportion of adults fully vaccinated [\d,]+ ([\d,]+)",
-            "people_fully_vaccinated_teens": r"fully vaccinated teenage population\( 15-17yrs\) ([\d,]+)",
+            "people_fully_vaccinated_teens": r"fully vaccinated teenage population\( 15-below 18yrs\) ([\d,]+)",
             "total_boosters": r"booster doses ([\d,]+)",
         },
     }
@@ -31,7 +31,7 @@ class Kenya(CountryVaxBase):
         links = self._get_list_pdf_urls()
         records = []
         for link in links:
-            # print(link)
+            print(link)
             text = self._get_text_from_pdf(link)
             date = self._parse_date(text)
             if date <= self.last_update:
