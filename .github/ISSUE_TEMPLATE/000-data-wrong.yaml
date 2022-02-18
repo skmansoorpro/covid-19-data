@@ -1,0 +1,50 @@
+name: Missing/wrong data 🕵️
+description: >-
+  Use this issue to report potential missing (or wrong) data for a country.
+title: "data: "
+labels: ["report"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html)."
+  - type: input
+    id: country
+    attributes:
+      label: Country
+      description: "Which country does it concern?"
+      placeholder: "Afghanistan"
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      description: Which domain is the data from?
+      options:
+        - Vaccinations
+        - Testing
+        - Hospitalizations
+        - Cases/Deaths
+        - Excess Mortality
+        - Variants
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: Which data is wrong?
+      description: Please state which metrics and dates might have missing or wrong data.
+      placeholder: |
+        The value of total_vaccinations for country X on 2022-01-10 does not seem right.
+    validations:
+      required: true
+  - type: textarea
+    id: wrong-why
+    attributes:
+      label: Why do you think the data is wrong?
+      description: Please elaborate on why do you think that there is missing or wrong data.
+      placeholder: |
+        Considering the number of people that have received one dose, two doses and boosters...
+    validations:
+      required: true

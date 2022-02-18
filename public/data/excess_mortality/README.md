@@ -34,12 +34,12 @@ As of 26 January 2022, the data columns are:
 - `p_proj_65_74`: P-scores using projected baseline for ages 65–74
 - `p_proj_75_84`: P-scores using projected baseline for ages 75–84
 - `p_proj_85p`: P-scores using projected baseline for ages 85 and above
-- `p_avg_all_ages`: P-scores using 5-year average baseline for all ages
-- `p_avg_0_14`: P-scores using 5-year average baseline for ages 0–14
-- `p_avg_15_64`: P-scores using 5-year average baseline for ages 15–64
-- `p_avg_65_74`: P-scores using 5-year average baseline for ages 65–74
-- `p_avg_75_84`: P-scores using 5-year average baseline for ages 75–84
-- `p_avg_85p`: P-scores using 5-year average baseline for ages 85 and above
+- `p_scores_all_ages`: P-scores using 5-year average baseline for all ages
+- `p_scores_0_14`: P-scores using 5-year average baseline for ages 0–14
+- `p_scores_15_64`: P-scores using 5-year average baseline for ages 15–64
+- `p_scores_65_74`: P-scores using 5-year average baseline for ages 65–74
+- `p_scores_75_84`: P-scores using 5-year average baseline for ages 75–84
+- `p_scores_85p`: P-scores using 5-year average baseline for ages 85 and above
 - `deaths_2022_all_ages`: reported number of weekly or monthly deaths from all causes for all ages in 2022
 - `deaths_2021_all_ages`: reported number of weekly or monthly deaths from all causes for all ages in 2021
 - `deaths_2020_all_ages`: reported number of weekly or monthly deaths from all causes for all ages in 2020
