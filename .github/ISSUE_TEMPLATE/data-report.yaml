@@ -1,0 +1,53 @@
+name: Report a new data source
+description: >-
+  Use this issue to report new data sources for a country. Thanks! 🙏
+title: "data: "
+labels: ["report"]
+body:
+  - type: markdown
+      attributes:
+        value: |
+          Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html).
+  - type: input
+    id: country
+    attributes:
+      label: Country
+      description: "Which country is the data point or source for?"
+      placeholder: "Afghanistan"
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      description: Which domain is the data from?
+      options:
+        - Vaccinations
+        - Testing
+        - Hospitalizations
+        - Cases/Deaths
+        - Excess Mortality
+        - Variants
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: Please introduce the source URL. 
+    validations:
+      required: true
+  - type: textarea
+    id: commnet
+    attributes:
+      label: Comment
+      description: Comments and caveats about the source.
+      value: |
+        E.g. The source updates the data on a daily basis. Potentially, the data extraction could be automated.
+  - type: textarea
+    attributes:
+      label: Expectation
+      description: A clear and concise description of what should've happened.
+    validations:
+      required: true
