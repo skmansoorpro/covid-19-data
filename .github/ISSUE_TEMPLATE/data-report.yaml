@@ -41,6 +41,6 @@ body:
     id: commnent
     attributes:
       label: Comment
-      description: Comments and caveats about the source.
+      placeholder: Comments and caveats about the source.
       value: |
         E.g. The source updates the data on a daily basis. Potentially, the data extraction could be automated.
