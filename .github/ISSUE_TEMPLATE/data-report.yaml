@@ -44,9 +44,3 @@ body:
       description: Comments and caveats about the source.
       value: |
         E.g. The source updates the data on a daily basis. Potentially, the data extraction could be automated.
-  - type: textarea
-    attributes:
-      label: Expectation
-      description: A clear and concise description of what should've happened.
-    validations:
-      required: true
