@@ -38,7 +38,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: commnet
+    id: commnent
     attributes:
       label: Comment
       description: Comments and caveats about the source.
