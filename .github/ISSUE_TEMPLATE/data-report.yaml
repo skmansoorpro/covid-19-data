@@ -5,9 +5,8 @@ title: "data: "
 labels: ["report"]
 body:
   - type: markdown
-      attributes:
-        value: |
-          Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html).
+    attributes:
+      value: "Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html)."
   - type: input
     id: country
     attributes:
