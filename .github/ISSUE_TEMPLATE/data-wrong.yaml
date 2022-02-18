@@ -37,6 +37,8 @@ body:
       description: Please state which metrics and dates might have missing or wrong data.
       placeholder: |
         The value of `total_vaccinations` for country X on 2022-01-10 does not seem right.
+    validations:
+      required: true
   - type: textarea
     id: wrong-why
     attributes:
