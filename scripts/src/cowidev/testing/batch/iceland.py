@@ -21,9 +21,12 @@ class Iceland(CountryTestBase):
     }
     rename_columns: dict = {
         "Symptomatic tests": "t1",
+        "Sympotmatic tests": "t1",
         "Quarantine- and random tests": "t2",
         "deCODE Genetics screening": "t3",
         "Border tests 1 and 2": "t4",
+        "Border tests": "t4",
+        "Domestic infections": "p1",
         "Symptomatic screening": "p1",
         "Quarantine- and random screening": "p2",
         "Screening by deCODE Genetics": "p3",
@@ -53,53 +56,41 @@ class Iceland(CountryTestBase):
         return data
 
     def _build_df(self, data: dict) -> pd.DataFrame:
-        """Create df from raw data"""
+        """Create dfs from raw data"""
         data = data["elements"]["content"]["content"]["entities"]
         data_test = [v for v in data.values() if re.search(self.regex["title_test"], str(v))][0]
         data_positive = [v for v in data.values() if re.search(self.regex["title_positive"], str(v))][0]
         data_list = data_test["props"]["chartData"]["data"] + data_positive["props"]["chartData"]["data"]
-        df = pd.concat(
-            [pd.DataFrame(frame[1:], columns=["Date"] + frame[0][1:]) for frame in data_list], ignore_index=True
-        )
+
+        df222 = pd.DataFrame(data_list[0], columns=data_list[0][0]).drop(0)
+        df222 = df222[df222.iloc[:, 0] != ""]
+        df222.columns = df222.columns.fillna("")
+
+        df221 = pd.DataFrame(data_list[1], columns=data_list[1][0]).drop(0)
+        df221 = df221[df221.iloc[:, 0] != ""]
+
+        df21 = pd.DataFrame(data_list[2], columns=data_list[2][0]).drop(0)
+        df21 = df21[df21.iloc[:, 0] != ""]
+
+        df20 = pd.DataFrame(data_list[3], columns=data_list[3][0]).drop(0)
+        df20 = df20[df20.iloc[:, 0] != ""]
+
+        df = pd.concat([df222, df221, df21, df20])
+
         return df
 
     def pipe_date(self, df: pd.DataFrame) -> pd.DataFrame:
         """Clean date"""
-        return df.assign(Date=clean_date_series(df["Date"], "%d.%m.%y")).sort_values("Date")
+        return df.assign(Date=clean_date_series(df.iloc[:, 0], "%d.%m.%y")).sort_values("Date")
 
     def pipe_row_sum(self, df: pd.DataFrame) -> pd.DataFrame:
         """Sum rows"""
-        return df.assign(
-            positive=df[["p1", "p2", "p3"]].applymap(clean_count).sum(axis=1),
-            daily_change=df[["t1", "t2", "t3"]].applymap(clean_count).sum(axis=1),
-        )
-
-    def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Process metrics"""
-        df = df.groupby("Date", as_index=False).sum().sort_values("Date")
-        # Check that all dates are available
-        if (pd.to_datetime(df.Date).diff().dt.days.dropna() != 1).any():
-            raise ValueError("Can't estimate cumulative total because some dates are missing!")
-        df = df.assign(**{"Cumulative total": df.daily_change.cumsum()})
-        return df
-
-    def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Calculate Positive Rate"""
-        df["Positive rate"] = (
-            df["positive"].rolling(7).sum().div(df["daily_change"].rolling(7).sum()).round(3)
-        ).fillna(0)
+        df["Daily change in cumulative total"] = df[["t1", "t2", "t3"]].applymap(clean_count).sum(axis=1)
         return df
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for data processing"""
-        return (
-            df.pipe(self.pipe_rename_columns)
-            .pipe(self.pipe_date)
-            .pipe(self.pipe_row_sum)
-            .pipe(self.pipe_metrics)
-            .pipe(self.pipe_pr)
-            .pipe(self.pipe_metadata)
-        )
+        return df.pipe(self.pipe_rename_columns).pipe(self.pipe_date).pipe(self.pipe_row_sum).pipe(self.pipe_metadata)
 
     def export(self):
         """Export data to csv"""
