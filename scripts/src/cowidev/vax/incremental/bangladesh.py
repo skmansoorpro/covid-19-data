@@ -54,7 +54,7 @@ class Bangladesh:
         vaccines = {a.text.strip() for a in elem.find_all("a")}
         if vaccines_unk := vaccines.difference(set(self.vaccines_rename) | {"All Vaccine"}):
             raise ValueError(f"Unknown vaccines found {vaccines_unk}")
-        return ",".join(sorted(self.vaccines_rename.values()))
+        return ", ".join(sorted(self.vaccines_rename.values()))
 
     def pipe_location(self, ds: pd.Series) -> pd.Series:
         return enrich_data(ds, "location", "Bangladesh")
