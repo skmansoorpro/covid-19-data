@@ -73,13 +73,12 @@ class Nepal(CountryTestBase):
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for data."""
         return df.pipe(self.pipe_metadata).pipe(self.pipe_date)
-        
 
     def export(self):
         """Exports data to CSV."""
         df = self.read().pipe(self.pipeline)
         # Export to CSV
-        self.export_datafile(df,attach=True)
+        self.export_datafile(df, attach=True)
 
 
 def main():
