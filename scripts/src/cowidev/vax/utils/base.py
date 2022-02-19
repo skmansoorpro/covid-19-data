@@ -176,7 +176,7 @@ class CountryVaxBase:
         if df_age is not None:
             self._export_datafile_age(df_age, meta_age, filename=filename)
         if df_manufacturer is not None:
-            self._export_datafile_manufacturer(df_manufacturer, meta_manufacturer, filename=filename)
+            self._export_datafile_manufacturer(df_manufacturer, meta_manufacturer, filename=filename, attach=attach)
 
     def _export_datafile_main(self, df, filename, attach=False, reset_index=False, valid_cols_only=False, **kwargs):
         """Export main data."""
@@ -194,9 +194,11 @@ class CountryVaxBase:
         df = self._postprocessing_age(df)
         self._export_datafile_secondary(df, metadata, filename, PATHS.INTERNAL_OUTPUT_VAX_META_AGE_FILE)
 
-    def _export_datafile_manufacturer(self, df, metadata, filename):
+    def _export_datafile_manufacturer(self, df, metadata, filename, attach):
         """Export manufacturer data"""
         filename = self.get_output_path(filename, manufacturer=True)
+        if attach:
+            df = merge_with_current_data(df, filename)
         df = self._postprocessing_manufacturer(df)
         self._export_datafile_secondary(df, metadata, filename, PATHS.INTERNAL_OUTPUT_VAX_META_MANUFACT_FILE)
 
