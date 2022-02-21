@@ -122,7 +122,7 @@ class Iran:
         return enrich_data(
             data_series,
             "vaccine",
-            "COVIran Barekat, Covaxin, Oxford/AstraZeneca, Sinopharm/Beijing, Soberana02, Sputnik V",
+            "COVIran Barekat, Covaxin, FAKHRAVAC, Oxford/AstraZeneca, Razi Cov Pars, Sinopharm/Beijing, Soberana02, SpikoGen, Sputnik V",
         )
 
     def pipeline(self, data_series: pd.Series) -> pd.Series:
