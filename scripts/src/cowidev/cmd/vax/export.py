@@ -5,14 +5,15 @@ import click
 
 from cowidev import PATHS
 from cowidev.utils.log import get_logger
+from cowidev.utils.params import SECRETS
 from cowidev.megafile.generate import generate_megafile
 
 logger = get_logger()
 
 
 @click.command(name="export", short_help="Step 4: Export vaccination data and merge with global dataset.")
-def click_vax_export(url):
-    main_source_table_html(url)
+def click_vax_export():
+    main_source_table_html(SECRETS.vaccinations.post)
     main_megafile()
 
 

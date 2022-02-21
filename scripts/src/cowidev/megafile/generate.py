@@ -35,7 +35,7 @@ def generate_megafile():
     all_covid = all_covid[all_covid["date"] < str(date.today())]
 
     # Exclude some entities from megafile
-    excluded = ["Summer Olympics 2020"]
+    excluded = ["Summer Olympics 2020", "Winter Olympics 2022"]
     all_covid = all_covid[-all_covid.location.isin(excluded)]
 
     # Add ISO codes

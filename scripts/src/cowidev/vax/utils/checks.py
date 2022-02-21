@@ -4,6 +4,8 @@ from itertools import chain
 import pandas as pd
 
 
+METRICS = ["total_vaccinations", "people_vaccinated", "people_fully_vaccinated", "total_boosters"]
+
 VACCINES_ACCEPTED = [
     "Abdala",
     "CanSino",
@@ -82,7 +84,8 @@ class CountryChecker:
     def _get_location(self, df):
         x = df.loc[:, "location"].unique()
         if len(x) != 1:
-            raise ValueError(f"More than one location found: {df.loc[:, 'location'].unique()}")
+            locations = df.loc[:, "location"].unique()
+            raise ValueError(f"More than one location found: {locations}")
         return x[0]
 
     def _skip_check_ids(self, check_skip):

@@ -3,10 +3,10 @@ import numpy as np
 
 from cowidev.utils.log import get_logger
 from cowidev.utils.utils import check_known_columns
-from cowidev.vax.utils.incremental import increment
+from cowidev.vax.utils.extra_source import add_latest_from_acdc
 from cowidev.vax.utils.checks import VACCINES_ONE_DOSE
 from cowidev.vax.utils.orgs import WHO_VACCINES, WHO_COUNTRIES
-
+from cowidev.vax.utils.base import CountryVaxBase
 
 logger = get_logger()
 
@@ -19,10 +19,15 @@ ADDITIONAL_VACCINES_USED = {
 }
 
 
-class WHO:
-    def __init__(self) -> None:
-        self.source_url = "https://covid19.who.int/who-data/vaccination-data.csv"
-        self.source_url_ref = "https://covid19.who.int/"
+class WHO(CountryVaxBase):
+    location = "WHO"
+    source_url = "https://covid19.who.int/who-data/vaccination-data.csv"
+    source_url_ref = "https://covid19.who.int/"
+    rename_columns = {
+        "DATE_UPDATED": "date",
+        "COUNTRY": "location",
+        "VACCINES_USED": "vaccine",
+    }
 
     def read(self) -> pd.DataFrame:
         return pd.read_csv(self.source_url)
@@ -112,38 +117,28 @@ class WHO:
         return df
 
     def pipe_calculate_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
-        df[["PERSONS_VACCINATED_1PLUS_DOSE", "PERSONS_FULLY_VACCINATED"]] = (
+        df[["people_vaccinated", "people_fully_vaccinated"]] = (
             df[["PERSONS_VACCINATED_1PLUS_DOSE", "PERSONS_FULLY_VACCINATED"]].astype("Int64").fillna(pd.NA)
         )
-        df.loc[:, "TOTAL_VACCINATIONS"] = df["TOTAL_VACCINATIONS"].fillna(np.nan)
+        df.loc[:, "total_vaccinations"] = df["TOTAL_VACCINATIONS"].fillna(np.nan)
+        df = df.pipe(self.pipe_rename_columns)
+        df = df.assign(source_url=self.source_url_ref, total_boosters=pd.NA)
         return df
 
+    def pipe_add_boosters(self, df: pd.DataFrame) -> pd.DataFrame:
+        return add_latest_from_acdc(df, ["total_boosters"])
+
     def increment_countries(self, df: pd.DataFrame):
-        for row in df.sort_values("COUNTRY").iterrows():
-            row = row[1]
-            cond = (
-                row[
-                    [
-                        "PERSONS_VACCINATED_1PLUS_DOSE",
-                        "PERSONS_FULLY_VACCINATED",
-                        "TOTAL_VACCINATIONS",
-                    ]
-                ]
-                .isnull()
-                .all()
+        locations = set(df.location)
+        for location in locations:
+            df_c = df[df.location == location]
+            df_c = df_c.dropna(
+                subset=["people_vaccinated", "people_fully_vaccinated", "total_vaccinations", "total_boosters"],
+                how="all",
             )
-            if not cond:
-                increment(
-                    location=row["COUNTRY"],
-                    total_vaccinations=row["TOTAL_VACCINATIONS"],
-                    people_vaccinated=row["PERSONS_VACCINATED_1PLUS_DOSE"],
-                    people_fully_vaccinated=row["PERSONS_FULLY_VACCINATED"],
-                    date=row["DATE_UPDATED"],
-                    vaccine=row["VACCINES_USED"],
-                    source_url=self.source_url_ref,
-                )
-                country = row["COUNTRY"]
-                logger.info(f"\tcowidev.vax.incremental.who.{country}: SUCCESS ✅")
+            if not df_c.empty:
+                self.export_datafile(df_c, filename=location, attach=True, valid_cols_only=True)
+                logger.info(f"\tcowidev.vax.incremental.who.{location}: SUCCESS ✅")
 
     def pipeline(self, df: pd.DataFrame):
         return (
@@ -153,6 +148,7 @@ class WHO:
             .pipe(self.pipe_vaccine_checks)
             .pipe(self.pipe_map_vaccines)
             .pipe(self.pipe_calculate_metrics)
+            .pipe(self.pipe_add_boosters)
         )
 
     def export(self):

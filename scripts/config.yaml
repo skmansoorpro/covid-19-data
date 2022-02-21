@@ -20,6 +20,9 @@ pipeline:
         - Pitcairn
       skip_monotonic_check:
       skip_anomaly_check:
+        Algeria:
+          - date: 2022-02-17
+            metrics: total_boosters
         Australia:
           - date: 2021-05-23
             metrics: people_vaccinated
@@ -54,6 +57,8 @@ pipeline:
       countries: 
       skip_countries:
         - Benin #the source is n longer updating
+        - Kazakhstan
+        - Lebanon
     process:
     generate:
     export:

@@ -103,16 +103,16 @@ class CountryVaxBase:
             strict=strict,
         )
 
-    def _postprocessing(self, df):
+    def _postprocessing(self, df, valid_cols_only):
         """Minor post processing after all transformations.
 
         Basically sort by date, ensure correct column order, correct type for metrics.
         """
         df = metrics_to_num_int(df, METRICS)
         df = df.sort_values("date")
-        cols = [col for col in COLUMNS_ORDER if col in df.columns] + [
-            col for col in df.columns if col not in COLUMNS_ORDER
-        ]
+        cols = [col for col in COLUMNS_ORDER if col in df.columns]
+        if not valid_cols_only:
+            cols += [col for col in df.columns if col not in COLUMNS_ORDER]
         df = df[cols]
         return df
 
@@ -148,6 +148,7 @@ class CountryVaxBase:
         filename=None,
         attach=False,
         reset_index=False,
+        valid_cols_only=False,
         **kwargs,
     ):
         """Export country data.
@@ -160,21 +161,29 @@ class CountryVaxBase:
             meta_manufacturer (dict, optional): Country metadata by manufacturer. Defaults to None.
             filename (str, optional): Name of output file. If None, defaults to country name.
             attach (bool, optional): Set to True to attach to already existing data. Defaults to False.
+            valid_cols_only (bool, optional): Export only valid columns. Defaults to False.
             reset_index (bool, optional): Brin index back as a column. Defaults to False.
         """
         if df is not None:
-            self._export_datafile_main(df, filename=filename, attach=attach, reset_index=reset_index, **kwargs)
+            self._export_datafile_main(
+                df,
+                filename=filename,
+                attach=attach,
+                reset_index=reset_index,
+                valid_cols_only=valid_cols_only,
+                **kwargs,
+            )
         if df_age is not None:
             self._export_datafile_age(df_age, meta_age, filename=filename)
         if df_manufacturer is not None:
             self._export_datafile_manufacturer(df_manufacturer, meta_manufacturer, filename=filename)
 
-    def _export_datafile_main(self, df, filename, attach=False, reset_index=False, **kwargs):
+    def _export_datafile_main(self, df, filename, attach=False, reset_index=False, valid_cols_only=False, **kwargs):
         """Export main data."""
         filename = self.get_output_path(filename)
         if attach:
             df = merge_with_current_data(df, filename)
-        df = self._postprocessing(df)
+        df = self._postprocessing(df, valid_cols_only)
         if reset_index:
             df = df.reset_index(drop=True)
         df.to_csv(filename, index=False, **kwargs)

@@ -5,7 +5,6 @@ import pandas as pd
 
 from cowidev.utils.clean.dates import localdate
 from cowidev.vax.utils.incremental import enrich_data, increment
-from cowidev.vax.utils.utils import make_monotonic
 from cowidev.vax.utils.base import CountryVaxBase
 
 

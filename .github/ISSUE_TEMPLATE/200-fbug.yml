@@ -1,0 +1,16 @@
+name: Bug 🐛
+description: >-
+  Use this issue to report a bug in the code, documentation, etc.
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html)."
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please describe the bug and the affected files. If a code bug, copy the error that you obtained 
+    validations:
+      required: true
