@@ -10,8 +10,6 @@ class Canada(CountryVaxBase):
     location: str = "Canada"
     source_url: str = "https://api.covid19tracker.ca/reports"
     source_url_ref: str = "https://covid19tracker.ca/vaccinationtracker.html"
-    source_url_boosters: str = "https://api.covid19tracker.ca/vaccines/reports/latest"
-    df_boosters: pd.DataFrame = None
 
     def read(self) -> pd.DataFrame:
         data = request_json(self.source_url)
