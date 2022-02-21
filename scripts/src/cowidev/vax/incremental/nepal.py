@@ -158,6 +158,7 @@ class Nepal(CountryVaxBase):
             df=df_main,
             df_manufacturer=df_manufacturer,
             attach=True,
+            attach_manufacturer=True,
             meta_manufacturer={
                 "source_name": "Ministry of Health and Population",
                 "source_url": self.source_url_ref["main"],
