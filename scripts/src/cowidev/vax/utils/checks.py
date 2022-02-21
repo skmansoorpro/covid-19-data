@@ -20,6 +20,7 @@ VACCINES_ACCEPTED = [
     "Oxford/AstraZeneca",
     "Pfizer/BioNTech",
     "QazVac",
+    "Razi Cov Pars",
     "Sinopharm/Beijing",
     "Sinopharm/Wuhan",
     "Sinovac",
@@ -41,7 +42,7 @@ VACCINES_ONE_DOSE = [
 VACCINES_THREE_DOSES = [
     "ZF2001",
     "Abdala",
-    "Razi Cov Pars", # 3rd dose (intranasal spray) not reported in Iran as a 3rd dose
+    "Razi Cov Pars",  # 3rd dose (intranasal spray) not reported in Iran as a 3rd dose
     "Soberana02",
     "ZyCoV-D",
 ]
