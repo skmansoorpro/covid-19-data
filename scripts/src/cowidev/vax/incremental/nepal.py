@@ -162,6 +162,7 @@ class Nepal(CountryVaxBase):
                 "source_name": "Ministry of Health and Population",
                 "source_url": self.source_url_ref["main"],
             },
+            attach_manufacturer=True,
         )
 
 
