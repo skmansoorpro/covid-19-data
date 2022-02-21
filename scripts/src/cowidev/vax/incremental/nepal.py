@@ -112,7 +112,7 @@ class Nepal(CountryVaxBase):
     def pipe_manufacturer_vaccine(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipes vaccine names for manufacturer data."""
         return df.assign(
-            **{"vaccine": ["Oxford/AstraZeneca", "Sinopharm/Wuhan", "Johnson&Johnson", "Pfizer/BioNTech", "Moderna"]}
+            **{"vaccine": ["Oxford/AstraZeneca", "Sinopharm/Beijing", "Johnson&Johnson", "Pfizer/BioNTech", "Moderna"]}
         )
 
     def pipe_manufacturer_location(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -137,7 +137,7 @@ class Nepal(CountryVaxBase):
 
     def pipe_vaccine(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipes vaccine names for main data."""
-        return df.assign(vaccine="Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Wuhan")
+        return df.assign(vaccine="Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing")
 
     def pipe_source(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipes source for main data."""
