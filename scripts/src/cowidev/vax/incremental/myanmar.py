@@ -15,7 +15,7 @@ class Myanmar:
     _num_max_pages = 3
     regex = {
         "title": r"ကိုဗစ်-19 ရောဂါ ကာကွယ်ဆေး ထိုးနှံပြီးစီးမှု",
-        "date": r"(\d{1,2}\-\d{1,2}\-20\d{1,2})",
+        "date": r"(\d{1,2}\-\d{1,2}\-20\d{2})",
         "people_vaccinated": r"(\d+) \(Cumulative vaccinated people\)",
         "people_fully_vaccinated": r"(\d+) \(Cumulative fully vaccinated people\)",
         "total_vaccinations": r"(\d+) \(Cumulative vaccinated doses\)",
