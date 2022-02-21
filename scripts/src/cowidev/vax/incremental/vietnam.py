@@ -15,11 +15,11 @@ class Vietnam:
     regex = {
         "title": r"Ngày",
         "date": r"(\d{2}\-\d{2}\-\d{4})",
-        "metrics": (
-            r"tổng số liều (vắc xin|vaccine) đã được tiêm là ([\d\.]+) liều, "
-            r"trong đó tiêm mũi 1 là ([\d\.]+) liều, tiêm mũi 2 là ([\d\.]+) liều, "
-            r"tiêm mũi 3 .* là ([\d\.]+) liều"
-        ),
+        "metrics": {
+            "total": r"tổng số liều (vắc xin|vaccine) đã được tiêm là (\d+) liều, ",
+            "adult": r"tuổi trở lên là \d+ liều: Mũi 1 là (\d+) liều; Mũi 2 là (\d+) liều; Mũi 3 là (\d+) liều; Mũi bổ sung là (\d+) liều; Mũi nhắc lại là (\d+) liều.",
+            "adolescent": r"tuổi là \d+ liều: Mũi 1 là (\d+) liều; Mũi 2 là (\d+) liều.",
+        },
     }
 
     def read(self) -> pd.Series:
@@ -66,13 +66,15 @@ class Vietnam:
 
     def _parse_metrics(self, text: str) -> tuple:
         """Get metrics from text."""
-        metrics = [
-            "total_vaccinations",
-            "people_vaccinated",
-            # "people_fully_vaccinated",
-            # "total_boosters",
-        ]
-        return {m: clean_count(re.search(self.regex["metrics"], text).group(i + 1)) for i, m in enumerate(metrics)}
+        adults = [clean_count(num) for num in re.search(self.regex["metrics"]["adult"], text).group(1, 2, 3, 4, 5)]
+        adolescents = [clean_count(num) for num in re.search(self.regex["metrics"]["adolescent"], text).group(1, 2)]
+        metrics = {
+            "total_vaccinations": clean_count(re.search(self.regex["metrics"]["total"], text).group(2)),
+            "people_vaccinated": adults[0] + adolescents[0],
+            "people_fully_vaccinated": adults[1] + adults[2] + adolescents[1],
+            "total_boosters": adults[3] + adults[4],
+        }
+        return metrics
 
     def pipe_location(self, ds: pd.Series) -> pd.Series:
         """Pipe location."""
@@ -100,8 +102,8 @@ class Vietnam:
             vaccine=data["vaccine"],
             source_url=data["source_url"],
             people_vaccinated=data["people_vaccinated"],
-            # people_fully_vaccinated=data["people_fully_vaccinated"],
-            # total_boosters=data["total_boosters"],
+            people_fully_vaccinated=data["people_fully_vaccinated"],
+            total_boosters=data["total_boosters"],
         )
 
 
