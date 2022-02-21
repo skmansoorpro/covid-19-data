@@ -20,7 +20,7 @@ class Myanmar(CountryTestBase):
 
     def read(self) -> pd.DataFrame:
         """Read data from source"""
-        soup = get_soup(self.source_url_ref,verify=False)
+        soup = get_soup(self.source_url_ref, verify=False)
         date = self._parse_date(soup)
         df = pd.DataFrame(
             {
