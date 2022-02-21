@@ -41,8 +41,7 @@ class SriLanka(CountryTestBase):
                 ),
             }
         )
-        df = df[df["Daily change in cumulative total"] > 0]
-        return df
+        return df[df["Daily change in cumulative total"] > 0].drop_duplicates(subset="Date", keep="last")
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """pipeline for data"""
