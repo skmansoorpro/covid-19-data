@@ -147,6 +147,8 @@ class CountryVaxBase:
         meta_manufacturer=None,
         filename=None,
         attach=False,
+        attach_age=False,
+        attach_manufacturer=False,
         reset_index=False,
         valid_cols_only=False,
         **kwargs,
@@ -161,6 +163,8 @@ class CountryVaxBase:
             meta_manufacturer (dict, optional): Country metadata by manufacturer. Defaults to None.
             filename (str, optional): Name of output file. If None, defaults to country name.
             attach (bool, optional): Set to True to attach to already existing data. Defaults to False.
+            attach_age (bool, optional): Set to True to attach to already existing data. Defaults to False.
+            attach_manufacturer (bool, optional): Set to True to attach to already existing data. Defaults to False.
             valid_cols_only (bool, optional): Export only valid columns. Defaults to False.
             reset_index (bool, optional): Brin index back as a column. Defaults to False.
         """
@@ -174,9 +178,11 @@ class CountryVaxBase:
                 **kwargs,
             )
         if df_age is not None:
-            self._export_datafile_age(df_age, meta_age, filename=filename)
+            self._export_datafile_age(df_age, meta_age, filename=filename, attach=attach_age)
         if df_manufacturer is not None:
-            self._export_datafile_manufacturer(df_manufacturer, meta_manufacturer, filename=filename, attach=attach)
+            self._export_datafile_manufacturer(
+                df_manufacturer, meta_manufacturer, filename=filename, attach=attach_manufacturer
+            )
 
     def _export_datafile_main(self, df, filename, attach=False, reset_index=False, valid_cols_only=False, **kwargs):
         """Export main data."""
@@ -188,9 +194,11 @@ class CountryVaxBase:
             df = df.reset_index(drop=True)
         df.to_csv(filename, index=False, **kwargs)
 
-    def _export_datafile_age(self, df, metadata, filename):
+    def _export_datafile_age(self, df, metadata, filename, attach):
         """Export age data."""
         filename = self.get_output_path(filename, age=True)
+        if attach:
+            df = merge_with_current_data(df, filename)
         df = self._postprocessing_age(df)
         self._export_datafile_secondary(df, metadata, filename, PATHS.INTERNAL_OUTPUT_VAX_META_AGE_FILE)
 
