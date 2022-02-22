@@ -59,8 +59,10 @@ class Singapore(CountryVaxBase):
             df_boosters["vacc_date"] = clean_date_series(df_boosters.vacc_date, "%d-%b-%y")
             df_boosters = df_boosters.drop_duplicates(subset=["vacc_date"], keep=False)
         if not df_primary.vacc_date.str.match(r"\d{4}-\d{2}-\d{2}").all():
-            df_primary["vacc_date"] = clean_date_series(df_primary.vacc_date, "%d/%m/%Y")
+            df_primary["vacc_date"] = clean_date_series(df_primary.vacc_date, "%d %b %Y")
             df_primary = df_primary.drop_duplicates(subset=["vacc_date"], keep=False)
+        else:
+            raise ValueError("Unknown date format. Please check!")
         df = pd.merge(df_primary, df_boosters, on="vacc_date", how="outer", validate="one_to_one")
         return df
 
@@ -86,11 +88,17 @@ class Singapore(CountryVaxBase):
             build_vaccine_timeline, self.vaccine_timeline
         )
 
+    def pipe_filter_dp(self, df: pd.DataFrame) -> pd.DataFrame:
+        date_ex = ["2022-02-14"]
+        df = df[~df.date.isin(date_ex)]
+        return df
+
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
             df.pipe(self.pipe_rename_columns)
             .pipe(self.pipe_metrics)
             .pipe(self.pipe_metadata)
+            .pipe(self.pipe_filter_dp)
             .pipe(make_monotonic, max_removed_rows=20)
         )
 
