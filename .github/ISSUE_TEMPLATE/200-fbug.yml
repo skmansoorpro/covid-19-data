@@ -1,6 +1,6 @@
-name: Bug 🐛
+name: Bug ⚠️
 description: >-
-  Use this issue to report a bug in the code, documentation, etc.
+  Use this issue to report a bug in the code, a typo in the documentation, etc.
 title: "bug: "
 labels: ["bug"]
 body:
@@ -11,6 +11,6 @@ body:
     id: description
     attributes:
       label: Description
-      description: Please describe the bug and the affected files. If a code bug, copy the error that you obtained 
+      description: Please describe the bug and the affected files. If the bug occurs when running a piece of code, please copy the error.
     validations:
       required: true
