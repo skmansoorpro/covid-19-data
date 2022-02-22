@@ -26,9 +26,10 @@ class Norway(CountryTestBase):
 
     def pipe_metrics(self, df: pd.DataFrame):
         """Pipes metrics"""
-        return df.assign(
+        df = df.assign(
             **{"Daily change in cumulative total": df.Negative.apply(clean_count) + df.Positive.apply(clean_count)}
         )
+        return df[df["Daily change in cumulative total"] > 0].drop_duplicates(subset="Date", keep="last")
 
     def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipes pr"""

@@ -6,9 +6,6 @@ from cowidev.testing.utils.incremental import increment
 
 ACDC_COUNTRIES = {
     "Angola": {"name": "Angola", "notes": ""},  # New
-    "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
-        "name": "Malawi",
-    },
     "Benin": {"name": "Benin"},  # Automate
     "Botswana": {"name": "Botswana"},  # Automate
     "Burundi": {  # New
@@ -27,7 +24,7 @@ ACDC_COUNTRIES = {
     "Djibouti": {"name": "Djibouti"},  # Automate
     # "Democratic Republic of the Congo": {"name": "Democratic Republic of Congo"},  # Manual
     "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
-    "Equatorial Guinea": {"name": "Equatorial Guinea"},  # Change source to Africa CDC
+    # "Equatorial Guinea": {"name": "Equatorial Guinea"},  # Change source to Africa CDC
     "Gabon": {"name": "Gabon"},  # Automate
     "Gambia": {"name": "Gambia"},  # Automate
     "Ghana": {"name": "Ghana"},  # Automate
@@ -35,6 +32,9 @@ ACDC_COUNTRIES = {
         "name": "Kenya",
     },
     "Madagascar": {"name": "Madagascar"},  # Automate
+    "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
+        "name": "Malawi",
+    },
     "Mauritania": {
         "name": "Mauritania",
     },  # Deprecate R script

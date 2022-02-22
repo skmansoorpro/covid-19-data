@@ -12,6 +12,7 @@ VACCINES_ACCEPTED = [
     "Covaxin",
     "COVIran Barekat",
     "EpiVacCorona",
+    "FAKHRAVAC",
     "IMBCAMS/Inactivated",
     "Johnson&Johnson",
     "LV-SMENP",
@@ -21,10 +22,12 @@ VACCINES_ACCEPTED = [
     "Oxford/AstraZeneca",
     "Pfizer/BioNTech",
     "QazVac",
+    "Razi Cov Pars",
     "Sinopharm/Beijing",
     "Sinopharm/Wuhan",
     "Sinovac",
     "Soberana02",
+    "SpikoGen",
     "Sputnik Light",
     "Sputnik V",
     "Turkovac",
@@ -41,6 +44,7 @@ VACCINES_ONE_DOSE = [
 VACCINES_THREE_DOSES = [
     "ZF2001",
     "Abdala",
+    "Razi Cov Pars",  # 3rd dose (intranasal spray) not reported in Iran as a 3rd dose
     "Soberana02",
     "ZyCoV-D",
 ]
@@ -80,7 +84,8 @@ class CountryChecker:
     def _get_location(self, df):
         x = df.loc[:, "location"].unique()
         if len(x) != 1:
-            raise ValueError(f"More than one location found: {df.loc[:, 'location'].unique()}")
+            locations = df.loc[:, "location"].unique()
+            raise ValueError(f"More than one location found: {locations}")
         return x[0]
 
     def _skip_check_ids(self, check_skip):

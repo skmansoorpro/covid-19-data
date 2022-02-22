@@ -2,6 +2,7 @@ include *.md
 include requirements.txt
 include requirements-flake.txt
 include src/cowidev/vax/utils/orgs/*.yaml
+include src/cowidev/vax/utils/orgs/*.csv
 include src/cowidev/vax/_static/*/*
 
 recursive-include altair *.py *.json *.ipynb *.html *.yaml
