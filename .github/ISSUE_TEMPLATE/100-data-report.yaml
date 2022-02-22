@@ -1,17 +1,17 @@
-name: New data source 🗞️
+name: New data source 📄
 description: >-
-  Use this issue to report new data sources for a country.
+  Use this issue to report new data sources for a location or metric.
 title: "data: "
 labels: ["report"]
 body:
   - type: markdown
     attributes:
-      value: "Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html)."
+      value: "Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html). If your issue is about reported numbers of cases or deaths, we take all our data for these metrics from the JHU CSSE COVID-19 Data – issues should be reported [in their repository](https://github.com/CSSEGISandData/COVID-19/issues)."
   - type: input
     id: country
     attributes:
       label: Country
-      description: "Which country is the data source for?"
+      description: "Which location is the data source for?"
       placeholder: "Afghanistan"
     validations:
       required: true
@@ -23,9 +23,8 @@ body:
       options:
         - Vaccinations
         - Testing
-        - Hospitalizations
-        - Cases/Deaths
-        - Excess Mortality
+        - Hospital & ICU
+        - Excess mortality
         - Variants
         - Other
     validations:
@@ -34,13 +33,13 @@ body:
     id: source
     attributes:
       label: Source
-      description: Please introduce the source URL. 
+      description: Please add the source URL. 
     validations:
       required: true
   - type: textarea
     id: commnent
     attributes:
-      label: Comment
+      label: Comments
       description: Comments and caveats about the source.
       placeholder: |
         E.g. The source updates the data on a daily basis. Potentially, the data extraction could be automated.

@@ -126,7 +126,7 @@ class WHO(CountryVaxBase):
         return df
 
     def pipe_add_boosters(self, df: pd.DataFrame) -> pd.DataFrame:
-        return add_latest_from_acdc(df, ["total_boosters"])
+        return add_latest_from_acdc(df, ["total_boosters"], priority=True)
 
     def increment_countries(self, df: pd.DataFrame):
         locations = set(df.location)
