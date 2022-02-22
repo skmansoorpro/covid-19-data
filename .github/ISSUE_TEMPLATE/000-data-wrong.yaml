@@ -1,4 +1,4 @@
-name: Missing/wrong data 🕵️
+name: Missing or inaccurate  data 🕵️
 description: >-
   Use this issue to report potential missing (or wrong) data for a country.
 title: "data: "
@@ -6,12 +6,12 @@ labels: ["report"]
 body:
   - type: markdown
     attributes:
-      value: "Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html)."
+      value: "Thanks for contributing! Before doing so, please check our [contribution guideline](https://covid-docs.ourworldindata.org/en/latest/contribute.html). If your issue is about reported numbers of cases or deaths, we take all our data for these metrics from the JHU CSSE COVID-19 Data – issues should be reported [in their repository](https://github.com/CSSEGISandData/COVID-19/issues)."
   - type: input
     id: country
     attributes:
       label: Country
-      description: "Which country does it concern?"
+      description: "Which country or location does this apply to?"
       placeholder: "Afghanistan"
     validations:
       required: true
@@ -23,9 +23,10 @@ body:
       options:
         - Vaccinations
         - Testing
-        - Hospitalizations
-        - Cases/Deaths
-        - Excess Mortality
+        - Hospital & ICU
+        - Cases
+        - Deaths
+        - Excess mortality
         - Variants
         - Other
     validations:
@@ -36,15 +37,15 @@ body:
       label: Which data is wrong?
       description: Please state which metrics and dates might have missing or wrong data.
       placeholder: |
-        The value of total_vaccinations for country X on 2022-01-10 does not seem right.
+        The value of total_vaccinations for this country on 2022-01-10 does not seem right.
     validations:
       required: true
   - type: textarea
     id: wrong-why
     attributes:
       label: Why do you think the data is wrong?
-      description: Please elaborate on why do you think that there is missing or wrong data.
+      description: Please elaborate on why you think the data is missing or inaccurate.
       placeholder: |
-        Considering the number of people that have received one dose, two doses and boosters...
+        Considering the number of people that have received one dose, two doses and boosters…
     validations:
       required: true
