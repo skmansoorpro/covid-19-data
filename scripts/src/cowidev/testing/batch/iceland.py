@@ -60,24 +60,24 @@ class Iceland(CountryTestBase):
         data = data["elements"]["content"]["content"]["entities"]
         data_test = [v for v in data.values() if re.search(self.regex["title_test"], str(v))][0]
         data_positive = [v for v in data.values() if re.search(self.regex["title_positive"], str(v))][0]
-        data_list = data_test["props"]["chartData"]["data"] + data_positive["props"]["chartData"]["data"]
 
-        df222 = pd.DataFrame(data_list[0], columns=data_list[0][0]).drop(0)
-        df222 = df222[df222.iloc[:, 0] != ""]
-        df222.columns = df222.columns.fillna("")
+        d = {}
+        for iteration, item in enumerate(data_test["props"]["chartData"]["data"]):
+            test_list = data_test["props"]["chartData"]["data"][iteration]
+            d["df" + str(iteration)] = pd.DataFrame(test_list, columns=test_list[0]).drop(0)
+            d["df" + str(iteration)] = d[("df" + str(iteration))][d[("df" + str(iteration))].iloc[:, 0] != ""]
+            d["df" + str(iteration)].columns = d["df" + str(iteration)].columns.fillna("")
+        tests = pd.concat(d.values(), ignore_index=True)
 
-        df221 = pd.DataFrame(data_list[1], columns=data_list[1][0]).drop(0)
-        df221 = df221[df221.iloc[:, 0] != ""]
+        p = {}
+        for iteration, item in enumerate(data_positive["props"]["chartData"]["data"]):
+            pos_list = data_positive["props"]["chartData"]["data"][iteration]
+            p["df" + str(iteration)] = pd.DataFrame(pos_list, columns=pos_list[0]).drop(0)
+            p["df" + str(iteration)] = p[("df" + str(iteration))][p[("df" + str(iteration))].iloc[:, 0] != ""]
+            p["df" + str(iteration)].columns = p["df" + str(iteration)].columns.fillna("")
+        pos = pd.concat(p.values(), ignore_index=True)
 
-        df21 = pd.DataFrame(data_list[2], columns=data_list[2][0]).drop(0)
-        df21 = df21[df21.iloc[:, 0] != ""]
-
-        df20 = pd.DataFrame(data_list[3], columns=data_list[3][0]).drop(0)
-        df20 = df20[df20.iloc[:, 0] != ""]
-
-        df = pd.concat([df222, df221, df21, df20])
-
-        return df
+        return pd.merge(tests, pos)
 
     def pipe_date(self, df: pd.DataFrame) -> pd.DataFrame:
         """Clean date"""
@@ -86,11 +86,25 @@ class Iceland(CountryTestBase):
     def pipe_row_sum(self, df: pd.DataFrame) -> pd.DataFrame:
         """Sum rows"""
         df["Daily change in cumulative total"] = df[["t1", "t2", "t3"]].applymap(clean_count).sum(axis=1)
+        df["positive"] = df[["p1", "p2", "p3"]].applymap(clean_count).sum(axis=1)
+        return df
+
+    def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Calculate Positive Rate"""
+        df["Positive rate"] = (
+            (df["positive"].rolling(7).sum().div(df["Daily change in cumulative total"].rolling(7).sum())).fillna(0)
+        ).round(3)
         return df
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for data processing"""
-        return df.pipe(self.pipe_rename_columns).pipe(self.pipe_date).pipe(self.pipe_row_sum).pipe(self.pipe_metadata)
+        return (
+            df.pipe(self.pipe_rename_columns)
+            .pipe(self.pipe_date)
+            .pipe(self.pipe_row_sum)
+            .pipe(self.pipe_pr)
+            .pipe(self.pipe_metadata)
+        )
 
     def export(self):
         """Export data to csv"""
