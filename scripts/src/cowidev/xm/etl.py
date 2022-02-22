@@ -14,8 +14,8 @@ class XMortalityETL:
     def __init__(self) -> None:
         self.source_url = (
             "https://github.com/owid/owid-datasets/raw/master/datasets/"
-            "Excess%20Mortality%20Data%20%E2%80%93%20OWID%20(2021)/"
-            "Excess%20Mortality%20Data%20%E2%80%93%20OWID%20(2021).csv"
+            "Excess%20Mortality%20Data%20%E2%80%93%20OWID%20(2022)/"
+            "Excess%20Mortality%20Data%20%E2%80%93%20OWID%20(2022).csv"
         )
         self.timestamp_filename = "owid-covid-data-last-updated-timestamp-xm.txt"
 
