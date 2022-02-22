@@ -55,7 +55,7 @@ class Nepal(CountryTestBase):
         match_count = re.search(self.regex["count"], text)
         if not match_count:
             raise ValueError("Unable to extract data from text, please update the regex.")
-        count = clean_count(match_count.group(1)) + clean_count(match_count.group(2))
+        count = clean_count(match_count.group(1))  # (antigen tests) + clean_count(match_count.group(2))
         # Create dataframe
         df = {
             "Cumulative total": [count],
