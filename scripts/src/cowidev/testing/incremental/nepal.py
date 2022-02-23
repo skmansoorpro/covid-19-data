@@ -21,7 +21,7 @@ class Nepal(CountryTestBase):
     source_label: str = "Ministry of Health and Population"
     regex: dict = {
         "date": r"(\d{1,2}\-\d{1,2}\-20\d{2})",
-        "count": r"Deaths            PCR     \|    Antigen  (\d+) (\d+)",
+        "metrics": r"PCR \| Antigen (\d+) (\d+) PCR \| Antigen (\d+) (\d+)",
     }
 
     def read(self) -> pd.DataFrame:
@@ -47,18 +47,21 @@ class Nepal(CountryTestBase):
             download_file_from_url(self.source_url_ref, tmp.name)
             with open(tmp.name, "rb") as f:
                 text = extract_text(f).replace("\n", " ")
+        text = re.sub(r"\s+", " ", text)
         return text
 
     def _parse_metrics(self, text: str) -> pd.DataFrame:
         """Parses metrics from data."""
         # Extract data
-        match_count = re.search(self.regex["count"], text)
+        match_count = re.search(self.regex["metrics"], text)
         if not match_count:
             raise ValueError("Unable to extract data from text, please update the regex.")
-        count = clean_count(match_count.group(1))  # (antigen tests) + clean_count(match_count.group(2))
+        tests = clean_count(match_count.group(1)) + clean_count(match_count.group(2))
+        positive = clean_count(match_count.group(3)) + clean_count(match_count.group(4))
         # Create dataframe
         df = {
-            "Cumulative total": [count],
+            "Cumulative total": [tests],
+            "positive": [positive],
         }
         return pd.DataFrame(df)
 
@@ -70,15 +73,24 @@ class Nepal(CountryTestBase):
         """Pipes date."""
         return df.assign(Date=self._parse_date(self.source_url_ref))
 
+    def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Calculate Positive Rate"""
+        df = df.sort_values("Date")
+        df = df.drop_duplicates(subset=["Date"], keep="first")
+        df["Positive rate"] = (
+            df["positive"].diff().rolling(7).sum().div(df["Cumulative total"].diff().rolling(7).sum()).round(3)
+        ).fillna(0)
+        return df
+
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for data."""
-        return df.pipe(self.pipe_metadata).pipe(self.pipe_date)
+        return df.pipe(self.pipe_date).pipe(self.pipe_metadata).pipe(self.pipe_merge_current).pipe(self.pipe_pr)
 
     def export(self):
         """Exports data to CSV."""
         df = self.read().pipe(self.pipeline)
         # Export to CSV
-        self.export_datafile(df, attach=True)
+        self.export_datafile(df, extra_cols=["positive"], float_format="%.3f")
 
 
 def main():
