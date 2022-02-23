@@ -1,4 +1,5 @@
 import re
+import pandas as pd
 
 from cowidev.utils.web import get_soup
 from cowidev.testing.utils.incremental import increment
