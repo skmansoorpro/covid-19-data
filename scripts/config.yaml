@@ -15,6 +15,7 @@ pipeline:
         - africacdc
         - Austria
         - Guatemala
+        - Ukraine 
         # - Faeroe Islands
     process:
       skip_complete:
@@ -60,6 +61,7 @@ pipeline:
         - Benin #the source is n longer updating
         - Kazakhstan
         - Lebanon
+        - Ukraine
     process:
     generate:
     export:
