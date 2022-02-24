@@ -98,7 +98,7 @@ class Singapore(CountryVaxBase):
             df.pipe(self.pipe_rename_columns)
             .pipe(self.pipe_metrics)
             .pipe(self.pipe_metadata)
-            .pipe(self.pipe_filter_dp)
+            #.pipe(self.pipe_filter_dp)
             .pipe(make_monotonic, max_removed_rows=20)
         )
 
