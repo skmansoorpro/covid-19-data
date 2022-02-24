@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 from cowidev.utils import get_soup, clean_date_series, clean_date
 from cowidev.utils.web.download import read_xlsx_from_url
-from cowidev.vax.utils.utils import build_vaccine_timeline, make_monotonic
+from cowidev.vax.utils.utils import build_vaccine_timeline
 from cowidev.vax.utils.base import CountryVaxBase
 
 
@@ -92,7 +92,7 @@ class NewZealand(CountryVaxBase):
             .pipe(self.pipe_total_vaccinations)
             .pipe(self.pipe_vaccine)
             .pipe(self.pipe_metadata)
-            .pipe(make_monotonic)
+            .pipe(self.make_monotonic)
         )
 
     def export(self):
