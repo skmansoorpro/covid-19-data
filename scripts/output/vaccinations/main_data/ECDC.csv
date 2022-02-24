@@ -1,60 +1,61 @@
 location,date,vaccine,source_url,total_vaccinations,people_vaccinated,people_fully_vaccinated,total_boosters
-Austria,2021-01-08,Pfizer/BioNTech,https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,31626,31626,0,0
-Austria,2021-01-15,"Moderna, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,117221,116816,404,1
-Austria,2021-01-22,"Moderna, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,215354,210323,5027,4
-Austria,2021-01-29,"Moderna, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,264642,242013,22621,8
-Austria,2021-02-05,"Moderna, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,362941,260658,102255,28
-Austria,2021-02-12,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,480352,289501,190814,37
-Austria,2021-02-19,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,583835,353169,230615,51
-Austria,2021-02-26,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,712132,460047,252032,54
-Austria,2021-03-05,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,882011,614705,267253,57
-Austria,2021-03-12,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,1141359,843093,298209,63
-Austria,2021-03-19,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,1380636,1034399,346194,76
-Austria,2021-03-26,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,1630175,1190398,439743,92
-Austria,2021-04-02,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,1855433,1334281,521146,109
-Austria,2021-04-09,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,2210684,1550976,659763,136
-Austria,2021-04-16,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,2586962,1828949,758070,156
-Austria,2021-04-23,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,2940930,2122580,818410,163
-Austria,2021-04-30,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,3300611,2412962,888007,174
-Austria,2021-05-07,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,3755306,2749218,1012654,199
-Austria,2021-05-14,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,4182792,3070911,1125654,208
-Austria,2021-05-21,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,4727568,3434691,1319137,227
-Austria,2021-05-28,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,5219968,3691663,1567063,237
-Austria,2021-06-04,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,5802915,4003035,1859686,256
-Austria,2021-06-11,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,6438867,4299405,2221413,283
-Austria,2021-06-18,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,7035759,4554137,2578892,313
-Austria,2021-06-25,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,7651806,4765973,2991965,343
-Austria,2021-07-02,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,8275289,4965979,3441160,402
-Austria,2021-07-09,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,8774703,5117058,3813835,481
-Austria,2021-07-16,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,9198539,5227310,4146900,613
-Austria,2021-07-23,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,9570464,5318456,4444501,713
-Austria,2021-07-30,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,9879399,5374884,4709288,885
-Austria,2021-08-06,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10145349,5430782,4934694,1117
-Austria,2021-08-13,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10327160,5468859,5088687,1478
-Austria,2021-08-20,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10478386,5514077,5207893,1962
-Austria,2021-08-27,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10576261,5561474,5271557,2836
-Austria,2021-09-03,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10666294,5609930,5323591,5583
-Austria,2021-09-10,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10757434,5663259,5369998,11177
-Austria,2021-09-17,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10864517,5721422,5417809,23898
-Austria,2021-09-24,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10975712,5776831,5465227,46281
-Austria,2021-10-01,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11087970,5820372,5507738,80101
-Austria,2021-10-08,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11226772,5855416,5551680,144109
-Austria,2021-10-15,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11359833,5884689,5592467,209897
-Austria,2021-10-22,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11515401,5921032,5632323,292558
-Austria,2021-10-29,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11659966,5973917,5665707,356229
-Austria,2021-11-05,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11921255,6053058,5702836,505961
-Austria,2021-11-12,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,12416936,6189884,5748871,822496
-Austria,2021-11-19,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,13104791,6303228,5803590,1344100
-Austria,2021-11-26,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,13892103,6391011,5867211,1980783
-Austria,2021-12-03,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,14652176,6467163,5958140,2574167
-Austria,2021-12-10,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,15321610,6531063,6057394,3080809
-Austria,2021-12-17,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,15997349,6599602,6162079,3583806
-Austria,2021-12-24,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,16316667,6632228,6222711,3810042
-Austria,2021-12-31,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,16547069,6655253,6274249,3965996
-Austria,2022-01-07,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,16841338,6684889,6340541,4164463
-Austria,2022-01-14,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17172669,6718389,6403724,4399236
-Austria,2022-01-21,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17413491,6745978,6441507,4574793
-Austria,2022-01-28,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17609304,6764874,6473291,4720013
-Austria,2022-02-04,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17806868,6776514,6504944,4874334
-Austria,2022-02-11,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17909593,6784699,6528976,4944870
-Austria,2022-02-18,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17948567,6788366,6539862,4969302
+Austria,2021-01-08,Pfizer/BioNTech,https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,31633,31633,0,0
+Austria,2021-01-15,"Moderna, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,117235,116830,404,1
+Austria,2021-01-22,"Moderna, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,215384,210352,5028,4
+Austria,2021-01-29,"Moderna, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,264688,242054,22627,7
+Austria,2021-02-05,"Moderna, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,362995,260704,102265,26
+Austria,2021-02-12,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,480425,289552,190838,35
+Austria,2021-02-19,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,583928,353230,230650,48
+Austria,2021-02-26,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,712236,460115,252071,51
+Austria,2021-03-05,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,882138,614792,267296,54
+Austria,2021-03-12,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,1141516,843208,298254,60
+Austria,2021-03-19,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,1380814,1034530,346245,72
+Austria,2021-03-26,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,1630392,1190561,439802,88
+Austria,2021-04-02,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,1855696,1334473,521223,105
+Austria,2021-04-09,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,2210991,1551198,659854,133
+Austria,2021-04-16,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,2587323,1829205,758181,153
+Austria,2021-04-23,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,2941349,2122882,818533,160
+Austria,2021-04-30,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,3301100,2413315,888150,171
+Austria,2021-05-07,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,3755872,2749630,1012815,196
+Austria,2021-05-14,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,4183460,3071390,1125854,205
+Austria,2021-05-21,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,4728354,3435246,1319384,223
+Austria,2021-05-28,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,5220870,3692279,1567372,233
+Austria,2021-06-04,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,5803963,4003729,1860080,252
+Austria,2021-06-11,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,6440064,4300189,2221903,279
+Austria,2021-06-18,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,7037087,4554989,2579459,307
+Austria,2021-06-25,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,7653300,4766906,2992622,336
+Austria,2021-07-02,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,8276936,4966999,3441908,398
+Austria,2021-07-09,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,8776532,5118199,3814698,478
+Austria,2021-07-16,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,9200540,5228529,4147872,609
+Austria,2021-07-23,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,9572593,5319739,4445546,710
+Austria,2021-07-30,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,9881640,5376203,4710413,880
+Austria,2021-08-06,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10147729,5432151,4935914,1110
+Austria,2021-08-13,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10329640,5470250,5089994,1466
+Austria,2021-08-20,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10480955,5515493,5209270,1947
+Austria,2021-08-27,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10578922,5562909,5273010,2821
+Austria,2021-09-03,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10669008,5611393,5325093,5553
+Austria,2021-09-10,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10760194,5664747,5371536,11138
+Austria,2021-09-17,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10867314,5722936,5419375,23848
+Austria,2021-09-24,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,10978558,5778375,5466832,46217
+Austria,2021-10-01,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11090860,5821934,5509374,80036
+Austria,2021-10-08,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11229689,5856986,5553346,144036
+Austria,2021-10-15,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11362775,5886265,5594157,209822
+Austria,2021-10-22,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11518385,5922627,5634040,292483
+Austria,2021-10-29,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11663015,5975540,5667445,356176
+Austria,2021-11-05,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,11924397,6054718,5704594,505953
+Austria,2021-11-12,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,12420208,6191588,5750651,822561
+Austria,2021-11-19,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,13108218,6304969,5805382,1344274
+Austria,2021-11-26,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,13895725,6392793,5869025,1981098
+Austria,2021-12-03,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,14655975,6468991,5959969,2574598
+Austria,2021-12-10,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,15325597,6532932,6059261,3081357
+Austria,2021-12-17,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,16001596,6601486,6164020,3584525
+Austria,2021-12-24,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,16321164,6634143,6224720,3810914
+Austria,2021-12-31,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,16551737,6657180,6276297,3966990
+Austria,2022-01-07,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,16846208,6686844,6342631,4165590
+Austria,2022-01-14,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17177768,6720380,6405853,4400517
+Austria,2022-01-21,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17418778,6748019,6443663,4576187
+Austria,2022-01-28,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17614831,6766948,6475488,4721573
+Austria,2022-02-04,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17812747,6778623,6507192,4876161
+Austria,2022-02-11,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17915766,6786821,6531287,4946915
+Austria,2022-02-18,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17973744,6791963,6547713,4983337
+Austria,2022-02-22,"Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea,17986257,6793215,6551296,4991018
