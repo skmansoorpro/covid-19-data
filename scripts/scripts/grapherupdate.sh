@@ -20,6 +20,10 @@ run_python() {
 git checkout $BRANCH
 git pull
 
-# Run Grapher updates
+# ENV VARS
 export OWID_COVID_PROJECT_DIR=${ROOT_DIR}
+export OWID_COVID_CONFIG=${OWID_COVID_PROJECT_DIR}/scripts/config.yaml
+export OWID_COVID_SECRETS=${OWID_COVID_PROJECT_DIR}/scripts/secrets.yaml
+
+# Run Grapher updates
 cowidev-grapher-db
