@@ -16,20 +16,20 @@ logger = get_logger()
 
 
 class PAHO:
-    def __init__(self) -> None:
-        self.source_url = "https://ais.paho.org/imm/IM_DosisAdmin-Vacunacion.asp"
-        self._download_path = "/tmp"
-        self.columns_mapping = {
-            "Country/ Territory": "location",
-            "Country code": "country_code",
-            "Single dose": "single_dose",
-            "First dose": "dose_1",
-            "Second dose": "dose_2",
-            "Complete Schedule": "people_fully_vaccinated",
-            "Total doses": "total_vaccinations",
-            "Additional dose": "total_boosters",
-            "date": "date",
-        }
+    source_url = "https://ais.paho.org/imm/IM_DosisAdmin-Vacunacion.asp"
+    _download_path = "/tmp"
+    columns_mapping = {
+        "Country/ Territory": "location",
+        "Country code": "country_code",
+        "Single dose": "single_dose",
+        "First dose": "dose_1",
+        "Second dose": "dose_2",
+        # "Complete Schedule": "people_fully_vaccinated",
+        "Total doses": "total_vaccinations",
+        "1st additional dose": "total_boosters_1",
+        "2nd additional dose": "total_boosters_2",
+        "date": "date",
+    }
 
     def read(self):
         url = self._parse_iframe_link()
@@ -121,6 +121,7 @@ class PAHO:
     def pipe_metrics(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.assign(
             people_vaccinated=df["single_dose"] + df["dose_1"],
+            people_fully_vaccinated=df["single_dose"] + df["dose_2"],
         )
 
     def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -140,20 +141,6 @@ class PAHO:
         df = df.merge(df_who, left_on="country_code", right_on="ISO3")
         return df
 
-    def pipe_select_out_cols(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df[
-            [
-                "location",
-                "date",
-                "vaccine",
-                "source_url",
-                "total_vaccinations",
-                "people_vaccinated",
-                "people_fully_vaccinated",
-                "total_boosters",
-            ]
-        ]
-
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return (
             df.pipe(self.pipe_check_columns)
@@ -162,7 +149,6 @@ class PAHO:
             .pipe(self.pipe_metrics)
             .pipe(self.pipe_metadata)
             .pipe(self.pipe_vaccine)
-            .pipe(self.pipe_select_out_cols)
         )
 
     def increment_countries(self, df: pd.DataFrame):
@@ -173,7 +159,7 @@ class PAHO:
                 total_vaccinations=row["total_vaccinations"],
                 people_vaccinated=row["people_vaccinated"],
                 people_fully_vaccinated=row["people_fully_vaccinated"],
-                total_boosters=row["total_boosters"],
+                total_boosters=row["total_boosters_1"] + row["total_boosters_2"],
                 date=row["date"],
                 vaccine=row["vaccine"],
                 source_url=row["source_url"],
