@@ -52,7 +52,7 @@ class SriLanka:
             ],
         )
 
-        values_idx = df.index[df.iloc[:, 0] == "Cumulative"] - 1
+        values_idx = df.index[df.iloc[:, 1].notnull()].max()
         values_raw = df.iloc[values_idx].values.flatten()
         values = []
         for val in values_raw:
