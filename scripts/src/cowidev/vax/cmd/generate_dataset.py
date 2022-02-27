@@ -173,7 +173,11 @@ class DatasetGenerator:
         ]
         grouper = agg.groupby("location")
         for col in cols:
-            agg[col] = grouper[col].apply(lambda x: x.fillna(0) if x.isnull().all() else x.fillna(method="ffill"))
+            agg[col] = grouper[col].apply(
+                lambda x: x.fillna(0)
+                if x.isnull().all()
+                else x.interpolate("linear", limit_direction="forward").round()
+            )
 
         # Aggregate
         agg = agg.groupby("date").sum().reset_index().assign(location=agg_name)
