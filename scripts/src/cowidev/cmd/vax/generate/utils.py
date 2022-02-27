@@ -159,14 +159,13 @@ class DatasetGenerator:
             "people_vaccinated",
             "people_fully_vaccinated",
             "total_boosters",
+            "new_vaccinations",
+            "new_vaccinations_smoothed",
+            "new_people_vaccinated_smoothed",
         ]
         grouper = agg.groupby("location")
         for col in cols:
-            agg[col] = grouper[col].apply(
-                lambda x: x.fillna(0)
-                if x.isnull().all()
-                else x.interpolate("linear", limit_direction="forward").round()
-            )
+            agg[col] = grouper[col].apply(lambda x: x.fillna(0) if x.isnull().all() else x.fillna(method="ffill"))
 
         # Aggregate
         agg = agg.groupby("date").sum().reset_index().assign(location=agg_name)
@@ -334,9 +333,9 @@ class DatasetGenerator:
                     "total_boosters",
                 ]
             ]
-            .pipe(self.pipe_aggregates)
             .pipe(self.pipe_daily)
             .pipe(self.pipe_smoothed)
+            .pipe(self.pipe_aggregates)
             .pipe(self.pipe_capita)
             .pipe(self.pipe_vax_checks)
             .pipe(self.pipe_to_int)
