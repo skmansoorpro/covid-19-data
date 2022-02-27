@@ -77,7 +77,7 @@ class SouthKorea(CountryVaxBase):
 
     def pipe_cumsum(self, df: pd.DataFrame) -> pd.DataFrame:
         cols = [col for col in df.columns if col not in [("date", "date")]]
-        df = df.sort_values(("date", "date"))
+        df = df.sort_values(("date", "date")).drop_duplicates(subset=("date", "date"), keep="first")
         df.loc[:, cols] = df[cols].cumsum()
         return df
 
@@ -157,7 +157,6 @@ class SouthKorea(CountryVaxBase):
             .pipe(self.pipe_man_melt)
             .assign(location=self.location)
             .sort_values(["date", "vaccine"])
-            .drop_duplicates()
             .reset_index(drop=True)
         )
 
