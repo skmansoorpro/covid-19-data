@@ -45,7 +45,7 @@ class Rwanda(CountryTestBase):
     def pipe_filter(self, df: pd.DataFrame) -> pd.DataFrame:
         """Filter data"""
         df = df[(df["Date"] >= self.date_start)]
-        return df
+        return df.drop_duplicates(subset="Date")
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """pipeline for data"""
