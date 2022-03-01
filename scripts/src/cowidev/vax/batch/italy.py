@@ -16,6 +16,7 @@ class Italy(CountryVaxBase):
         "seconda_dose",
         "pregressa_infezione",
         "dose_addizionale_booster",
+        "booster_immuno",
     ]
     columns_rename: dict = {
         "data_somministrazione": "date",
@@ -28,6 +29,7 @@ class Italy(CountryVaxBase):
         "Moderna": "Moderna",
         "Vaxzevria (AstraZeneca)": "Oxford/AstraZeneca",
         "Janssen": "Johnson&Johnson",
+        "Novavax": "Novavax",
         "ND": "unknown",
     }
     one_dose_vaccines: list = ["Johnson&Johnson"]
@@ -52,6 +54,7 @@ class Italy(CountryVaxBase):
                 "codice_NUTS2",
                 "codice_regione_ISTAT",
                 "nome_area",
+                "booster_immuno",
             ],
         )
         return df[self.columns]
@@ -71,8 +74,12 @@ class Italy(CountryVaxBase):
 
     def get_total_vaccinations(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.assign(
-            total_vaccinations=df.prima_dose + df.seconda_dose + df.pregressa_infezione + df.dose_addizionale_booster,
-            total_boosters=df.dose_addizionale_booster,
+            total_vaccinations=df.prima_dose
+            + df.seconda_dose
+            + df.pregressa_infezione
+            + df.dose_addizionale_booster
+            + df.booster_immuno,
+            total_boosters=df.dose_addizionale_booster + df.booster_immuno,
         )
 
     def pipeline_base(self, df: pd.DataFrame) -> pd.DataFrame:
