@@ -9,7 +9,7 @@ from cowidev.vax.utils.files import load_data
 from cowidev.vax.utils.utils import make_monotonic
 from cowidev.vax.utils.base import CountryVaxBase
 
-from cowidev.vax.incremental.fiji import main as fiji_booster
+from cowidev.vax.incremental.fiji import check_booster as fiji_booster
 
 
 metrics_mapping = {

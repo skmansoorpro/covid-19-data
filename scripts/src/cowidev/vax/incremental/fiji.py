@@ -111,4 +111,8 @@ class Fiji(CountryVaxBase):
 
 
 def main():
+    pass
+
+
+def check_booster():
     Fiji().export()
