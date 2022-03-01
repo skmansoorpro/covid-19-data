@@ -8,7 +8,8 @@ from cowidev.vax.utils.orgs import SPC_COUNTRIES
 from cowidev.vax.utils.files import load_data
 from cowidev.vax.utils.utils import make_monotonic
 from cowidev.vax.utils.base import CountryVaxBase
-from cowidev import PATHS
+
+from cowidev.vax.incremental.fiji import main as fiji_booster
 
 
 metrics_mapping = {
@@ -134,6 +135,7 @@ class SPC(CountryVaxBase):
         df = df.pipe(self.pipe_vacine, country)
         # Add Boosters
         if country in ["Fiji"]:
+            fiji_booster()
             df = df.pipe(self.pipe_merge_boosters, country)
         return df
 
