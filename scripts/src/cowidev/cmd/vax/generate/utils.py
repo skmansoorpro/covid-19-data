@@ -159,6 +159,9 @@ class DatasetGenerator:
             "people_vaccinated",
             "people_fully_vaccinated",
             "total_boosters",
+            "new_vaccinations",
+            "new_vaccinations_smoothed",
+            "new_people_vaccinated_smoothed",
         ]
         grouper = agg.groupby("location")
         for col in cols:
@@ -330,9 +333,9 @@ class DatasetGenerator:
                     "total_boosters",
                 ]
             ]
-            .pipe(self.pipe_aggregates)
             .pipe(self.pipe_daily)
             .pipe(self.pipe_smoothed)
+            .pipe(self.pipe_aggregates)
             .pipe(self.pipe_capita)
             .pipe(self.pipe_vax_checks)
             .pipe(self.pipe_to_int)

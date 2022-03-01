@@ -87,7 +87,7 @@ class Iceland(CountryTestBase):
         """Sum rows"""
         df["Daily change in cumulative total"] = df[["t1", "t2", "t3"]].applymap(clean_count).sum(axis=1)
         df["positive"] = df[["p1", "p2", "p3"]].applymap(clean_count).sum(axis=1)
-        return df
+        return df.drop_duplicates(subset="Date")
 
     def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:
         """Calculate Positive Rate"""
