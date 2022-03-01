@@ -26,6 +26,9 @@ class Peru(CountryTestBase):
     def pipe_filter(self, df: pd.DataFrame) -> pd.DataFrame:
         """Filter data"""
         df = df[(df["region"].isna()) & (df["Date"] >= self.date_start)]
+        # corrections
+        df = df[df["Date"] != "2021-05-31"]
+        df = df[df["Date"] != "2021-11-16"]
         return df
 
     def pipe_pr(self, df: pd.DataFrame) -> pd.DataFrame:

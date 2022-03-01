@@ -27,6 +27,7 @@ VACCINES_ACCEPTED = [
     "Sinopharm/Wuhan",
     "Sinovac",
     "Soberana02",
+    "Soberana Plus",
     "SpikoGen",
     "Sputnik Light",
     "Sputnik V",
@@ -39,13 +40,13 @@ VACCINES_ONE_DOSE = [
     "Johnson&Johnson",
     "CanSino",
     "Sputnik Light",
+    "Soberana Plus",
 ]
 
 VACCINES_THREE_DOSES = [
     "ZF2001",
     "Abdala",
     "Razi Cov Pars",  # 3rd dose (intranasal spray) not reported in Iran as a 3rd dose
-    "Soberana02",
     "ZyCoV-D",
 ]
 

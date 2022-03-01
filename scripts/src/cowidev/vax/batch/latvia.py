@@ -23,6 +23,7 @@ vaccine_mapping = {
     "Spikevax (previously COVID-19 Vaccine Moderna)": "Moderna",
     "Vaxzevria": "Oxford/AstraZeneca",
     "Vaxzevria (previously COVID-19 Vaccine AstraZeneca)": "Oxford/AstraZeneca",
+    "Nuvaxovid": "Novavax",
 }
 one_dose_vaccines = ["Johnson&Johnson"]
 

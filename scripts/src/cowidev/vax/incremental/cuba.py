@@ -50,7 +50,7 @@ class Cuba:
         return data
 
     def pipe_vaccine(self, ds: pd.Series) -> pd.Series:
-        return enrich_data(ds, "vaccine", "Abdala, Soberana02")
+        return enrich_data(ds, "vaccine", "Abdala, Soberana02, Soberana Plus")
 
     def pipeline(self, df: pd.Series) -> pd.Series:
         return df.pipe(self.pipe_vaccine)

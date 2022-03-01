@@ -439,7 +439,7 @@ class ECDC(CountryVaxBase):
         locations = df.location.unique()
         for location in locations:
             df_c = df[df.location == location]
-            self.export_datafile(df_c)
+            self.export_datafile(df_c,filename=location)
 
     def export(self):
         # Read data

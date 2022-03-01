@@ -15,7 +15,7 @@ class Singapore(CountryTestBase):
     source_url_ref = "https://www.moh.gov.sg/covid-19/statistics"
     source_label = "Ministry of Health Singapore"
     rename_columns = {
-        "date": "Date",
+        "week_of": "Date",
         "average_daily_number_of_art_swabs_tested_over_the_past_week": "art",
         "average_daily_number_of_pcr_swabs_tested": "pcr",
     }
@@ -24,20 +24,24 @@ class Singapore(CountryTestBase):
         url = f"{self.base_url}1ee4d904-b17e-41de-a731-854578b036e6"
         json_dict = request_json(url)["result"]["records"]
         df = pd.DataFrame.from_records(json_dict).drop(columns=["_id"])
-        df.loc[(df[df["date"] == "2021-12-12"].index.values), "date"] = "2021-12-21"
+        # correct errors
+        df.loc[(df[df["week_of"] == "14/12/2022"].index.values), "week_of"] = "14/12/2021"
+        df.loc[(df[df["week_of"] == "28/12/2022"].index.values), "week_of"] = "28/12/2021"
+        df["week_of"] = clean_date_series(df["week_of"], "%d/%m/%Y")
         return df
 
     def _read_pcr(self):
         url = f"{self.base_url}07cd6bfd-c73e-4aed-bc7b-55b13dd9e7c2"
         json_dict = request_json(url)["result"]["records"]
         df = pd.DataFrame.from_records(json_dict).drop(columns=["_id"])
+        df = df.rename(columns={"date": "week_of"})
         return df
 
     def read(self):
         # Read both source data and merge
         art = self._read_art()
         pcr = self._read_pcr()
-        df = pd.merge(art, pcr).sort_values(by="date")
+        df = pd.merge(art, pcr).sort_values(by="week_of")
         return df
 
     def pipe_fill_gaps(self, df: pd.DataFrame):
