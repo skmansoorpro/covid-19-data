@@ -19,13 +19,13 @@ def main() -> pd.DataFrame:
     ).get("href")
     file_url = "https://www.folkhalsomyndigheten.se" + file_url
 
-    hosp = pd.read_excel(file_url, sheet_name="Slutenvård Total", usecols=["Datum", "Riket_(18_av_21)"]).rename(
-        columns={"Riket_(18_av_21)": "hospital_stock", "Datum": "date"}
+    hosp = pd.read_excel(file_url, sheet_name="Slutenvård Total", usecols=["Datum", "Riket_(17_av_21)"]).rename(
+        columns={"Riket_(17_av_21)": "hospital_stock", "Datum": "date"}
     )
 
     icu = pd.read_excel(
-        file_url, sheet_name="inom intensivvårdsavdelning", usecols=["Datum", "Riket_(18_av_21)"]
-    ).rename(columns={"Riket_(18_av_21)": "icu_stock", "Datum": "date"})
+        file_url, sheet_name="inom intensivvårdsavdelning", usecols=["Datum", "Riket_(17_av_21)"]
+    ).rename(columns={"Riket_(17_av_21)": "icu_stock", "Datum": "date"})
 
     df = (
         pd.merge(hosp, icu, on="date", how="outer", validate="one_to_one")
