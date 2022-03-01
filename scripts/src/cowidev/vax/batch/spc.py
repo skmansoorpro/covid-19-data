@@ -1,6 +1,5 @@
 from collections import defaultdict
 import copy
-from cowidev.vax.utils.base import CountryVaxBase
 
 import pandas as pd
 
@@ -8,6 +7,7 @@ from cowidev.utils.web import request_json
 from cowidev.vax.utils.orgs import SPC_COUNTRIES
 from cowidev.vax.utils.files import load_data
 from cowidev.vax.utils.utils import make_monotonic
+from cowidev.vax.utils.base import CountryVaxBase
 from cowidev import PATHS
 
 
@@ -35,6 +35,7 @@ vaccines_startdates = {
     "Wallis and Futuna": [
         ["Moderna", None],
     ],
+    "Fiji": [["Oxford/AstraZeneca", None], ["Pfizer/BioNTech", "2021-11-15"], ["Moderna", "2021-07-20"]],
     "default": [
         ["Oxford/AstraZeneca", None],
     ],
@@ -131,6 +132,9 @@ class SPC(CountryVaxBase):
         df = df.pipe(make_monotonic)
         # Add vaccine info
         df = df.pipe(self.pipe_vacine, country)
+        # Add Boosters
+        if country in ["Fiji"]:
+            df = df.pipe(self.pipe_merge_boosters, country)
         return df
 
     def pipe_merge_legacy(self, df: pd.DataFrame, country: str) -> pd.DataFrame:
@@ -151,13 +155,11 @@ class SPC(CountryVaxBase):
         return df
 
     def pipe_vacine(self, df: pd.DataFrame, country: str) -> pd.DataFrame:
-        # print(country)
         date_min = df.date.min()
         vax_date_mapping = self._pretty_vaxdates(country, date_min)
-        # print(vax_date_mapping)
+
         def _enrich_vaccine(date: str) -> str:
-            for dt, vaccines in vax_date_mapping:
-                # print(f"{date}, {dt}: {vaccines}")
+            for dt, vaccines in reversed(vax_date_mapping):
                 if date >= dt:
                     return vaccines
             raise ValueError(f"Invalid date {date} in DataFrame!")
@@ -179,6 +181,26 @@ class SPC(CountryVaxBase):
             (dt, ", ".join(sorted(r[0] for r in records[: i + 1]))) for i, (vax, dt) in enumerate(records)
         ]
         return vax_date_mapping
+
+    def pipe_merge_boosters(self, df: pd.DataFrame, country: str) -> pd.DataFrame:
+        """Adds the boosters data available in the csv."""
+        # Read the csv
+        country = country.replace(" ", "-")
+        filepath = self.get_output_path(country)
+        df_current = pd.read_csv(filepath)
+        # Pick only the relevant dates
+        df_mod = df_current[df_current.date.isin(df.date)]
+        # Add the booster column
+        df = df.assign(
+            total_boosters=df.date.apply(
+                lambda x: df_mod.loc[df_mod.date == x, "total_boosters"].values[0] if x in df_mod.date.values else None
+            )
+        )
+        # Add boosters to total_vaccinations
+        df["total_vaccinations"] = df[["total_vaccinations", "total_boosters"]].sum(axis=1)
+        # Add the standalone booster rows
+        df_current = df_current[~df_current.date.isin(df.date)]
+        return pd.concat([df, df_current]).sort_values("date")
 
     def export(self):
         data = self.read()
