@@ -47,13 +47,10 @@ LARGE_DATA_CORRECTIONS = [
     ("Denmark", "2021-12-21", "deaths"),
     ("Ecuador", "2020-09-07", "deaths"),
     ("Ecuador", "2021-07-20", "deaths"),
-    ("France", "2020-04-04", "cases"),
-    ("France", "2020-04-07", "cases"),
-    ("France", "2020-11-04", "cases"),
-    ("France", "2021-05-20", "cases"),
     ("France", "2022-02-21", "deaths"),
     ("France", "2022-02-22", "deaths"),
     ("India", "2021-06-10", "deaths"),
+    ("Mexico", "2020-10-05", "deaths"),
     ("Mexico", "2021-06-01", "deaths"),
     ("Moldova", "2021-12-31", "deaths"),
     ("South Africa", "2021-11-23", "cases"),
@@ -215,6 +212,11 @@ def hide_recent_zeros(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def discard_rows(df):
+
+    # For all rows where new_cases or new_deaths is negative, we keep the cumulative value but set
+    # the daily change to NA. This also sets the 7-day rolling average to NA for the next 7 days.
+    df.loc[df.new_cases < 0, "new_cases"] = np.nan
+    df.loc[df.new_deaths < 0, "new_deaths"] = np.nan
 
     # Custom data corrections
     for ldc in LARGE_DATA_CORRECTIONS:
