@@ -15,7 +15,8 @@ pipeline:
         - africacdc
         - Austria
         - Guatemala
-        - Ukraine 
+        - Ukraine # server down
+        - Saint Lucia # switched to paho. previous source not reporting boosters.
         # - Faeroe Islands
     process:
       skip_complete:
