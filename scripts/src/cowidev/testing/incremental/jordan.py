@@ -22,10 +22,13 @@ class Jordan(CountryTestBase):
     def read(self) -> pd.DataFrame:
         """Reads the data from the source"""
         data = self.data_body
-        count = json.loads(requests.post(self.source_url, headers=self.headers, data=json.dumps(data)).content)[
-            "results"
-        ][0]["result"]["data"]["dsr"]["DS"][0]["PH"][0]["DM0"][0]["M0"]
-        return self._df_builder(count)
+        try:
+            count = json.loads(requests.post(self.source_url, headers=self.headers, data=json.dumps(data)).content)[
+                "results"
+            ][0]["result"]["data"]["dsr"]["DS"][0]["PH"][0]["DM0"][0]["M0"]
+            return self._df_builder(count)
+        except KeyError:
+            raise KeyError("No value found. Please check the date.")
 
     @property
     def headers(Self):
