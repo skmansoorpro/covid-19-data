@@ -30,6 +30,7 @@ class Austria(CountryTestBase):
 
     def pipe_filter(self, df: pd.DataFrame):
         df = df.drop_duplicates(subset=["Cumulative total"], keep="first")
+        df = df[df["Cumulative total"] != 0]
         return df
 
     def pipe_exluce_dp(self, df: pd.DataFrame):
