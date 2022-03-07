@@ -103,16 +103,6 @@ class Azerbaijan(CountryVaxBase):
         """Export data to csv."""
         data = self.read().pipe(self.pipeline)
         self.export_datafile(df=data, attach=True)
-        # increment(
-        #     location=self.location,
-        #     total_vaccinations=data["total_vaccinations"],
-        #     people_vaccinated=data["people_vaccinated"],
-        #     people_fully_vaccinated=data["people_fully_vaccinated"],
-        #     total_boosters=data["total_boosters"],
-        #     date=data["date"],
-        #     source_url=data["source_url"],
-        #     vaccine=data["vaccine"],
-        # )
 
 
 def main():
