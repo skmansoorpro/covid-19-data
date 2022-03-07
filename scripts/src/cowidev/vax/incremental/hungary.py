@@ -16,14 +16,15 @@ class Hungary(CountryVaxBase):
         self.regex = {
             "title": r"\d+ [millió]+ \d+ [ezer]+ a beoltott, [\d\s]+ az új fertőzött",
             "metrics": (
-                r"A beoltottak száma ([\d\s]+) fő, közülük ([\d\s]+) fő a második, ([\d\s]+) fő már harmadik oltását is felvette"
+                r"A beoltottak száma ([\d\s]+) fő, közülük ([\d\s]+) fő a második, ([\d\s]+) fő (?:a|már) harmadik"
+                r"(?:, ([\d\s]+) fő már a negyedik)? oltását is felvette"
             ),
         }
 
     def read(self, last_update: str) -> pd.DataFrame:
         data = []
         for cnt in range(0, self._num_max_pages):
-            # print(f"page: {cnt}")
+            print(f"page: {cnt}")
             url = f"{self.source_url}/hirek?page={cnt}/"
             soup = get_soup(url)
             data_, proceed = self.parse_data(soup, last_update)
@@ -34,7 +35,6 @@ class Hungary(CountryVaxBase):
 
     def parse_data(self, soup: BeautifulSoup, last_update: str) -> tuple:
         elems = self.get_elements(soup)
-        # print(elems)
         records = []
         for elem in elems:
             # print(elem)
@@ -74,20 +74,22 @@ class Hungary(CountryVaxBase):
 
         people_vaccinated = clean_count(match.group(1))
         people_fully_vaccinated = clean_count(match.group(2))
-        total_boosters = clean_count(match.group(3))
+        total_boosters = clean_count(match.group(3)) + clean_count(match.group(4))
+
+        date = extract_clean_date(
+            soup.find("p").text,
+            regex="(202\d. .* \d+.) - .*",
+            date_format="%Y. %B %d.",
+            # loc="hu_HU.UTF-8",
+            lang="hu",
+            minus_days=1,
+        )
 
         return {
             "people_vaccinated": people_vaccinated,
             "people_fully_vaccinated": people_fully_vaccinated,
             "total_boosters": total_boosters,
-            "date": extract_clean_date(
-                soup.find("p").text,
-                regex="(202\d. .* \d+.) - .*",
-                date_format="%Y. %B %d.",
-                # loc="hu_HU.UTF-8",
-                lang="hu",
-                minus_days=1,
-            ),
+            "date": date,
         }
 
     def parse_link(self, elem):
