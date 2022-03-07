@@ -22,12 +22,15 @@ class Iceland(CountryTestBase):
     rename_columns: dict = {
         "Symptomatic tests": "t1",
         "Sympotmatic tests": "t1",
+        "PCR domestic tests": "t1",
+        "Antigen domestic tests": "t2",
         "Quarantine- and random tests": "t2",
         "deCODE Genetics screening": "t3",
         "Border tests 1 and 2": "t4",
         "Border tests": "t4",
         "Domestic infections": "p1",
         "Symptomatic screening": "p1",
+        "Domestic infections PCR": "p2",
         "Quarantine- and random screening": "p2",
         "Screening by deCODE Genetics": "p3",
     }
