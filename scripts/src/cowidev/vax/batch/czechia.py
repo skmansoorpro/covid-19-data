@@ -12,6 +12,7 @@ vaccine_mapping = {
     "SPIKEVAX": "Moderna",
     "VAXZEVRIA": "Oxford/AstraZeneca",
     "COVID-19 Vaccine Janssen": "Johnson&Johnson",
+    "Nuvaxovid": "Novavax",
 }
 
 one_dose_vaccines = ["Johnson&Johnson"]

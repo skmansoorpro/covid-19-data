@@ -34,7 +34,7 @@ class Singapore(CountryTestBase):
         url = f"{self.base_url}07cd6bfd-c73e-4aed-bc7b-55b13dd9e7c2"
         json_dict = request_json(url)["result"]["records"]
         df = pd.DataFrame.from_records(json_dict).drop(columns=["_id"])
-        df = df.rename(columns={"date": "week_of"})
+        df["week_of"] = clean_date_series(df["week_of"], "%d/%m/%Y")
         return df
 
     def read(self):

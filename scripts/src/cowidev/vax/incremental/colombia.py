@@ -22,16 +22,13 @@ class Colombia:
         return df
 
     def _parse_data(self, worksheet):
-
         for row in worksheet.values():
             for value in row:
-                if "Total dosis aplicadas al " in str(value):
+                if "Total dosis aplicadas" in str(value):
                     total_vaccinations = row[-1]
                     if type(total_vaccinations) != int:
                         total_vaccinations = clean_count(total_vaccinations)
-                    date_raw = re.search(r"[\d-]{10}$", value).group(0)
-                    date_str = clean_date(date_raw, "%d-%m-%Y")
-                elif value == "Total dosis segundas dosis acumuladas":
+                elif value == "Total dosis acumuladas segundas dosis":
                     second_doses = row[-1]
                     if type(second_doses) != int:
                         second_doses = clean_count(second_doses)
@@ -43,7 +40,9 @@ class Colombia:
                     boosters = row[-1]
                     if type(boosters) != int:
                         boosters = clean_count(boosters)
-
+                elif "Dosis Entregadas a" in str(value):
+                    date_raw = row[-1]
+                    date_str = clean_date(date_raw, "%d/%m/%Y")
         first_doses = total_vaccinations - second_doses - unique_doses - boosters
         people_vaccinated = first_doses + unique_doses
         people_fully_vaccinated = second_doses + unique_doses

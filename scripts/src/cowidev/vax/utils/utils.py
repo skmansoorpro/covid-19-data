@@ -65,7 +65,7 @@ def build_vaccine_timeline(df: pd.DataFrame, vaccine_timeline: dict) -> pd.DataF
         vaccines = [k for k, v in vaccine_timeline.items() if v <= date]
         return ", ".join(sorted(list(set(vaccines))))
 
-    df["vaccine"] = df.date.apply(_build_vaccine_row, vaccine_timeline=vaccine_timeline)
+    df = df.assign(vaccine=df.date.apply(_build_vaccine_row, vaccine_timeline=vaccine_timeline))
     return df
 
 

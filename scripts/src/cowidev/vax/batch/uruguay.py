@@ -22,7 +22,7 @@ class Uruguay(CountryVaxBase):
         df = pd.read_csv(self.source_url)
         # Load age data
         regex = r"(date|coverage_(people|fully)_\d+_\d+)"
-        df_age = df_age = pd.read_csv(self.source_url_age, usecols=lambda x: re.match(regex, x))
+        df_age = pd.read_csv(self.source_url_age, usecols=lambda x: re.match(regex, x))
         return df, df_age
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:

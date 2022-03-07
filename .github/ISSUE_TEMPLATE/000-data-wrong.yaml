@@ -34,7 +34,7 @@ body:
   - type: textarea
     id: wrong
     attributes:
-      label: Which data is wrong?
+      label: Which data is inaccurate or missing?
       description: Please state which metrics and dates might have missing or wrong data.
       placeholder: |
         The value of total_vaccinations for this country on 2022-01-10 does not seem right.
@@ -43,7 +43,7 @@ body:
   - type: textarea
     id: wrong-why
     attributes:
-      label: Why do you think the data is wrong?
+      label: Why do you think the data is inaccurate or missing?
       description: Please elaborate on why you think the data is missing or inaccurate.
       placeholder: |
         Considering the number of people that have received one dose, two doses and boosters…
