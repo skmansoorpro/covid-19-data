@@ -95,9 +95,13 @@ class Azerbaijan(CountryVaxBase):
         """Enrich data with vaccine names."""
         return enrich_data(ds, "vaccine", "Oxford/AstraZeneca, Pfizer/BioNTech, Sinovac, Sputnik V")
 
+    def enrich_location(self, ds: pd.Series) -> pd.Series:
+        """Enrich data with locationß."""
+        return enrich_data(ds, "location", self.location)
+
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for data."""
-        return df.pipe(self.enrich_vaccine)
+        return df.pipe(self.enrich_vaccine).pipe(self.enrich_location)
 
     def export(self):
         """Export data to csv."""
