@@ -7,10 +7,11 @@ from pdfminer.high_level import extract_text
 
 from cowidev.utils import clean_date, clean_count, get_soup
 from cowidev.utils.web.download import download_file_from_url
-from cowidev.vax.utils.incremental import enrich_data, increment
+from cowidev.vax.utils.base import CountryVaxBase
+from cowidev.vax.utils.incremental import enrich_data
 
 
-class Azerbaijan:
+class Azerbaijan(CountryVaxBase):
     location = "Azerbaijan"
     source_url = "https://koronavirusinfo.az"
     regex = {
@@ -37,12 +38,19 @@ class Azerbaijan:
         # Extract date from text
         date = self._parse_date(text)
         # Extract metrics from text
-        total_vaccinations, people_vaccinated, people_fully_vaccinated, total_boosters = self._parse_metrics(text)
+        (
+            total_vaccinations,
+            people_vaccinated,
+            people_fully_vaccinated,
+            total_boosters,
+            doses_after_positive,
+        ) = self._parse_metrics(text)
         record = {
             "total_vaccinations": total_vaccinations,
             "people_vaccinated": people_vaccinated,
             "people_fully_vaccinated": people_fully_vaccinated,
             "total_boosters": total_boosters,
+            "doses_after_positive": doses_after_positive,
             "source_url": url,
             "date": date,
         }
@@ -78,8 +86,9 @@ class Azerbaijan:
         return (
             clean_count(total_vaccinations),
             clean_count(people_vaccinated),
-            clean_count(people_fully_vaccinated)+clean_count(dose_after_positive),
+            clean_count(people_fully_vaccinated),
             clean_count(total_boosters),
+            clean_count(dose_after_positive),
         )
 
     def enrich_vaccine(self, ds: pd.Series) -> pd.Series:
@@ -93,16 +102,17 @@ class Azerbaijan:
     def export(self):
         """Export data to csv."""
         data = self.read().pipe(self.pipeline)
-        increment(
-            location=self.location,
-            total_vaccinations=data["total_vaccinations"],
-            people_vaccinated=data["people_vaccinated"],
-            people_fully_vaccinated=data["people_fully_vaccinated"],
-            total_boosters=data["total_boosters"],
-            date=data["date"],
-            source_url=data["source_url"],
-            vaccine=data["vaccine"],
-        )
+        self.export_datafile(df=data, attach=True)
+        # increment(
+        #     location=self.location,
+        #     total_vaccinations=data["total_vaccinations"],
+        #     people_vaccinated=data["people_vaccinated"],
+        #     people_fully_vaccinated=data["people_fully_vaccinated"],
+        #     total_boosters=data["total_boosters"],
+        #     date=data["date"],
+        #     source_url=data["source_url"],
+        #     vaccine=data["vaccine"],
+        # )
 
 
 def main():

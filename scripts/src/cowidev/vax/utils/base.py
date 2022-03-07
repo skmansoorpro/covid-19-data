@@ -189,6 +189,8 @@ class CountryVaxBase:
         filename = self.get_output_path(filename)
         if attach:
             df = merge_with_current_data(df, filename)
+        if not isinstance(df, pd.DataFrame):
+            raise TypeError(f"df must be a pandas DataFrame!. Isntead {type(df).__name__} was detected.")
         df = self._postprocessing(df, valid_cols_only)
         if reset_index:
             df = df.reset_index(drop=True)
@@ -264,6 +266,11 @@ def merge_with_current_data(df: pd.DataFrame, filepath: str) -> pd.DataFrame:
     if os.path.isfile(filepath):
         # Load
         df_current = pd.read_csv(filepath)
+        # Type check
+        if isinstance(df, pd.Series):
+            df = df.to_frame().T
+        elif not isinstance(df, pd.DataFrame):
+            raise TypeError(f"`df` must be a pandas DataFrame!. Instead {type(df).__name__} was detected.")
         # Merge
         df_current = df_current[~df_current.date.isin(df.date)]
         df = pd.concat([df, df_current]).sort_values(by="date")
