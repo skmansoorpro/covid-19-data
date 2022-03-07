@@ -12,7 +12,7 @@ from cowidev.testing import CountryTestBase
 class Kosovo(CountryTestBase):
     location: str = "Kosovo"
     units: str = "tests performed"
-    source_label: str = "Kosovo National Institute of Public Health"
+    source_label: str = "National Institute of Public Health of Kosovo"
     source_url: str = (
         "https://datastudio.google.com/embed/u/0/reporting/2e546d77-8f7b-4c35-8502-38533aa0e9e8/page/tI3oB"
     )
