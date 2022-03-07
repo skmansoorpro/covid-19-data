@@ -51,7 +51,7 @@ class Azerbaijan(CountryVaxBase):
             "people_fully_vaccinated": people_fully_vaccinated,
             "total_boosters": total_boosters,
             "doses_after_positive": doses_after_positive,
-            "source_url": url,
+            "source_url": self.source_url,
             "date": date,
         }
         return record
