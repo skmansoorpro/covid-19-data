@@ -16,8 +16,7 @@ class Azerbaijan:
     regex = {
         "title": r"Vaksinasiya",
         "date": r"(\d{2}\.\d{2}\.20\d{2})",
-        "total": r"ümumi sayı (\d+) Gün",
-        "doses": r"vaksinlərin sayı (\d+) (\d+) (“Buster” doza vaksinlərin sayı )?(\d+)",
+        "doses": r"\"Buster\" doza vaksinlərin sayı (\d+) (\d+) (\d+) (\d+) (\d+) Gün",
     }
 
     def read(self) -> pd.Series:
@@ -60,7 +59,7 @@ class Azerbaijan:
             download_file_from_url(url, tmp.name)
             with open(tmp.name, "rb") as f:
                 text = extract_text(f)
-        text = re.sub(r"(\d)\s(\d)", r"\1\2", text)
+        text = re.sub(r"(\d) (\d)", r"\1\2", text)
         text = re.sub(r"\s+", " ", text)
         return text
 
@@ -71,14 +70,15 @@ class Azerbaijan:
 
     def _parse_metrics(self, text: str) -> tuple:
         """Parse metrics from text."""
-        total_vaccinations = re.search(self.regex["total"], text).group(1)
-        people_vaccinated = re.search(self.regex["doses"], text).group(1)
-        people_fully_vaccinated = re.search(self.regex["doses"], text).group(2)
+        total_vaccinations = re.search(self.regex["doses"], text).group(1)
+        people_vaccinated = re.search(self.regex["doses"], text).group(2)
+        people_fully_vaccinated = re.search(self.regex["doses"], text).group(3)
         total_boosters = re.search(self.regex["doses"], text).group(4)
+        dose_after_positive = re.search(self.regex["doses"], text).group(5)
         return (
             clean_count(total_vaccinations),
             clean_count(people_vaccinated),
-            clean_count(people_fully_vaccinated),
+            clean_count(people_fully_vaccinated)+clean_count(dose_after_positive),
             clean_count(total_boosters),
         )
 
