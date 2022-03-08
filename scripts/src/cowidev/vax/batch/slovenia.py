@@ -14,6 +14,7 @@ class Slovenia(CountryVaxBase):
         "az": "Oxford/AstraZeneca",
         "moderna": "Moderna",
         "janssen": "Johnson&Johnson",
+        "novavax": "Novavax",
     }
 
     def read(self):
