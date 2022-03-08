@@ -4,8 +4,9 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from cowidev.utils.clean import clean_count, clean_date
+from cowidev.utils.clean import clean_count
 from cowidev.vax.utils.incremental import enrich_data, increment
+from cowidev.utils.clean.dates import localdate
 
 
 def read(source: str) -> pd.Series:
@@ -30,11 +31,8 @@ def read(source: str) -> pd.Series:
             elif "Dosis refuerzo" in h5.text:
                 total_boosters = clean_count(h5.find_element_by_xpath("./preceding-sibling::div").text)
 
-            elif "Acumulados al" in h5.text:
-                date = clean_date(h5.text, "Acumulados al %d de %B de %Y", "es")
-
     data = {
-        "date": date,
+        "date": localdate("America/Santo_Domingo"),
         "people_vaccinated": people_vaccinated,
         "people_fully_vaccinated": people_fully_vaccinated,
         "total_vaccinations": total_vaccinations,
