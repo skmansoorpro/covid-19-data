@@ -5,9 +5,11 @@ import pandas as pd
 from cowidev.utils.clean import clean_date
 from cowidev.utils.web import request_json
 from cowidev.vax.utils.incremental import enrich_data, increment
+from cowidev.vax.utils.base import CountryVaxBase
+from cowidev.vax.utils.utils import add_latest_who_values
 
 
-class Zambia:
+class Zambia(CountryVaxBase):
     def __init__(self) -> None:
         self.location = "Zambia"
         self.source_url = (
@@ -44,14 +46,9 @@ class Zambia:
 
     def export(self):
         data = self.read().pipe(self.pipeline)
-        increment(
-            location=data["location"],
-            total_vaccinations=data["total_vaccinations"],
-            people_fully_vaccinated=data["people_fully_vaccinated"],
-            date=data["date"],
-            source_url=data["source_url"],
-            vaccine=data["vaccine"],
-        )
+        df = pd.DataFrame(data).T
+        df = add_latest_who_values(df, 'Zambia', ['people_vaccinated'])
+        self.export_datafile(df=df, attach=True)
 
 
 def main():
