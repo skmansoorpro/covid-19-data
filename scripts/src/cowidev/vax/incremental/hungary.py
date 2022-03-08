@@ -17,7 +17,7 @@ class Hungary(CountryVaxBase):
             "title": r"\d+ [millió]+ \d+ [ezer]+ a beoltott, [\d\s]+ az új fertőzött",
             "metrics": (
                 r"A beoltottak száma ([\d\s]+) fő, közülük ([\d\s]+) fő a második, ([\d\s]+) fő (?:a|már) harmadik"
-                r"(?:, ([\d\s]+) fő már a negyedik)? oltását is felvette"
+                r"(?:, ([\d\s]+) fő már ?a negyedik)? oltását is felvette"
             ),
         }
 
