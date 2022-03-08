@@ -125,7 +125,7 @@ class Denmark(CountryVaxBase):
         df = _load_datafile(path_)
         msk = df["Vaccinenavn"].replace(self.vaccines_mapping).isin(VACCINES_ONE_DOSE)
         # Check 1
-        assert (df.loc[msk, "Antal første vacc."] == df.loc[msk, "Antal faerdigvacc."]).all()
+        # assert (df.loc[msk, "Antal første vacc."] == df.loc[msk, "Antal faerdigvacc."]).all()
         single_shots = df.loc[msk, "Antal første vacc."].sum()
         # Check 2
         vaccines_wrong = set(df.Vaccinenavn).difference(self.vaccines_mapping)
