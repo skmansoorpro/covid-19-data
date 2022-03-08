@@ -56,6 +56,8 @@ class Nepal(CountryVaxBase):
                 "J & J",
                 "Pfizer",
                 "Unnamed: 3",
+                "Unnamed: 4",
+                "Unnamed: 5",
                 "Moderna",
             ],
         )
@@ -66,19 +68,19 @@ class Nepal(CountryVaxBase):
         # Extract data
         count_list = self.extract_clean_count_series(ds, self.regex["count"])
         assert (
-            len(count_list) == 13
+            len(count_list) == 14
         ), "New column is added in the table, please update the script. Number of columns: {}".format(len(count_list))
         # Create main variables
         total_vaccinations = sum(count_list)
-        people_vaccinated = count_list[0] + count_list[3] + count_list[6] + count_list[8] + count_list[10]
-        people_fully_vaccinated = count_list[1] + count_list[4] + count_list[6] + count_list[9] + count_list[11]
-        total_boosters = count_list[2] + count_list[5] + count_list[7] + count_list[12]
+        people_vaccinated = count_list[0] + count_list[3] + count_list[6] + count_list[8] + count_list[11]
+        people_fully_vaccinated = count_list[1] + count_list[4] + count_list[6] + count_list[9] + count_list[12]
+        total_boosters = count_list[2] + count_list[5] + count_list[7] + count_list[10] + count_list[13]
         # Create manufacturer variables
         covishield = count_list[0] + count_list[1] + count_list[2]
         verocell = count_list[3] + count_list[4] + count_list[5]
         jandj = count_list[6] + count_list[7]
-        pfizer = count_list[8] + count_list[9]
-        moderna = count_list[10] + count_list[11] + count_list[12]
+        pfizer = count_list[8] + count_list[9] + count_list[10]
+        moderna = count_list[11] + count_list[12] + count_list[13]
         # Create main dataseries
         df_main = {
             "total_vaccinations": [total_vaccinations],
