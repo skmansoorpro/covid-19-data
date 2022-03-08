@@ -56,10 +56,16 @@ class Singapore(CountryVaxBase):
 
     def _merge_primary_and_boosters(self, df_primary, df_boosters):
         if not df_boosters.vacc_date.str.match(r"\d{4}-\d{2}-\d{2}").all():
-            df_boosters["vacc_date"] = clean_date_series(df_boosters.vacc_date, "%d-%b-%y")
+            try:
+                df_boosters["vacc_date"] = clean_date_series(df_boosters.vacc_date, "%d-%b-%y")
+            except:
+                df_boosters["vacc_date"] = clean_date_series(df_boosters.vacc_date, "%d/%m/%Y")
             df_boosters = df_boosters.drop_duplicates(subset=["vacc_date"], keep=False)
         if not df_primary.vacc_date.str.match(r"\d{4}-\d{2}-\d{2}").all():
-            df_primary["vacc_date"] = clean_date_series(df_primary.vacc_date, "%d-%b-%y")
+            try:
+                df_primary["vacc_date"] = clean_date_series(df_primary.vacc_date, "%d-%b-%y")
+            except:
+                df_primary["vacc_date"] = clean_date_series(df_primary.vacc_date, "%d/%m/%Y")
             df_primary = df_primary.drop_duplicates(subset=["vacc_date"], keep=False)
         else:
             raise ValueError("Unknown date format. Please check!")
