@@ -21,7 +21,16 @@ class Kenya(CountryVaxBase):
     def read(self) -> pd.DataFrame:
         """Read data from source"""
         links = self._get_list_pdf_urls()
+        # links = [
+        #     l
+        #     for l in links
+        #     if "23RD-FEBRUARY-2022" not in l
+        #     and "18TH-FEBRUARY-2022" not in l
+        #     and "15TH-FEBRUARY-2022" not in l
+        #     and "14TH-FEBRUARY-2022" not in l
+        # ]
         records = []
+        # print(links[-1])
         for link in links:
             print(link)
             date = self._parse_date(link)
@@ -58,12 +67,12 @@ class Kenya(CountryVaxBase):
 
     def _build_dfs(self, dfs):
         colname = "Current Status"
-        df1 = dfs[0].dropna(axis=0, how='all')
+        df1 = dfs[0].dropna(axis=0, how="all")
         if not (colname in df1.columns) or (df1.shape != (8, 2)):
             raise ValueError("Table 1 has changed, please check!")
         colname = "Age"
-        df2 = dfs[2].dropna(axis=0, how='all')
-        if not (df2.shape == (8, 4) or df2.shape == (8, 3)):
+        df2 = dfs[2].dropna(axis=0, how="all")
+        if not (df2.shape == (8, 4) or df2.shape == (7, 4) or df2.shape == (8, 3) or df2.shape == (7, 3)):
             raise ValueError("Table 3 has changed, please check!")
         return df1, df2
 
@@ -76,13 +85,13 @@ class Kenya(CountryVaxBase):
         """Parse metrics from pdf text"""
         # First df
         column_value = "Total doses Administered"
-        msk = df1['Current Status'].str.contains('Total Doses Administered')
+        msk = df1["Current Status"].str.contains("Total Doses Administered")
         total_vaccinations = df1.loc[msk, column_value].apply(clean_count).sum()
-        msk = df1['Current Status'].str.contains('Partially')
+        msk = df1["Current Status"].str.contains("Partially")
         people_vaccinated = df1.loc[msk, column_value].apply(clean_count).sum()
-        msk = df1['Current Status'].str.contains('Fully vaccinated')
+        msk = df1["Current Status"].str.contains("Fully vaccinated")
         people_fully_vaccinated = df1.loc[msk, column_value].apply(clean_count).sum()
-        msk = df1['Current Status'].str.contains('Booster Doses')
+        msk = df1["Current Status"].str.contains("Booster Doses")
         total_boosters = df1.loc[msk, column_value].apply(clean_count).sum()
         # Second df
         msk1 = df2.filter(regex="Age").squeeze().str.contains("Total Above 18 yrs")
@@ -90,9 +99,11 @@ class Kenya(CountryVaxBase):
         msk = msk1 | msk2
         single_doses = df2.loc[msk, "Johnson & Johnson"].apply(clean_count).sum()
         second_doses = df2.loc[msk, "Dose 2"].apply(clean_count).sum()
-        
-        print(single_doses, second_doses, people_fully_vaccinated)
-        assert single_doses + second_doses == people_fully_vaccinated
+
+        # print(single_doses, second_doses, people_fully_vaccinated)
+        diff = abs(single_doses + second_doses - people_fully_vaccinated)
+        if not diff < 20:
+            raise ValueError(f"single doses + second doses != people fully vaccinated // difference of {diff}!")
         people_vaccinated += single_doses
 
         assert people_vaccinated + people_fully_vaccinated + total_boosters - single_doses == total_vaccinations
