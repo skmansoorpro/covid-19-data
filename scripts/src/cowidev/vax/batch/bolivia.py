@@ -1,6 +1,6 @@
 import pandas as pd
 
-from cowidev.vax.utils.utils import build_vaccine_timeline
+from cowidev.vax.utils.utils import build_vaccine_timeline, make_monotonic
 from cowidev.vax.utils.base import CountryVaxBase
 
 
@@ -66,11 +66,18 @@ class Bolivia(CountryVaxBase):
         ]
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.pipe(self.pipe_metrics).pipe(self.pipe_metadata).pipe(self.pipe_vaccine).pipe(self.pipe_columns_out)
+        return (
+            df.pipe(self.pipe_metrics)
+            .pipe(self.pipe_metadata)
+            .pipe(self.pipe_vaccine)
+            .pipe(self.pipe_columns_out)
+            .pipe(make_monotonic)
+        )
 
     def export(self):
         df = self.read().pipe(self.pipeline)
         self.export_datafile(df)
+
 
 def main():
     Bolivia().export()
