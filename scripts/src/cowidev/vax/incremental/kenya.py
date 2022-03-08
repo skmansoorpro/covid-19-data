@@ -1,9 +1,9 @@
-import os
 import tempfile
 import re
 
 import pandas as pd
 from pdfminer.high_level import extract_text
+import tabula
 
 from cowidev.utils import clean_count, get_soup
 from cowidev.utils.clean import extract_clean_date
@@ -16,14 +16,6 @@ class Kenya(CountryVaxBase):
     source_url = "https://www.health.go.ke"
     regex = {
         "date": r"date: [a-z]+ ([0-9]+).{0,2},? ([a-z]+),? (202\d)",
-        "metrics": {
-            "total_vaccinations": r"total doses administered ([\d,]+)",
-            "people_vaccinated_adults": r"proportion of adults fully vaccinated ([\d,]+)",
-            "people_vaccinated_teens": r"partially vaccinated teenage population\( 15-below 18yrs\) ([\d,]+)",
-            "people_fully_vaccinated_adults": r"proportion of adults fully vaccinated [\d,]+ ([\d,]+)",
-            "people_fully_vaccinated_teens": r"fully vaccinated teenage population\( 15-below 18yrs\) ([\d,]+)",
-            "total_boosters": r"booster doses ([\d,]+)",
-        },
     }
 
     def read(self) -> pd.DataFrame:
@@ -32,17 +24,15 @@ class Kenya(CountryVaxBase):
         records = []
         for link in links:
             print(link)
-            text = self._get_text_from_pdf(link)
-            date = self._parse_date(text)
+            date = self._parse_date(link)
             if date <= self.last_update:
                 break
-            total_vaccinations, people_vaccinated, people_fully_vaccinated, total_boosters = self._parse_metrics(text)
+            dfs = self._get_tables_from_pdf(link)
+            df1, df2 = self._build_dfs(dfs)
+            data = self._parse_metrics(df1, df2)
             records.append(
                 {
-                    "total_vaccinations": total_vaccinations,
-                    "people_vaccinated": people_vaccinated,
-                    "people_fully_vaccinated": people_fully_vaccinated,
-                    "total_boosters": total_boosters,
+                    **data,
                     "date": date,
                     "source_url": link,
                 }
@@ -58,46 +48,67 @@ class Kenya(CountryVaxBase):
         )
         return links
 
-    def _get_text_from_pdf(self, url_pdf: str) -> str:
+    def _get_tables_from_pdf(self, url_pdf: str) -> str:
         """Get text from pdf file"""
+        # Read all tables
         with tempfile.NamedTemporaryFile() as tmp:
             download_file_from_url(url_pdf, tmp.name, verify=False)
-            with open(tmp.name, "rb") as f:
-                text = extract_text(f)
-        text = text.replace("\n", " ")
-        text = " ".join(text.split()).lower()
-        return text
+            dfs = tabula.read_pdf(tmp.name, pages="all")
+        return dfs
 
-    def _parse_date(self, pdf_text: str) -> str:
+    def _build_dfs(self, dfs):
+        colname = "Current Status"
+        df1 = dfs[0].dropna(axis=0, how='all')
+        if not (colname in df1.columns) or (df1.shape != (8, 2)):
+            raise ValueError("Table 1 has changed, please check!")
+        colname = "Age"
+        df2 = dfs[2].dropna(axis=0, how='all')
+        if not (df2.shape == (8, 4) or df2.shape == (8, 3)):
+            raise ValueError("Table 3 has changed, please check!")
+        return df1, df2
+
+    def _parse_date(self, url: str) -> str:
         """Parse date from pdf text"""
-        return extract_clean_date(pdf_text, self.regex["date"], "%d %B %Y")
+        rex = ".*\-(\d+)\w+\-(\w+)\-(20\d\d).*.pdf"
+        return extract_clean_date(url, rex, "%d %B %Y")
 
-    def _parse_metrics(self, pdf_text: str) -> tuple:
+    def _parse_metrics(self, df1, df2) -> dict:
         """Parse metrics from pdf text"""
-        # Extract metrics from text
-        metrics = {
-            metric: clean_count(re.search(regex, pdf_text).group(1)) for metric, regex in self.regex["metrics"].items()
+        # First df
+        column_value = "Total doses Administered"
+        msk = df1['Current Status'].str.contains('Total Doses Administered')
+        total_vaccinations = df1.loc[msk, column_value].apply(clean_count).sum()
+        msk = df1['Current Status'].str.contains('Partially')
+        people_vaccinated = df1.loc[msk, column_value].apply(clean_count).sum()
+        msk = df1['Current Status'].str.contains('Fully vaccinated')
+        people_fully_vaccinated = df1.loc[msk, column_value].apply(clean_count).sum()
+        msk = df1['Current Status'].str.contains('Booster Doses')
+        total_boosters = df1.loc[msk, column_value].apply(clean_count).sum()
+        # Second df
+        msk1 = df2.filter(regex="Age").squeeze().str.contains("Total Above 18 yrs")
+        msk2 = df2.filter(regex="Age").squeeze().str.contains("15- Below 18 yrs")
+        msk = msk1 | msk2
+        single_doses = df2.loc[msk, "Johnson & Johnson"].apply(clean_count).sum()
+        second_doses = df2.loc[msk, "Dose 2"].apply(clean_count).sum()
+        
+        print(single_doses, second_doses, people_fully_vaccinated)
+        assert single_doses + second_doses == people_fully_vaccinated
+        people_vaccinated += single_doses
+
+        assert people_vaccinated + people_fully_vaccinated + total_boosters - single_doses == total_vaccinations
+        return {
+            "total_vaccinations": total_vaccinations,
+            "people_vaccinated": people_vaccinated,
+            "people_fully_vaccinated": people_fully_vaccinated,
+            "total_boosters": total_boosters,
         }
-        # Process and get new metrics
-        metrics = {
-            **metrics,
-            **{
-                "people_vaccinated": metrics["people_vaccinated_adults"] + metrics["people_vaccinated_teens"],
-                "people_fully_vaccinated": (
-                    metrics["people_fully_vaccinated_adults"] + metrics["people_fully_vaccinated_teens"]
-                ),
-            },
-        }
-        return (
-            metrics["total_vaccinations"],
-            metrics["people_vaccinated"],
-            metrics["people_fully_vaccinated"],
-            metrics["total_boosters"],
-        )
 
     def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
         """Pipeline for metadata"""
-        return df.assign(location=self.location, vaccine="Oxford/AstraZeneca, Sputnik V")
+        return df.assign(
+            location=self.location,
+            vaccine="Johnson&Johnson, Moderna, Oxford/AstraZeneca, Pfizer/BioNTech, Sinopharm/Beijing",
+        )
 
     def pipeline(self, ds: pd.Series) -> pd.Series:
         """Pipeline for data"""
