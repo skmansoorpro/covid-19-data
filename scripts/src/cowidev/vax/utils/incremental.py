@@ -6,6 +6,7 @@ import numbers
 import pandas as pd
 import requests
 from cowidev import PATHS
+from cowidev.vax.utils.utils import make_monotonic
 
 
 GH_LINK = "https://github.com/owid/covid-19-data/raw/master/public/data/vaccinations/country_data"
@@ -25,6 +26,7 @@ def increment(
     people_partly_vaccinated=None,
     people_fully_vaccinated=None,
     total_boosters=None,
+    make_series_monotonic=False,
 ):
     # Check fields
     _check_fields(
@@ -80,6 +82,11 @@ def increment(
         df[col] = df[col].astype("Int64").fillna(pd.NA)
 
     df = df[["location", "date", "vaccine", "source_url"] + col_ints_have]
+
+    # Make series monotonic
+    if make_series_monotonic:
+        df = make_monotonic(df)
+
     df.to_csv(PATHS.out_vax(location), index=False)
     # print(f"NEW: {total_vaccinations} doses on {date}")
 
