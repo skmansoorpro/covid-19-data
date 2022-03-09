@@ -1,5 +1,4 @@
-import re
-
+from multiprocessing.sharedctypes import Value
 import pandas as pd
 
 from cowidev.utils.clean import clean_count
@@ -17,6 +16,7 @@ class Bangladesh:
         "Sinopharm": "Sinopharm/Beijing",
         "Moderna": "Moderna",
         "Sinovac": "Sinovac",
+        "Johnson": "Johnson&Johnson",
     }
 
     def read(self) -> pd.Series:
@@ -32,8 +32,17 @@ class Bangladesh:
             }
         )
 
-    def _parse_metrics(self, soup):
+    def _parse_single_doses(self):
+        url = "http://103.247.238.92/webportal/pages/covid19-vaccination-johnson.php"
+        soup = get_soup(url, timeout=30)
+        metrics = self._parse_metrics_raw(soup, raise_err=False)
+        if metrics["people_vaccinated"] != 0:
+            raise ValueError("First dose for one dose vaccines should be 0!")
+        return metrics["people_fully_vaccinated"]
+
+    def _parse_metrics_raw(self, soup, raise_err=True):
         elems = soup.find_all(class_="ttip")
+        has_d3 = False
         for e in elems:
             if p := e.find("p"):
                 if (text := p.text.strip()) == "1st doses administered":
@@ -42,12 +51,28 @@ class Bangladesh:
                     dose2 = clean_count(e.span.text)
                 elif text == "3rd doses administered":
                     dose3 = clean_count(e.span.text)
+                    has_d3 = True
+        if has_d3:
+            return {
+                "total_vaccinations": dose1 + dose2 + dose3,
+                "people_vaccinated": dose1,
+                "people_fully_vaccinated": dose2,
+                "total_boosters": dose3,
+            }
+        if raise_err:
+            raise ValueError("Dose 3 data missing!")
+
         return {
-            "total_vaccinations": dose1 + dose2 + dose3,
+            "total_vaccinations": dose1 + dose2,
             "people_vaccinated": dose1,
             "people_fully_vaccinated": dose2,
-            "total_boosters": dose3,
         }
+
+    def _parse_metrics(self, soup):
+        metrics = self._parse_metrics_raw(soup)
+        single_doses = self._parse_single_doses()
+        metrics["people_vaccinated"] = metrics["people_vaccinated"] + single_doses
+        return metrics
 
     def _parse_vaccines(self, soup):
         elem = soup.find(class_="nav nav-pills")
@@ -55,6 +80,9 @@ class Bangladesh:
         if vaccines_unk := vaccines.difference(set(self.vaccines_rename) | {"All Vaccine"}):
             raise ValueError(f"Unknown vaccines found {vaccines_unk}")
         return ", ".join(sorted(self.vaccines_rename.values()))
+
+    def pipe_location(self, ds: pd.Series) -> pd.Series:
+        return enrich_data(ds, "location", "Bangladesh")
 
     def pipe_location(self, ds: pd.Series) -> pd.Series:
         return enrich_data(ds, "location", "Bangladesh")
