@@ -5,6 +5,7 @@ from cowidev.testing.utils.incremental import increment
 
 
 ACDC_COUNTRIES = {
+    "Algeria": {"name": "Algeria"},
     "Angola": {"name": "Angola", "notes": ""},  # New
     "Benin": {"name": "Benin"},  # Automate
     "Botswana": {"name": "Botswana"},  # Automate
@@ -14,6 +15,7 @@ ACDC_COUNTRIES = {
     "Burkina Faso": {  # New
         "name": "Burkina Faso",
     },
+    "Cameroon": {"name": "Cameroon"},
     "Central African Republic": {  # New
         "name": "Central African Republic",
     },
@@ -21,20 +23,27 @@ ACDC_COUNTRIES = {
         "name": "Chad",
     },
     "Cote d'Ivoire": {"name": "Cote d'Ivoire"},  # Automate
+    "Comoros": {"name": "Comoros"},
+    # "Congo Republic": {"name": "Congo Republic"},
     "Djibouti": {"name": "Djibouti"},  # Automate
     # "Democratic Republic of the Congo": {"name": "Democratic Republic of Congo"},  # Manual
+    "Egypt": {"name": "Egypt"},
     "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
     # "Equatorial Guinea": {"name": "Equatorial Guinea"},  # Change source to Africa CDC
+    "Eritrea": {"name": "Eritrea"},
     "Gabon": {"name": "Gabon"},  # Automate
     "Gambia": {"name": "Gambia"},  # Automate
     "Ghana": {"name": "Ghana"},  # Automate
+    "Guinea": {"name": "Guinea"},
     "Kenya": {
         "name": "Kenya",
     },
     "Madagascar": {"name": "Madagascar"},  # Automate
+    "Lesotho": {"name": "Lesotho"},
     "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
         "name": "Malawi",
     },
+    "Mauritius": {"name": "Mauritius"},
     "Mauritania": {
         "name": "Mauritania",
     },  # Deprecate R script
@@ -42,6 +51,7 @@ ACDC_COUNTRIES = {
     "Namibia": {"name": "Namibia"},  # Automate
     "Niger": {"name": "Niger"},  # Automate
     "Nigeria": {"name": "Nigeria"},  # Automate
+    "Sierra Leone": {"name": "Sierra Leone"},
     "South Sudan": {  # Deprecate R script
         "name": "South Sudan",
     },
@@ -51,6 +61,7 @@ ACDC_COUNTRIES = {
     "Uganda": {  # Automate
         "name": "Uganda",
     },
+    # "Sahrawi Republic": {"name": "Sahrawi Republic"},
     "Zimbabwe": {"name": "Zimbabwe"},  # Automate
 }
 country_mapping = {country: metadata["name"] for country, metadata in ACDC_COUNTRIES.items()}
