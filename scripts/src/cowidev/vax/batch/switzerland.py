@@ -6,6 +6,7 @@ from cowidev.utils.web import request_json, get_soup
 from cowidev.utils.clean import clean_date_series
 from cowidev.vax.utils.checks import validate_vaccines
 from cowidev.vax.utils.base import CountryVaxBase
+from cowidev.vax.utils.utils import build_vaccine_timeline
 
 
 class Switzerland(CountryVaxBase):
@@ -13,6 +14,12 @@ class Switzerland(CountryVaxBase):
 
     def __init__(self):
         self.source_url = "https://opendata.swiss/en/dataset/covid-19-schweiz"
+        self.vaccine_mapping = {
+            "pfizer_biontech": "Pfizer/BioNTech",
+            "moderna": "Moderna",
+            "johnson_johnson": "Johnson&Johnson",
+            "novavax": "Novavax",
+        }
 
     def read(self):
         doses_url, people_url, manufacturer_url = self._get_file_url()
@@ -66,6 +73,15 @@ class Switzerland(CountryVaxBase):
         )
         return pd.concat([doses, people], ignore_index=True), manufacturer
 
+    def save_vaccine_timeline(self, df_manuf: pd.DataFrame) -> pd.DataFrame:
+        self.vaccine_timeline = (
+            df_manuf[df_manuf.sumTotal > 0][["vaccine", "date"]]
+            .replace(self.vaccine_mapping)
+            .groupby("vaccine")
+            .min()
+            .to_dict()["date"]
+        )
+
     def pipe_filter_country(self, df: pd.DataFrame, country_code: str) -> pd.DataFrame:
         return df[df.geoRegion == country_code].drop(columns=["geoRegion"])
 
@@ -101,14 +117,6 @@ class Switzerland(CountryVaxBase):
             source_url=f"{self.source_url}?detGeo={country_code}",
         )
 
-    def pipe_vaccine(self, df: pd.DataFrame) -> pd.DataFrame:
-        def _enrich_vaccine(date: str) -> str:
-            if date >= "2021-01-29":
-                return "Moderna, Pfizer/BioNTech"
-            return "Pfizer/BioNTech"
-
-        return df.assign(vaccine=df.date.astype(str).apply(_enrich_vaccine))
-
     def pipeline(self, df: pd.DataFrame, location: str) -> pd.DataFrame:
         geo_region = _get_geo_region(location)
         return (
@@ -119,7 +127,7 @@ class Switzerland(CountryVaxBase):
             .pipe(self.pipe_fix_metrics)
             .pipe(self.pipe_location, location)
             .pipe(self.pipe_source, geo_region)
-            .pipe(self.pipe_vaccine)[
+            .pipe(build_vaccine_timeline, self.vaccine_timeline)[
                 [
                     "location",
                     "date",
@@ -134,17 +142,13 @@ class Switzerland(CountryVaxBase):
         )
 
     def pipeline_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
-        vaccine_mapping = {
-            "pfizer_biontech": "Pfizer/BioNTech",
-            "moderna": "Moderna",
-            "johnson_johnson": "Johnson&Johnson",
-        }
-        validate_vaccines(df, vaccine_mapping)
+        validate_vaccines(df, self.vaccine_mapping)
+        df = df[df.sumTotal > 0]
         return (
             df.rename(columns={"sumTotal": "total_vaccinations"})[df.geoRegion == "CH"]
             .drop(columns="geoRegion")
             .assign(location="Switzerland")
-            .replace(vaccine_mapping)
+            .replace(self.vaccine_mapping)
         )
 
     def pipe_age_filter_region(self, df, geo_region):
@@ -219,6 +223,9 @@ class Switzerland(CountryVaxBase):
     def export(self):
         locations = ["Switzerland", "Liechtenstein"]
         df, df_manuf, df_age = self.read()
+
+        # Save vaccine timeline
+        self.save_vaccine_timeline(df_manuf)
 
         # Main data
         for location in locations:
