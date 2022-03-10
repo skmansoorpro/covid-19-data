@@ -16,6 +16,7 @@ logger = get_logger()
 ADDITIONAL_VACCINES_USED = {
     "Cayman Islands": ["Oxford/AstraZeneca"],
     "Gambia": ["Johnson&Johnson"],
+    "Ethiopia": ["Sinovac"],
 }
 
 
