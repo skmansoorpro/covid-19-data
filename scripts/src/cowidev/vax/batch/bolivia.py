@@ -71,7 +71,7 @@ class Bolivia(CountryVaxBase):
             .pipe(self.pipe_metadata)
             .pipe(self.pipe_vaccine)
             .pipe(self.pipe_columns_out)
-            .pipe(make_monotonic)
+            .pipe(make_monotonic, max_removed_rows=15)
         )
 
     def export(self):
