@@ -22,6 +22,7 @@ class Slovakia(CountryVaxBase):
         "JANSSEN": "Johnson&Johnson",
         "MODERNA": "Moderna",
         "SPUTNIK": "Sputnik V",
+        "NUVAXOVID": "Novavax",
     }
     vax_timeline = None
     date_start = datetime(2021, 1, 4)
