@@ -141,7 +141,7 @@ INTERNAL_TMP_VAX_MAIN_FILE = os.path.join(INTERNAL_DIR, "vaccinations.preliminar
 INTERNAL_TMP_VAX_META_FILE = os.path.join(INTERNAL_DIR, "metadata.preliminary.csv")
 
 ## Status
-INTERNAL_STATUS_FILE = os.path.join(INTERNAL_DIR, "STATUS.md")
+INTERNAL_STATUS_FILE = os.path.join(INTERNAL_OUTPUT_DIR, "STATUS.md")
 
 
 # CONFIG ################################
