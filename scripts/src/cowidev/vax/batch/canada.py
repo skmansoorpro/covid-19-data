@@ -4,6 +4,7 @@ from cowidev.utils.web import request_json
 from cowidev.utils.utils import check_known_columns
 from cowidev.vax.utils.utils import make_monotonic
 from cowidev.vax.utils.base import CountryVaxBase
+from cowidev.vax.utils.utils import build_vaccine_timeline
 
 
 class Canada(CountryVaxBase):
@@ -66,11 +67,18 @@ class Canada(CountryVaxBase):
         return df
 
     def pipe_metadata(self, df: pd.DataFrame):
-        return df.assign(
+        df = df.assign(
             location=self.location,
             source_url=self.source_url_ref,
             vaccine="Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",
         )
+        df = build_vaccine_timeline(df, {
+            "Moderna": "2021-01-02",
+            "Oxford/AstraZeneca": "2021-03-13",
+            "Pfizer/BioNTech": "2020-12-01",
+            "Johnson&Johnson": "2021-07-17",
+        })
+        return df
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         df = (
