@@ -127,25 +127,25 @@ def generate_megafile():
     ]
     all_covid = all_covid.drop(columns=cols_drop)
 
-    # # Create light versions of complete dataset with only the latest data point
-    # print("Writing latest…")
-    # create_latest(all_covid)
+    # Create light versions of complete dataset with only the latest data point
+    print("Writing latest…")
+    create_latest(all_covid)
 
-    # # Create datasets
-    # create_dataset(all_covid, macro_variables)
+    # Create datasets
+    create_dataset(all_covid, macro_variables)
 
-    # # Store the last updated time
-    # export_timestamp(PATHS.DATA_TIMESTAMP_OLD_FILE, force_directory=PATHS.DATA_DIR)  # @deprecate
+    # Store the last updated time
+    export_timestamp(PATHS.DATA_TIMESTAMP_OLD_FILE, force_directory=PATHS.DATA_DIR)  # @deprecate
 
-    # # Update readme
-    # print("Generating public/data/README.md")
-    # generate_readme(readme_template=README_TMP, readme_output=README_FILE)
+    # Update readme
+    print("Generating public/data/README.md")
+    generate_readme(readme_template=README_TMP, readme_output=README_FILE)
 
     # Update readme
     print("Generating scripts/STATUS.md")
     generate_status(template=PATHS.INTERNAL_INPUT_TEMPLATE_STATUS, output=PATHS.INTERNAL_STATUS_FILE)
 
     # Export timestamp
-    # export_timestamp(PATHS.DATA_TIMESTAMP_ROOT_FILE)
+    export_timestamp(PATHS.DATA_TIMESTAMP_ROOT_FILE)
 
     print("All done!")
