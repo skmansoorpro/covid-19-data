@@ -17,7 +17,7 @@ class Moldova:
     regex = {
         "title": r"(cazuri noi de COVID-19)|(cazuri de COVID-19)|(cazuri de COVID-19,)",
         "date": r"(\d+\/\d+\/\d+)",
-        "count": r"teste efectuate .*? (\d+)",
+        "count": r"(\d+) de teste.",
     }
     # Initial value for cumulative total: 364317
 
