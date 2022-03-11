@@ -3,6 +3,7 @@ import click
 from cowidev.cmd.commons.get import main_get_data
 from cowidev.cmd.commons.utils import Country2Module, PythonLiteralOption
 from cowidev.utils.params import CONFIG
+from cowidev.utils import paths
 from cowidev.vax.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_NAME_INCREMENTAL, country_to_module
 
 
@@ -74,4 +75,6 @@ def click_vax_get(ctx, countries, skip_countries, optimize):
         modules_skip=modules_skip,
         log_header="VAX",
         log_s3_path="s3://covid-19/log/vax-get-data-countries.csv" if optimize else None,
+        output_status=paths.INTERNAL_OUTPUT_VAX_STATUS_GET,# if len(modules) == len(MODULES_NAME) else None,
+        output_status_ts=paths.INTERNAL_OUTPUT_VAX_STATUS_GET_TS,
     )

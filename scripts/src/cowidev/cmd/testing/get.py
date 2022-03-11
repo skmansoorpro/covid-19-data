@@ -3,6 +3,7 @@ import click
 from cowidev.cmd.commons.utils import PythonLiteralOption, Country2Module
 from cowidev.cmd.commons.get import main_get_data
 from cowidev.utils.params import CONFIG
+from cowidev.utils import paths
 from cowidev.testing.countries import MODULES_NAME, MODULES_NAME_BATCH, MODULES_NAME_INCREMENTAL, country_to_module
 
 
@@ -64,4 +65,6 @@ def click_test_get(ctx, countries, skip_countries):
         modules=modules,
         modules_skip=modules_skip,
         log_header="TEST",
+        output_status=paths.INTERNAL_OUTPUT_TEST_STATUS_GET if len(modules) == len(MODULES_NAME) else None,
+        output_status_ts=paths.INTERNAL_OUTPUT_TEST_STATUS_GET_TS,
     )

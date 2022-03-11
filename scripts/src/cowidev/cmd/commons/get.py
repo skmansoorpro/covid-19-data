@@ -1,10 +1,12 @@
 import time
 import importlib
+import traceback
 
 from joblib import Parallel, delayed
 import pandas as pd
 
 from cowidev.utils.log import get_logger, print_eoe, system_details
+from cowidev.utils.utils import export_timestamp
 from cowidev.utils.s3 import obj_from_s3, obj_to_s3
 from cowidev.utils.clean.dates import localdate
 
@@ -31,7 +33,7 @@ class CountryDataGetter:
         # Check country skipping
         if self._skip_module(module_name):
             logger.info(f"{self.log_header} - {module_name}: skipped! ⚠️")
-            return {"module_name": module_name, "success": None, "skipped": True, "time": None}
+            return {"module_name": module_name, "success": None, "skipped": True, "time": None, "error": ""}
         # Start country scraping
         logger.info(f"{self.log_header} - {module_name}: started")
         module = importlib.import_module(module_name)
@@ -40,11 +42,13 @@ class CountryDataGetter:
         except Exception as err:
             success = False
             logger.error(f"{self.log_header} - {module_name}: ❌ {err}", exc_info=True)
+            error_msg = "".join(traceback.TracebackException.from_exception(err).format())
         else:
             success = True
             logger.info(f"{self.log_header} - {module_name}: SUCCESS ✅")
+            error_msg = ""
         t = round(time.time() - t0, 2)
-        return {"module_name": module_name, "success": success, "skipped": False, "time": t}
+        return {"module_name": module_name, "success": success, "skipped": False, "time": t, "error": error_msg}
 
 
 def main_get_data(
@@ -54,6 +58,8 @@ def main_get_data(
     modules_skip: list = [],
     log_header: str = "",
     log_s3_path=None,
+    output_status: str = None,
+    output_status_ts: str = None,
 ):
     """Get data from sources and export to output folder.
 
@@ -82,6 +88,11 @@ def main_get_data(
     t_sec_1 = round(time.time() - t0, 2)
     # Get timing dataframe
     df_exec = _build_df_execution(modules_execution_results)
+    if output_status is not None:
+        # (modules_all is not None) and (len(df_exec) == len(modules_all)):
+        df_status = _build_df_status(modules_execution_results)
+        df_status.to_csv(output_status)
+        export_timestamp(output_status_ts)
     # Retry failed modules
     _retry_modules_failed(modules_execution_results, country_data_getter)
     # Print timing details
@@ -94,6 +105,25 @@ def _build_df_execution(modules_execution_results):
         pd.DataFrame(
             [
                 {"module": m["module_name"], "execution_time (sec)": m["time"], "success": m["success"]}
+                for m in modules_execution_results
+            ]
+        )
+        .set_index("module")
+        .sort_values(by="execution_time (sec)", ascending=False)
+    )
+    return df_exec
+
+
+def _build_df_status(modules_execution_results):
+    df_exec = (
+        pd.DataFrame(
+            [
+                {
+                    "module": m["module_name"],
+                    "execution_time (sec)": m["time"],
+                    "success": m["success"],
+                    "error": m["error"],
+                }
                 for m in modules_execution_results
             ]
         )
