@@ -90,9 +90,13 @@ INTERNAL_OUTPUT_VAX_META_AGE_FILE = os.path.join(INTERNAL_OUTPUT_VAX_META_DIR, "
 INTERNAL_OUTPUT_VAX_META_MANUFACT_FILE = os.path.join(INTERNAL_OUTPUT_VAX_META_DIR, "locations-manufacturer.csv")
 INTERNAL_OUTPUT_VAX_LOG_DIR = os.path.join(INTERNAL_OUTPUT_VAX_DIR, "log")
 INTERNAL_OUTPUT_VAX_PROPOSALS_DIR = os.path.join(INTERNAL_OUTPUT_VAX_DIR, "proposals")
+INTERNAL_OUTPUT_VAX_STATUS_GET = os.path.join(INTERNAL_OUTPUT_VAX_DIR, "status", "status-vax-get.csv")
+INTERNAL_OUTPUT_VAX_STATUS_GET_TS = os.path.join(INTERNAL_OUTPUT_VAX_DIR, "status", "status-vax-get-ts.txt")
 ### Output test
 INTERNAL_OUTPUT_TEST_DIR = os.path.join(INTERNAL_OUTPUT_DIR, "testing")
 INTERNAL_OUTPUT_TEST_MAIN_DIR = os.path.join(INTERNAL_OUTPUT_TEST_DIR, "main_data")
+INTERNAL_OUTPUT_TEST_STATUS_GET = os.path.join(INTERNAL_OUTPUT_TEST_DIR, "status", "status-test-get.csv")
+INTERNAL_OUTPUT_TEST_STATUS_GET_TS = os.path.join(INTERNAL_OUTPUT_TEST_DIR, "status", "status-test-get-ts.txt")
 ### Output hospitalizations
 INTERNAL_OUTPUT_HOSP_DIR = os.path.join(INTERNAL_OUTPUT_DIR, "hospitalizations")
 INTERNAL_OUTPUT_HOSP_MAIN_DIR = os.path.join(INTERNAL_OUTPUT_HOSP_DIR, "main_data")
@@ -125,6 +129,9 @@ INTERNAL_INPUT_UN_DIR = os.path.join(INTERNAL_INPUT_DIR, "un")
 INTERNAL_INPUT_UN_POPULATION_FILE = os.path.join(INTERNAL_INPUT_UN_DIR, "population_latest.csv")
 INTERNAL_INPUT_WB_DIR = os.path.join(INTERNAL_INPUT_DIR, "wb")
 INTERNAL_INPUT_WB_INCOME_FILE = os.path.join(INTERNAL_INPUT_WB_DIR, "income_groups.csv")
+### Input templates
+INTERNAL_INPUT_TEMPLATE = os.path.join(INTERNAL_INPUT_DIR, "templates")
+INTERNAL_INPUT_TEMPLATE_STATUS = os.path.join(INTERNAL_INPUT_TEMPLATE, "status.md")
 
 ## Grapher
 INTERNAL_GRAPHER_DIR = os.path.join(INTERNAL_DIR, "grapher")
@@ -132,6 +139,10 @@ INTERNAL_GRAPHER_DIR = os.path.join(INTERNAL_DIR, "grapher")
 ## Temporary
 INTERNAL_TMP_VAX_MAIN_FILE = os.path.join(INTERNAL_DIR, "vaccinations.preliminary.csv")
 INTERNAL_TMP_VAX_META_FILE = os.path.join(INTERNAL_DIR, "metadata.preliminary.csv")
+
+## Status
+INTERNAL_STATUS_FILE = os.path.join(INTERNAL_DIR, "STATUS.md")
+
 
 # CONFIG ################################
 CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "owid")
