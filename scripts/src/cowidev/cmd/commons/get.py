@@ -42,7 +42,7 @@ class CountryDataGetter:
         except Exception as err:
             success = False
             logger.error(f"{self.log_header} - {module_name}: ❌ {err}", exc_info=True)
-            error_msg = "".join(traceback.TracebackException.from_exception(err).format())
+            error_msg = err
         else:
             success = True
             logger.info(f"{self.log_header} - {module_name}: SUCCESS ✅")
