@@ -5,7 +5,7 @@ This file shows the latest status of the data pipeline.
 ## Vaccinations
 ### Get (scraping)
 
-`6/118` scripts failed, `9/118` were skipped. Latest update was `2022-03-12T08:39:56`.
+`3/118` scripts failed, `9/118` were skipped. Latest update was `2022-03-13T09:09:13`.
 
 <table border="1" class="dataframe">
   <thead>
@@ -18,40 +18,22 @@ This file shows the latest status of the data pipeline.
   </thead>
   <tbody>
     <tr>
-      <td>cowidev.vax.incremental.serbia</td>
-      <td>❌</td>
-      <td>20.25</td>
-      <td><details><summary>show</summary><pre>HTTPSConnectionPool(host='vakcinacija.gov.rs', port=443): Read timed out. (read timeout=20)</pre></details></td>
-    </tr>
-    <tr>
       <td>cowidev.vax.incremental.vietnam</td>
       <td>❌</td>
-      <td>7.85</td>
+      <td>5.34</td>
       <td><details><summary>show</summary><pre>'NoneType' object has no attribute 'group'</pre></details></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.united_arab_emirates</td>
-      <td>❌</td>
-      <td>7.22</td>
-      <td><details><summary>show</summary><pre>'NoneType' object has no attribute 'group'</pre></details></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.kenya</td>
-      <td>❌</td>
-      <td>6.39</td>
-      <td><details><summary>show</summary><pre>No new record found after 2022-03-10</pre></details></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.laos</td>
       <td>❌</td>
-      <td>4.25</td>
+      <td>2.44</td>
       <td><details><summary>show</summary><pre>('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))</pre></details></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.canada</td>
       <td>❌</td>
-      <td>1.40</td>
-      <td><details><summary>show</summary><pre>297 rows have been removed. That is more than maximum allowed (10) by make_monotonic() - check the data. Check <br>           date  total_vaccinations  ...                                         source_url                                            vaccine<br>479  2021-05-18            19246660  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>480  2021-05-19            19606598  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>481  2021-05-20            20007793  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>482  2021-05-21            20493274  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>483  2021-05-22            20885402  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>..          ...                 ...  ...                                                ...                                                ...<br>771  2022-03-06            81452488  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>772  2022-03-07            81496646  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>773  2022-03-08            81517941  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>774  2022-03-09            81548320  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>775  2022-03-10            81581032  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br><br>[297 rows x 10 columns]</pre></details></td>
+      <td>1.82</td>
+      <td><details><summary>show</summary><pre>315 rows have been removed. That is more than maximum allowed (10) by make_monotonic() - check the data. Check <br>           date  total_vaccinations  ...                                         source_url                                            vaccine<br>462  2021-05-01            13771556  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>463  2021-05-02            13945048  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>464  2021-05-03            14172299  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>465  2021-05-04            14407259  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>466  2021-05-05            14694142  ...  https://covid19tracker.ca/vaccinationtracker.html       Moderna, Oxford/AstraZeneca, Pfizer/BioNTech<br>..          ...                 ...  ...                                                ...                                                ...<br>772  2022-03-07            81496646  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>773  2022-03-08            81517941  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>774  2022-03-09            81548320  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>775  2022-03-10            81581032  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>776  2022-03-11            40364427  ...  https://covid19tracker.ca/vaccinationtracker.html  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br><br>[315 rows x 10 columns]</pre></details></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.austria</td>
@@ -108,189 +90,225 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
+      <td>cowidev.vax.incremental.united_arab_emirates</td>
+      <td>✅</td>
+      <td>136.95</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>cowidev.vax.batch.ecdc</td>
       <td>✅</td>
-      <td>89.24</td>
+      <td>94.35</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.united_states</td>
       <td>✅</td>
-      <td>61.75</td>
+      <td>66.65</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.paho</td>
       <td>✅</td>
-      <td>39.60</td>
+      <td>41.24</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.slovakia</td>
       <td>✅</td>
-      <td>37.64</td>
+      <td>39.68</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.switzerland</td>
       <td>✅</td>
-      <td>31.47</td>
+      <td>30.76</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.monaco</td>
       <td>✅</td>
-      <td>27.34</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.south_korea</td>
-      <td>✅</td>
-      <td>26.34</td>
+      <td>26.69</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.latvia</td>
       <td>✅</td>
-      <td>22.85</td>
+      <td>23.24</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.batch.romania</td>
+      <td>cowidev.vax.incremental.kenya</td>
       <td>✅</td>
-      <td>21.58</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.china</td>
-      <td>✅</td>
-      <td>19.27</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.spc</td>
-      <td>✅</td>
-      <td>19.10</td>
+      <td>22.83</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.bangladesh</td>
       <td>✅</td>
-      <td>18.56</td>
+      <td>22.29</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.macao</td>
+      <td>cowidev.vax.batch.romania</td>
       <td>✅</td>
-      <td>16.78</td>
+      <td>21.15</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.china</td>
+      <td>✅</td>
+      <td>20.46</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.south_korea</td>
+      <td>✅</td>
+      <td>19.72</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.spc</td>
+      <td>✅</td>
+      <td>19.53</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.nepal</td>
       <td>✅</td>
-      <td>14.73</td>
+      <td>18.13</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.suriname</td>
+      <td>cowidev.vax.incremental.macao</td>
       <td>✅</td>
-      <td>12.72</td>
+      <td>17.03</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.myanmar</td>
       <td>✅</td>
-      <td>10.99</td>
+      <td>16.04</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.azerbaijan</td>
       <td>✅</td>
-      <td>10.93</td>
+      <td>13.52</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.batch.new_zealand</td>
+      <td>cowidev.vax.incremental.suriname</td>
       <td>✅</td>
-      <td>10.41</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.sweden</td>
-      <td>✅</td>
-      <td>9.77</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.cuba</td>
-      <td>✅</td>
-      <td>9.41</td>
+      <td>12.73</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.barbados</td>
       <td>✅</td>
-      <td>8.19</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.qatar</td>
-      <td>✅</td>
-      <td>7.79</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.taiwan</td>
-      <td>✅</td>
-      <td>7.69</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.libya</td>
-      <td>✅</td>
-      <td>7.46</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.antigua_barbuda</td>
-      <td>✅</td>
-      <td>7.41</td>
+      <td>12.68</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.sri_lanka</td>
       <td>✅</td>
-      <td>7.31</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.indonesia</td>
-      <td>✅</td>
-      <td>6.92</td>
+      <td>10.28</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.mexico</td>
       <td>✅</td>
-      <td>6.88</td>
+      <td>9.56</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.taiwan</td>
+      <td>✅</td>
+      <td>9.07</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.indonesia</td>
+      <td>✅</td>
+      <td>8.59</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.qatar</td>
+      <td>✅</td>
+      <td>8.58</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.sweden</td>
+      <td>✅</td>
+      <td>8.47</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.kazakhstan</td>
+      <td>✅</td>
+      <td>8.01</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.albania</td>
       <td>✅</td>
-      <td>6.38</td>
+      <td>7.82</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.bulgaria</td>
+      <td>cowidev.vax.incremental.libya</td>
       <td>✅</td>
-      <td>6.06</td>
+      <td>6.87</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.equatorial_guinea</td>
+      <td>✅</td>
+      <td>6.66</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.cuba</td>
+      <td>✅</td>
+      <td>6.21</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.costa_rica</td>
+      <td>✅</td>
+      <td>5.98</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.new_zealand</td>
+      <td>✅</td>
+      <td>5.97</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.dominican_republic</td>
       <td>✅</td>
-      <td>5.49</td>
+      <td>5.79</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.antigua_barbuda</td>
+      <td>✅</td>
+      <td>5.66</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.serbia</td>
+      <td>✅</td>
+      <td>5.63</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.kyrgyzstan</td>
+      <td>✅</td>
+      <td>5.63</td>
       <td></td>
     </tr>
     <tr>
@@ -300,405 +318,381 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
+      <td>cowidev.vax.incremental.bulgaria</td>
+      <td>✅</td>
+      <td>5.03</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>cowidev.vax.incremental.bahrain</td>
       <td>✅</td>
-      <td>5.21</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.equatorial_guinea</td>
-      <td>✅</td>
-      <td>5.01</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.kazakhstan</td>
-      <td>✅</td>
-      <td>4.86</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.costa_rica</td>
-      <td>✅</td>
-      <td>4.85</td>
+      <td>4.79</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.united_kingdom</td>
       <td>✅</td>
-      <td>4.71</td>
+      <td>4.60</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.saudi_arabia</td>
       <td>✅</td>
-      <td>4.54</td>
+      <td>4.39</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.south_africa</td>
       <td>✅</td>
-      <td>4.23</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.uruguay</td>
-      <td>✅</td>
-      <td>4.05</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.kosovo</td>
-      <td>✅</td>
-      <td>4.04</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.iran</td>
-      <td>✅</td>
-      <td>3.93</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.el_salvador</td>
-      <td>✅</td>
-      <td>3.84</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.who</td>
-      <td>✅</td>
-      <td>3.61</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.italy</td>
-      <td>✅</td>
-      <td>3.52</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.kyrgyzstan</td>
-      <td>✅</td>
-      <td>3.25</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.aruba</td>
-      <td>✅</td>
-      <td>3.16</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.belgium</td>
-      <td>✅</td>
-      <td>2.79</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.peru</td>
-      <td>✅</td>
-      <td>2.53</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.japan</td>
-      <td>✅</td>
-      <td>2.50</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.georgia</td>
-      <td>✅</td>
-      <td>2.42</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.pakistan</td>
-      <td>✅</td>
-      <td>2.39</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.israel</td>
-      <td>✅</td>
-      <td>2.35</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.luxembourg</td>
-      <td>✅</td>
-      <td>2.27</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.india</td>
-      <td>✅</td>
-      <td>2.22</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.cyprus</td>
-      <td>✅</td>
-      <td>2.13</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.hungary</td>
-      <td>✅</td>
-      <td>2.11</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.northern_cyprus</td>
-      <td>✅</td>
-      <td>2.09</td>
+      <td>3.86</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.moldova</td>
       <td>✅</td>
-      <td>1.96</td>
+      <td>3.76</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.thailand</td>
+      <td>cowidev.vax.incremental.el_salvador</td>
       <td>✅</td>
-      <td>1.88</td>
+      <td>3.74</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.spain</td>
+      <td>cowidev.vax.batch.israel</td>
       <td>✅</td>
-      <td>1.87</td>
+      <td>3.72</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.batch.denmark</td>
+      <td>cowidev.vax.incremental.iran</td>
       <td>✅</td>
-      <td>1.85</td>
+      <td>3.37</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.greenland</td>
+      <td>cowidev.vax.incremental.kosovo</td>
       <td>✅</td>
-      <td>1.82</td>
+      <td>3.30</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.argentina</td>
+      <td>cowidev.vax.incremental.who</td>
       <td>✅</td>
-      <td>1.75</td>
+      <td>3.08</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.batch.bolivia</td>
+      <td>cowidev.vax.batch.belgium</td>
       <td>✅</td>
-      <td>1.73</td>
+      <td>3.03</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.russia</td>
+      <td>cowidev.vax.incremental.hungary</td>
       <td>✅</td>
-      <td>1.68</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.lebanon</td>
-      <td>✅</td>
-      <td>1.66</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.hong_kong</td>
-      <td>✅</td>
-      <td>1.61</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.singapore</td>
-      <td>✅</td>
-      <td>1.53</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.czechia</td>
-      <td>✅</td>
-      <td>1.53</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.greece</td>
-      <td>✅</td>
-      <td>1.53</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.slovenia</td>
-      <td>✅</td>
-      <td>1.47</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.guernsey</td>
-      <td>✅</td>
-      <td>1.25</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.iceland</td>
-      <td>✅</td>
-      <td>1.25</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.lithuania</td>
-      <td>✅</td>
-      <td>1.20</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.mongolia</td>
-      <td>✅</td>
-      <td>1.17</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.germany</td>
-      <td>✅</td>
-      <td>1.17</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.trinidad_and_tobago</td>
-      <td>✅</td>
-      <td>1.08</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.faeroe_islands</td>
-      <td>✅</td>
-      <td>1.00</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.ecuador</td>
-      <td>✅</td>
-      <td>0.99</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.curacao</td>
-      <td>✅</td>
-      <td>0.97</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.norway</td>
-      <td>✅</td>
-      <td>0.94</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.chile</td>
-      <td>✅</td>
-      <td>0.91</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.australia</td>
-      <td>✅</td>
-      <td>0.84</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.zimbabwe</td>
-      <td>✅</td>
-      <td>0.83</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.malta</td>
-      <td>✅</td>
-      <td>0.74</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.netherlands</td>
-      <td>✅</td>
-      <td>0.71</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.isle_of_man</td>
-      <td>✅</td>
-      <td>0.63</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.turkey</td>
-      <td>✅</td>
-      <td>0.59</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.finland</td>
-      <td>✅</td>
-      <td>0.56</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.batch.estonia</td>
-      <td>✅</td>
-      <td>0.56</td>
+      <td>2.98</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.portugal</td>
       <td>✅</td>
-      <td>0.53</td>
+      <td>2.89</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.croatia</td>
+      <td>cowidev.vax.incremental.spain</td>
       <td>✅</td>
-      <td>0.49</td>
+      <td>2.74</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.batch.jersey</td>
+      <td>cowidev.vax.incremental.japan</td>
       <td>✅</td>
-      <td>0.44</td>
+      <td>2.66</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.batch.malaysia</td>
+      <td>cowidev.vax.batch.luxembourg</td>
       <td>✅</td>
-      <td>0.44</td>
+      <td>2.50</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.uruguay</td>
+      <td>✅</td>
+      <td>2.48</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.georgia</td>
+      <td>✅</td>
+      <td>2.40</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.pakistan</td>
+      <td>✅</td>
+      <td>2.37</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.cyprus</td>
+      <td>✅</td>
+      <td>2.32</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.denmark</td>
+      <td>✅</td>
+      <td>2.31</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.bolivia</td>
+      <td>✅</td>
+      <td>2.14</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.italy</td>
+      <td>✅</td>
+      <td>2.12</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.greenland</td>
+      <td>✅</td>
+      <td>2.03</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.singapore</td>
+      <td>✅</td>
+      <td>1.91</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.czechia</td>
+      <td>✅</td>
+      <td>1.90</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.peru</td>
+      <td>✅</td>
+      <td>1.85</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.argentina</td>
+      <td>✅</td>
+      <td>1.82</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.thailand</td>
+      <td>✅</td>
+      <td>1.79</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.hong_kong</td>
+      <td>✅</td>
+      <td>1.76</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.russia</td>
+      <td>✅</td>
+      <td>1.72</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.lebanon</td>
+      <td>✅</td>
+      <td>1.58</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.iceland</td>
+      <td>✅</td>
+      <td>1.53</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.faeroe_islands</td>
+      <td>✅</td>
+      <td>1.47</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.india</td>
+      <td>✅</td>
+      <td>1.41</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.greece</td>
+      <td>✅</td>
+      <td>1.41</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.northern_cyprus</td>
+      <td>✅</td>
+      <td>1.34</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.guernsey</td>
+      <td>✅</td>
+      <td>1.33</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.australia</td>
+      <td>✅</td>
+      <td>1.29</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.lithuania</td>
+      <td>✅</td>
+      <td>1.28</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.netherlands</td>
+      <td>✅</td>
+      <td>1.26</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.mongolia</td>
+      <td>✅</td>
+      <td>1.20</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.ecuador</td>
+      <td>✅</td>
+      <td>1.18</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.curacao</td>
+      <td>✅</td>
+      <td>1.17</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.aruba</td>
+      <td>✅</td>
+      <td>1.13</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.germany</td>
+      <td>✅</td>
+      <td>1.01</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.norway</td>
+      <td>✅</td>
+      <td>0.77</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.montenegro</td>
       <td>✅</td>
-      <td>0.39</td>
+      <td>0.74</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.zambia</td>
       <td>✅</td>
-      <td>0.37</td>
+      <td>0.73</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.brazil</td>
+      <td>cowidev.vax.batch.zimbabwe</td>
       <td>✅</td>
-      <td>0.35</td>
+      <td>0.73</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.turkey</td>
+      <td>✅</td>
+      <td>0.71</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.chile</td>
+      <td>✅</td>
+      <td>0.68</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.slovenia</td>
+      <td>✅</td>
+      <td>0.67</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.isle_of_man</td>
+      <td>✅</td>
+      <td>0.64</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.ireland</td>
       <td>✅</td>
-      <td>0.35</td>
+      <td>0.60</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.malta</td>
+      <td>✅</td>
+      <td>0.58</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.brazil</td>
+      <td>✅</td>
+      <td>0.58</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.estonia</td>
+      <td>✅</td>
+      <td>0.54</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.malaysia</td>
+      <td>✅</td>
+      <td>0.54</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.finland</td>
+      <td>✅</td>
+      <td>0.51</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.jersey</td>
+      <td>✅</td>
+      <td>0.48</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.batch.trinidad_and_tobago</td>
+      <td>✅</td>
+      <td>0.46</td>
       <td></td>
     </tr>
     <tr>
@@ -708,21 +702,27 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
+      <td>cowidev.vax.incremental.croatia</td>
+      <td>✅</td>
+      <td>0.28</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>cowidev.vax.batch.france</td>
       <td>✅</td>
-      <td>0.17</td>
+      <td>0.19</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.philippines</td>
       <td>✅</td>
-      <td>0.17</td>
+      <td>0.19</td>
       <td></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.fiji</td>
       <td>✅</td>
-      <td>0.00</td>
+      <td>0.01</td>
       <td></td>
     </tr>
   </tbody>
