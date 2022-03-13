@@ -10,15 +10,15 @@ from cowidev.vax.utils.incremental import increment, enrich_data
 
 class Vietnam:
     location = "Vietnam"
-    base_url = "https://suckhoedoisong.vn"
+    base_url = "https://covid19.gov.vn"
     source_url = "https://covid19.gov.vn/ban-tin-covid-19.htm"
     regex = {
         "title": r"Ngày",
-        "date": r"(\d{2}\-\d{2}\-\d{4})",
+        "date": r"(\d{2}/\d{2}/\d{4})",
         "metrics": {
-            "total": r"tổng số liều (vắc xin|vaccine) đã được tiêm là (\d+) liều, ",
-            "adult": r"tuổi trở lên là \d+ liều: Mũi 1 là (\d+) liều; Mũi 2 là (\d+) liều; Mũi 3 là (\d+) liều; Mũi bổ sung là (\d+) liều; Mũi nhắc lại là (\d+) liều.",
-            "adolescent": r"tuổi là \d+ liều: Mũi 1 là (\d+) liều; Mũi 2 là (\d+) liều.",
+            "total": r"tổng số liều (vắc xin|vaccine) đã được tiêm là ([\d\.]+) liều, ",
+            "adult": r"tuổi trở lên là \d+ liều: Mũi 1 là ([\d\.]+) liều; Mũi 2 là ([\d\.]+) liều; Mũi 3 là ([\d\.]+) liều; Mũi bổ sung là ([\d\.]+) liều; Mũi nhắc lại là ([\d\.]+) liều",
+            "adolescent": r"tuổi là \d+ liều: Mũi 1 là ([\d\.]+) liều; Mũi 2 là ([\d\.]+) liều.",
         },
     }
 
@@ -33,6 +33,7 @@ class Vietnam:
         # Get relevant link
         url = self._get_relevant_link(soup)
         # Extract text from url
+        print(url)
         text = self._get_text_from_url(url)
         # Extract date from text
         date = self._parse_date_from_text(text)
@@ -61,7 +62,7 @@ class Vietnam:
     def _parse_date_from_text(self, text: str) -> str:
         """Get date from text."""
         date = re.search(self.regex["date"], text).group(1)
-        date = clean_date(date, "%d-%m-%Y", as_datetime=True) - pd.Timedelta(days=1)
+        date = clean_date(date, "%d/%m/%Y", as_datetime=True) - pd.Timedelta(days=1)
         return date.strftime("%Y-%m-%d")
 
     def _parse_metrics(self, text: str) -> tuple:
