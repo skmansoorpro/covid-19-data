@@ -184,6 +184,11 @@ class CountryVaxBase:
                 df_manufacturer, meta_manufacturer, filename=filename, attach=attach_manufacturer
             )
 
+    def pipe_merge_with_current(self, df, filename=None):
+        filename = self.get_output_path(filename)
+        df = merge_with_current_data(df, filename)
+        return df
+
     def _export_datafile_main(self, df, filename, attach=False, reset_index=False, valid_cols_only=False, **kwargs):
         """Export main data."""
         filename = self.get_output_path(filename)
