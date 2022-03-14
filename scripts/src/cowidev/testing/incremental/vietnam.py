@@ -13,7 +13,7 @@ class Vietnam:
     units = "people tested"
     source_label = "Ministry of Health of Vietnam"
     # base_url = "https://suckhoedoisong.vn"
-    base_url = "https://suckhoedoisong.vn/"
+    base_url = "https://covid19.gov.vn"
     source_url = "https://covid19.gov.vn/ban-tin-covid-19.htm"
     regex = {
         "title": r"Ngày",
@@ -64,8 +64,8 @@ class Vietnam:
 
     def _parse_date_from_text(self, soup) -> str:
         """Get date from text."""
-        date_raw = soup.find(class_="publish-date").text
-        return extract_clean_date(date_raw, r"(\d+\-\d+\-20\d+)", "%d-%m-%Y")
+        date_raw = soup.select(".detail-time div")[0].text
+        return extract_clean_date(date_raw, r"(\d{2}\/\d{2}\/\d{4})", "%d/%m/%Y")
 
     def _parse_metrics(self, text: str) -> int:
         """Get metrics from text."""

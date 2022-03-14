@@ -61,9 +61,10 @@ pipeline:
     get:
       countries: 
       skip_countries:
-        - Benin #the source is n longer updating
         - Kazakhstan
         - Ukraine
+        - Andorra
+        - Jordan
     process:
     generate:
     export:

@@ -26,7 +26,7 @@ ACDC_COUNTRIES = {
     "Comoros": {"name": "Comoros"},
     # "Congo Republic": {"name": "Congo Republic"},
     "Djibouti": {"name": "Djibouti"},  # Automate
-    # "Democratic Republic of the Congo": {"name": "Democratic Republic of Congo"},  # Manual
+    "Democratic Republic of the Congo": {"name": "Democratic Republic of the Congo"},  # Manual
     "Egypt": {"name": "Egypt"},
     "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
     # "Equatorial Guinea": {"name": "Equatorial Guinea"},  # Change source to Africa CDC
