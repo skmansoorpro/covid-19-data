@@ -36,6 +36,7 @@ ACDC_COUNTRIES = {
     "Gambia": {"name": "Gambia"},  # Automate
     "Ghana": {"name": "Ghana"},  # Automate
     "Guinea": {"name": "Guinea"},
+    "Guinea-Bissau": {"name": "Guinea-Bissau"},
     "Kenya": {
         "name": "Kenya",
     },
