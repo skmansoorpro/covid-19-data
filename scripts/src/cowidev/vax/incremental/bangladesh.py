@@ -16,7 +16,7 @@ class Bangladesh:
         "Sinopharm": "Sinopharm/Beijing",
         "Moderna": "Moderna",
         "Sinovac": "Sinovac",
-        "Johnson": "Johnson&Johnson",
+        "Janssen (Johnson & Johnson)": "Johnson&Johnson",
     }
 
     def read(self) -> pd.Series:
