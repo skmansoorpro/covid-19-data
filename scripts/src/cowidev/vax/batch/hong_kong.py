@@ -16,6 +16,17 @@ class HongKong(CountryVaxBase):
         "Sinovac": "Sinovac",
         "BioNTech": "Pfizer/BioNTech",
     }
+    age_valid = {
+        "0-19": "0-19",
+        "20-29": "20-29",
+        "30-39": "30-39",
+        "40-49": "40-49",
+        "50-59": "50-59",
+        "60-69": "60-69",
+        "70-79": "70-79",
+        "80 and above": "80-",
+    }
+    vaccines_valid = ["Sinovac", "BioNTech"]
 
     def read(self) -> pd.DataFrame:
         response = requests.get(self.source_url).content
@@ -38,15 +49,15 @@ class HongKong(CountryVaxBase):
 
     def pipe_reshape(self, df: pd.DataFrame) -> pd.DataFrame:
         df = (
-            df.rename(columns={"Date": "date"})
-            .drop(columns=["Age Group", "Sex"])
-            .melt(id_vars=["date"], value_name="total_vaccinations")
-            .groupby(["date", "variable"], as_index=False)
+            df.rename(columns={"Date": "date", "Age Group": "age_group"})
+            .drop(columns=["Sex"])
+            .melt(id_vars=["date", "age_group"], value_name="total_vaccinations")
+            .groupby(["date", "age_group", "variable"], as_index=False)
             .sum()
         )
         df[["vaccine", "dose"]] = df.variable.str.extract(r"^(\w+) (.*)$")
         df = df.drop(columns="variable").sort_values("date")
-        df["total_vaccinations"] = df.groupby(["vaccine", "dose"]).cumsum()
+        df["total_vaccinations"] = df.groupby(["vaccine", "dose", "age_group"]).cumsum()
         return df
 
     def pipe_add_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -81,7 +92,7 @@ class HongKong(CountryVaxBase):
             },
         )
 
-    def pipeline_vax(self, df: pd.DataFrame) -> pd.DataFrame:
+    def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.pipe(self.pipe_calculate_metrics).pipe(self.pipe_add_vaccines).pipe(self.pipe_add_metadata)
 
     def pipe_sum_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -92,18 +103,66 @@ class HongKong(CountryVaxBase):
     def pipeline_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
         return df.pipe(self.pipe_sum_manufacturer).assign(location=self.location)
 
+    def pipe_age_checks(self, df: pd.DataFrame):
+        vax_wrong = set(df.vaccine).difference(self.vaccines_valid)
+        if vax_wrong:
+            raise ValueError(
+                f"Can't extract age data. New vaccine(s) detected: {vax_wrong}. Generally it is OK unless single-dose"
+                " vaccines are in use!"
+            )
+        age_wrong = set(df.age_group).difference(self.age_valid)
+        if age_wrong:
+            raise ValueError(f"Wrong age group(s): {age_wrong}")
+        return df
+
+    def pipe_age_agg(self, df: pd.DataFrame):
+        df = df.groupby(["date", "age_group", "dose"], as_index=False).sum()
+        return df
+
+    def pipe_age_groups(self, df: pd.DataFrame):
+        df = df.assign(age_group=df.age_group.replace(self.age_valid))
+        df[["age_group_min", "age_group_max"]] = df.age_group.str.split("-", expand=True)
+        return df
+
+    def pipe_age_pivot(self, df: pd.DataFrame):
+        return (
+            df.pivot(index=["date", "age_group_min", "age_group_max"], columns="dose", values="total_vaccinations")
+            .reset_index()
+            .rename(
+                columns={
+                    "1st dose": "people_vaccinated",
+                    "2nd dose": "people_fully_vaccinated",
+                    "3rd dose": "people_with_booster",
+                }
+            )
+        )
+
+    def pipeline_age(self, df: pd.DataFrame) -> pd.DataFrame:
+        return (
+            df.pipe(self.pipe_age_checks)
+            .pipe(self.pipe_age_agg)
+            .pipe(self.pipe_age_groups)
+            .pipe(self.pipe_age_pivot)
+            .pipe(self.pipe_age_per_capita)
+            .assign(location=self.location)
+        )
+
     def export(self):
         df_base = self.read().pipe(self.pipeline_base)
 
         # Main data
-        df = df_base.pipe(self.pipeline_vax)
+        df = df_base.pipe(self.pipeline)
         # Manufacturer
         df_man = df_base.pipe(self.pipeline_manufacturer)
+        # Age
+        df_age = df_base.pipe(self.pipeline_age)
         # Export
         self.export_datafile(
             df,
             df_manufacturer=df_man,
             meta_manufacturer={"source_name": "Food and Health Bureau", "source_url": self.source_url_ref},
+            df_age=df_age,
+            meta_age={"source_name": "Food and Health Bureau", "source_url": self.source_url_ref},
         )
 
 
