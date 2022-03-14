@@ -40,6 +40,7 @@ ACDC_COUNTRIES = {
     },
     "Madagascar": {"name": "Madagascar"},  # Automate
     "Lesotho": {"name": "Lesotho"},
+    "Liberia": {"name": "Liberia"},
     "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
         "name": "Malawi",
     },
