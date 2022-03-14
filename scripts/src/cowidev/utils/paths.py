@@ -127,6 +127,7 @@ INTERNAL_INPUT_OWID_ANNOTATIONS_FILE = os.path.join(INTERNAL_DIR, "scripts", "an
 INTERNAL_INPUT_OWID_READ_FILE = os.path.join(INTERNAL_DIR, "scripts", "README.md.template")
 INTERNAL_INPUT_UN_DIR = os.path.join(INTERNAL_INPUT_DIR, "un")
 INTERNAL_INPUT_UN_POPULATION_FILE = os.path.join(INTERNAL_INPUT_UN_DIR, "population_latest.csv")
+INTERNAL_INPUT_UN_POPULATION_AGE_FILE = os.path.join(INTERNAL_INPUT_UN_DIR, "population_age_latest.csv")
 INTERNAL_INPUT_WB_DIR = os.path.join(INTERNAL_INPUT_DIR, "wb")
 INTERNAL_INPUT_WB_INCOME_FILE = os.path.join(INTERNAL_INPUT_WB_DIR, "income_groups.csv")
 ### Input templates
