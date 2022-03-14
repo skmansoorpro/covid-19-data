@@ -54,6 +54,7 @@ ACDC_COUNTRIES = {
     "Niger": {"name": "Niger"},  # Automate
     "Nigeria": {"name": "Nigeria"},  # Automate
     "Sierra Leone": {"name": "Sierra Leone"},
+    "Somalia": {"name": "Somalia"},
     "South Sudan": {  # Deprecate R script
         "name": "South Sudan",
     },
