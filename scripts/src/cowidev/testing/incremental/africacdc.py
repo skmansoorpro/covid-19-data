@@ -31,6 +31,7 @@ ACDC_COUNTRIES = {
     "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
     # "Equatorial Guinea": {"name": "Equatorial Guinea"},  # Change source to Africa CDC
     "Eritrea": {"name": "Eritrea"},
+    "Eswatini": {"name": "Eswatini"},
     "Gabon": {"name": "Gabon"},  # Automate
     "Gambia": {"name": "Gambia"},  # Automate
     "Ghana": {"name": "Ghana"},  # Automate
