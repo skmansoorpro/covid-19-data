@@ -92,8 +92,17 @@ class HongKong(CountryVaxBase):
             },
         )
 
+    def pipe_filter_dp(self, df: pd.DataFrame) -> pd.DataFrame:
+        msk = df.date.isin(["2021-10-13"])
+        return df[~msk]
+
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
-        return df.pipe(self.pipe_calculate_metrics).pipe(self.pipe_add_vaccines).pipe(self.pipe_add_metadata)
+        return (
+            df.pipe(self.pipe_calculate_metrics)
+            .pipe(self.pipe_add_vaccines)
+            .pipe(self.pipe_add_metadata)
+            .pipe(self.pipe_filter_dp)
+        )
 
     def pipe_sum_manufacturer(self, df: pd.DataFrame) -> pd.DataFrame:
         assert set(df["vaccine"].unique()) == set(self.vaccine_mapping.keys())
@@ -149,7 +158,6 @@ class HongKong(CountryVaxBase):
 
     def export(self):
         df_base = self.read().pipe(self.pipeline_base)
-
         # Main data
         df = df_base.pipe(self.pipeline)
         # Manufacturer
