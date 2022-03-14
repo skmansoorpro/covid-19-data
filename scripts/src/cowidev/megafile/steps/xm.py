@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 
 
@@ -28,6 +27,12 @@ def add_excess_mortality(df: pd.DataFrame, wmd_hmd_file: str, economist_file: st
             "cumulative_estimated_daily_excess_deaths_per_100k",
             "cumulative_estimated_daily_excess_deaths_ci_95_top_per_100k",
             "cumulative_estimated_daily_excess_deaths_ci_95_bot_per_100k",
+            "estimated_daily_excess_deaths",
+            "estimated_daily_excess_deaths_ci_95_top",
+            "estimated_daily_excess_deaths_ci_95_bot",
+            "estimated_daily_excess_deaths_per_100k",
+            "estimated_daily_excess_deaths_ci_95_top_per_100k",
+            "estimated_daily_excess_deaths_ci_95_bot_per_100k",
         ],
     ).rename(columns={"country": "location"})
     df = df.merge(econ, how="left", on=["location", "date"])
