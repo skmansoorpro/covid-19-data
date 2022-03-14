@@ -47,6 +47,7 @@ LARGE_DATA_CORRECTIONS = [
     ("Denmark", "2021-12-21", "deaths"),
     ("Ecuador", "2020-09-07", "deaths"),
     ("Ecuador", "2021-07-20", "deaths"),
+    ("Finland", "2022-03-07", "deaths"),
     ("India", "2021-06-10", "deaths"),
     ("Mexico", "2020-10-05", "deaths"),
     ("Mexico", "2021-06-01", "deaths"),
