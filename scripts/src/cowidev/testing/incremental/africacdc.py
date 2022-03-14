@@ -31,18 +31,22 @@ ACDC_COUNTRIES = {
     "Ethiopia": {"name": "Ethiopia"},  # Change source to Africa CDC
     # "Equatorial Guinea": {"name": "Equatorial Guinea"},  # Change source to Africa CDC
     "Eritrea": {"name": "Eritrea"},
+    "Eswatini": {"name": "Eswatini"},
     "Gabon": {"name": "Gabon"},  # Automate
     "Gambia": {"name": "Gambia"},  # Automate
     "Ghana": {"name": "Ghana"},  # Automate
     "Guinea": {"name": "Guinea"},
+    "Guinea-Bissau": {"name": "Guinea-Bissau"},
     "Kenya": {
         "name": "Kenya",
     },
     "Madagascar": {"name": "Madagascar"},  # Automate
     "Lesotho": {"name": "Lesotho"},
+    "Liberia": {"name": "Liberia"},
     "Malawi": {  # Deprecate R script + change "samples tested" -> "tests performed"
         "name": "Malawi",
     },
+    "Mali": {"name": "Mali"},
     "Mauritius": {"name": "Mauritius"},
     "Mauritania": {
         "name": "Mauritania",
@@ -52,6 +56,7 @@ ACDC_COUNTRIES = {
     "Niger": {"name": "Niger"},  # Automate
     "Nigeria": {"name": "Nigeria"},  # Automate
     "Sierra Leone": {"name": "Sierra Leone"},
+    "Somalia": {"name": "Somalia"},
     "South Sudan": {  # Deprecate R script
         "name": "South Sudan",
     },
