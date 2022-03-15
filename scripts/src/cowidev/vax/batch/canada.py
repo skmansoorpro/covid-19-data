@@ -72,12 +72,15 @@ class Canada(CountryVaxBase):
             source_url=self.source_url_ref,
             vaccine="Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",
         )
-        df = build_vaccine_timeline(df, {
-            "Moderna": "2021-01-02",
-            "Oxford/AstraZeneca": "2021-03-13",
-            "Pfizer/BioNTech": "2020-12-01",
-            "Johnson&Johnson": "2021-07-17",
-        })
+        df = build_vaccine_timeline(
+            df,
+            {
+                "Moderna": "2021-01-02",
+                "Oxford/AstraZeneca": "2021-03-13",
+                "Pfizer/BioNTech": "2020-12-01",
+                "Johnson&Johnson": "2021-07-17",
+            },
+        )
         return df
 
     def pipeline(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -86,7 +89,7 @@ class Canada(CountryVaxBase):
             .pipe(self.pipe_rename_columns)
             .pipe(self.pipe_metrics)
             .pipe(self.pipe_metadata)
-            .pipe(make_monotonic)
+            .pipe(self.make_monotonic)
             .sort_values("date")[
                 [
                     "location",
