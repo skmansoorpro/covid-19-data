@@ -65,6 +65,6 @@ def click_test_get(ctx, countries, skip_countries):
         modules=modules,
         modules_skip=modules_skip,
         log_header="TEST",
-        output_status=paths.INTERNAL_OUTPUT_TEST_STATUS_GET if len(modules) == len(MODULES_NAME) else None,
+        output_status=paths.INTERNAL_OUTPUT_TEST_STATUS_GET,
         output_status_ts=paths.INTERNAL_OUTPUT_TEST_STATUS_GET_TS,
     )

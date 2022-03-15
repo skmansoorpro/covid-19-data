@@ -89,15 +89,27 @@ def main_get_data(
     # Get timing dataframe
     df_exec = _build_df_execution(modules_execution_results)
     if output_status is not None:
-        # (modules_all is not None) and (len(df_exec) == len(modules_all)):
-        df_status = _build_df_status(modules_execution_results)
-        df_status.to_csv(output_status)
-        export_timestamp(output_status_ts)
+        export_status(modules_execution_results, output_status, output_status_ts)
     # Retry failed modules
     _retry_modules_failed(modules_execution_results, country_data_getter)
     # Print timing details
     t_sec_1, t_min_1, t_sec_2, t_min_2 = _print_timing(t0, t_sec_1, df_exec)
     print_eoe()
+
+
+def export_status(modules_execution_results, output_status, output_status_ts):
+    # Get status of executed scripts
+    df_status = _build_df_status(modules_execution_results)
+    # Load current status
+    df_status_now = pd.read_csv(output_status)
+    msk = ~df_status_now.module.isin(df_status.module)
+    df_status_now = df_status_now[msk]
+    # Merge
+    df_status = pd.concat([df_status, df_status_now], ignore_index=True).sort_values("module").set_index("module")
+
+    # Export
+    df_status.to_csv(output_status)
+    export_timestamp(output_status_ts)
 
 
 def _build_df_execution(modules_execution_results):
@@ -115,21 +127,17 @@ def _build_df_execution(modules_execution_results):
 
 
 def _build_df_status(modules_execution_results):
-    df_exec = (
-        pd.DataFrame(
-            [
-                {
-                    "module": m["module_name"],
-                    "execution_time (sec)": m["time"],
-                    "success": m["success"],
-                    "error": m["error"],
-                }
-                for m in modules_execution_results
-            ]
-        )
-        .set_index("module")
-        .sort_values(by="execution_time (sec)", ascending=False)
-    )
+    df_exec = pd.DataFrame(
+        [
+            {
+                "module": m["module_name"],
+                "execution_time (sec)": m["time"],
+                "success": m["success"],
+                "error": m["error"],
+            }
+            for m in modules_execution_results
+        ]
+    ).sort_values(by="execution_time (sec)", ascending=False)
     return df_exec
 
 
