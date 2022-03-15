@@ -5,7 +5,7 @@ This file shows the latest status of the data pipeline.
 ## Vaccinations
 ### Get (scraping)
 
-`7/118` scripts failed, `9/118` were skipped. Latest update was `2022-03-15T09:20:47`.
+`5/118` scripts failed, `9/118` were skipped. Latest update was `2022-03-15T11:11:07`.
 
 <table border="1" class="dataframe">
   <thead>
@@ -18,28 +18,10 @@ This file shows the latest status of the data pipeline.
   </thead>
   <tbody>
     <tr>
-      <td>cowidev.vax.incremental.serbia</td>
-      <td>❌</td>
-      <td>20.19</td>
-      <td><details><summary>show</summary><pre>HTTPSConnectionPool(host='vakcinacija.gov.rs', port=443): Read timed out. (read timeout=20)</pre></details></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.barbados</td>
-      <td>❌</td>
-      <td>12.88</td>
-      <td><details><summary>show</summary><pre>'NoneType' object is not subscriptable</pre></details></td>
-    </tr>
-    <tr>
       <td>cowidev.vax.incremental.vietnam</td>
       <td>❌</td>
       <td>4.54</td>
       <td><details><summary>show</summary><pre>'NoneType' object has no attribute 'group'</pre></details></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.sri_lanka</td>
-      <td>❌</td>
-      <td>2.58</td>
-      <td><details><summary>show</summary><pre>HTTP Error 404: Not Found</pre></details></td>
     </tr>
     <tr>
       <td>cowidev.vax.incremental.laos</td>
@@ -50,13 +32,19 @@ This file shows the latest status of the data pipeline.
     <tr>
       <td>cowidev.vax.batch.canada</td>
       <td>❌</td>
-      <td>1.48</td>
-      <td><details><summary>show</summary><pre>61 rows have been removed. That is more than maximum allowed (10) by make_monotonic() - check the data. Check <br>           date  ...                                            vaccine<br>718  2022-01-12  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>719  2022-01-13  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>720  2022-01-14  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>721  2022-01-15  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>722  2022-01-16  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>..          ...  ...                                                ...<br>774  2022-03-09  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>775  2022-03-10  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>776  2022-03-11  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>777  2022-03-12  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br>778  2022-03-13  ...  Johnson&Johnson, Moderna, Oxford/AstraZeneca, ...<br><br>[61 rows x 10 columns]</pre></details></td>
+      <td>1.15</td>
+      <td><details><summary>show</summary><pre>61 rowse have been removed. That is more than maximum allowed (10) by make_monotonic() - check the data. Check <br>           date  total_vaccinations  people_vaccinated  people_fully_vaccinated<br>718  2022-01-12            72537602         31958617.0                 29590157<br>719  2022-01-13            72959024         31986866.0                 29612110<br>720  2022-01-14            73355030         32015303.0                 29635733<br>721  2022-01-15            73642492         32036485.0                 29655803<br>722  2022-01-16            73853084         32055759.0                 29671835<br>..          ...                 ...                ...                      ...<br>774  2022-03-09            81548320         32611882.0                 30998297<br>775  2022-03-10            81583513         32624328.0                 31002062<br>776  2022-03-11            81616608         32629536.0                 31011662<br>777  2022-03-12            81641527         32633173.0                 31018937<br>778  2022-03-13            81666740         32635559.0                 31027767<br><br>[61 rows x 4 columns]</pre></details></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.barbados</td>
+      <td>❌</td>
+      <td>0.98</td>
+      <td><details><summary>show</summary><pre>'NoneType' object is not subscriptable</pre></details></td>
     </tr>
     <tr>
       <td>cowidev.vax.batch.luxembourg</td>
       <td>❌</td>
-      <td>0.46</td>
+      <td>0.32</td>
       <td><details><summary>show</summary><pre>HTTP Error 404: NOT FOUND</pre></details></td>
     </tr>
     <tr>
@@ -360,6 +348,12 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
+      <td>cowidev.vax.incremental.serbia</td>
+      <td>✅</td>
+      <td>5.77</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>cowidev.vax.incremental.dominican_republic</td>
       <td>✅</td>
       <td>5.73</td>
@@ -426,13 +420,13 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.who</td>
+      <td>cowidev.vax.batch.peru</td>
       <td>✅</td>
       <td>3.93</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.batch.peru</td>
+      <td>cowidev.vax.incremental.who</td>
       <td>✅</td>
       <td>3.93</td>
       <td></td>
@@ -459,6 +453,12 @@ This file shows the latest status of the data pipeline.
       <td>cowidev.vax.incremental.kyrgyzstan</td>
       <td>✅</td>
       <td>3.17</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.sri_lanka</td>
+      <td>✅</td>
+      <td>3.10</td>
       <td></td>
     </tr>
     <tr>
@@ -618,13 +618,13 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.moldova</td>
+      <td>cowidev.vax.batch.lithuania</td>
       <td>✅</td>
       <td>1.03</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.batch.lithuania</td>
+      <td>cowidev.vax.incremental.moldova</td>
       <td>✅</td>
       <td>1.03</td>
       <td></td>
@@ -732,7 +732,7 @@ This file shows the latest status of the data pipeline.
 ## Testing
 ### Get (scraping)
 
-`7/112` scripts failed, `3/112` were skipped. Latest update was `2022-03-14T19:01:56`.
+`5/112` scripts failed, `3/112` were skipped. Latest update was `2022-03-15T11:12:10`.
 
 <table border="1" class="dataframe">
   <thead>
@@ -751,12 +751,6 @@ This file shows the latest status of the data pipeline.
       <td><details><summary>show</summary><pre>HTTPSConnectionPool(host='covid19.info.gov.pg', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x16233db80>, 'Connection to covid19.info.gov.pg timed out. (connect timeout=20)'))</pre></details></td>
     </tr>
     <tr>
-      <td>cowidev.testing.incremental.kosovo</td>
-      <td>❌</td>
-      <td>15.45</td>
-      <td><details><summary>show</summary><pre>local variable 'count' referenced before assignment</pre></details></td>
-    </tr>
-    <tr>
       <td>cowidev.testing.incremental.vietnam</td>
       <td>❌</td>
       <td>10.33</td>
@@ -767,12 +761,6 @@ This file shows the latest status of the data pipeline.
       <td>❌</td>
       <td>2.82</td>
       <td><details><summary>show</summary><pre>('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))</pre></details></td>
-    </tr>
-    <tr>
-      <td>cowidev.testing.batch.spain</td>
-      <td>❌</td>
-      <td>2.30</td>
-      <td><details><summary>show</summary><pre>HTTP Error 404: Not found</pre></details></td>
     </tr>
     <tr>
       <td>cowidev.testing.incremental.jordan</td>
@@ -907,6 +895,12 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
+      <td>cowidev.testing.incremental.kosovo</td>
+      <td>✅</td>
+      <td>9.91</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>cowidev.testing.batch.canada</td>
       <td>✅</td>
       <td>9.87</td>
@@ -985,13 +979,13 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.testing.incremental.libya</td>
+      <td>cowidev.testing.incremental.georgia</td>
       <td>✅</td>
       <td>5.29</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.testing.incremental.georgia</td>
+      <td>cowidev.testing.incremental.libya</td>
       <td>✅</td>
       <td>5.29</td>
       <td></td>
@@ -1069,13 +1063,13 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.testing.incremental.bulgaria</td>
+      <td>cowidev.testing.batch.mexico</td>
       <td>✅</td>
       <td>3.40</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.testing.batch.mexico</td>
+      <td>cowidev.testing.incremental.bulgaria</td>
       <td>✅</td>
       <td>3.40</td>
       <td></td>
@@ -1291,13 +1285,13 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.testing.batch.finland</td>
+      <td>cowidev.testing.batch.colombia</td>
       <td>✅</td>
       <td>1.28</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.testing.batch.colombia</td>
+      <td>cowidev.testing.batch.finland</td>
       <td>✅</td>
       <td>1.28</td>
       <td></td>
@@ -1360,6 +1354,12 @@ This file shows the latest status of the data pipeline.
       <td>cowidev.testing.batch.india</td>
       <td>✅</td>
       <td>0.62</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.testing.batch.spain</td>
+      <td>✅</td>
+      <td>0.60</td>
       <td></td>
     </tr>
     <tr>
