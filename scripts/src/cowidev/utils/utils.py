@@ -38,9 +38,12 @@ def make_monotonic(
         if num_removed_rows > max_removed_rows:
             dates_wrong = dates_before.difference(dates_now)
             df_wrong = df_before[df_before.date.isin(dates_wrong)]
+            # pd.set_option("expand_frame_repr", False)
+            df_wrong = df_wrong[["date"] + column_metrics]
+            # df_wrong = df_before[["date"] + column_metrics]
             raise Exception(
-                f"{num_removed_rows} rows have been removed. That is more than maximum allowed ({max_removed_rows}) by"
-                f" make_monotonic() - check the data. Check \n{df_wrong}"  # {', '.join(sorted(dates_wrong))}"
+                f"{num_removed_rows} rowse have been removed. That is more than maximum allowed ({max_removed_rows})"
+                f" by make_monotonic() - check the data. Check \n{df_wrong}"  # {', '.join(sorted(dates_wrong))}"
             )
 
     return df
