@@ -5,7 +5,6 @@ from selenium.webdriver.chrome.options import Options
 from cowidev.utils.clean import clean_count, clean_date
 from cowidev.vax.utils.incremental import increment, enrich_data
 from cowidev.vax.utils.base import CountryVaxBase
-from cowidev.vax.utils.utils import add_latest_who_values
 
 
 class Kazakhstan(CountryVaxBase):
@@ -67,7 +66,7 @@ class Kazakhstan(CountryVaxBase):
 
     def pipeline(self, ds: pd.Series) -> pd.Series:
         df = ds.pipe(self.pipe_metadata).pipe(self.pipe_vaccine).pipe(self.pipe_metrics).pipe(self.pipe_to_frame)
-        df = add_latest_who_values(df, "Kazakhstan", ["total_vaccinations"])
+        # df = add_latest_who_values(df, "Kazakhstan", ["total_vaccinations"])
         return df
 
     def export(self):
