@@ -112,6 +112,7 @@ class EMRO(CountryTestBase):
     def pipe_metadata(self, df: pd.DataFrame) -> pd.DataFrame:
         """Adds metadata to DataFrame"""
         mapping = {
+            "Country": df["location"],
             "Units": self.units,
             "Notes": self.notes,
             "Source URL": self.source_url_ref,
