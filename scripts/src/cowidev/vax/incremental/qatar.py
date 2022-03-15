@@ -1,4 +1,3 @@
-import re
 import time
 
 import pandas as pd
@@ -7,7 +6,7 @@ from selenium.webdriver.chrome.options import Options
 
 from cowidev.utils.clean import clean_count
 from cowidev.utils.clean.dates import localdate
-from cowidev.vax.utils.incremental import enrich_data, increment
+from cowidev.vax.utils.incremental import enrich_data
 from cowidev.vax.utils.base import CountryVaxBase
 from cowidev.vax.utils.utils import add_latest_who_values
 
@@ -67,8 +66,6 @@ class Qatar(CountryVaxBase):
         return df
 
     def export(self):
-        from cowidev.vax.utils.utils import add_latest_who_values
-
         df = self.read().pipe(self.pipeline)
         self.export_datafile(df, attach=True)
         # increment(
