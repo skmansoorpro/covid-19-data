@@ -114,7 +114,8 @@ class SriLanka(CountryVaxBase):
 
     def export(self):
         df = self.read()
-        self.export_datafile(df, attach=True)
+        if not df.empty:
+            self.export_datafile(df, attach=True)
 
 
 def main():
