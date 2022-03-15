@@ -1,34 +1,54 @@
 import datetime
+import re
 
 import pandas as pd
 import tabula
 
+from cowidev.utils import get_soup
 from cowidev.utils.clean import clean_count
 from cowidev.utils.utils import check_known_columns
+from cowidev.utils.web import get_base_url
 from cowidev.vax.utils.incremental import increment
+from cowidev.vax.utils.base import CountryVaxBase
 
 
-class SriLanka:
+class SriLanka(CountryVaxBase):
     def __init__(self):
         self.location = "Sri Lanka"
+        self.source_url = "http://www.epid.gov.lk/web/index.php?option=com_content&view=article&id=231&lang=en"
 
-    def read(self):
-        date = (datetime.date.today() - datetime.timedelta(days=2)).strftime("%Y-%m_%d")
-        pdf_path = self._build_link_pdf(date)
-        data = self.parse_data(pdf_path)
+    def read(self) -> pd.DataFrame:
+        last_update = self.last_update()
+        records = []
+        # Get elements
+        elems = self._get_elems()
+        for elem in elems:
+            date = re.search(r"20\d\d\-\d\d\-\d\d", elem.text).group()
+            if date <= last_update:
+                break
+            data = self._parse_data(date, elem)
+            records.append(data)
+        return pd.DataFrame(records)
 
-        data["date"] = date.replace("_", "-")
-        data["location"] = self.location
-        data["source_url"] = pdf_path
-        data["vaccine"] = "Oxford/AstraZeneca, Sinopharm/Beijing, Sputnik V, Pfizer/BioNTech, Moderna"
+    def _get_elems(self) -> list:
+        soup = get_soup(self.source_url)
+        elems = soup.find_all("tr")
+        elems = [e for e in elems if "Progress Report of COVID - 19 Immunization" in e.text]
+        return elems
 
-        return pd.Series(data=data)
+    def _parse_data(self, date, elem) -> dict:
+        pdf_path = get_base_url(self.source_url) + elem.find("a").get("href")
+        data = self.parse_metrics_from_pdf(pdf_path)
+        data = {
+            **data,
+            "date": date,
+            "location": self.location,
+            "source_url": pdf_path,
+            "vaccine": "Oxford/AstraZeneca, Sinopharm/Beijing, Sputnik V, Pfizer/BioNTech, Moderna",
+        }
+        return data
 
-    def _build_link_pdf(self, date):
-        return f"http://www.epid.gov.lk/web/images/pdf/corona_vaccination/covid_vaccination_{date}.pdf"
-
-    def parse_data(self, pdf_path):
-
+    def parse_metrics_from_pdf(self, pdf_path):
         print(pdf_path)
         dfs = tabula.read_pdf(pdf_path)
         df = dfs[0]
@@ -93,17 +113,8 @@ class SriLanka:
         )
 
     def export(self):
-        data = self.read()
-        increment(
-            location=data["location"],
-            total_vaccinations=data["total_vaccinations"],
-            people_vaccinated=data["people_vaccinated"],
-            people_fully_vaccinated=data["people_fully_vaccinated"],
-            total_boosters=data["total_boosters"],
-            date=data["date"],
-            source_url=data["source_url"],
-            vaccine=data["vaccine"],
-        )
+        df = self.read()
+        self.export_datafile(df, attach=True)
 
 
 def main():
