@@ -94,6 +94,10 @@ class CountryVaxBase:
     def load_datafile(self, **kwargs):
         return pd.read_csv(self.output_path, **kwargs)
 
+    def last_update(self, **kwargs):
+        df = self.load_datafile(**kwargs)
+        return df.date.max()
+
     def make_monotonic(self, df, max_removed_rows=10, strict=False):
         return mkm(
             df=df,
