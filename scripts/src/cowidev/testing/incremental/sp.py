@@ -19,6 +19,8 @@ class SPRO(CountryTestBase):
     source_url: str = "https://app.powerbi.com/view?r=eyJrIjoiMTQwZmJmZjctMjkwMC00MThkLWI5NDgtNmQ3OGUwNDc4ZWE3IiwidCI6IjBmOWUzNWRiLTU0NGYtNGY2MC1iZGNjLTVlYTQxNmU2ZGM3MCIsImMiOjh9"
     source_label: str = "WHO Regional Office for the South Pacific"
 
+    ### Scraping functions go here
+
     def pipe_rename_countries(self, df: pd.DataFrame) -> pd.DataFrame:
         """Renames countries to match OWID naming convention."""
         df["location"] = df.location.replace(SPRO_COUNTRIES)
