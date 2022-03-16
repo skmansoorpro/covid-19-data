@@ -5,7 +5,7 @@ This file shows the latest status of the data pipeline.
 ## Vaccinations
 ### Get (scraping)
 
-`5/118` scripts failed, `9/118` were skipped. Latest update was `2022-03-15T11:11:07`.
+`5/118` scripts failed, `9/118` were skipped. Latest update was `2022-03-15T21:34:29`.
 
 <table border="1" class="dataframe">
   <thead>
@@ -102,6 +102,12 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
+      <td>cowidev.vax.incremental.kazakhstan</td>
+      <td>✅</td>
+      <td>70.88</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>cowidev.vax.batch.ecdc</td>
       <td>✅</td>
       <td>52.27</td>
@@ -146,7 +152,7 @@ This file shows the latest status of the data pipeline.
     <tr>
       <td>cowidev.vax.incremental.paho</td>
       <td>✅</td>
-      <td>42.42</td>
+      <td>40.44</td>
       <td></td>
     </tr>
     <tr>
@@ -282,15 +288,15 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.nepal</td>
+      <td>cowidev.vax.incremental.qatar</td>
       <td>✅</td>
-      <td>8.48</td>
+      <td>10.30</td>
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.qatar</td>
+      <td>cowidev.vax.incremental.nepal</td>
       <td>✅</td>
-      <td>8.23</td>
+      <td>8.48</td>
       <td></td>
     </tr>
     <tr>
@@ -384,12 +390,6 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.kazakhstan</td>
-      <td>✅</td>
-      <td>4.86</td>
-      <td></td>
-    </tr>
-    <tr>
       <td>cowidev.vax.batch.belgium</td>
       <td>✅</td>
       <td>4.83</td>
@@ -426,12 +426,6 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.who</td>
-      <td>✅</td>
-      <td>3.93</td>
-      <td></td>
-    </tr>
-    <tr>
       <td>cowidev.vax.incremental.greenland</td>
       <td>✅</td>
       <td>3.43</td>
@@ -453,6 +447,12 @@ This file shows the latest status of the data pipeline.
       <td>cowidev.vax.incremental.kyrgyzstan</td>
       <td>✅</td>
       <td>3.17</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.who</td>
+      <td>✅</td>
+      <td>3.15</td>
       <td></td>
     </tr>
     <tr>
@@ -564,6 +564,12 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
+      <td>cowidev.vax.incremental.moldova</td>
+      <td>✅</td>
+      <td>1.33</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>cowidev.vax.batch.norway</td>
       <td>✅</td>
       <td>1.31</td>
@@ -624,12 +630,6 @@ This file shows the latest status of the data pipeline.
       <td></td>
     </tr>
     <tr>
-      <td>cowidev.vax.incremental.moldova</td>
-      <td>✅</td>
-      <td>1.03</td>
-      <td></td>
-    </tr>
-    <tr>
       <td>cowidev.vax.batch.netherlands</td>
       <td>✅</td>
       <td>1.02</td>
@@ -651,6 +651,12 @@ This file shows the latest status of the data pipeline.
       <td>cowidev.vax.incremental.croatia</td>
       <td>✅</td>
       <td>0.85</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>cowidev.vax.incremental.philippines</td>
+      <td>✅</td>
+      <td>0.79</td>
       <td></td>
     </tr>
     <tr>
@@ -699,12 +705,6 @@ This file shows the latest status of the data pipeline.
       <td>cowidev.vax.incremental.turkey</td>
       <td>✅</td>
       <td>0.54</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>cowidev.vax.incremental.philippines</td>
-      <td>✅</td>
-      <td>0.26</td>
       <td></td>
     </tr>
     <tr>
