@@ -20,7 +20,7 @@ cowidev.vax.batch.canada,1.34,False,"61 rowse have been removed. That is more th
 [61 rows x 4 columns]"
 cowidev.vax.batch.chile,1.74,True,
 cowidev.vax.batch.czechia,2.32,True,
-cowidev.vax.batch.denmark,2.83,False,"""Column(s) ['people_fully_vaccinated', 'people_vaccinated'] do not exist"""
+cowidev.vax.batch.denmark,3.25,True,
 cowidev.vax.batch.ecdc,53.08,True,
 cowidev.vax.batch.ecuador,2.25,True,
 cowidev.vax.batch.estonia,0.87,True,
@@ -35,7 +35,7 @@ cowidev.vax.batch.italy,4.98,True,
 cowidev.vax.batch.jersey,0.97,True,
 cowidev.vax.batch.latvia,33.19,True,
 cowidev.vax.batch.lithuania,0.76,True,
-cowidev.vax.batch.luxembourg,0.6,False,HTTP Error 404: NOT FOUND
+cowidev.vax.batch.luxembourg,0.32,False,HTTP Error 404: NOT FOUND
 cowidev.vax.batch.malaysia,0.67,True,
 cowidev.vax.batch.malta,1.87,True,
 cowidev.vax.batch.netherlands,0.83,True,
@@ -95,7 +95,7 @@ cowidev.vax.incremental.isle_of_man,1.19,True,
 cowidev.vax.incremental.jamaica,7.54,True,
 cowidev.vax.incremental.japan,6.93,True,
 cowidev.vax.incremental.kazakhstan,8.15,True,
-cowidev.vax.incremental.kenya,8.67,False,No new record found after 2022-03-14
+cowidev.vax.incremental.kenya,3.96,False,No new record found after 2022-03-14
 cowidev.vax.incremental.kosovo,34.96,True,
 cowidev.vax.incremental.kyrgyzstan,6.27,True,
 cowidev.vax.incremental.laos,1.5,False,"('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
