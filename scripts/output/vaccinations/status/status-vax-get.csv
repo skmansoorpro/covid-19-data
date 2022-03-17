@@ -3,7 +3,7 @@ cowidev.vax.batch.australia,2.33,True,
 cowidev.vax.batch.austria,,,
 cowidev.vax.batch.belgium,5.98,True,
 cowidev.vax.batch.bolivia,2.42,True,
-cowidev.vax.batch.canada,1.34,False,"61 rowse have been removed. That is more than maximum allowed (10) by make_monotonic() - check the data. Check 
+cowidev.vax.batch.canada,1.3,False,"61 rowse have been removed. That is more than maximum allowed (10) by make_monotonic() - check the data. Check 
            date  total_vaccinations  people_vaccinated  people_fully_vaccinated
 718  2022-01-12            72537602         31958617.0                 29590157
 719  2022-01-13            72959024         31986866.0                 29612110
@@ -27,7 +27,7 @@ cowidev.vax.batch.estonia,0.87,True,
 cowidev.vax.batch.france,0.63,True,
 cowidev.vax.batch.germany,1.25,True,
 cowidev.vax.batch.greece,2.86,True,
-cowidev.vax.batch.hong_kong,2.88,True,
+cowidev.vax.batch.hong_kong,0.83,False,You are trying to merge on object and float64 columns. If you wish to proceed you should use pd.concat
 cowidev.vax.batch.indonesia,8.53,True,
 cowidev.vax.batch.ireland,0.44,True,
 cowidev.vax.batch.israel,5.14,True,
